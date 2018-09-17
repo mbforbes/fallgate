@@ -3323,6 +3323,12 @@
 	"blop1Body": {
 		"img": "sprites/npc/blopDeath7.png"
 	},
+	"kingBody": {
+		"img": "sprites/npc/kingDeath7.png"
+	},
+	"senBody": {
+		"img": "sprites/npc/senDeath22.png"
+	},
 
 	"staticDmgRegionOld": {
 		"bjorn": true,
@@ -4688,7 +4694,8 @@
 	"throne": {
 		"collisionManual": "0,0,40,88",
 		"collisionTypes": [
-			"Solid"
+			"Solid",
+			"Wall"
 		],
 		"drawLayer": "AboveTop",
 		"img": "decorations/castleObj/throne.png"
@@ -4943,7 +4950,8 @@
 		],
 		"collisionManual": "0,0,72,72",
 		"collisionTypes": [
-			"Solid"
+			"Solid",
+			"Wall"
 		],
 		"drawLayer": "Top"
 	},
@@ -4964,7 +4972,8 @@
 	"ruins1": {
 		"collisionGenerate": true,
 		"collisionTypes": [
-			"Solid"
+			"Solid",
+			"Wall"
 		],
 		"img": "decorations/forestObj/ruins1.png"
 	},

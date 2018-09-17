@@ -1,5 +1,5 @@
 {
-	"mode": "release",
+	"mode": "debug",
 	"subConfigs": {
 		"attributes": "assets/data/attributes.json",
 		"controls": "assets/data/controls.json",

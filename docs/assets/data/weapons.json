@@ -572,7 +572,15 @@
 						"playType": "PlayAndHold"
 					}
 				}
-			]
+			],
+			"sounds": {
+				"swing": [
+					"bowShoot"
+				],
+				"hit": [
+					"bowHit"
+				]
+			}
 		},
 		"mainAnimationBase": {
 			"part": "Weapon",

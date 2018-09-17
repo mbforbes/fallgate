@@ -37,6 +37,20 @@
 		"path": "assets/audio/effects/heartbeat.mp3"
 	},
 
+	"switchToSword": {
+		"path": "assets/audio/effects/switch-to-sword.mp3"
+	},
+	"switchToBow": {
+		"path": "assets/audio/effects/switch-to-bow.mp3"
+	},
+
+	"bowShoot": {
+		"path": "assets/audio/effects/bow-shoot.mp3"
+	},
+	"bowHit": {
+		"path": "assets/audio/effects/bow-hit.mp3"
+	},
+
 	"crateHit": {
 		"path": "assets/audio/effects/crate-hit.mp3"
 	},

@@ -253,5 +253,25 @@
 				"extraOffset": [0, 0]
 			}
 		]
+	},
+	"sentinelShield": {
+		"characterTiming": {
+			"raiseDuration": 0,
+			"lowerDuration": 0
+		},
+		"blockInfo": {
+			"cboxDims": [32, 112],
+			"cboxOffset": [32, -8],
+			"armor": 10
+		},
+		"animationCore": {
+			"part": "Shield",
+			"partID": "Default"
+		},
+		"sounds": {
+				"block": ["playerBlocks"]
+		},
+		"animations": [
+		]
 	}
 }

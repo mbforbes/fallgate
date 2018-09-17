@@ -38,7 +38,7 @@
 	"blendMode": "normal",
 	"frequency": 0.001,
 	"emitterLifetime": -1,
-	"maxParticles": 10000,
+	"maxParticles": 500,
 	"pos": {
 		"x": 0,
 		"y": 0
@@ -46,9 +46,9 @@
 	"addAtBack": false,
 	"spawnType": "rect",
 	"spawnRect": {
-		"x": 0,
-		"y": 0,
-		"w": 10000,
-		"h": 10000
+		"x": -2500,
+		"y": -2000,
+		"w": 5000,
+		"h": 4000
 	}
 }

@@ -3917,10 +3917,14 @@ var System;
                 // always set weapon part to current weapon partID
                 this.cacheNewParts.set(Part.Weapon, armed.active.partID);
             }
-            // Similarly, check for shielded component. Only one partID, so it's
-            // easy!
+            // Similarly, check for shielded component. Only one partID, so
+            // it's easy! (Well, mostly... see inside.)
             if (aspect.has(Component.Shielded)) {
-                this.cacheNewParts.set(Part.Shield, PartID.Default);
+                // for the shield, we hide if the bow is doing anything
+                // interesting
+                if (coreID != PartID.Bow) {
+                    this.cacheNewParts.set(Part.Shield, PartID.Default);
+                }
             }
             // always set core
             this.cacheNewParts.set(Part.Core, coreID);
@@ -8525,8 +8529,9 @@ var System;
             let attackComp = new Component.Attack(attacker, attackInfo);
             this.ecs.addComponent(attack, attackComp);
             this.ecs.addComponent(attack, new Component.ActiveAttack());
-            // add comboable to attack if entity is comboable
-            if (this.ecs.getComponents(attacker).has(Component.Comboable)) {
+            // add comboable to attack if entity is comboable and attack is one that could have combos (non-ranged only)
+            if (this.ecs.getComponents(attacker).has(Component.Comboable) &&
+                attackInfo.movement == Weapon.AttackMovement.Track) {
                 this.ecs.addComponent(attack, new Component.FromComboable());
             }
             // collision. avoid self-colliding by resolving collision box w/
@@ -8671,6 +8676,16 @@ var System;
                         else if (input.switchWeapon) {
                             armed.activeIdx = (armed.activeIdx + 1) % armed.inventory.length;
                             armed.active = armed.inventory[armed.activeIdx];
+                            // play sound
+                            if (armed.inventory.length > 1) {
+                                let audio = this.ecs.getSystem(System.Audio);
+                                if (armed.active.partID == PartID.Bow) {
+                                    audio.play(['switchToBow']);
+                                }
+                                else if (armed.active.partID == PartID.Sword) {
+                                    audio.play(['switchToSword']);
+                                }
+                            }
                             // reset anims
                             if (aspect.has(Component.Animatable)) {
                                 aspect.get(Component.Animatable).reset = true;
@@ -9137,8 +9152,17 @@ var System;
         // 	}
         // }
         update(delta, entities) {
+            // get player pos
+            let playerPos = null;
+            let player = this.ecs.getSystem(System.PlayerSelector).latest().next().value;
+            if (player != null) {
+                playerPos = this.ecs.getComponents(player).get(Component.Position).p;
+            }
             for (let pkg of this.emitters.values()) {
                 pkg.emitter.update(delta * 0.001);
+                if (playerPos != null) {
+                    pkg.emitter.spawnPos.set(playerPos.x, playerPos.y);
+                }
             }
         }
     }
@@ -13653,11 +13677,18 @@ var Handler;
             // enemies may either be legit dead enemies, or bodies placed by this
             // handler swapping back from humanoid bodies
             this.toHumanoidMap = new Map([
+                // blop <-> archer
                 ['blop-1', 'archerBody'],
                 ['blop1Body', 'archerBody'],
+                // sen <-> king
+                ['sentinel', 'kingBody'],
+                ['senBody', 'kingBody'],
             ]);
             this.toEnemyMap = new Map([
+                // blop <-> archer
                 ['archerBody', 'blop1Body'],
+                // sen <-> king
+                ['kingBody', 'senBody'],
             ]);
         }
         // triggers the end-sequence script if enemy dead was final boss
@@ -17128,7 +17159,12 @@ var System;
                 // omg we hit a wall. stop it, and make its damage 0 (so the
                 // attack still makes it get removed).
                 this.ecs.removeComponentIfExists(entity, Component.Input);
-                aspect.get(Component.Attack).info.damage = 0;
+                let atk = aspect.get(Component.Attack);
+                atk.info.damage = 0;
+                // ... and play hit sounds!
+                if (atk.info.sounds.hit != null) {
+                    this.ecs.getSystem(System.Audio).play(atk.info.sounds.hit, aspect.get(Component.Position).p);
+                }
             }
         }
     }

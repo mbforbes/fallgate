@@ -694,8 +694,6 @@
 	},
 
 	"progression": [
-		"castleFinale001",
-
 		"title",
 
 		"actSummer",
@@ -750,7 +748,7 @@
 		"castleSpider002",
 		"castleSpider003",
 
-
+		"castleFinale001",
 
 		"recap",
 		"credits"
