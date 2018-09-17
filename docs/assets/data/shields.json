@@ -1,0 +1,257 @@
+{
+	"playerShield-Base": {
+		"characterTiming": {
+			"raiseDuration": 0,
+			"lowerDuration": 0
+		},
+		"blockInfo": {
+			"cboxDims": [20, 50],
+			"cboxOffset": [25, 0],
+			"armor": 10
+		},
+		"animationCore": {
+			"part": "Shield",
+			"partID": "Default"
+		},
+		"sounds": {
+			"block": ["playerBlocks"]
+		},
+		"animations": [
+			{
+				"action": "BlockRaising",
+				"frameBase": "sprites/weapons/shieldRaise",
+				"nFrames": 2,
+				"msPerFrame": 50,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [-8, 56]
+			},
+			{
+				"action": "BlockHolding",
+				"frameBase": "sprites/weapons/shieldHold",
+				"nFrames": 1,
+				"msPerFrame": 100,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [-8, 56]
+			},
+			{
+				"action": "BlockLowering",
+				"frameBase": "sprites/weapons/shieldLower",
+				"nFrames": 1,
+				"msPerFrame": 50,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [-8, 56]
+			},
+			{
+				"action": "Idle",
+				"frameBase": "sprites/weapons/shieldIdle",
+				"nFrames": 1,
+				"msPerFrame": 100,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [-8, 56]
+			},
+			{
+				"action": "Charging",
+				"frameBase": "sprites/weapons/shieldCharge",
+				"nFrames": 3,
+				"msPerFrame": 75,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [0, 0]
+			},
+			{
+				"action": "Swinging",
+				"frameBase": "sprites/weapons/shieldSwing",
+				"nFrames": 4,
+				"msPerFrame": 50,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [0, 0]
+			},
+			{
+				"action": "Sheathing",
+				"frameBase": "sprites/weapons/shieldSheathe",
+				"nFrames": 1,
+				"msPerFrame": 75,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [0, 0]
+			},
+			{
+				"action": "QuickAttacking",
+				"frameBase": "sprites/weapons/shieldSlashA",
+				"nFrames": 8,
+				"msPerFrame": 50,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [0, 0]
+			},
+			{
+				"action": "QuickAttacking2",
+				"frameBase": "sprites/weapons/shieldSlashB",
+				"nFrames": 8,
+				"msPerFrame": 50,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [0, 0]
+			},
+			{
+				"action": "Staggering",
+				"frameBase": "sprites/weapons/shieldStagger",
+				"nFrames": 3,
+				"msPerFrame": 100,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [0, 0]
+			},
+			{
+				"action": "StaggerReturning",
+				"frameBase": "sprites/weapons/shieldStaggerReturn",
+				"nFrames": 2,
+				"msPerFrame": 100,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [0, 0]
+			},
+			{
+				"action": "Blocked",
+				"frameBase": "sprites/weapons/shieldStagger",
+				"nFrames": 3,
+				"msPerFrame": 100,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [0, 0]
+			},
+			{
+				"action": "Dead",
+				"frameBase": "sprites/weapons/shieldDeath",
+				"nFrames": 9,
+				"msPerFrame": 100,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [0, 0]
+			},
+			{
+				"action": "Recoiling",
+				"frameBase": "sprites/weapons/shieldRecoil",
+				"nFrames": 4,
+				"msPerFrame": 50,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [-8, 56]
+			}
+		]
+	},
+	"playerShield-Slow": {
+		"parent": "playerShield-Base",
+		"animationCore": {
+			"part": "Shield",
+			"partID": "Default"
+		},
+		"animations": [
+			{
+				"action": "Moving",
+				"frameBase": "sprites/weapons/shieldWalk",
+				"nFrames": 8,
+				"msPerFrame": 100,
+				"playType": "Loop",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [-8, 56]
+			}
+		]
+	},
+	"playerShield-Fast": {
+		"parent": "playerShield-Base",
+		"animationCore": {
+			"part": "Shield",
+			"partID": "Default"
+		},
+		"animations": [
+			{
+				"action": "Moving",
+				"frameBase": "sprites/weapons/shieldWalk",
+				"nFrames": 8,
+				"msPerFrame": 60,
+				"playType": "Loop",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [-8, 56]
+			}
+		]
+	},
+	"playerShield-StabCombo-Slow": {
+		"parent": "playerShield-Slow",
+		"animationCore": {
+			"part": "Shield",
+			"partID": "Default"
+		},
+		"animations": [
+			{
+				"action": "ComboAttacking",
+				"frameBase": "sprites/weapons/shieldPowerStab",
+				"nFrames": 17,
+				"msPerFrame": 50,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [0, 0]
+			}
+		]
+	},
+	"playerShield-StabCombo-Fast": {
+		"parent": "playerShield-Fast",
+		"animationCore": {
+			"part": "Shield",
+			"partID": "Default"
+		},
+		"animations": [
+			{
+				"action": "ComboAttacking",
+				"frameBase": "sprites/weapons/shieldPowerStab",
+				"nFrames": 17,
+				"msPerFrame": 50,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [0, 0]
+			}
+		]
+	},
+	"playerShield-AOECombo": {
+		"parent": "playerShield-Fast",
+		"animationCore": {
+			"part": "Shield",
+			"partID": "Default"
+		},
+		"animations": [
+			{
+				"action": "ComboAttacking",
+				"frameBase": "sprites/weapons/shieldComboAOE",
+				"nFrames": 18,
+				"msPerFrame": 50,
+				"playType": "PlayAndHold",
+				"anchor": [0, 1],
+				"alignType": "TextureOrigin",
+				"extraOffset": [0, 0]
+			}
+		]
+	}
+}

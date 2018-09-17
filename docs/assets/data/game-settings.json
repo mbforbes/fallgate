@@ -1,0 +1,6 @@
+{
+	"sounds": {
+		"bgm": ["music-battle"],
+		"gateOpen": ["gateOpen"]
+	}
+}

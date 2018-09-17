@@ -1,0 +1,227 @@
+{
+	"music-summer": {
+		"path": "assets/audio/music/summer.mp3",
+		"music": true,
+		"duration": 82500
+	},
+
+	"swordQuickSwing": {
+		"path": "assets/audio/effects/sword-quick-swing.mp3"
+	},
+	"swordQuickHit": {
+		"path": "assets/audio/effects/sword-quick-hit.mp3"
+	},
+	"swordComboSwing": {
+		"path": "assets/audio/effects/sword-combo-swing.mp3"
+	},
+	"playerDamaged": {
+		"path": "assets/audio/effects/body-damaged.mp3"
+	},
+	"playerBlocks": {
+		"path": "assets/audio/effects/block.mp3",
+		"volume": 0.75
+	},
+	"footstepGrass1": {
+		"path": "assets/audio/effects/footstep-grass-1.mp3",
+		"volume": 0.3
+	},
+	"footstepGrass2": {
+		"path": "assets/audio/effects/footstep-grass-2.mp3",
+		"volume": 0.3
+	},
+	"footstepGrass3": {
+		"path": "assets/audio/effects/footstep-grass-3.mp3",
+		"volume": 0.3
+	},
+	"heartbeat": {
+		"path": "assets/audio/effects/heartbeat.mp3"
+	},
+
+	"crateHit": {
+		"path": "assets/audio/effects/crate-hit.mp3"
+	},
+	"crateSmash": {
+		"path": "assets/audio/effects/crate-break.mp3"
+	},
+	"mimicBurst": {
+		"path": "assets/audio/effects/mimic-burst.mp3",
+		"volume": 1.3
+	},
+	"slowSwing": {
+		"path": "assets/audio/effects/slow-swing.mp3"
+	},
+
+	"sawtoothSwing": {
+		"path": "assets/audio/effects/sawtooth-attack.mp3",
+		"volume": 0.3
+	},
+	"sawtoothDamaged1": {
+		"path": "assets/audio/effects/sawtooth-hit-1.mp3",
+		"volume": 0.7
+	},
+	"sawtoothDamaged2": {
+		"path": "assets/audio/effects/sawtooth-hit-2.mp3",
+		"volume": 0.7
+	},
+	"sawtoothDead": {
+		"path": "assets/audio/effects/sawtooth-dead.mp3"
+	},
+	"sawtoothBeep": {
+		"path": "assets/audio/effects/sawtooth-beep.mp3",
+		"volume": 0.2
+	},
+	"sawtoothExplode": {
+		"path": "assets/audio/effects/sawtooth-explode.mp3"
+	},
+
+	"spearThrust": {
+		"path": "assets/audio/effects/spear-stab.mp3"
+	},
+
+	"spiderDamaged": {
+		"path": "assets/audio/effects/spider-damaged.mp3",
+		"volume": 0.8
+	},
+	"spiderDead": {
+		"path": "assets/audio/effects/spider-dead.mp3"
+	},
+	"spiderWalkGrass1": {
+		"path": "assets/audio/effects/spider-walk-1.mp3",
+		"volume": 0.1
+	},
+	"spiderWalkGrass2": {
+		"path": "assets/audio/effects/spider-walk-2.mp3",
+		"volume": 0.1
+	},
+	"spiderAttack": {
+		"path": "assets/audio/effects/spider-attack.mp3"
+	},
+
+	"blopAttack": {
+		"path": "assets/audio/effects/blop-attack.mp3"
+	},
+	"blopDamaged1": {
+		"path": "assets/audio/effects/blop-hit-1.mp3"
+	},
+	"blopDamaged2": {
+		"path": "assets/audio/effects/blop-hit-2.mp3"
+	},
+	"blopCowardDamaged1": {
+		"path": "assets/audio/effects/blop-coward-hit-1.mp3",
+		"volume": 0.7
+	},
+	"blopCowardDamaged2": {
+		"path": "assets/audio/effects/blop-coward-hit-2.mp3",
+		"volume": 0.7
+	},
+	"blopDead": {
+		"path": "assets/audio/effects/blop-death.mp3"
+	},
+	"blopWalk1": {
+		"path": "assets/audio/effects/blop-walk-1.mp3",
+		"volume": 0.2
+	},
+	"blopWalk2": {
+		"path": "assets/audio/effects/blop-walk-2.mp3",
+		"volume": 0.2
+	},
+
+	"bushbellDamaged1": {
+		"path": "assets/audio/effects/bushbell-hit-1.mp3"
+	},
+	"bushbellDamaged2": {
+		"path": "assets/audio/effects/bushbell-hit-2.mp3"
+	},
+	"bushbellDead": {
+		"path": "assets/audio/effects/bushbell-death.mp3"
+	},
+	"bushbellWalk1": {
+		"path": "assets/audio/effects/bushbell-walk-1.mp3",
+		"volume": 0.2
+	},
+	"bushbellWalk2": {
+		"path": "assets/audio/effects/bushbell-walk-2.mp3",
+		"volume": 0.2
+	},
+	"bushbellAttack": {
+		"path": "assets/audio/effects/bushbell-attack.mp3",
+		"volume": 0.7
+	},
+
+	"checkpoint": {
+		"path": "assets/audio/effects/checkpoint.mp3"
+	},
+	"gateOpen": {
+		"path": "assets/audio/effects/gate-open.mp3"
+	},
+
+	"stagger": {
+		"path": "assets/audio/effects/stagger.mp3"
+	},
+	"exitReady": {
+		"path": "assets/audio/effects/exit-ready.mp3",
+		"volume": 1
+	},
+	"vanquished": {
+		"path": "assets/audio/effects/vanquished.mp3"
+	},
+	"doughnut": {
+		"path": "assets/audio/effects/doughnut.mp3"
+	},
+	"checkpoint-voice": {
+		"path": "assets/audio/effects/checkpoint-voice.mp3"
+	},
+	"gainHealth": {
+		"path": "assets/audio/effects/health.mp3"
+	},
+
+
+	"whoosh-low": {
+		"path": "assets/audio/effects/whoosh-low.mp3"
+	},
+	"whoosh-high": {
+		"path": "assets/audio/effects/whoosh-high.mp3"
+	},
+	"whoosh-double": {
+		"path": "assets/audio/effects/whoosh-double.mp3"
+	},
+	"click": {
+		"path": "assets/audio/effects/click.mp3",
+		"volume": 0.7
+	},
+	"sword-flesh": {
+		"path": "assets/audio/effects/sword-flesh.mp3"
+	},
+	"title-slam": {
+		"path": "assets/audio/effects/title-slam.mp3"
+	},
+	"title-sheen": {
+		"path": "assets/audio/effects/title-sheen.mp3"
+	},
+
+	"ambient-summer-birds": {
+		"path": "assets/audio/ambient/forest-birds.mp3",
+		"music": true,
+		"duration": 26830
+	},
+	"music-boss": {
+		"path": "assets/audio/music/boss.mp3",
+		"music": true,
+		"duration": 83478
+	},
+	"music-autumn": {
+		"path": "assets/audio/music/autumn.mp3",
+		"music": true,
+		"duration": 134400
+	},
+	"music-winter": {
+		"path": "assets/audio/music/winter.mp3",
+		"music": true,
+		"duration": 101333
+	},
+	"music-castle": {
+		"path": "assets/audio/music/castle.mp3",
+		"music": true,
+		"duration": 150000
+	}
+}
