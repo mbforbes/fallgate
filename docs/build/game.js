@@ -1690,7 +1690,7 @@ var System;
             this.cacheMaxBounds = new Point();
             // settings
             this.effectVolume = 1.0;
-            this.musicVolume = 0.6;
+            this.musicVolume = 0.7;
             // internal data structure of load(ing/ed) sounds and music
             this.sounds = new Map();
             this.music = new Map();
@@ -17162,7 +17162,7 @@ var System;
                 let atk = aspect.get(Component.Attack);
                 atk.info.damage = 0;
                 // ... and play hit sounds!
-                if (atk.info.sounds.hit != null) {
+                if (atk.info.sounds != null && atk.info.sounds.hit != null) {
                     this.ecs.getSystem(System.Audio).play(atk.info.sounds.hit, aspect.get(Component.Position).p);
                 }
             }
