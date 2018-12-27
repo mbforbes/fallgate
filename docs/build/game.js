@@ -2855,6 +2855,14 @@ var AI;
             return this.ecs.getComponents(player).has(Component.Dead);
         }
         /*
+         * Freeze input movement and attack.
+         *
+         */
+        stopAndAttack() {
+            this.stopMovement();
+            this.attack();
+        }
+        /*
          * Given that the AI wants to (charge/swing/sheathe) attack, this
          * decides whether it should active it's `attack` input (based on
          * timing).
@@ -2863,8 +2871,6 @@ var AI;
             let input = this.aspect.get(Component.Input);
             let armed = this.aspect.get(Component.Armed);
             let prevAttacking = input.attack;
-            // new: freeze input movement. hopefully this is right everywhere.
-            input.intent.set_(0, 0);
             // start charging if haven't
             if (!prevAttacking) {
                 input.attack = true;
@@ -3251,7 +3257,7 @@ var System;
                     }],
                 [BrawlerState.Attack, {
                         pre: AI.noop,
-                        body: this.attack,
+                        body: this.stopAndAttack,
                         next: this.attackNext,
                     }],
             ]);
@@ -13001,6 +13007,19 @@ var Scene;
         resetScene() {
             this.switchToRelative(0);
         }
+        /**
+         * Built for debugging.
+         * @param n Name of scene to switch to
+         */
+        switchToName(n) {
+            for (let i = 0; i < this.progression.length; i++) {
+                if (this.progression[i] === n) {
+                    this.switchTo(i);
+                    return;
+                }
+            }
+            console.warn('Scene "' + n + '" not found. Ignoring request.');
+        }
         switchToRelative(increment) {
             // mod doesn't work for negative numbers
             let idx = (this.activeIdx + increment) % this.progression.length;
@@ -15599,7 +15618,7 @@ var System;
                     }],
                 [CowardState.Attack, {
                         pre: AI.noop,
-                        body: this.attack,
+                        body: this.stopAndAttack,
                         next: this.next,
                     }],
             ]);
@@ -15993,7 +16012,7 @@ var System;
                     }],
                 [MimicState.Attack, {
                         pre: AI.noop,
-                        body: this.attack,
+                        body: this.stopAndAttack,
                         next: this.attackNext,
                     }],
             ]);
@@ -16418,7 +16437,7 @@ var System;
                     }],
                 [SpiderState.Attack, {
                         pre: AI.noop,
-                        body: this.spiderAttack,
+                        body: this.stopAndAttack,
                         next: this.attackNext,
                     }],
             ]);
@@ -16497,13 +16516,6 @@ var System;
         //
         // attack attacking: do a swing! (or a barrel roll)
         //
-        /**
-         * Variant of attack that stops movement.
-         */
-        spiderAttack() {
-            this.stopMovement();
-            this.attack();
-        }
         attackNext() {
             // always finish out swings (attacks). if not swinging, use the
             // general aggressive next check.

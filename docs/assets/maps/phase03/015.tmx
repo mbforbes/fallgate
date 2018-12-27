@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="80" tilewidth="64" tileheight="64" nextobjectid="103">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="64" height="80" tilewidth="64" tileheight="64" infinite="0" nextobjectid="103">
  <tileset firstgid="1" name="forestSummer" tilewidth="64" tileheight="64" tilecount="180" columns="15">
   <image source="../../tilesets/forestFinalTiles.png" trans="ff42f9" width="960" height="768"/>
   <terraintypes>
@@ -1433,7 +1433,7 @@
  </objectgroup>
  <objectgroup name="staticDmgRegion"/>
  <objectgroup name="startGate">
-  <object id="7" gid="576" x="3464" y="4374.98" width="320" height="304" rotation="-270"/>
+  <object id="7" gid="576" x="3766" y="4374.98" width="320" height="304" rotation="-270"/>
  </objectgroup>
  <objectgroup name="spiderEgg"/>
  <objectgroup name="spider"/>
@@ -1482,7 +1482,7 @@
   </object>
  </objectgroup>
  <objectgroup name="player-Shield">
-  <object id="5" gid="542" x="3656" y="4502.98" width="52" height="64" rotation="-540"/>
+  <object id="5" gid="542" x="3958" y="4502.98" width="52" height="64" rotation="-540"/>
  </objectgroup>
  <objectgroup name="orbs"/>
  <objectgroup color="#ffff0a" name="nextToExit">
@@ -1499,8 +1499,8 @@
  <objectgroup name="monastery"/>
  <objectgroup name="mimic"/>
  <objectgroup color="#0000ff" name="manualWallColl">
-  <object id="9" x="3732.48" y="4389.96" width="65.2484" height="268.484" rotation="-270"/>
-  <object id="10" x="3734.98" y="4607.19" width="65.2484" height="268.484" rotation="-270"/>
+  <object id="9" x="4034.48" y="4389.96" width="65.2484" height="268.484" rotation="-270"/>
+  <object id="10" x="4036.98" y="4607.19" width="65.2484" height="268.484" rotation="-270"/>
   <object id="50" x="2356.8" y="4372.49" width="65.2484" height="268.484" rotation="-270"/>
   <object id="51" x="2359.3" y="4589.72" width="65.2484" height="268.484" rotation="-270"/>
   <object id="82" x="1544.67" y="2913.58" width="65.2484" height="268.484" rotation="-315"/>

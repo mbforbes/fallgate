@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="164" height="80" tilewidth="64" tileheight="64" nextobjectid="206">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="164" height="80" tilewidth="64" tileheight="64" infinite="0" nextobjectid="206">
  <tileset firstgid="1" name="forestSummer" tilewidth="64" tileheight="64" tilecount="180" columns="15">
   <image source="../../tilesets/forestFinalTiles.png" trans="ff42f9" width="960" height="768"/>
   <terraintypes>
@@ -1490,7 +1490,7 @@
   <object id="38" gid="546" x="448" y="-1408" width="128" height="128"/>
  </objectgroup>
  <objectgroup name="ruins1"/>
- <objectgroup color="#80ff07" name="roomsNoCamera">
+ <objectgroup color="#80ff07" name="roomsNoCamera" visible="0">
   <object id="51" x="7340.37" y="1007.13" width="1505" height="1815.55">
    <properties>
     <property name="gateID" value="EXIT"/>
@@ -1625,6 +1625,19 @@
   <object id="89" gid="642" x="5124.97" y="1712.42" width="128" height="128"/>
   <object id="90" gid="642" x="5252.97" y="1712.42" width="128" height="128"/>
   <object id="91" gid="642" x="5380.97" y="1712.42" width="128" height="128"/>
+ </objectgroup>
+ <objectgroup name="crateExplosive">
+  <object id="18" gid="647" x="704" y="-384" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="crateB">
+  <object id="16" gid="644" x="640" y="-384" width="64" height="64"/>
+  <object id="71" gid="644" x="4096" y="2240" width="64" height="64"/>
+  <object id="73" gid="644" x="4096" y="2240" width="64" height="64"/>
+  <object id="74" gid="644" x="4224" y="2240" width="64" height="64"/>
+  <object id="149" gid="644" x="4737.74" y="1909.95" width="64" height="64"/>
+  <object id="150" gid="644" x="4801.74" y="1909.95" width="64" height="64"/>
+  <object id="151" gid="644" x="4737.74" y="1973.95" width="64" height="64"/>
+  <object id="152" gid="644" x="4801.74" y="1973.95" width="64" height="64"/>
   <object id="153" gid="644" x="4867.92" y="1911.39" width="64" height="64"/>
   <object id="154" gid="644" x="4931.92" y="1911.39" width="64" height="64"/>
   <object id="155" gid="644" x="4867.92" y="1975.39" width="64" height="64"/>
@@ -1670,26 +1683,13 @@
   <object id="195" gid="644" x="4736" y="1840.55" width="64" height="64"/>
   <object id="196" gid="644" x="4800" y="1840.55" width="64" height="64"/>
  </objectgroup>
- <objectgroup name="crateExplosive">
-  <object id="18" gid="647" x="704" y="-384" width="64" height="64"/>
- </objectgroup>
- <objectgroup name="crateB">
-  <object id="16" gid="644" x="640" y="-384" width="64" height="64"/>
-  <object id="71" gid="644" x="4096" y="2240" width="64" height="64"/>
-  <object id="73" gid="644" x="4096" y="2240" width="64" height="64"/>
-  <object id="74" gid="644" x="4224" y="2240" width="64" height="64"/>
-  <object id="149" gid="644" x="4737.74" y="1909.95" width="64" height="64"/>
-  <object id="150" gid="644" x="4801.74" y="1909.95" width="64" height="64"/>
-  <object id="151" gid="644" x="4737.74" y="1973.95" width="64" height="64"/>
-  <object id="152" gid="644" x="4801.74" y="1973.95" width="64" height="64"/>
- </objectgroup>
  <objectgroup name="crate">
   <object id="13" gid="643" x="576" y="-384" width="64" height="64"/>
   <object id="72" gid="643" x="4160" y="2240" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="cow"/>
  <objectgroup name="controlsMovement"/>
- <objectgroup name="controlsAOE">
+ <objectgroup name="controlsAOE" visible="0">
   <object id="197" x="1984" y="512" width="6720" height="2944"/>
  </objectgroup>
  <objectgroup name="checkpointsActiveTemplate"/>

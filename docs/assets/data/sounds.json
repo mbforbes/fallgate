@@ -4,7 +4,6 @@
 		"music": true,
 		"duration": 82500
 	},
-
 	"swordQuickSwing": {
 		"path": "assets/audio/effects/sword-quick-swing.mp3"
 	},
@@ -36,21 +35,18 @@
 	"heartbeat": {
 		"path": "assets/audio/effects/heartbeat.mp3"
 	},
-
 	"switchToSword": {
 		"path": "assets/audio/effects/switch-to-sword.mp3"
 	},
 	"switchToBow": {
 		"path": "assets/audio/effects/switch-to-bow.mp3"
 	},
-
 	"bowShoot": {
 		"path": "assets/audio/effects/bow-shoot.mp3"
 	},
 	"bowHit": {
 		"path": "assets/audio/effects/bow-hit.mp3"
 	},
-
 	"crateHit": {
 		"path": "assets/audio/effects/crate-hit.mp3"
 	},
@@ -64,7 +60,6 @@
 	"slowSwing": {
 		"path": "assets/audio/effects/slow-swing.mp3"
 	},
-
 	"sawtoothSwing": {
 		"path": "assets/audio/effects/sawtooth-attack.mp3",
 		"volume": 0.3
@@ -87,11 +82,9 @@
 	"sawtoothExplode": {
 		"path": "assets/audio/effects/sawtooth-explode.mp3"
 	},
-
 	"spearThrust": {
 		"path": "assets/audio/effects/spear-stab.mp3"
 	},
-
 	"spiderDamaged": {
 		"path": "assets/audio/effects/spider-damaged.mp3",
 		"volume": 0.8
@@ -110,7 +103,6 @@
 	"spiderAttack": {
 		"path": "assets/audio/effects/spider-attack.mp3"
 	},
-
 	"blopAttack": {
 		"path": "assets/audio/effects/blop-attack.mp3"
 	},
@@ -139,7 +131,6 @@
 		"path": "assets/audio/effects/blop-walk-2.mp3",
 		"volume": 0.2
 	},
-
 	"bushbellDamaged1": {
 		"path": "assets/audio/effects/bushbell-hit-1.mp3"
 	},
@@ -161,14 +152,12 @@
 		"path": "assets/audio/effects/bushbell-attack.mp3",
 		"volume": 0.7
 	},
-
 	"checkpoint": {
 		"path": "assets/audio/effects/checkpoint.mp3"
 	},
 	"gateOpen": {
 		"path": "assets/audio/effects/gate-open.mp3"
 	},
-
 	"stagger": {
 		"path": "assets/audio/effects/stagger.mp3"
 	},
@@ -188,8 +177,6 @@
 	"gainHealth": {
 		"path": "assets/audio/effects/health.mp3"
 	},
-
-
 	"whoosh-low": {
 		"path": "assets/audio/effects/whoosh-low.mp3"
 	},
@@ -212,7 +199,6 @@
 	"title-sheen": {
 		"path": "assets/audio/effects/title-sheen.mp3"
 	},
-
 	"ambient-summer-birds": {
 		"path": "assets/audio/ambient/forest-birds.mp3",
 		"music": true,
@@ -237,5 +223,10 @@
 		"path": "assets/audio/music/castle.mp3",
 		"music": true,
 		"duration": 150000
+	},
+	"music-credits": {
+		"path": "assets/audio/music/victory.mp3",
+		"music": true,
+		"duration": 233950
 	}
 }

@@ -12,13 +12,14 @@
 					"greenLeaves",
 					"glowDust"
 				],
-				"trackIDs": ["music-summer"]
+				"trackIDs": [
+					"music-summer"
+				]
 			},
 			"scripts": {
 				"start": "StartLevelTitle"
 			}
 		},
-
 		"credits": {
 			"map": {
 				"json": "assets/maps/phase01/title.json",
@@ -31,13 +32,14 @@
 					"confettiRed",
 					"confettiWhite"
 				],
-				"trackIDs": ["music-summer"]
+				"trackIDs": [
+					"music-credits"
+				]
 			},
 			"scripts": {
 				"start": "StartLevelCredits"
 			}
 		},
-
 		"actSummer": {
 			"map": {
 				"json": "assets/maps/phase01/title.json",
@@ -46,7 +48,10 @@
 			"level": {
 				"name": "actSummer",
 				"number": 0,
-				"trackIDs": ["music-summer", "ambient-summer-birds"]
+				"trackIDs": [
+					"music-summer",
+					"ambient-summer-birds"
+				]
 			},
 			"scripts": {
 				"start": "StartLevelAct",
@@ -61,7 +66,9 @@
 			"level": {
 				"name": "actFall",
 				"number": 0,
-				"trackIDs": ["music-autumn"]
+				"trackIDs": [
+					"music-autumn"
+				]
 			},
 			"scripts": {
 				"start": "StartLevelAct",
@@ -76,7 +83,9 @@
 			"level": {
 				"name": "actWinter",
 				"number": 0,
-				"trackIDs": ["music-winter"]
+				"trackIDs": [
+					"music-winter"
+				]
 			},
 			"scripts": {
 				"start": "StartLevelAct",
@@ -91,14 +100,15 @@
 			"level": {
 				"name": "actCastle",
 				"number": 0,
-				"trackIDs": ["music-castle"]
+				"trackIDs": [
+					"music-castle"
+				]
 			},
 			"scripts": {
 				"start": "StartLevelAct",
 				"act": "castle"
 			}
 		},
-
 		"001": {
 			"map": {
 				"json": "assets/maps/phase01/001.json",
@@ -108,7 +118,10 @@
 			"level": {
 				"name": "Stump Stroll",
 				"number": 1,
-				"trackIDs": ["music-summer", "ambient-summer-birds"]
+				"trackIDs": [
+					"music-summer",
+					"ambient-summer-birds"
+				]
 			}
 		},
 		"002": {
@@ -137,7 +150,7 @@
 			"map": {
 				"json": "assets/maps/phase01/004.json",
 				"bottom": "assets/maps/phase01/004.png",
-				"top":  "assets/maps/phase01/004-top.png"
+				"top": "assets/maps/phase01/004-top.png"
 			},
 			"level": {
 				"name": "It's more than good, it's crate!",
@@ -263,7 +276,9 @@
 			"level": {
 				"name": "Buzzkill",
 				"number": 16,
-				"trackIDs": ["music-boss"]
+				"trackIDs": [
+					"music-boss"
+				]
 			}
 		},
 		"017": {
@@ -280,7 +295,9 @@
 					"purpleLeaves",
 					"glowDust"
 				],
-				"trackIDs": ["music-autumn"]
+				"trackIDs": [
+					"music-autumn"
+				]
 			}
 		},
 		"018": {
@@ -370,7 +387,7 @@
 				"top": "assets/maps/phase06/025-top.png"
 			},
 			"level": {
-				"name": "It Affects Spiders, Too",
+				"name": "Blinding Speed",
 				"number": 23
 			}
 		},
@@ -383,7 +400,9 @@
 			"level": {
 				"name": "Operation Intrude N313",
 				"number": 24,
-				"trackIDs": ["music-boss"]
+				"trackIDs": [
+					"music-boss"
+				]
 			}
 		},
 		"027": {
@@ -395,11 +414,13 @@
 			"level": {
 				"name": "Winter Bloperland",
 				"number": 25,
-				"particleIDs":[
+				"particleIDs": [
 					"snowFlake",
 					"glowDust"
 				],
-				"trackIDs": ["music-winter"]
+				"trackIDs": [
+					"music-winter"
+				]
 			}
 		},
 		"028": {
@@ -488,7 +509,9 @@
 			"level": {
 				"name": "Gossamer's Den",
 				"number": 33,
-				"trackIDs": ["music-boss"]
+				"trackIDs": [
+					"music-boss"
+				]
 			}
 		},
 		"castleHUB001": {
@@ -500,7 +523,9 @@
 			"level": {
 				"name": "King's Fortress",
 				"number": 34,
-				"trackIDs": ["music-castle"]
+				"trackIDs": [
+					"music-castle"
+				]
 			},
 			"scripts": {
 				"start": "StartLevelMultipartFirst"
@@ -655,7 +680,9 @@
 			"level": {
 				"name": "King's Lair",
 				"number": 35,
-				"trackIDs": ["music-boss"]
+				"trackIDs": [
+					"music-boss"
+				]
 			}
 		},
 		"test-end": {
@@ -685,17 +712,17 @@
 			"level": {
 				"name": "(end of game recap)",
 				"number": 0,
-				"trackIDs": ["music-summer"]
+				"trackIDs": [
+					"music-summer"
+				]
 			},
 			"scripts": {
 				"start": "StartLevelRecap"
 			}
 		}
 	},
-
 	"progression": [
 		"title",
-
 		"actSummer",
 		"001",
 		"002",
@@ -713,7 +740,6 @@
 		"014",
 		"015",
 		"016",
-
 		"actAutumn",
 		"017",
 		"018",
@@ -723,7 +749,6 @@
 		"024",
 		"025",
 		"026",
-
 		"actWinter",
 		"027",
 		"028",
@@ -734,7 +759,6 @@
 		"033",
 		"034",
 		"035",
-
 		"actCastle",
 		"castleHUB001",
 		"castleBlop001",
@@ -747,9 +771,7 @@
 		"castleSpider001",
 		"castleSpider002",
 		"castleSpider003",
-
 		"castleFinale001",
-
 		"recap",
 		"credits"
 	]

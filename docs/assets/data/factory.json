@@ -980,7 +980,9 @@
 			}
 		},
 		"enemy": {
-			"names": ["<you shouldn't see me"],
+			"names": [
+				"<you shouldn't see me"
+			],
 			"kind": "<or me>",
 			"hudDisabled": true
 		},
@@ -1431,13 +1433,13 @@
 		"health": 10,
 		"attributes": "blopDemon",
 		"move": {
-            "movementType": 1,
-            "accel": 40,
-            "minMoveSpeed": 0,
-            "maxMoveSpeed": 40,
-            "maxSwingSpeed": 20,
-            "decel": 1.5,
-            "invMass": 1.5
+			"movementType": 1,
+			"accel": 40,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 40,
+			"maxSwingSpeed": 20,
+			"decel": 1.5,
+			"invMass": 1.5
 		},
 		"enemy": {
 			"names": [
@@ -1763,8 +1765,7 @@
 				}
 			}
 		],
-		"audible": {
-		},
+		"audible": {},
 		"collisionManual": "0,0,60,64",
 		"collisionTypes": [
 			"Solid",
@@ -3031,7 +3032,11 @@
 		"health": 5,
 		"enemy": {
 			"names": [
-				"Charlie", "Cosmo", "Frank", "Hugo", "Charloette"
+				"Charlie",
+				"Cosmo",
+				"Frank",
+				"Hugo",
+				"Charloette"
 			],
 			"kind": "Baby Black Spider"
 		},
@@ -3066,35 +3071,36 @@
 	},
 	"cocaineSpider": {
 		"parentLayer": "spider",
-        "aiSpec": {
-            "behavior": "Spider",
-            "params": {
-                "waitMin": 100,
-                "waitMax": 300,
-                "moveMin": 100,
-                "moveMax": 400,
-                "attackRange": 450
-            }
-        },
+		"aiSpec": {
+			"behavior": "Spider",
+			"params": {
+				"waitMin": 100,
+				"waitMax": 300,
+				"moveMin": 100,
+				"moveMax": 400,
+				"attackRange": 450
+			}
+		},
 		"animationCustomize": {
 			"tint": "#3f3f7a"
 		},
 		"enemy": {
 			"names": [
-				"Ray", "Rick"
+				"Ray",
+				"Rick"
 			],
 			"kind": "Hyper Spider"
 		},
-        "move": {
-            "movementType": 1,
-            "accel": 400,
-            "minMoveSpeed": 30,
-            "maxMoveSpeed": 30,
-            "maxSwingSpeed": 200,
-            "decel": 1.0,
-            "invMass": 1.0,
-            "resistSlow": true
-        },
+		"move": {
+			"movementType": 1,
+			"accel": 400,
+			"minMoveSpeed": 30,
+			"maxMoveSpeed": 30,
+			"maxSwingSpeed": 200,
+			"decel": 1.0,
+			"invMass": 1.0,
+			"resistSlow": true
+		},
 		"weapons": "spiderBody"
 	},
 	"projectileSpider": {
@@ -3277,11 +3283,11 @@
 		"knockbackable": false,
 		"weapons": "spiderBossProjectile"
 	},
-
 	"npc": {
 		"collisionGenerate": true,
 		"collisionTypes": [
-			"Solid",  "Mobile"
+			"Solid",
+			"Mobile"
 		]
 	},
 	"archer": {
@@ -3316,7 +3322,6 @@
 			}
 		]
 	},
-
 	"archerBody": {
 		"img": "sprites/npc/archerDeath7.png"
 	},
@@ -3329,25 +3334,27 @@
 	"senBody": {
 		"img": "sprites/npc/senDeath22.png"
 	},
-
 	"staticDmgRegionOld": {
 		"bjorn": true,
 		"collisionGenerate": true,
 		"collisionTypes": [
-			"Solid",  "Attack", "Environment"
+			"Solid",
+			"Attack",
+			"Environment"
 		],
 		"persistentDamage": {
 			"movement": "Track",
 			"damage": 1,
-			"cTypes": ["Invalid"],
+			"cTypes": [
+				"Invalid"
+			],
 			"unblockable": true,
 			"knockbackForce": 1000,
 			"staggerForce": 1000,
 			"lungeForce": 0
 		}
 	},
-	"staticDmgRegion": {
-	},
+	"staticDmgRegion": {},
 	"floorSaw": {
 		"animations": [
 			{
@@ -3362,12 +3369,16 @@
 		],
 		"collisionManual": "0.5,0.5,60,60",
 		"collisionTypes": [
-			"Solid",  "Attack", "Environment"
+			"Solid",
+			"Attack",
+			"Environment"
 		],
 		"persistentDamage": {
 			"movement": "Track",
 			"damage": 1,
-			"cTypes": ["Invalid"],
+			"cTypes": [
+				"Invalid"
+			],
 			"unblockable": true,
 			"knockbackForce": 1000,
 			"staggerForce": 1000,
@@ -3388,25 +3399,30 @@
 		],
 		"collisionManual": "0.5,0.5,110,110",
 		"collisionTypes": [
-			"Solid",  "Attack", "Environment"
+			"Solid",
+			"Attack",
+			"Environment"
 		],
 		"persistentDamage": {
 			"movement": "Track",
 			"damage": 1,
-			"cTypes": ["Invalid"],
+			"cTypes": [
+				"Invalid"
+			],
 			"unblockable": true,
 			"knockbackForce": 1000,
 			"staggerForce": 1000,
 			"lungeForce": 0
 		}
 	},
-
 	"brambleTile": {
 		"bjorn": true,
 		"persistentDamage": {
 			"movement": "Track",
 			"damage": 1,
-			"cTypes": ["Invalid"],
+			"cTypes": [
+				"Invalid"
+			],
 			"unblockable": true,
 			"knockbackForce": 1000,
 			"staggerForce": 1000,
@@ -3418,7 +3434,9 @@
 		"persistentDamage": {
 			"movement": "Track",
 			"damage": 100,
-			"cTypes": ["Invalid"],
+			"cTypes": [
+				"Invalid"
+			],
 			"unblockable": true,
 			"knockbackForce": 0,
 			"staggerForce": 0,
@@ -3460,7 +3478,6 @@
 				}
 			}
 		],
-
 		"checkpoint": true,
 		"collisionManual": "0,0,48,48",
 		"collisionTypes": [
@@ -3477,48 +3494,73 @@
 	},
 	"controlsMovement": {
 		"parentLayer": "zoneBase",
-		"zone": {"controlID": "movement"}
+		"zone": {
+			"controlID": "movement"
+		}
 	},
 	"controlsSword": {
 		"parentLayer": "zoneBase",
-		"zone": {"controlID": "sword"}
+		"zone": {
+			"controlID": "sword"
+		}
 	},
 	"controlsCheckpoint": {
 		"parentLayer": "zoneBase",
-		"zone": {"controlID": "checkpoint"}
+		"zone": {
+			"controlID": "checkpoint"
+		}
 	},
 	"controlsShield": {
 		"parentLayer": "zoneBase",
-		"zone": {"controlID": "shield"}
+		"zone": {
+			"controlID": "shield"
+		}
 	},
 	"controlsStab": {
 		"parentLayer": "zoneBase",
-		"zone": {"controlID": "stab"}
+		"zone": {
+			"controlID": "stab"
+		}
 	},
 	"controlsWeaponSwitch": {
 		"parentLayer": "zoneBase",
-		"zone": {"controlID": "weaponSwitch"}
+		"zone": {
+			"controlID": "weaponSwitch"
+		}
 	},
 	"controlsAOE": {
 		"parentLayer": "zoneBase",
-		"zone": {"controlID": "aoe"}
+		"zone": {
+			"controlID": "aoe"
+		}
 	},
 	"instructionsBramble": {
 		"parentLayer": "zoneBase",
-		"zone": {"instructionID": "bramble"}
+		"zone": {
+			"instructionID": "bramble"
+		}
 	},
 	"instructionsCheckpoint": {
 		"parentLayer": "zoneBase",
-		"zone": {"instructionID": "checkpoints"}
+		"zone": {
+			"instructionID": "checkpoints"
+		}
 	},
 	"instructionsHPHUD": {
 		"parentLayer": "zoneBase",
-		"zone": {"instructionID": "hpHUD"}
+		"zone": {
+			"instructionID": "hpHUD"
+		}
 	},
-	"tutorialGatekeeping": {
+	"instructionsGatekeeping": {
 		"parentLayer": "zoneBase",
 		"zone": {
-			"instructionID": "gatekeeping",
+			"instructionID": "gatekeeping"
+		}
+	},
+	"controlsGatekeeping": {
+		"parentLayer": "zoneBase",
+		"zone": {
 			"controlID": "gatekeeping"
 		}
 	},
@@ -3532,19 +3574,26 @@
 	"manualWallColl": {
 		"bjorn": true,
 		"collisionGenerate": true,
-		"collisionTypes": ["Solid", "Wall"]
+		"collisionTypes": [
+			"Solid",
+			"Wall"
+		]
 	},
 	"nextToExit": {
 		"parentLayer": "zoneBase",
 		"zone": {
-			"zoneTypes": ["NextToExit"],
+			"zoneTypes": [
+				"NextToExit"
+			],
 			"active": false
 		}
 	},
 	"rooms": {
 		"parentLayer": "zoneBase",
 		"zone": {
-			"zoneTypes": ["Camera"]
+			"zoneTypes": [
+				"Camera"
+			]
 		}
 	},
 	"roomsNoCamera": {
@@ -3564,9 +3613,7 @@
 	"wallTile": {
 		"bjorn": true
 	},
-	"wallColl": {
-	},
-
+	"wallColl": {},
 	"itemDoughnut": {
 		"animations": [
 			{
@@ -4052,7 +4099,6 @@
 		"health": 1,
 		"attributes": "spiderEgg"
 	},
-
 	"fxCratePoofLarge": {
 		"animations": [
 			{
@@ -4415,7 +4461,6 @@
 		],
 		"drawLayer": "Blood"
 	},
-
 	"treeTop1": {
 		"drawLayer": "Building",
 		"img": "decorations/forestObj/treeTop1.png"
@@ -4674,7 +4719,6 @@
 		"drawLayer": "AboveTop",
 		"gate": {}
 	},
-
 	"appleTree": {
 		"collisionManual": "0,-72,104,80",
 		"collisionTypes": [
@@ -4853,7 +4897,8 @@
 	"igloo": {
 		"collisionManual": "0,0,184,184",
 		"collisionTypes": [
-			"Solid", "Wall"
+			"Solid",
+			"Wall"
 		],
 		"img": "decorations/winterObj/igloo.png"
 	},
@@ -4994,14 +5039,16 @@
 	"stumpBig": {
 		"collisionGenerate": true,
 		"collisionTypes": [
-			"Solid", "Wall"
+			"Solid",
+			"Wall"
 		],
 		"img": "decorations/forestObj/stumpBig.png"
 	},
 	"stumpSmall": {
 		"collisionGenerate": true,
 		"collisionTypes": [
-			"Solid", "Wall"
+			"Solid",
+			"Wall"
 		],
 		"img": "decorations/forestObj/stumpSmall.png"
 	}

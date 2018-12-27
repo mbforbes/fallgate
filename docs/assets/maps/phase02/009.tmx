@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="64" tileheight="64" nextobjectid="137">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="64" tileheight="64" infinite="0" nextobjectid="138">
  <tileset firstgid="1" name="forestSummer" tilewidth="64" tileheight="64" tilecount="180" columns="15">
   <image source="../../tilesets/forestFinalTiles.png" trans="ff42f9" width="960" height="768"/>
   <terraintypes>
@@ -1412,9 +1412,6 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="tutorialGatekeeping">
-  <object id="133" x="704" y="1024" width="3456" height="3904"/>
- </objectgroup>
  <objectgroup name="stumpSmall"/>
  <objectgroup name="stumpBig">
   <object id="136" gid="617" x="2400" y="4640" width="192" height="192"/>
@@ -1425,7 +1422,7 @@
  </objectgroup>
  <objectgroup name="staticDmgRegion"/>
  <objectgroup name="startGate">
-  <object id="7" gid="576" x="563.573" y="4660.57" width="320" height="304" rotation="-90"/>
+  <object id="7" gid="576" x="435.573" y="4660.57" width="320" height="304" rotation="-90"/>
  </objectgroup>
  <objectgroup name="spiderEgg"/>
  <objectgroup name="spider"/>
@@ -1463,7 +1460,7 @@
   </object>
  </objectgroup>
  <objectgroup name="player-Sword">
-  <object id="5" gid="542" x="371.573" y="4532.57" width="52" height="64" rotation="-360"/>
+  <object id="5" gid="542" x="243.573" y="4532.57" width="52" height="64" rotation="-360"/>
  </objectgroup>
  <objectgroup name="orbs"/>
  <objectgroup color="#ffff0a" name="nextToExit">
@@ -1480,8 +1477,8 @@
  <objectgroup name="monastery"/>
  <objectgroup name="mimic"/>
  <objectgroup color="#0000ff" name="manualWallColl">
-  <object id="9" x="295.093" y="4645.59" width="65.2484" height="268.484" rotation="-90"/>
-  <object id="10" x="292.593" y="4428.36" width="65.2484" height="268.484" rotation="-90"/>
+  <object id="9" x="167.093" y="4645.59" width="65.2484" height="268.484" rotation="-90"/>
+  <object id="10" x="164.593" y="4428.36" width="65.2484" height="268.484" rotation="-90"/>
   <object id="63" x="1745.92" y="4580.4" width="65.2484" height="268.484" rotation="-90"/>
   <object id="64" x="1743.42" y="4363.17" width="65.2484" height="268.484" rotation="-90"/>
   <object id="126" x="2258.08" y="3054.68" width="65.2484" height="268.484" rotation="-360"/>
@@ -1556,6 +1553,9 @@
  <objectgroup name="itemDoughnut">
   <object id="11" gid="562" x="2755.66" y="1847.01" width="64" height="64"/>
  </objectgroup>
+ <objectgroup name="instructionsGatekeeping">
+  <object id="137" x="832" y="4224" width="128" height="576"/>
+ </objectgroup>
  <objectgroup name="instructionsBramble"/>
  <objectgroup name="house"/>
  <objectgroup name="gearVert"/>
@@ -1590,6 +1590,9 @@
  </objectgroup>
  <objectgroup name="cow"/>
  <objectgroup name="controlsMovement"/>
+ <objectgroup name="controlsGatekeeping">
+  <object id="133" x="960" y="1024" width="3200" height="3904"/>
+ </objectgroup>
  <objectgroup name="checkpointsActiveTemplate"/>
  <objectgroup name="checkpoints"/>
  <objectgroup name="cauldronRed"/>
@@ -1603,7 +1606,7 @@
  <objectgroup name="blopBig"/>
  <objectgroup name="blop-7"/>
  <objectgroup name="blop-1">
-  <object id="32" gid="552" x="1386.27" y="4564.25" width="192" height="192"/>
+  <object id="32" gid="552" x="1536" y="4544" width="192" height="192"/>
   <object id="49" gid="552" x="2368" y="4480" width="192" height="192"/>
   <object id="50" gid="552" x="2304" y="3776" width="192" height="192"/>
   <object id="51" gid="552" x="3264" y="1536" width="192" height="192"/>
