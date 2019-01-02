@@ -1861,6 +1861,7 @@ var Constants;
     Constants.XMARK = '\u{2717}'; // ✗
 })(Constants || (Constants = {}));
 /// <reference path="../../lib/pixi.js.d.ts" />
+/// <reference path="../../lib/pixi-layers.d.ts" />
 /// <reference path="../core/lang.ts" />
 /// <reference path="../core/util.ts" />
 /// <reference path="../gj7/constants.ts" />
@@ -1875,6 +1876,7 @@ var ZLevelWorld;
     ZLevelWorld[ZLevelWorld["Sparkle"] = 28] = "Sparkle";
     ZLevelWorld[ZLevelWorld["Object"] = 30] = "Object";
     ZLevelWorld[ZLevelWorld["Building"] = 40] = "Building";
+    ZLevelWorld[ZLevelWorld["Lighting"] = 45] = "Lighting";
     ZLevelWorld[ZLevelWorld["Top"] = 50] = "Top";
     ZLevelWorld[ZLevelWorld["AboveTop"] = 55] = "AboveTop";
     ZLevelWorld[ZLevelWorld["Flags"] = 57] = "Flags";
@@ -1888,7 +1890,8 @@ var ZLevelWorld;
 })(ZLevelWorld || (ZLevelWorld = {}));
 var ZLevelHUD;
 (function (ZLevelHUD) {
-    ZLevelHUD[ZLevelHUD["Back"] = 0] = "Back";
+    ZLevelHUD[ZLevelHUD["Lighting"] = 0] = "Lighting";
+    ZLevelHUD[ZLevelHUD["Back"] = 5] = "Back";
     ZLevelHUD[ZLevelHUD["Mid"] = 10] = "Mid";
     ZLevelHUD[ZLevelHUD["Front"] = 20] = "Front";
     ZLevelHUD[ZLevelHUD["Overlay"] = 30] = "Overlay";
@@ -1940,6 +1943,14 @@ var Stage;
         }
     }
     Stage.Container = Container;
+    class Layer extends PIXI.display.Layer {
+        constructor(z, stageTarget) {
+            super();
+            this.z = z;
+            this.stageTarget = stageTarget;
+        }
+    }
+    Stage.Layer = Layer;
     class Graphics extends PIXI.Graphics {
         constructor(z, stageTarget) {
             super();
@@ -2039,7 +2050,7 @@ var Stage;
     /**
      * Should only exist as the overall stage in a MainStage instance.
      */
-    class MainStageCore extends PIXI.Container {
+    class MainStageCore extends PIXI.display.Stage {
         getChildAt(index) {
             if (index < 0 || index >= this.children.length) {
                 throw new Error('getChildAt: Supplied index ' + index + ' does not exist in the child list, or the supplied DisplayObject is not a child of the caller');
@@ -9594,6 +9605,7 @@ var System;
     System.Combo = Combo;
 })(System || (System = {}));
 /// <reference path="../../lib/pixi.js.d.ts" />
+/// <reference path="../../lib/pixi-layers.d.ts" />
 /// <reference path="game.ts" />
 /// <reference path="../core/keyboard.ts" />
 /// <reference path="../core/mouse.ts" />
@@ -9904,6 +9916,33 @@ var Game;
             let translator = new Stage.Translator(hud, world, resConfig.viewport.copy(), resConfig.gamescale);
             let keyboard = new Keyboard(this.eventsManager);
             let mouse = new Mouse();
+            // Set up lighting layer and texture it renders to. Lightbulbs are
+            // added later.
+            //
+            // lightingLayer = Layer (container)
+            // - internally, lights should be ADD'ed (blend mode)
+            // - renders to a texture
+            // - clear color set to grey (overall darkening color)
+            //
+            // lightingSprite = Sprite (rendered view of lights layer)
+            // - uses render texture of lighting layer
+            // - should be MULTIPLY'd with the world to light it
+            //
+            // lightbulb = Graphics|Sprite (light source)
+            // - parentLayer must be set to lighting so it becomes a light
+            // - must be ALSO added to a container (addChild) so it is visible
+            // - both of the above are required for it to function as a light
+            //   (!)
+            let lightingLayer = new Stage.Layer(ZLevelHUD.Lighting, StageTarget.HUD);
+            lightingLayer.on('display', function (el) {
+                el.blendMode = PIXI.BLEND_MODES.ADD;
+            });
+            lightingLayer.useRenderTexture = true;
+            lightingLayer.clearColor = [0.5, 0.5, 0.5, 1];
+            this.stage.add(lightingLayer);
+            let lightingSprite = new Stage.Sprite(lightingLayer.getRenderTexture(), ZLevelHUD.Lighting, StageTarget.HUD);
+            lightingSprite.blendMode = PIXI.BLEND_MODES.MULTIPLY;
+            this.stage.add(lightingSprite);
             // set default zoom level
             world.scale.set(resConfig.zoom, resConfig.zoom);
             // make systems! note that priorities here don't affect render order
@@ -10012,6 +10051,7 @@ var Game;
             this.ecs.addSystem(90, new System.LockOn(this.stage));
             this.ecs.addSystem(90, new System.StaticRenderer(this.stage));
             this.ecs.addSystem(90, new System.AnimationRenderer(this.stage));
+            this.ecs.addSystem(90, new System.Lighting(this.stage, translator, lightingLayer));
             this.ecs.addSystem(90, new System.EnemyHUDRenderer(gui, this.subConfigs.gui.sequences['enemyHUD'], translator, playerSelector));
             this.ecs.addSystem(90, new System.PlayerHUDRenderer());
             this.ecs.addSystem(90, new System.TextRenderer(this.stage, resConfig.gamescale, translator));
@@ -10478,6 +10518,55 @@ var Component;
     class Knockbackable extends Engine.Component {
     }
     Component.Knockbackable = Knockbackable;
+})(Component || (Component = {}));
+var Graphics;
+(function (Graphics) {
+    var LightbulbSize;
+    (function (LightbulbSize) {
+        LightbulbSize[LightbulbSize["Small"] = 0] = "Small";
+        LightbulbSize[LightbulbSize["Medium"] = 1] = "Medium";
+        LightbulbSize[LightbulbSize["Large"] = 2] = "Large";
+    })(LightbulbSize = Graphics.LightbulbSize || (Graphics.LightbulbSize = {}));
+    function convertLightbulbSpec(spec) {
+        // set default, and check enum conversion
+        let size = 'Medium';
+        if (spec.size != null) {
+            size = spec.size;
+        }
+        let ls = LightbulbSize[size];
+        if (ls == null) {
+            throw new Error('Got invalid LightbulbSpec.size: "' + size + '"');
+        }
+        // set default, and perform hex string parsing
+        let baseTint = '#FFFFFF';
+        if (spec.baseTint != null) {
+            baseTint = spec.baseTint;
+        }
+        let bt = parseInt(baseTint.slice(1), 16);
+        // set default
+        let flicker = spec.flicker || false;
+        return {
+            size: ls,
+            baseTint: bt,
+            flicker: flicker,
+        };
+    }
+    Graphics.convertLightbulbSpec = convertLightbulbSpec;
+})(Graphics || (Graphics = {}));
+/// <reference path="../engine/ecs.ts" />
+/// <reference path="../graphics/lighting.ts" />
+var Component;
+(function (Component) {
+    class Lightbulb extends Engine.Component {
+        constructor(specs) {
+            super();
+            this.configs = [];
+            for (let spec of specs) {
+                this.configs.push(Graphics.convertLightbulbSpec(spec));
+            }
+        }
+    }
+    Component.Lightbulb = Lightbulb;
 })(Component || (Component = {}));
 /// <reference path="../engine/ecs.ts" />
 var Component;
@@ -12107,6 +12196,11 @@ var GameMap;
             let data = props.get(Enemy.name).val();
             let enemy = new Component.Enemy(data);
             ecs.addComponent(entity, enemy);
+            // enemy lighting set to default value if Lightbulbs prop not
+            // provided.
+            if (!props.has(Lightbulbs.name)) {
+                ecs.addComponent(entity, new Component.Lightbulb([{}]));
+            }
         }
     }
     class Gate extends Property {
@@ -12239,6 +12333,19 @@ var GameMap;
             ecs.addComponent(entity, new Component.Knockbackable());
         }
     }
+    class Lightbulbs extends Property {
+        constructor() {
+            super(...arguments);
+            this.otherPropsRequired = [];
+        }
+        parseParams(params) {
+            return new Complex(params);
+        }
+        apply(entity, ecs, props) {
+            let specs = props.get(Lightbulbs.name).val();
+            ecs.addComponent(entity, new Component.Lightbulb(specs));
+        }
+    }
     class Move extends Property {
         constructor() {
             super(...arguments);
@@ -12298,6 +12405,10 @@ var GameMap;
             // ecs.addComponent(entity, new Component.DebugInspection(ecs.walltime));
             // addBow(entity, ecs, props);
             // addAxe(entity, ecs, props);
+            // player lighting hardcoded
+            ecs.addComponent(entity, new Component.Lightbulb([{
+                    size: 'Large',
+                }]));
         }
     }
     class PersistentDamage extends Property {
@@ -12647,9 +12758,6 @@ var GameMap;
     class GameMap {
         constructor(ecs, weapons, shields, attributes) {
             this.ecs = ecs;
-            this.weapons = weapons;
-            this.shields = shields;
-            this.attributes = attributes;
             /**
              * Scene-specific factory overrides.
              */
@@ -12680,6 +12788,7 @@ var GameMap;
                 new Img(),
                 new Item(),
                 new Knockbackable(),
+                new Lightbulbs(),
                 new Move(),
                 new ParentLayer(),
                 new PhysicsRegion(),
@@ -17979,6 +18088,11 @@ var System;
                         // update HUD entity pos as enemy pos + player-aware
                         // distance offset + HUD entity offset
                         let eComps = this.ecs.getComponents(pkg.entity);
+                        // safety check in case pkg.entity isn't tracked (level
+                        // warping bug).
+                        if (eComps == null) {
+                            continue;
+                        }
                         let pos = eComps.get(Component.Position);
                         pos.p = this.cacheEnemyHUDBasePos.copy().add_(offset).add_(pkg.offset);
                         // if no tweenable comp, nothing else we can do in this
@@ -18500,6 +18614,101 @@ var System;
         }
     }
     System.Invincible = Invincible;
+})(System || (System = {}));
+/// <reference path="../../lib/pixi.js.d.ts" />
+/// <reference path="../engine/ecs.ts" />
+/// <reference path="../graphics/lighting.ts" />
+/// <reference path="../component/lightbulb.ts" />
+var System;
+(function (System) {
+    class LightingAspect extends Engine.Aspect {
+        constructor() {
+            super(...arguments);
+            this.dobjs = [];
+        }
+    }
+    /**
+     * Illuminates the game.
+     */
+    class Lighting extends Engine.System {
+        constructor(stage, translator, lightingLayer) {
+            super();
+            this.stage = stage;
+            this.translator = translator;
+            this.lightingLayer = lightingLayer;
+            // config: texture and scale to render each lightbulb size. note: could
+            // also add anchoring config here if we end up using the cone.
+            this.sizeTextures = new Map([
+                [Graphics.LightbulbSize.Small, ['fx/light128.png', 1]],
+                [Graphics.LightbulbSize.Medium, ['fx/light256.png', 1]],
+                [Graphics.LightbulbSize.Large, ['fx/light256.png', 2]],
+            ]);
+            this.componentsRequired = new Set([
+                Component.Lightbulb.name,
+                Component.Position.name,
+            ]);
+        }
+        makeAspect() {
+            return new LightingAspect();
+        }
+        onAdd(aspect) {
+            // get lightbulb settings
+            let lightbulb = aspect.get(Component.Lightbulb);
+            // create resources and save to necessary layers.
+            for (let config of lightbulb.configs) {
+                let [tex, scale] = this.sizeTextures.get(config.size);
+                let sprite = new Stage.Sprite(PIXI.Texture.fromFrame(tex), ZLevelHUD.Lighting, StageTarget.HUD);
+                sprite.scale.set(scale, scale);
+                sprite.tint = config.baseTint;
+                sprite.anchor.set(0.5, 0.5);
+                sprite.alpha = 0.9;
+                sprite.parentLayer = this.lightingLayer;
+                this.stage.add(sprite);
+                aspect.dobjs.push(sprite);
+            }
+            // set positions correctly so they're right on the first frame
+            this.updatePositions(aspect);
+        }
+        onRemove(aspect) {
+            for (let dobj of aspect.dobjs) {
+                dobj.parentLayer = null;
+                this.stage.remove(dobj);
+            }
+        }
+        updatePositions(aspect) {
+            let pos = this.translator.worldToHUD(aspect.get(Component.Position).p);
+            for (let dobj of aspect.dobjs) {
+                dobj.position.set(pos.x, pos.y);
+            }
+        }
+        updateFlickers(aspect) {
+            let configs = aspect.get(Component.Lightbulb).configs;
+            for (let i = 0; i < configs.length; i++) {
+                // flicker by +/- 0.1 every ~3 frames
+                if (configs[i].flicker && Math.random() > 0.66) {
+                    let [_, baseScale] = this.sizeTextures.get(configs[i].size);
+                    let scale = baseScale + (Math.random() * 0.2 - 0.1);
+                    aspect.dobjs[i].scale.set(scale, scale);
+                }
+            }
+        }
+        update(delta, entities) {
+            for (let aspect of entities.values()) {
+                this.updatePositions(aspect);
+                this.updateFlickers(aspect);
+            }
+        }
+    }
+    __decorate([
+        override
+    ], Lighting.prototype, "makeAspect", null);
+    __decorate([
+        override
+    ], Lighting.prototype, "onAdd", null);
+    __decorate([
+        override
+    ], Lighting.prototype, "onRemove", null);
+    System.Lighting = Lighting;
 })(System || (System = {}));
 /// <reference path="../../lib/pixi.js.d.ts" />
 /// <reference path="../engine/ecs.ts" />

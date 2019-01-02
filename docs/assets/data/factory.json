@@ -3482,6 +3482,12 @@
 		"collisionManual": "0,0,48,48",
 		"collisionTypes": [
 			"Solid"
+		],
+		"lightbulbs": [
+			{
+				"baseTint": "#0000FF",
+				"flicker": true
+			}
 		]
 	},
 	"zoneBase": {
@@ -4782,7 +4788,13 @@
 		"collisionTypes": [
 			"Solid"
 		],
-		"drawLayer": "Top"
+		"drawLayer": "Top",
+		"lightbulbs": [
+			{
+				"baseTint": "#0000FF",
+				"flicker": true
+			}
+		]
 	},
 	"cauldronRed": {
 		"animations": [
@@ -4800,7 +4812,13 @@
 		"collisionTypes": [
 			"Solid"
 		],
-		"drawLayer": "Top"
+		"drawLayer": "Top",
+		"lightbulbs": [
+			{
+				"baseTint": "#FF0000",
+				"flicker": true
+			}
+		]
 	},
 	"fire": {
 		"animations": [
@@ -4814,7 +4832,13 @@
 				}
 			}
 		],
-		"drawLayer": "Flags"
+		"drawLayer": "Flags",
+		"lightbulbs": [
+			{
+				"baseTint": "#FF0000",
+				"flicker": true
+			}
+		]
 	},
 	"castleTorch": {
 		"animations": [
@@ -4828,7 +4852,13 @@
 				}
 			}
 		],
-		"drawLayer": "Flags"
+		"drawLayer": "Flags",
+		"lightbulbs": [
+			{
+				"baseTint": "#FF0000",
+				"flicker": true
+			}
+		]
 	},
 	"flagLeft": {
 		"animations": [
@@ -5051,5 +5081,9 @@
 			"Wall"
 		],
 		"img": "decorations/forestObj/stumpSmall.png"
+	},
+	"lightTest": {
+		"img": "fx/light256.png",
+		"drawLayer": "Lighting"
 	}
 }
