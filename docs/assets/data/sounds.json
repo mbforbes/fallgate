@@ -32,8 +32,29 @@
 		"path": "assets/audio/effects/footstep-grass-3.mp3",
 		"volume": 0.3
 	},
+	"senStep1": {
+		"path": "assets/audio/effects/sen-step-1.mp3"
+	},
+	"senStep2": {
+		"path": "assets/audio/effects/sen-step-2.mp3"
+	},
 	"heartbeat": {
 		"path": "assets/audio/effects/heartbeat.mp3"
+	},
+	"humanDamaged1": {
+		"path": "assets/audio/effects/human-hit-1.mp3"
+	},
+	"humanDamaged2": {
+		"path": "assets/audio/effects/human-hit-2.mp3"
+	},
+	"humanDamaged3": {
+		"path": "assets/audio/effects/human-hit-3.mp3"
+	},
+	"humanDeath1": {
+		"path": "assets/audio/effects/human-death-1.mp3"
+	},
+	"humanDeath2": {
+		"path": "assets/audio/effects/human-death-2.mp3"
 	},
 	"switchToSword": {
 		"path": "assets/audio/effects/switch-to-sword.mp3"
@@ -103,6 +124,30 @@
 	"spiderAttack": {
 		"path": "assets/audio/effects/spider-attack.mp3"
 	},
+	"spiderBossAttack1": {
+		"path": "assets/audio/effects/gossamer-attack-1.mp3"
+	},
+	"spiderBossAttack2": {
+		"path": "assets/audio/effects/gossamer-attack-2.mp3"
+	},
+	"spiderBossDeath": {
+		"path": "assets/audio/effects/gossamer-death.mp3"
+	},
+	"snakeMove1": {
+		"path": "assets/audio/effects/snake-move-1.mp3"
+	},
+	"snakeMove2": {
+		"path": "assets/audio/effects/snake-move-2.mp3"
+	},
+	"snakeAttack": {
+		"path": "assets/audio/effects/snake-attack.mp3"
+	},
+	"snakeDamaged": {
+		"path": "assets/audio/effects/snake-damaged.mp3"
+	},
+	"snakeDeath": {
+		"path": "assets/audio/effects/snake-death.mp3"
+	},
 	"blopAttack": {
 		"path": "assets/audio/effects/blop-attack.mp3"
 	},
@@ -152,6 +197,21 @@
 		"path": "assets/audio/effects/bushbell-attack.mp3",
 		"volume": 0.7
 	},
+	"senDamaged1": {
+		"path": "assets/audio/effects/sen-damaged-1.mp3"
+	},
+	"senDamaged2": {
+		"path": "assets/audio/effects/sen-damaged-2.mp3"
+	},
+	"senDeath": {
+		"path": "assets/audio/effects/sen-dying.mp3"
+	},
+	"senAttack": {
+		"path": "assets/audio/effects/sen-attack.mp3"
+	},
+	"senHit": {
+		"path": "assets/audio/effects/sen-hit.mp3"
+	},
 	"checkpoint": {
 		"path": "assets/audio/effects/checkpoint.mp3"
 	},
@@ -199,6 +259,24 @@
 	"title-sheen": {
 		"path": "assets/audio/effects/title-sheen.mp3"
 	},
+	"end-sound": {
+		"path": "assets/audio/effects/end-sound.mp3"
+	},
+	"to-blop": {
+		"path": "assets/audio/effects/to-blop.mp3"
+	},
+	"to-human": {
+		"path": "assets/audio/effects/to-human.mp3"
+	},
+	"pop-1": {
+		"path": "assets/audio/effects/pop-1.mp3"
+	},
+	"pop-2": {
+		"path": "assets/audio/effects/pop-2.mp3"
+	},
+	"pop-3": {
+		"path": "assets/audio/effects/pop-3.mp3"
+	},
 	"ambient-summer-birds": {
 		"path": "assets/audio/ambient/forest-birds.mp3",
 		"music": true,
@@ -207,7 +285,8 @@
 	"music-boss": {
 		"path": "assets/audio/music/boss.mp3",
 		"music": true,
-		"duration": 83478
+		"duration": 83478,
+		"volume": 0.8
 	},
 	"music-autumn": {
 		"path": "assets/audio/music/autumn.mp3",

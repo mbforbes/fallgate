@@ -35,7 +35,7 @@
         "img": "HUD/instructIconCheckpoint"
     },
     "shield": {
-        "title": "The Best Defense",
+        "title": "Protect Me",
         "txt": "The shield is yours.\n\nHold shift or right-click to block.\n\nYou can block enemy attacks\nbut not environmental hazards.",
         "img": "HUD/instructIconShield"
     },

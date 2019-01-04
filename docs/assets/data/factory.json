@@ -65,6 +65,15 @@
 				}
 			},
 			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/player/playerKnockback",
+					"frames": 5,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
 				"action": "Staggering",
 				"baseSpec": {
 					"base": "sprites/player/playerStagger",
@@ -455,7 +464,13 @@
 		],
 		"audible": {
 			"damaged": [
-				"playerDamaged"
+				"humanDamaged1",
+				"humanDamaged2",
+				"humanDamaged3"
+			],
+			"killed": [
+				"humanDeath1",
+				"humanDeath2"
 			],
 			"move": {
 				"default": {
@@ -602,7 +617,13 @@
 		],
 		"audible": {
 			"damaged": [
-				"playerDamaged"
+				"humanDamaged1",
+				"humanDamaged2",
+				"humanDamaged3"
+			],
+			"killed": [
+				"humanDeath1",
+				"humanDeath2"
 			],
 			"move": {
 				"default": {
@@ -934,7 +955,16 @@
 		"parentLayer": "blop-core-base",
 		"enemy": {
 			"names": [
-				"Gertrude"
+				"Gertrude",
+				"Jeeves",
+				"Patrick",
+				"Steve",
+				"Nero",
+				"Claudia",
+				"Alastor",
+				"Brone",
+				"Campbell",
+				"Doyle"
 			],
 			"kind": "Mean Blop"
 		}
@@ -1009,8 +1039,35 @@
 	},
 	"blop-7": {
 		"parentLayer": "blop",
+		"aiSpec": {
+			"behavior": "Brawler",
+			"params": {
+				"attackRange": 75,
+				"pursuitDistance": 1000,
+				"forget": true
+			}
+		},
 		"health": 7,
 		"attributes": "blopYellow",
+		"enemy": {
+			"names": [
+				"Bubbles",
+				"Spikey",
+				"Bernard",
+				"Gummie",
+				"Franz"
+			],
+			"kind": "Toxic Blop"
+		},
+		"move": {
+			"movementType": 1,
+			"accel": 25,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 25,
+			"maxSwingSpeed": 20,
+			"decel": 1.0,
+			"invMass": 1.0
+		},
 		"animations": [
 			{
 				"action": "Idle",
@@ -1108,7 +1165,7 @@
 		"aiSpec": {
 			"behavior": "Brawler",
 			"params": {
-				"attackRange": 150,
+				"attackRange": 175,
 				"pursuitDistance": 800,
 				"forget": true
 			}
@@ -1234,7 +1291,9 @@
 		],
 		"enemy": {
 			"names": [
-				"Gormond"
+				"Gourmand",
+				"Ulga",
+				"Sir Squelch"
 			],
 			"kind": "Giant Blop"
 		},
@@ -1401,7 +1460,11 @@
 		],
 		"enemy": {
 			"names": [
-				"Barry"
+				"Barry",
+				"Bert",
+				"Morty",
+				"Buns",
+				"Mooney"
 			],
 			"kind": "Cowardly Blop"
 		},
@@ -2336,13 +2399,14 @@
 	},
 	"sentinel": {
 		"aiSpec": {
-			"behavior": "Brawler",
+			"behavior": "Sentinel",
 			"params": {
 				"attackRange": 160,
 				"pursuitDistance": 800,
 				"forget": false
 			}
 		},
+		"respawn": true,
 		"attributes": "sentinel",
 		"move": {
 			"movementType": 0,
@@ -2502,12 +2566,35 @@
 				"Lord Brambledook"
 			],
 			"kind": "King of the Forest",
+			"boss": true,
 			"finalBoss": true
+		},
+		"audible": {
+			"damaged": [
+				"senDamaged1",
+				"senDamaged2"
+			],
+			"killed": [
+				"senDeath"
+			],
+			"move": {
+				"default": {
+					"emitOnFrames": [
+						2,
+						6
+					],
+					"sounds": [
+						"senStep1",
+						"senStep2"
+					]
+				}
+			}
 		},
 		"health": 30,
 		"knockbackable": false,
 		"staggerable": true,
-		"weapons": "senBody"
+		"weapons": "senBody",
+		"shields": "sentinelShield"
 	},
 	"snake": {
 		"aiSpec": {
@@ -2517,8 +2604,8 @@
 				"waitMax": 2500,
 				"moveMin": 100,
 				"moveMax": 400,
-				"attackRange": 400,
-				"pursuitDistance": 500
+				"attackRange": 500,
+				"pursuitDistance": 600
 			}
 		},
 		"attributes": "snake",
@@ -2633,10 +2720,30 @@
 			"accel": 30,
 			"minMoveSpeed": 60,
 			"maxMoveSpeed": 60,
-			"maxSwingSpeed": 100,
+			"maxSwingSpeed": 250,
 			"decel": 1.0,
 			"invMass": 0.5,
 			"rotateSpeed": 0.04
+		},
+		"audible": {
+			"damaged": [
+				"snakeDamaged"
+			],
+			"killed": [
+				"snakeDeath"
+			],
+			"move": {
+				"default": {
+					"emitOnFrames": [
+						0,
+						5
+					],
+					"sounds": [
+						"snakeMove1",
+						"snakeMove2"
+					]
+				}
+			}
 		},
 		"knockbackable": true,
 		"staggerable": true,
@@ -2994,7 +3101,14 @@
 		],
 		"enemy": {
 			"names": [
-				"Percy"
+				"Percy",
+				"Scooter",
+				"Chad",
+				"Tickler",
+				"Peter",
+				"Webster",
+				"Bosco",
+				"Tabitha"
 			],
 			"kind": "Forest Spider"
 		},
@@ -3005,7 +3119,7 @@
 			"accel": 30,
 			"minMoveSpeed": 30,
 			"maxMoveSpeed": 30,
-			"maxSwingSpeed": 60,
+			"maxSwingSpeed": 100,
 			"decel": 1.0,
 			"invMass": 1.0,
 			"resistSlow": true
@@ -3036,7 +3150,9 @@
 				"Cosmo",
 				"Frank",
 				"Hugo",
-				"Charloette"
+				"Charloette",
+				"Ivy",
+				"Raven"
 			],
 			"kind": "Baby Black Spider"
 		},
@@ -3087,7 +3203,9 @@
 		"enemy": {
 			"names": [
 				"Ray",
-				"Rick"
+				"Rick",
+				"John",
+				"Roy"
 			],
 			"kind": "Hyper Spider"
 		},
@@ -3117,6 +3235,18 @@
 		},
 		"animationCustomize": {
 			"tint": "#7db441"
+		},
+		"enemy": {
+			"names": [
+				"Webster",
+				"Itsy",
+				"Fluffy",
+				"Legs",
+				"Ursula",
+				"Clarice",
+				"Desmona"
+			],
+			"kind": "Web Slinging Spider"
 		},
 		"move": {
 			"movementType": 1,
@@ -3151,7 +3281,9 @@
 		},
 		"enemy": {
 			"names": [
-				"Clyde"
+				"Clyde",
+				"Spinderella",
+				"Dracula"
 			],
 			"kind": "Tough Spider"
 		},
@@ -3281,7 +3413,31 @@
 			"resistSlow": true
 		},
 		"knockbackable": false,
-		"weapons": "spiderBossProjectile"
+		"weapons": "spiderBossProjectile",
+		"audible": {
+			"damaged": [
+				"spiderDamaged"
+			],
+			"killed": [
+				"spiderBossDeath"
+			],
+			"move": {
+				"default": {
+					"emitOnFrames": [
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"sounds": [
+						"spiderWalkGrass1",
+						"spiderWalkGrass2"
+					]
+				}
+			}
+		}
 	},
 	"npc": {
 		"collisionGenerate": true,
@@ -3586,7 +3742,26 @@
 		]
 	},
 	"nextToExit": {
-		"parentLayer": "zoneBase",
+		"parentLayer": "zoneBase"
+	},
+	"nextToExitv2": {
+		"collisionManual": "0.5,0.5,200,80",
+		"collisionTypes": [
+			"Logic"
+		],
+		"zone": {
+			"zoneTypes": [
+				"NextToExit"
+			],
+			"active": false
+		}
+	},
+	"nextToExitDebugging": {
+		"bjorn": true,
+		"collisionGenerate": true,
+		"collisionTypes": [
+			"Logic"
+		],
 		"zone": {
 			"zoneTypes": [
 				"NextToExit"
@@ -3681,7 +3856,12 @@
 		"collisionTypes": [
 			"Item"
 		],
-		"drawLayer": "Item"
+		"drawLayer": "Item",
+		"lightbulbs": [
+			{
+				"size": "Small"
+			}
+		]
 	},
 	"itemUpgradeSword": {
 		"parentLayer": "itemUpgrade-Base",
@@ -3858,7 +4038,7 @@
 			}
 		],
 		"item": {
-			"classification": "UpgradeHP5"
+			"classification": "TransformToPlayer"
 		}
 	},
 	"crateBasicSmall": {
@@ -4486,7 +4666,8 @@
 	"forestTower": {
 		"collisionManual": "0,-170,208,152",
 		"collisionTypes": [
-			"Solid"
+			"Solid",
+			"Wall"
 		],
 		"drawLayer": "AboveTop",
 		"img": "decorations/forestObj/forestTower.png"
@@ -4494,7 +4675,8 @@
 	"forestTowerRuins": {
 		"collisionManual": "0,-170,208,152",
 		"collisionTypes": [
-			"Solid"
+			"Solid",
+			"Wall"
 		],
 		"drawLayer": "AboveTop",
 		"img": "decorations/forestObj/forestTowerRuins.png"
@@ -4502,7 +4684,8 @@
 	"house": {
 		"collisionManual": "0,-30,248,328",
 		"collisionTypes": [
-			"Solid"
+			"Solid",
+			"Wall"
 		],
 		"drawLayer": "AboveTop",
 		"img": "buildings/house.png"
@@ -4510,7 +4693,8 @@
 	"monastery": {
 		"collisionManual": "0,0,320,540",
 		"collisionTypes": [
-			"Solid"
+			"Solid",
+			"Wall"
 		],
 		"drawLayer": "AboveTop",
 		"img": "buildings/monastery.png"
@@ -4872,7 +5056,10 @@
 				}
 			}
 		],
-		"drawLayer": "Flags"
+		"drawLayer": "Flags",
+		"lightbulbs": [
+			{}
+		]
 	},
 	"flagRight": {
 		"animations": [
@@ -4886,7 +5073,10 @@
 				}
 			}
 		],
-		"drawLayer": "Flags"
+		"drawLayer": "Flags",
+		"lightbulbs": [
+			{}
+		]
 	},
 	"gearHoriz": {
 		"animations": [
@@ -5028,7 +5218,12 @@
 			"Solid",
 			"Wall"
 		],
-		"drawLayer": "Top"
+		"drawLayer": "Top",
+		"lightbulbs": [
+			{
+				"baseTint": "#0000FF"
+			}
+		]
 	},
 	"pumpkinPatch": {
 		"collisionManual": "0,0,160,160",

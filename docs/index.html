@@ -143,12 +143,12 @@
 			padding: 15px 32px;
 			font-size: 16px;
 			text-align: center;
+			margin-bottom: 7px;
 		}
 
 		.resButton.active {
 			background-color: #eeeeee;
 			color: #555555;
-
 		}
 
 		.fsButton {
@@ -186,6 +186,20 @@
 		.gameContent {
 			width: 100%;
 		}
+
+		p#aboutMini {
+			cursor: pointer;
+			text-decoration: underline;
+		}
+
+		p#collapse {
+			cursor: pointer;
+			text-decoration: underline;
+		}
+
+		a {
+			color: white;
+		}
 	</style>
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -214,9 +228,11 @@
 				<div id="loader" class="loader">
 					<h1>Fallgate</h1>
 					<p>Please select your resolution</p>
-					<button id="res1" class="resButton" onclick="Game.setRes(1);">640 x 360</button>
-					<button id="res2" class="resButton" onclick="Game.setRes(2);">1280 x 720</button>
-					<button id="res3" class="resButton" onclick="Game.setRes(3);">1920 x 1080</button>
+					<button id="res1" class="resButton" onclick="Game.setRes(1);">640 x 360<br />(360p)</button>
+					<button id="res2" class="resButton" onclick="Game.setRes(2);">1280 x 720<br />(720p)</button>
+					<button id="res3" class="resButton" onclick="Game.setRes(3);">1920 x 1080<br />(1080p)</button>
+					<button id="res4" class="resButton" onclick="Game.setRes(4);">2560 x 1440<br />(1440p)</button>
+					<button id="res5" class="resButton" onclick="Game.setRes(6);">3840 x 2160<br />(4K)</button>
 
 					<p class="loading" id="loading">Loading Fallgate [0%]</p>
 					<progress value="50" max="100" id="progressBar"></progress>
@@ -224,11 +240,43 @@
 			</div>
 			<div id="statsRow"></div>
 			<div id="timerRow"></div>
+
+			<hr style="max-width: 250px; margin-top: 100px;" />
+			<p id="aboutMini" onclick="expandAbout();">About Fallgate</p>
+			<div id="aboutExpanded" hidden="true">
+				<p id="collapse" onclick="collapseAbout();">About Fallgate</p>
+				<img src="assets/img/max-and-cooper.jpg" style="max-width: 350px" />
+				<br /><br />
+
+				<p>
+					Fallgate was made by <a href="http://maxwellforbes.com">Maxwell
+						Forbes</a> and Cooper Smith as a hobby project. It is their
+					first game.
+				</p>
+
+
+			</div>
+
 		</div>
 	</div>
 
-	<!--Default button  -->
-	<script>Game.setRes(2);</script>
+	<!--Default button and text expanding.  -->
+	<script>
+		// default button
+		Game.setRes(2);
+
+		// text expanding
+		function expandAbout() {
+			document.getElementById('aboutMini').hidden = true;
+			document.getElementById('aboutExpanded').hidden = false;
+		}
+
+		function collapseAbout() {
+			document.getElementById('aboutMini').hidden = false;
+			document.getElementById('aboutExpanded').hidden = true;
+		}
+	</script>
+
 </body>
 
 </html>

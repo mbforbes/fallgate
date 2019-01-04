@@ -8,17 +8,23 @@
 			"staggerReturnDuration": 0
 		},
 		"hitFX": [
-			{"fxName": "hitSplosion"}
+			{
+				"fxName": "hitSplosion"
+			}
 		],
 		"hitBlood": {
 			"frequency": 17,
 			"duration": 500,
-			"fx": ["playerBlood"]
+			"fx": [
+				"playerBlood"
+			]
 		},
 		"deathBlood": {
 			"frequency": 17,
 			"duration": 2000,
-			"fx": ["playerBlood"]
+			"fx": [
+				"playerBlood"
+			]
 		}
 	},
 	"knightEnemy": {
@@ -30,17 +36,23 @@
 			"staggerReturnDuration": 150
 		},
 		"hitFX": [
-			{"fxName": "hitSplosion"}
+			{
+				"fxName": "hitSplosion"
+			}
 		],
 		"hitBlood": {
 			"frequency": 17,
 			"duration": 500,
-			"fx": ["playerBlood"]
+			"fx": [
+				"playerBlood"
+			]
 		},
 		"deathBlood": {
 			"frequency": 17,
 			"duration": 2000,
-			"fx": ["playerBlood"]
+			"fx": [
+				"playerBlood"
+			]
 		}
 	},
 	"sentinel": {
@@ -52,17 +64,23 @@
 			"staggerReturnDuration": 150
 		},
 		"hitFX": [
-			{"fxName": "hitSplosion"}
+			{
+				"fxName": "hitSplosion"
+			}
 		],
 		"hitBlood": {
 			"frequency": 17,
 			"duration": 500,
-			"fx": ["oil"]
+			"fx": [
+				"oil"
+			]
 		},
 		"deathBlood": {
 			"frequency": 17,
 			"duration": 2000,
-			"fx": ["oil"]
+			"fx": [
+				"oil"
+			]
 		}
 	},
 	"blop": {
@@ -74,20 +92,28 @@
 			"staggerReturnDuration": 100
 		},
 		"hitFX": [
-			{"fxName": "hitSplosion"},
-			{"fxName": "hitBloodRed", "face": true}
+			{
+				"fxName": "hitSplosion"
+			},
+			{
+				"fxName": "hitBloodRed",
+				"face": true
+			}
 		],
-		"deathFX": [
-		],
+		"deathFX": [],
 		"hitBlood": {
 			"frequency": 17,
 			"duration": 2000,
-			"fx": ["redBlopBlood"]
+			"fx": [
+				"redBlopBlood"
+			]
 		},
 		"deathBlood": {
 			"frequency": 100,
 			"duration": 2000,
-			"fx": ["redBlopBlood"]
+			"fx": [
+				"redBlopBlood"
+			]
 		}
 	},
 	"blopYellow": {
@@ -99,19 +125,24 @@
 			"staggerReturnDuration": 100
 		},
 		"hitFX": [
-			{"fxName": "hitSplosion"}
+			{
+				"fxName": "hitSplosion"
+			}
 		],
-		"deathFX": [
-		],
+		"deathFX": [],
 		"hitBlood": {
 			"frequency": 17,
 			"duration": 2000,
-			"fx": ["yellowBlopBlood"]
+			"fx": [
+				"yellowBlopBlood"
+			]
 		},
 		"deathBlood": {
 			"frequency": 100,
 			"duration": 2000,
-			"fx": ["yellowBlopBlood"]
+			"fx": [
+				"yellowBlopBlood"
+			]
 		}
 	},
 	"blopDemon": {
@@ -123,19 +154,24 @@
 			"staggerReturnDuration": 100
 		},
 		"hitFX": [
-			{"fxName": "hitSplosion"}
+			{
+				"fxName": "hitSplosion"
+			}
 		],
-		"deathFX": [
-		],
+		"deathFX": [],
 		"hitBlood": {
 			"frequency": 17,
 			"duration": 2000,
-			"fx": ["demonBlopBlood"]
+			"fx": [
+				"demonBlopBlood"
+			]
 		},
 		"deathBlood": {
 			"frequency": 100,
 			"duration": 2000,
-			"fx": ["demonBlopBlood"]
+			"fx": [
+				"demonBlopBlood"
+			]
 		}
 	},
 	"blopBig": {
@@ -147,19 +183,24 @@
 			"staggerReturnDuration": 100
 		},
 		"hitFX": [
-			{"fxName": "hitSplosion"}
+			{
+				"fxName": "hitSplosion"
+			}
 		],
-		"deathFX": [
-		],
+		"deathFX": [],
 		"hitBlood": {
 			"frequency": 17,
 			"duration": 85,
-			"fx": ["redBlopBigBlood"]
+			"fx": [
+				"redBlopBigBlood"
+			]
 		},
 		"deathBlood": {
 			"frequency": 100,
 			"duration": 2000,
-			"fx": ["redBlopBigBlood"]
+			"fx": [
+				"redBlopBigBlood"
+			]
 		}
 	},
 	"blopCoward": {
@@ -171,21 +212,25 @@
 			"staggerReturnDuration": 100
 		},
 		"hitFX": [
-			{"fxName": "hitSplosion"}
+			{
+				"fxName": "hitSplosion"
+			}
 		],
-		"deathFX": [
-		],
+		"deathFX": [],
 		"hitBlood": {
 			"frequency": 50,
 			"duration": 1000,
-			"fx": ["blueBlopBlood"]
+			"fx": [
+				"blueBlopBlood"
+			]
 		},
 		"deathBlood": {
 			"frequency": 100,
 			"duration": 2000,
-			"fx": ["blueBlopBlood"]
+			"fx": [
+				"blueBlopBlood"
+			]
 		}
-
 	},
 	"blopMini": {
 		"hitSettings": {
@@ -196,10 +241,11 @@
 			"staggerReturnDuration": 100
 		},
 		"hitFX": [
-			{"fxName": "hitSplosion"}
+			{
+				"fxName": "hitSplosion"
+			}
 		],
-		"deathFX": [
-		]
+		"deathFX": []
 	},
 	"bushbell": {
 		"hitSettings": {
@@ -210,11 +256,14 @@
 			"staggerReturnDuration": 100
 		},
 		"hitFX": [
-			{"fxName": "hitSplosion"},
-			{"fxName": "leaves"}
+			{
+				"fxName": "hitSplosion"
+			},
+			{
+				"fxName": "leaves"
+			}
 		],
-		"deathFX": [
-		]
+		"deathFX": []
 	},
 	"mimic": {
 		"hitSettings": {
@@ -225,8 +274,12 @@
 			"staggerReturnDuration": 800
 		},
 		"hitFX": [
-			{"fxName": "crateParticlesSmall"},
-			{"fxName": "hitSplosion"}
+			{
+				"fxName": "crateParticlesSmall"
+			},
+			{
+				"fxName": "hitSplosion"
+			}
 		],
 		"deathFX": [
 			"cratePoofSmall"
@@ -241,12 +294,16 @@
 			"staggerReturnDuration": 400
 		},
 		"hitFX": [
-			{"fxName": "hitSplosion"}
+			{
+				"fxName": "hitSplosion"
+			}
 		],
 		"hitBlood": {
 			"frequency": 17,
 			"duration": 600,
-			"fx": ["oil"]
+			"fx": [
+				"oil"
+			]
 		}
 	},
 	"snake": {
@@ -258,15 +315,21 @@
 			"staggerReturnDuration": 200
 		},
 		"hitFX": [
-			{"fxName": "hitSplosion"},
-			{"fxName": "hitBloodRed", "face": true}
+			{
+				"fxName": "hitSplosion"
+			},
+			{
+				"fxName": "eggSplosion",
+				"face": true
+			}
 		],
-		"deathFX": [
-		],
+		"deathFX": [],
 		"hitBlood": {
 			"frequency": 17,
 			"duration": 2000,
-			"fx": ["playerBlood"]
+			"fx": [
+				"spiderBlood"
+			]
 		}
 	},
 	"spider": {
@@ -278,17 +341,23 @@
 			"staggerReturnDuration": 800
 		},
 		"hitFX": [
-			{"fxName": "eggSplosion"}
+			{
+				"fxName": "eggSplosion"
+			}
 		],
 		"hitBlood": {
 			"frequency": 17,
 			"duration": 150,
-			"fx": ["spiderBlood"]
+			"fx": [
+				"spiderBlood"
+			]
 		},
 		"deathBlood": {
 			"frequency": 17,
 			"duration": 2000,
-			"fx": ["spiderBlood"]
+			"fx": [
+				"spiderBlood"
+			]
 		}
 	},
 	"spiderBoss": {
@@ -300,22 +369,30 @@
 			"staggerReturnDuration": 250
 		},
 		"hitFX": [
-			{"fxName": "eggSplosion"}
+			{
+				"fxName": "eggSplosion"
+			}
 		],
 		"hitBlood": {
 			"frequency": 17,
 			"duration": 150,
-			"fx": ["spiderBlood"]
+			"fx": [
+				"spiderBlood"
+			]
 		},
 		"deathBlood": {
-			"frequency": 17,
+			"frequency": 15,
 			"duration": 2000,
-			"fx": ["spiderBlood"]
+			"fx": [
+				"spiderBlood"
+			]
 		}
 	},
 	"spiderEgg": {
 		"hitFX": [
-			{"fxName": "eggSplosion"}
+			{
+				"fxName": "eggSplosion"
+			}
 		],
 		"deathFX": [
 			"eggDeath"
@@ -323,7 +400,9 @@
 	},
 	"crateExplosive": {
 		"hitFX": [
-			{"fxName": "crateParticlesSmall"}
+			{
+				"fxName": "crateParticlesSmall"
+			}
 		],
 		"deathFX": [
 			"explosion",
@@ -332,7 +411,9 @@
 	},
 	"crateSmall": {
 		"hitFX": [
-			{"fxName": "crateParticlesSmall"}
+			{
+				"fxName": "crateParticlesSmall"
+			}
 		],
 		"deathFX": [
 			"cratePoofSmall",
@@ -341,7 +422,9 @@
 	},
 	"crateSmallB": {
 		"hitFX": [
-			{"fxName": "crateParticlesSmall"}
+			{
+				"fxName": "crateParticlesSmall"
+			}
 		],
 		"deathFX": [
 			"cratePoofSmall",
@@ -350,7 +433,9 @@
 	},
 	"barrell": {
 		"hitFX": [
-			{"fxName": "crateParticlesSmall"}
+			{
+				"fxName": "crateParticlesSmall"
+			}
 		],
 		"deathFX": [
 			"cratePoofSmall",
@@ -359,7 +444,9 @@
 	},
 	"barrellFruit": {
 		"hitFX": [
-			{"fxName": "crateParticlesSmall"}
+			{
+				"fxName": "crateParticlesSmall"
+			}
 		],
 		"deathFX": [
 			"cratePoofSmall",
@@ -368,7 +455,9 @@
 	},
 	"crateLarge": {
 		"hitFX": [
-			{"fxName": "crateParticlesLarge"}
+			{
+				"fxName": "crateParticlesLarge"
+			}
 		],
 		"deathFX": [
 			"cratePoofLarge",

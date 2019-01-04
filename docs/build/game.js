@@ -394,7 +394,8 @@ GameKey.Tilde = 'Backquote';
 /// <reference path="../../lib/pixi.js.d.ts" />
 /// <reference path="../core/base.ts" />
 class Mouse {
-    constructor() {
+    constructor(resolution) {
+        this.resolution = resolution;
         this.hudPosition = new PIXI.Point();
         this.leftDown = false;
         this.rightDown = false;
@@ -419,7 +420,37 @@ class Mouse {
         }
     }
     onMove(event) {
-        this.hudPosition.set(event.offsetX, event.offsetY);
+        // hack so we can access more stuff on the document than Typescript
+        // knows exists
+        let d = document;
+        if (d.fullscreenElement || d.webkitFullscreenElement) {
+            // fullscreen. compute scaling by figuring out which dimension is
+            // stretched, calculate whether X offset exists, and then apply
+            // scaling and offset.
+            let gameRatio = this.resolution.x / this.resolution.y;
+            let screenRatio = screen.width / screen.height;
+            let heightLimiting = screenRatio >= gameRatio;
+            let scaleFactor = 1;
+            let offsetX = 0;
+            let offsetY = 0;
+            if (heightLimiting) {
+                // black bars on the sides (or perfect match)
+                scaleFactor = screen.height / this.resolution.y;
+                let scaleWidth = scaleFactor * this.resolution.x;
+                offsetX = Math.max(0, (screen.width - scaleWidth) / 2) / scaleFactor;
+            }
+            else {
+                // width limiting (black bars on the top and bottom)
+                scaleFactor = screen.width / this.resolution.x;
+                let scaleHeight = scaleFactor * this.resolution.y;
+                offsetY = Math.max(0, (screen.height - scaleHeight) / 2) / scaleFactor;
+            }
+            this.hudPosition.set(-offsetX + event.pageX / scaleFactor, -offsetY + event.pageY / scaleFactor);
+        }
+        else {
+            // in the page
+            this.hudPosition.set(event.offsetX, event.offsetY);
+        }
     }
 }
 /**
@@ -635,14 +666,14 @@ function enumSortedNames(e) {
 }
 /**
  * Miliseconds to display-friendly string for users. Examples:
- * - 18752.000000000000037859 -> '18s'
- * - 65752.000000000000037859 -> '1m 5s'
+ * - 18752.000000000000037859 -> '18.000s'
+ * - 65752.000000000000037859 -> '1m 5.000s'
  * @param ms
  */
 function msToUserTime(ms) {
-    let full_s = Math.floor(ms / 1000);
+    let full_s = ms / 1000;
     let m = Math.floor(full_s / 60);
-    let s = Math.floor(full_s % 60);
+    let s = (full_s % 60).toFixed(3);
     let mStr = m > 0 ? m + 'm ' : '';
     return mStr + s + 's';
 }
@@ -1772,7 +1803,7 @@ var System;
                 return;
             }
             // get bounds and check
-            this.boundsGetter.getViewBounds(this.viewportSize, this.cacheMinBounds, this.cacheMaxBounds);
+            this.boundsGetter.getViewBounds(this.viewportSize, this.cacheMinBounds, this.cacheMaxBounds, 20);
             if (location.x < this.cacheMinBounds.x || location.x > this.cacheMaxBounds.x ||
                 location.y < this.cacheMinBounds.y || location.y > this.cacheMaxBounds.y) {
                 return;
@@ -2118,21 +2149,24 @@ var Stage;
             stage.removeChild(obj);
         }
         /**
-         * Call this on The World MultiZStage to get the game world min & max
-         * x, y coordinates of the visible area. (Used, e.g., for audio culling
+         * Call this on The World MultiZStage to get the game world min & max x,
+         * y coordinates of the visible area. (Used, e.g., for audio culling
          * sound effects.)
          *
          * @param viewportDims
          * @param outMin
          * @param outMax
+         * @param buffer Widen bounds by this much on each side (so 2x per
+         * dimension) to be a bit generous about some bounds checking (e.g., for
+         * audio effects near the border).
          */
-        getViewBounds(viewportDims, outMin, outMax) {
+        getViewBounds(viewportDims, outMin, outMax, buffer = 0) {
             let minX = -(this.x / this.scale.x);
             let minY = -(this.y / this.scale.y);
             let w = viewportDims.x / this.scale.x;
             let h = viewportDims.y / this.scale.y;
-            outMin.set_(minX, minY);
-            outMax.set_(minX + w, minY + h);
+            outMin.set_(minX - buffer, minY - buffer);
+            outMax.set_(minX + w + buffer, minY + h + buffer);
         }
     }
     __decorate([
@@ -2773,6 +2807,7 @@ var AI;
         Behavior[Behavior["Sawtooth"] = 7] = "Sawtooth";
         Behavior[Behavior["FollowSawtooth"] = 8] = "FollowSawtooth";
         Behavior[Behavior["Coward"] = 9] = "Coward";
+        Behavior[Behavior["Sentinel"] = 10] = "Sentinel";
     })(Behavior = AI.Behavior || (AI.Behavior = {}));
 })(AI || (AI = {}));
 /// <reference path="../gj7/ai.ts" />
@@ -2856,10 +2891,19 @@ var AI;
         dead() {
             return this.aspect.has(Component.Dead);
         }
+        /**
+         * Gets player entity.
+         */
+        getPlayer() {
+            return this.aspect.playerSelector.latest().next().value;
+        }
+        getPlayerComps() {
+            return this.ecs.getComponents(this.getPlayer());
+        }
         playerDead() {
             // should only be one player. player may not exist for some frames,
             // so be robust to that.
-            let player = this.aspect.playerSelector.latest().next().value;
+            let player = this.getPlayer();
             if (player == null) {
                 return true;
             }
@@ -2947,12 +2991,10 @@ var AI;
             return this.aspect.get(Component.Position).p;
         }
         getPlayerPos() {
-            let player = this.aspect.playerSelector.latest().next().value;
-            return this.ecs.getComponents(player).get(Component.Position).p;
+            return this.getPlayerComps().get(Component.Position).p;
         }
         getPlayerAngle() {
-            let player = this.aspect.playerSelector.latest().next().value;
-            return this.ecs.getComponents(player).get(Component.Position).angle;
+            return this.getPlayerComps().get(Component.Position).angle;
         }
         closeTo(target, epsilon = 25) {
             return this.getPos().distTo(target) < epsilon;
@@ -3118,6 +3160,7 @@ var System;
                 [AI.Behavior.Sawtooth, System.AISawtooth.update],
                 [AI.Behavior.FollowSawtooth, System.AIFollowSawtooth.update],
                 [AI.Behavior.Coward, System.AICoward.update],
+                [AI.Behavior.Sentinel, System.AISentinel.update],
             ]);
         }
         makeAspect() {
@@ -4770,6 +4813,7 @@ var Ontology;
         Item[Item["UpgradeAOECombo"] = 8] = "UpgradeAOECombo";
         Item[Item["UpgradeHP5"] = 9] = "UpgradeHP5";
         Item[Item["TransformToBlop"] = 10] = "TransformToBlop";
+        Item[Item["TransformToPlayer"] = 11] = "TransformToPlayer";
     })(Item = Ontology.Item || (Ontology.Item = {}));
 })(Ontology || (Ontology = {}));
 /// <reference path="../core/base.ts" />
@@ -5190,6 +5234,12 @@ var System;
                         continue;
                     }
                     let attackerComps = this.ecs.getComponents(attack.attacker);
+                    // extract original damage for use later. we could skip all
+                    // the rest if the original damage was == 0, but it's nice
+                    // to do so we can remove the attack instead of continuously
+                    // colliding with it. (this is for projectiles sticking
+                    // around on walls w/ 0 damage).
+                    let origDamage = attack.info.damage;
                     // super simple strategy: reduce damage of attack by the
                     // shield's armor.
                     //	- if the attack damage is reduced to zero, remove the
@@ -5223,7 +5273,11 @@ var System;
                         // make block resolved
                         otherBox.collisionsResolved.add(entity);
                     }
-                    // damage or no, recoil defender
+                    // only do recoil and "blocking" event if the original damage
+                    if (origDamage <= 0) {
+                        continue;
+                    }
+                    // recoil defender
                     if (!this.ecs.getComponents(block.blocker).has(Component.Recoil)) {
                         this.ecs.addComponent(block.blocker, new Component.Recoil());
                     }
@@ -5249,84 +5303,85 @@ var Events;
     var EventTypes;
     (function (EventTypes) {
         EventTypes[EventTypes["Damage"] = 0] = "Damage";
-        EventTypes[EventTypes["Swing"] = 1] = "Swing";
-        EventTypes[EventTypes["Checkpoint"] = 2] = "Checkpoint";
-        EventTypes[EventTypes["ThingDead"] = 3] = "ThingDead";
+        EventTypes[EventTypes["Charge"] = 1] = "Charge";
+        EventTypes[EventTypes["Swing"] = 2] = "Swing";
+        EventTypes[EventTypes["Checkpoint"] = 3] = "Checkpoint";
+        EventTypes[EventTypes["ThingDead"] = 4] = "ThingDead";
         /**
          * Fired when player enters or leaves a zone.
          */
-        EventTypes[EventTypes["ZoneTransition"] = 4] = "ZoneTransition";
+        EventTypes[EventTypes["ZoneTransition"] = 5] = "ZoneTransition";
         /**
          * Fired when an attack is blocked.
          */
-        EventTypes[EventTypes["Block"] = 5] = "Block";
+        EventTypes[EventTypes["Block"] = 6] = "Block";
         /**
          * Trigger for events before enemy stagger (like pause/slowmotion). A
          * handler that catches this will fire the EnemyStagger event.
          */
-        EventTypes[EventTypes["EnemyStaggerPre"] = 6] = "EnemyStaggerPre";
+        EventTypes[EventTypes["EnemyStaggerPre"] = 7] = "EnemyStaggerPre";
         /**
          * Fired when an enemy is staggered.
          */
-        EventTypes[EventTypes["EnemyStagger"] = 7] = "EnemyStagger";
+        EventTypes[EventTypes["EnemyStagger"] = 8] = "EnemyStagger";
         /**
          * Fired when player picks up a health item.
          */
-        EventTypes[EventTypes["ItemCollected"] = 8] = "ItemCollected";
+        EventTypes[EventTypes["ItemCollected"] = 9] = "ItemCollected";
         /**
          * A little specific, but: emit blood on the ground.
          */
-        EventTypes[EventTypes["Bleed"] = 9] = "Bleed";
+        EventTypes[EventTypes["Bleed"] = 10] = "Bleed";
         /**
          * Player has fulfilled OR unfulfilled exit conditions for level.
          */
-        EventTypes[EventTypes["ExitConditions"] = 10] = "ExitConditions";
+        EventTypes[EventTypes["ExitConditions"] = 11] = "ExitConditions";
         /**
          * A menu keypress was registered.
          */
-        EventTypes[EventTypes["MenuKeypress"] = 11] = "MenuKeypress";
+        EventTypes[EventTypes["MenuKeypress"] = 12] = "MenuKeypress";
         /**
          * A debug keypress was registered (not done for all debug keys, only
          * newer ones)
          */
-        EventTypes[EventTypes["DebugKeypress"] = 12] = "DebugKeypress";
+        EventTypes[EventTypes["DebugKeypress"] = 13] = "DebugKeypress";
         /**
          * Starts the "end of level" sequence.
          */
-        EventTypes[EventTypes["StartExitSequence"] = 13] = "StartExitSequence";
+        EventTypes[EventTypes["StartExitSequence"] = 14] = "StartExitSequence";
         /**
          * Asks for the scene switch.
          */
-        EventTypes[EventTypes["SwitchScene"] = 14] = "SwitchScene";
+        EventTypes[EventTypes["SwitchScene"] = 15] = "SwitchScene";
         /**
          * When the gameplay starts at the beginning of a level.
          */
-        EventTypes[EventTypes["GameplayStart"] = 15] = "GameplayStart";
+        EventTypes[EventTypes["GameplayStart"] = 16] = "GameplayStart";
         /**
          * Gates open and produce sounds and my design for this engine isn't
          * great yet.
          */
-        EventTypes[EventTypes["GateOpen"] = 16] = "GateOpen";
+        EventTypes[EventTypes["GateOpen"] = 17] = "GateOpen";
         /**
          * Trigger to check all gates (and close any as needed).
          */
-        EventTypes[EventTypes["CheckGates"] = 17] = "CheckGates";
+        EventTypes[EventTypes["CheckGates"] = 18] = "CheckGates";
         /**
          * Trigger to show instructions.
          */
-        EventTypes[EventTypes["ShowInstructions"] = 18] = "ShowInstructions";
+        EventTypes[EventTypes["ShowInstructions"] = 19] = "ShowInstructions";
         /**
          * Trigger for game logic stuff DANG stop making events just use this!
          */
-        EventTypes[EventTypes["GameLogic"] = 19] = "GameLogic";
+        EventTypes[EventTypes["GameLogic"] = 20] = "GameLogic";
         /**
          * BOOM
          */
-        EventTypes[EventTypes["Explosion"] = 20] = "Explosion";
+        EventTypes[EventTypes["Explosion"] = 21] = "Explosion";
         /**
          * For the end sequence.
          */
-        EventTypes[EventTypes["SwapBodies"] = 21] = "SwapBodies";
+        EventTypes[EventTypes["SwapBodies"] = 22] = "SwapBodies";
     })(EventTypes = Events.EventTypes || (Events.EventTypes = {}));
     var Phase;
     (function (Phase) {
@@ -7411,7 +7466,6 @@ var System;
             this.spacing = 3;
             this.buffer = 5;
             // state
-            this.nextColor = 0;
             this.sinceLastRedraw = this.redrawEveryFrames; // immediate at start
             this.sectionViews = new Map();
             this.componentsRequired = new Set([
@@ -7446,10 +7500,8 @@ var System;
             // create if needed
             if (!sectionView.records.has(recordName)) {
                 // color stays same for recordName
-                // let tintStr = DEBUG_COLORS[this.nextColor];
                 let tintStr = '#ffffff';
                 let tintNum = parseInt(tintStr.slice(1), 16);
-                // this.nextColor = (this.nextColor+1) % DEBUG_COLORS.length;
                 // create the bar
                 let bar = Stage.buildPIXISprite('particles/particle1.png', new Point(0, 0), // legit position simply set on update
                 new Point(1, 0));
@@ -8606,11 +8658,11 @@ var System;
          * @param aspect
          * @param attackInfo
          */
-        maybeDispatchEvent(aspect, attackInfo) {
+        maybeDispatchEvent(aspect, attackInfo, eventType) {
             if (aspect.eventsDispatched) {
                 return;
             }
-            let eName = Events.EventTypes.Swing;
+            let eName = eventType;
             let eArgs = {
                 attackInfo: attackInfo,
                 location: aspect.get(Component.Position).p,
@@ -8715,6 +8767,10 @@ var System;
                 // ready to swing. If minimum duration not waited, return to
                 // idle.
                 case Weapon.SwingState.ChargeCharging: {
+                    // events dispatched as soon as state changed
+                    // charge may be happening more than i thought. just using
+                    // swing for now.
+                    // this.maybeDispatchEvent(aspect, weapon.swingAttack, Events.EventTypes.Charge);
                     if (aspect.elapsed >= weapon.timing.minChargeDuration) {
                         aspect.state = Weapon.SwingState.ChargeReady;
                     }
@@ -8736,7 +8792,7 @@ var System;
                         throw new Error('SwingAttack initiated for weapon without one!');
                     }
                     // events dispatched as soon as state changed
-                    this.maybeDispatchEvent(aspect, weapon.swingAttack);
+                    this.maybeDispatchEvent(aspect, weapon.swingAttack, Events.EventTypes.Swing);
                     if (!aspect.startedAttack && aspect.elapsed >= weapon.timing.swingAttackDelay) {
                         aspect.ongoingAttack = this.startAttack(aspect.entity, pos, input, weapon.swingAttack, weapon.partID);
                         aspect.startedAttack = true;
@@ -8763,7 +8819,7 @@ var System;
                         throw new Error('QuickAttack initiated for weapon without one!');
                     }
                     // events dispatched as soon as state changed
-                    this.maybeDispatchEvent(aspect, weapon.quickAttack);
+                    this.maybeDispatchEvent(aspect, weapon.quickAttack, Events.EventTypes.Swing);
                     // because this block handles both cases (QuickAttack and
                     // QuickAttack2), determine what the other one is.
                     let other = aspect.state == Weapon.SwingState.QuickAttack ?
@@ -8796,7 +8852,7 @@ var System;
                         throw new Error('ComboAttack initiated for weapon without one!');
                     }
                     // events dispatched as soon as state changed
-                    this.maybeDispatchEvent(aspect, weapon.comboAttack);
+                    this.maybeDispatchEvent(aspect, weapon.comboAttack, Events.EventTypes.Swing);
                     // spawn attack object if we haven't and comboAttackDelay
                     // has passed
                     if (!aspect.startedComboAttack && aspect.elapsed >= weapon.timing.comboAttackDelay) {
@@ -9663,7 +9719,7 @@ var Game;
         // set the scale
         userConfig.resScale = resNum;
         // update the buttons
-        for (let i = 1; i <= 3; i++) {
+        for (let i = 1; i <= 5; i++) {
             let className = resNum == i ? 'resButton active' : 'resButton';
             document.getElementById('res' + i).className = className;
         }
@@ -9915,7 +9971,7 @@ var Game;
             let hud = this.stage.camera_get(StageTarget.HUD);
             let translator = new Stage.Translator(hud, world, resConfig.viewport.copy(), resConfig.gamescale);
             let keyboard = new Keyboard(this.eventsManager);
-            let mouse = new Mouse();
+            let mouse = new Mouse(resConfig.viewport.copy());
             // Set up lighting layer and texture it renders to. Lightbulbs are
             // added later.
             //
@@ -10051,7 +10107,7 @@ var Game;
             this.ecs.addSystem(90, new System.LockOn(this.stage));
             this.ecs.addSystem(90, new System.StaticRenderer(this.stage));
             this.ecs.addSystem(90, new System.AnimationRenderer(this.stage));
-            this.ecs.addSystem(90, new System.Lighting(this.stage, translator, lightingLayer));
+            this.ecs.addSystem(90, new System.Lighting(this.stage, translator, lightingLayer, resConfig.gamescale));
             this.ecs.addSystem(90, new System.EnemyHUDRenderer(gui, this.subConfigs.gui.sequences['enemyHUD'], translator, playerSelector));
             this.ecs.addSystem(90, new System.PlayerHUDRenderer());
             this.ecs.addSystem(90, new System.TextRenderer(this.stage, resConfig.gamescale, translator));
@@ -10080,6 +10136,8 @@ var Game;
                 this.ecs.addSystem(100, new System.DebugHTMLComponents(debugCol));
                 this.ecs.addSystem(100, new System.DebugInspectionRenderer(this.stage));
                 this.ecs.addSystem(100, new System.DebugTimingRenderer(this.stage, this.clockCentral, resConfig.viewport.copy()));
+                // speedrun timer:
+                // this.ecs.addSystem(100, new System.BookkeeperRenderer(this.stage, resConfig.viewport.copy()));
             }
             // libraries
             this.ecs.addSystem(110, new System.Bookkeeper());
@@ -10095,7 +10153,7 @@ var Game;
             this.eventsManager.add(new Handler.Overlay());
             this.eventsManager.add(new Handler.FX(fxAnimations));
             this.eventsManager.add(new Handler.ExitConditionsComplete(gateSelector, zoneSelector, this.gm));
-            this.eventsManager.add(new Handler.NextToExit(resConfig.viewport.copy()));
+            this.eventsManager.add(new Handler.NextToExit());
             this.eventsManager.add(new Handler.ExitSequence(this.sceneManager));
             this.eventsManager.add(new Handler.LevelExiter(this.sceneManager));
             this.eventsManager.add(new Handler.GateManager());
@@ -12300,19 +12358,21 @@ var GameMap;
                 behavior.gateID = props.get(GateID.name).val();
             }
             ecs.addComponent(entity, new Component.Item(behavior));
-            // bob!
-            let t = new Component.Tweenable();
-            t.tweenQueue.push({
-                prop: 'y',
-                spec: {
-                    val: 20,
-                    valType: 'rel',
-                    duration: -1,
-                    period: 0.002,
-                    method: 'sine',
-                },
-            });
-            ecs.addComponent(entity, t);
+            // bob! (but not for hearts)
+            if (behavior.classificiation != Ontology.Item.Health) {
+                let t = new Component.Tweenable();
+                t.tweenQueue.push({
+                    prop: 'y',
+                    spec: {
+                        val: 20,
+                        valType: 'rel',
+                        duration: -1,
+                        period: 0.002,
+                        method: 'sine',
+                    },
+                });
+                ecs.addComponent(entity, t);
+            }
             // sparkle
             ecs.addComponent(entity, new Component.Sparkle());
         }
@@ -13191,24 +13251,24 @@ var Scene;
             let setIdx = true;
             switch (ssName) {
                 case 'StartLevel': {
-                    this.scriptRunner.run(new Script.StartLevel(this.infoProvider));
+                    this.scriptRunner.run(new Script.StartLevel(this.infoProvider, this.gm));
                     break;
                 }
                 case 'StartLevelDev': {
-                    this.scriptRunner.run(new Script.StartLevelDev(this.infoProvider));
+                    this.scriptRunner.run(new Script.StartLevelDev(this.infoProvider, this.gm));
                     break;
                 }
                 case 'StartLevelMultipartFirst': {
-                    this.scriptRunner.run(new Script.StartLevelMultipartFirst(this.infoProvider));
+                    this.scriptRunner.run(new Script.StartLevelMultipartFirst(this.infoProvider, this.gm));
                     break;
                 }
                 case 'StartLevelMultipartMid': {
-                    this.scriptRunner.run(new Script.StartLevelMultipartMid(this.infoProvider));
+                    this.scriptRunner.run(new Script.StartLevelMultipartMid(this.infoProvider, this.gm));
                     setIdx = false;
                     break;
                 }
                 case 'StartLevelMultipartLast': {
-                    this.scriptRunner.run(new Script.StartLevelMultipartLast(this.infoProvider));
+                    this.scriptRunner.run(new Script.StartLevelMultipartLast(this.infoProvider, this.gm));
                     setIdx = false;
                     break;
                 }
@@ -13906,12 +13966,14 @@ var Handler;
                 if (!gateC.exit) {
                     continue;
                 }
+                let castle = comps.has(Component.DebugKVLayer) && comps.get(Component.DebugKVLayer).layer.endsWith('CastleGate');
+                let knightY = castle ? 107 : 175;
                 // add trumpet players
                 let pos = comps.get(Component.Position);
                 let degAngle = -(Constants.RAD2DEG * pos.angle);
                 let knights = [
-                    pos.p.copy().add_(new Point(130, 175).rotate_(-pos.angle)),
-                    pos.p.copy().add_(new Point(-130, 175).rotate_(-pos.angle)),
+                    pos.p.copy().add_(new Point(130, knightY).rotate_(-pos.angle)),
+                    pos.p.copy().add_(new Point(-130, knightY).rotate_(-pos.angle)),
                 ];
                 for (let knight of knights) {
                     let e = this.factory.produce('trumpetKnight', {
@@ -13929,11 +13991,12 @@ var Handler;
                     this.partyEntities.push(e);
                 }
                 // add flags
+                let flagY = castle ? 50 : 107;
                 let flags = [{
-                        pos: pos.p.copy().add_(new Point(120, 107).rotate_(-pos.angle)),
+                        pos: pos.p.copy().add_(new Point(120, flagY).rotate_(-pos.angle)),
                         layer: 'flagRight',
                     }, {
-                        pos: pos.p.copy().add_(new Point(-120, 107).rotate_(-pos.angle)),
+                        pos: pos.p.copy().add_(new Point(-120, flagY).rotate_(-pos.angle)),
                         layer: 'flagLeft',
                     }];
                 for (let flag of flags) {
@@ -13947,15 +14010,16 @@ var Handler;
                     this.partyEntities.push(e);
                 }
                 // add red carpet
-                // let carpetPos = new Point(pos.p.x, pos.p.y).rotate_(pos.angle);
-                let e = this.factory.produce('carpet', {
-                    x: pos.p.x,
-                    y: pos.p.y,
-                    width: 1,
-                    height: 1,
-                    rotation: degAngle,
-                });
-                this.partyEntities.push(e);
+                if (!castle) {
+                    let e = this.factory.produce('carpet', {
+                        x: pos.p.x,
+                        y: pos.p.y,
+                        width: 1,
+                        height: 1,
+                        rotation: degAngle,
+                    });
+                    this.partyEntities.push(e);
+                }
             }
             // enable exit zones
             this.toggleExitZones(true);
@@ -13985,55 +14049,31 @@ var Handler;
     ], ExitConditionsComplete.prototype, "clear", null);
     Handler.ExitConditionsComplete = ExitConditionsComplete;
     class NextToExit extends Events.Handler {
-        constructor(vewiportSize) {
-            super();
-            this.vewiportSize = vewiportSize;
+        constructor() {
+            super(...arguments);
             this.dispatcher = new Map([
                 [Events.EventTypes.ZoneTransition, this.playerZoneTransition],
-                [Events.EventTypes.MenuKeypress, this.menuKeypress],
             ]);
-            this.inZone = false;
+            /**
+             * To avoid double-triggering the exit on rare circumstances (w/ certain
+             * approach angles into the exit gate).
+             */
+            this.triggered = false;
         }
         clear() {
-            this.cacheButton = null;
+            this.triggered = false;
         }
         playerZoneTransition(et, args) {
-            let zoneComps = this.ecs.getComponents(args.zone);
-            let zoneComp = zoneComps.get(Component.Zone);
-            if (!zoneComp.zoneTypes.has(Logic.ZoneType.NextToExit)) {
+            let zone = this.ecs.getComponents(args.zone).get(Component.Zone);
+            if (!zone.zoneTypes.has(Logic.ZoneType.NextToExit) || this.triggered) {
                 return;
             }
             if (args.enter) {
-                this.enterZone();
-            }
-            else {
-                this.exitZone();
-            }
-        }
-        menuKeypress(et, args) {
-            if (args.key === GameKey.Enter && this.inZone) {
                 this.firer.dispatch({
                     name: Events.EventTypes.StartExitSequence,
                     args: {},
                 });
-                this.exitZone();
-            }
-        }
-        enterZone() {
-            this.inZone = true;
-            this.cacheButton = this.ecs.addEntity();
-            let anim = new Component.Animatable(ZLevelHUD.Button, StageTarget.HUD);
-            anim.animations.set(Anim.DefaultKey, Anim.getData('HUD/exitLevel', 0, 0));
-            this.ecs.addComponent(this.cacheButton, anim);
-            this.ecs.addComponent(this.cacheButton, new Component.Position(new Point(this.vewiportSize.x / 2, this.vewiportSize.y - 100)));
-            this.ecs.addComponent(this.cacheButton, new Component.Activity({ startAction: 'Idle', manual: true }));
-            this.ecs.addComponent(this.cacheButton, new Component.Body());
-        }
-        exitZone() {
-            this.inZone = false;
-            if (this.cacheButton != null) {
-                this.ecs.removeEntity(this.cacheButton);
-                this.cacheButton = null;
+                this.triggered = true;
             }
         }
     }
@@ -14041,40 +14081,6 @@ var Handler;
         override
     ], NextToExit.prototype, "clear", null);
     Handler.NextToExit = NextToExit;
-    class LevelExiter extends Events.Handler {
-        constructor(sceneManager) {
-            super();
-            this.sceneManager = sceneManager;
-            this.dispatcher = new Map([
-                [Events.EventTypes.SwitchScene, this.sceneSwitcher],
-            ]);
-        }
-        /**
-         * Either preps for a scene switch (fade out + request scene switch),
-         * or does the actual scene switch, depending on how args.prep is set.
-         */
-        sceneSwitcher(t, args) {
-            if (args.prep) {
-                // fade out
-                this.ecs.getSystem(System.Fade).request(1, 500);
-                // ask for the legit scene switch
-                let nextArgs = {
-                    prep: false,
-                    increment: args.increment,
-                };
-                this.firer.dispatch({
-                    name: Events.EventTypes.SwitchScene,
-                    args: nextArgs,
-                }, 500);
-            }
-            else {
-                // do the legit scene switch
-                let increment = args.increment || 1;
-                this.sceneManager.switchToRelative(increment);
-            }
-        }
-    }
-    Handler.LevelExiter = LevelExiter;
     /**
      * NOTE: may want to turn into script so we can only enable exiting after a
      * certain time.
@@ -14105,6 +14111,7 @@ var Handler;
                 // intentional fallthrough for both multipart non-final levels
                 case 'StartLevelMultipartFirst':
                 case 'StartLevelMultipartMid':
+                    this.ecs.getSystem(System.Bookkeeper).endLevel();
                     this.levelSwitchEnabled = true;
                     this.clearReportExitLevel();
                     break;
@@ -14119,6 +14126,9 @@ var Handler;
             this.ecs.disableSystem(System.PlayerHUDRenderer);
             this.ecs.disableSystem(System.PlayerInputMouseKeyboard);
             this.ecs.getSystem(System.AISystem).inCutscene = true;
+            // stop player from walking
+            let playerComps = this.ecs.getComponents(this.ecs.getSystem(System.PlayerSelector).latest().next().value);
+            playerComps.get(Component.Input).intent.set_(0, 0);
             // zoom in
             this.ecs.getSystem(System.Zoom).request(2, 2000, Tween.easeOutCubic);
             // Map from text tween IDs (in the gui.json) to text to replace
@@ -14136,6 +14146,8 @@ var Handler;
             ])));
             // NOTE: may want a delay here
             this.levelSwitchEnabled = true;
+            // play sound
+            this.ecs.getSystem(System.Audio).play(['title-sheen']);
         }
         menuKeypress(et, args) {
             this.clearReportExitLevel();
@@ -14181,6 +14193,40 @@ var Handler;
         override
     ], ExitSequence.prototype, "clear", null);
     Handler.ExitSequence = ExitSequence;
+    class LevelExiter extends Events.Handler {
+        constructor(sceneManager) {
+            super();
+            this.sceneManager = sceneManager;
+            this.dispatcher = new Map([
+                [Events.EventTypes.SwitchScene, this.sceneSwitcher],
+            ]);
+        }
+        /**
+         * Either preps for a scene switch (fade out + request scene switch),
+         * or does the actual scene switch, depending on how args.prep is set.
+         */
+        sceneSwitcher(t, args) {
+            if (args.prep) {
+                // fade out
+                this.ecs.getSystem(System.Fade).request(1, 500);
+                // ask for the legit scene switch
+                let nextArgs = {
+                    prep: false,
+                    increment: args.increment,
+                };
+                this.firer.dispatch({
+                    name: Events.EventTypes.SwitchScene,
+                    args: nextArgs,
+                }, 500);
+            }
+            else {
+                // do the legit scene switch
+                let increment = args.increment || 1;
+                this.sceneManager.switchToRelative(increment);
+            }
+        }
+    }
+    Handler.LevelExiter = LevelExiter;
     /**
      * Only registered in debug mode. Lets you switch levels at any time.
      */
@@ -14369,27 +14415,41 @@ var Handler;
                 delaySpacing: 50,
                 duration: 500,
             };
+            let all_found = true;
             for (let i = 0; i < doughnutArray.length; i++) {
+                all_found = all_found && doughnutArray[i];
                 let col = i % d.cols;
                 let row = Math.floor(i / d.cols);
                 let x = d.xStart + col * d.xSpacing;
                 let y = d.yStart + row * d.ySpacing;
                 let sid = doughnutArray[i] ? 'recapDoughnutOn' : 'recapDoughnutOff';
                 let e = guiM.createSprite(sid, null, new Point(d.xOffscreen, y));
+                let delay = d.delayStart + i * d.delaySpacing;
+                let sounds = doughnutArray[i] ? [{ options: ['pop-1', 'pop-2', 'pop-3'], delay: delay }] : [];
                 guiM.tweenManual(e, {
                     visuals: [{
                             prop: 'x',
                             spec: {
                                 val: x,
                                 valType: 'abs',
-                                delay: d.delayStart + i * d.delaySpacing,
+                                delay: delay,
                                 duration: d.duration,
                                 method: 'easeOutBack',
                             },
                         },
                     ],
-                    sounds: [],
+                    sounds: sounds,
                 });
+            }
+            // optionally add doughnut% indicator
+            if (all_found) {
+                let dids = [
+                    guiM.createText('recapDoughnutPercent'),
+                    guiM.createSprite('recapSparkle'),
+                ];
+                for (let did of dids) {
+                    guiM.tween(did, 'enter');
+                }
             }
         }
         /**
@@ -14760,6 +14820,7 @@ var Handler;
             this.delaySpeaker = delaySpeaker;
             this.dispatcher = new Map([
                 [Events.EventTypes.Damage, this.damageSound],
+                [Events.EventTypes.Charge, this.chargeSound],
                 [Events.EventTypes.Swing, this.swingSound],
                 [Events.EventTypes.ThingDead, this.deathSound],
                 [Events.EventTypes.Block, this.blockSound],
@@ -14789,6 +14850,12 @@ var Handler;
                 }
             }
         }
+        chargeSound(et, args) {
+            let atk = args.attackInfo;
+            if (atk.sounds != null) {
+                this.ecs.getSystem(System.Audio).play(atk.sounds.charge, args.location);
+            }
+        }
         swingSound(et, args) {
             let atk = args.attackInfo;
             if (atk.sounds != null) {
@@ -14800,7 +14867,13 @@ var Handler;
             if (vComps.has(Component.Audible)) {
                 let audible = vComps.get(Component.Audible);
                 if (audible.sounds.killed != null) {
-                    this.ecs.getSystem(System.Audio).play(audible.sounds.killed, args.location);
+                    // hack for explostions to always play
+                    let location = args.location;
+                    if (vComps.has(Component.AIComponent) &&
+                        vComps.get(Component.AIComponent).behavior === AI.Behavior.Sawtooth) {
+                        location = null;
+                    }
+                    this.ecs.getSystem(System.Audio).play(audible.sounds.killed, location);
                 }
             }
             // special case player death
@@ -15173,17 +15246,44 @@ var Script;
         constructor() {
             super(...arguments);
             this.code = new Map([
-                [0, { func: this.zoomOut, args: null }],
-                [1000, { func: this.swapBodies, args: [true] }],
-                [1200, { func: this.swapBodies, args: [false] }],
-                [3000, { func: this.swapBodies, args: [true] }],
-                [3400, { func: this.swapBodies, args: [false] }],
-                [5000, { func: this.swapBodies, args: [true] }],
-                [5800, { func: this.swapBodies, args: [false] }],
-                [7000, { func: this.swapBodies, args: [true] }],
-                [9980, { func: this.blackOut, args: [true] }],
-                [13000, { func: this.nextScene, args: [true] }],
+                [0, { func: this.begin, args: null }],
+                [3000, { func: this.zoomOut, args: null }],
+                [4000, { func: this.swapBodies, args: [true] }],
+                [4200, { func: this.swapBodies, args: [false] }],
+                [6000, { func: this.swapBodies, args: [true] }],
+                [6400, { func: this.swapBodies, args: [false] }],
+                [8000, { func: this.swapBodies, args: [true] }],
+                [8800, { func: this.swapBodies, args: [false] }],
+                [10000, { func: this.swapBodies, args: [true] }],
+                [12980, { func: this.blackOut, args: [true] }],
+                [16000, { func: this.nextScene, args: [true] }],
             ]);
+        }
+        begin() {
+            // stop level timer
+            this.ecs.getSystem(System.Bookkeeper).endLevel();
+            // zoom in close
+            this.ecs.getSystem(System.Zoom).request(2.6, 750, Tween.easeInCubic);
+            // stop player from walking and attacking
+            let input = this.ecs.getComponents(this.ecs.getSystem(System.PlayerSelector)
+                .latest().next().value).get(Component.Input);
+            input.intent.set_(0, 0);
+            input.quickAttack = false;
+            // cut player controls
+            this.ecs.disableSystem(System.PlayerInputMouseKeyboard);
+            // kill any other remaining enemies so they don't get you while
+            // you're paused.
+            for (let enemy of this.ecs.getSystem(System.EnemySelector).latest()) {
+                let eComps = this.ecs.getComponents(enemy);
+                if (eComps.has(Component.Health)) {
+                    eComps.get(Component.Health).current = 0;
+                }
+            }
+            // cut music
+            let audio = this.ecs.getSystem(System.Audio);
+            audio.playMusic([]);
+            // start ending sounds
+            audio.play(['end-sound']);
         }
         zoomOut() {
             this.ecs.getSystem(System.Zoom).request(0.6, 10000, Tween.easeInCubic);
@@ -15201,6 +15301,9 @@ var Script;
             if (toHumanoid) {
                 this.ecs.getSystem(System.GUIManager).runSequence('hit');
             }
+            // sound
+            let audio = this.ecs.getSystem(System.Audio);
+            audio.play(['heartbeat']);
         }
         blackOut() {
             this.ecs.getSystem(System.GUIManager).createSprite('blackoutWash');
@@ -15236,6 +15339,30 @@ var Script;
         }
         // fade in here
         this.ecs.getSystem(System.Fade).request(0, 1000);
+    }
+    /**
+     * Adds "next to exit" zones at the entrances of the exit gates.
+     *
+     * Has to run after 1 update frame has run so that the gate selectors have a
+     * frame to select their gates.
+     */
+    function addExitRegions(gm) {
+        for (let gate of this.ecs.getSystem(System.GateSelector).latest()) {
+            let comps = this.ecs.getComponents(gate);
+            let gateComp = comps.get(Component.Gate);
+            let pos = comps.get(Component.Position);
+            let zonePos = pos.p.copy().add_(new Point(0, 100).rotate_(-pos.angle));
+            let degAngle = -(Constants.RAD2DEG * pos.angle);
+            if (gateComp.exit) {
+                gm.produce('nextToExitv2', {
+                    height: 1,
+                    width: 1,
+                    rotation: degAngle + 90,
+                    x: zonePos.x,
+                    y: zonePos.y,
+                });
+            }
+        }
     }
     function openStartGate() {
         // this looks kinda nice so yeah
@@ -15307,9 +15434,12 @@ var Script;
      * Standard start level script with visual effects and delays.
      */
     class StartLevel extends StartLevelBase {
-        constructor() {
-            super(...arguments);
+        constructor(infoProvider, gm) {
+            super(infoProvider);
+            this.infoProvider = infoProvider;
+            this.gm = gm;
             this.code = new Map([
+                [1, { func: addExitRegions, args: [this.gm] }],
                 [500, { func: _startPlayerMovement, args: [100, 1000] }],
                 [600, { func: openStartGate, args: this }],
                 [1000, { func: this.triggerGUI, args: null }],
@@ -15343,9 +15473,12 @@ var Script;
      * Development start level script to quickly get to testing.
      */
     class StartLevelDev extends StartLevelBase {
-        constructor() {
-            super(...arguments);
+        constructor(infoProvider, gm) {
+            super(infoProvider);
+            this.infoProvider = infoProvider;
+            this.gm = gm;
             this.code = new Map([
+                [1, { func: addExitRegions, args: [this.gm] }],
                 [2, { func: _startPlayerMovement, args: [0, 800] }],
                 [3, { func: openStartGate, args: null }],
                 [4, { func: addHUD, args: null }],
@@ -15412,14 +15545,12 @@ var Script;
         override
     ], StartLevelAct.prototype, "init", null);
     Script.StartLevelAct = StartLevelAct;
-    /**
-     * Development start level script to quickly get to testing.
-     */
     class StartLevelTitle extends Script.Script {
         constructor() {
             super(...arguments);
             this.code = new Map([
                 [0, { func: this.triggerStartEvent, args: null }],
+                [6400, { func: this.shakeCamera, args: null }],
             ]);
         }
         init() {
@@ -15427,6 +15558,9 @@ var Script;
             startLevelInit.call(this, true);
             // register event handler we'll need
             this.eventsManager.add(new Handler.ExitHandlerTitle());
+            // for second playthrough: clear bookkeeper of timing and
+            // instructions shown caches
+            this.ecs.getSystem(System.Bookkeeper).reset();
         }
         triggerStartEvent() {
             let args = {
@@ -15437,14 +15571,18 @@ var Script;
                 args: args,
             });
         }
+        /**
+         * Timing should line up with fallgate logo hitting bottom of its y
+         * tween.
+         */
+        shakeCamera() {
+            this.ecs.getSystem(System.FxCamera).shake(Constants.HALF_PI, 60, 90, System.ShakeType.Wobble);
+        }
     }
     __decorate([
         override
     ], StartLevelTitle.prototype, "init", null);
     Script.StartLevelTitle = StartLevelTitle;
-    /**
-     * Development start level script to quickly get to testing.
-     */
     class StartLevelCredits extends Script.Script {
         constructor(credits) {
             super();
@@ -15485,6 +15623,8 @@ var Script;
             startLevelInit.call(this);
             // register event handler we'll need
             this.eventsManager.add(new Handler.ExitHandlerRecap());
+            // we don't want this here or credits or next title screen
+            this.ecs.disableSystem(System.PlayerHUDRenderer);
         }
         triggerStartEvent() {
             let args = {
@@ -16507,6 +16647,180 @@ var System;
 })(System || (System = {}));
 /// <reference path="../core/fsm.ts" />
 /// <reference path="ai.ts" />
+var System;
+(function (System) {
+    //
+    // Sentinel FSM
+    //
+    var SentinelState;
+    (function (SentinelState) {
+        SentinelState[SentinelState["AtHome"] = 0] = "AtHome";
+        SentinelState[SentinelState["GoHome"] = 1] = "GoHome";
+        SentinelState[SentinelState["Pursue"] = 2] = "Pursue";
+        SentinelState[SentinelState["Attack"] = 3] = "Attack";
+    })(SentinelState || (SentinelState = {}));
+    class SentinelFSM extends AI.BaseFSM {
+        constructor(ecs, aspect) {
+            // start in wait state
+            super(ecs, aspect, SentinelState.AtHome);
+            this.sysName = AISentinel.name;
+            //
+            // actual FSM defined now
+            //
+            this.states = new Map([
+                [SentinelState.AtHome, {
+                        pre: AI.noop,
+                        body: this.wait,
+                        next: this.atHomeNext,
+                    }],
+                [SentinelState.GoHome, {
+                        pre: AI.noop,
+                        body: this.goHomeDo,
+                        next: this.goHomeNext,
+                    }],
+                [SentinelState.Pursue, {
+                        pre: AI.noop,
+                        body: this.pursueDo,
+                        next: this.aggressiveNext,
+                    }],
+                [SentinelState.Attack, {
+                        pre: this.noBlock,
+                        body: this.stopAndAttack,
+                        next: this.attackNext,
+                    }],
+            ]);
+        }
+        /**
+         *	Get player's distance from our home
+         */
+        playerHomeDist() {
+            return this.playerDistTo(this.getBlackboard().home);
+        }
+        /**
+         * Helper for more aggressive states (pursuing and attacking) to
+         * determine next state.
+         */
+        aggressiveNext() {
+            let params = this.getParams();
+            // if player's dead, or it's far enough away from our home and
+            // we're allowed to forget, just go back home
+            if (this.playerDead() || (params.forget && this.playerHomeDist() > params.pursuitDistance)) {
+                return SentinelState.GoHome;
+            }
+            // if we're facing the player and in attack range, then attack
+            if (this.facingPlayer() && this.alivePlayerInRange(params.attackRange)) {
+                return SentinelState.Attack;
+            }
+            // otherwise player is in pursuit distance but we need to face
+            // and/or move. stay in pursuit.
+            return SentinelState.Pursue;
+        }
+        //
+        // atHome
+        //
+        atHomeNext() {
+            // pursue player if in pursuit distance from home
+            if (this.playerHomeDist() <= this.getParams().pursuitDistance) {
+                return SentinelState.Pursue;
+            }
+            // otherwise stay home
+            return SentinelState.AtHome;
+        }
+        //
+        // goHome
+        //
+        goHomeDo() {
+            this.faceTarget(this.getBlackboard().home);
+            this.noAttack();
+            this.moveForward();
+        }
+        goHomeNext() {
+            // we may need to pursue the player
+            if (this.playerHomeDist() <= this.getParams().pursuitDistance) {
+                return SentinelState.Pursue;
+            }
+            // if we made it home, yay.
+            if (this.closeTo(this.getBlackboard().home)) {
+                return SentinelState.AtHome;
+            }
+            // otherwise keep going home
+            return SentinelState.GoHome;
+        }
+        //
+        // pursue(ing player) (includes facing)
+        //
+        playerBowOut() {
+            let pComps = this.getPlayerComps();
+            if (!pComps.has(Component.Armed)) {
+                return false;
+            }
+            let armed = pComps.get(Component.Armed);
+            return armed.active.partID === PartID.Bow;
+        }
+        pursueDo() {
+            // always try to face
+            this.facePlayer();
+            this.noAttack();
+            // if player has bow out, defend
+            this.aspect.get(Component.Input).block = this.playerBowOut();
+            // if not close enough to attack, also pursue
+            if (!this.alivePlayerInRange(this.getParams().attackRange)) {
+                this.moveForward();
+            }
+        }
+        //
+        // attack!
+        //
+        noBlock() {
+            this.aspect.get(Component.Input).block = false;
+        }
+        attackNext() {
+            // always finish out swings (attacks).
+            if (this.swinging()) {
+                return SentinelState.Attack;
+            }
+            // otherwise, rely on general "aggressive next" check
+            return this.aggressiveNext();
+        }
+    }
+    //
+    // actual AI class
+    //
+    class AISentinel {
+        /**
+         * Ensures that the AIAspect's blackboard has the AISentinel blackboard.
+         */
+        static ensureBlackboard(ecs, aspect) {
+            // create if needed
+            if (!aspect.blackboards.has(AISentinel.name)) {
+                let position = aspect.get(Component.Position);
+                let bb = {
+                    home: position.p.copy(),
+                    fsm: new SentinelFSM(ecs, aspect),
+                };
+                aspect.blackboards.set(AISentinel.name, bb);
+            }
+            // return it
+            return aspect.blackboards.get(AISentinel.name);
+        }
+        /**
+         * AI System calls to update.
+         * @param delta
+         * @param ecs
+         * @param aspect
+         */
+        static update(delta, ecs, aspect) {
+            let blackboard = AISentinel.ensureBlackboard(ecs, aspect);
+            blackboard.fsm.update(delta);
+            // for debugging, update the component w/ the FSM state
+            let aiComp = aspect.get(Component.AIComponent);
+            aiComp.debugState = SentinelState[blackboard.fsm.cur];
+        }
+    }
+    System.AISentinel = AISentinel;
+})(System || (System = {}));
+/// <reference path="../core/fsm.ts" />
+/// <reference path="ai.ts" />
 /// <reference path="util.ts" />
 var System;
 (function (System) {
@@ -16802,6 +17116,44 @@ var System;
     }
     System.Blocked = Blocked;
 })(System || (System = {}));
+/// <reference path="../../lib/pixi.js.d.ts" />
+/// <reference path="../engine/ecs.ts" />
+var System;
+(function (System) {
+    class BookkeeperRenderer extends Engine.System {
+        constructor(stage, viewportDims) {
+            super();
+            this.componentsRequired = new Set([
+                Component.Dummy.name,
+            ]);
+            this.style = {
+                fontFamily: [
+                    "Consolas", "Mono", "Courier New", "Monospace",
+                ],
+                fontSize: 25,
+                fontWeight: "bold",
+                fill: "#e7e7e7",
+                dropShadow: true,
+                dropShadowColor: "#000000",
+                dropShadowDistance: 2,
+                dropShadowBlur: 5,
+                dropShadowAngle: 2.35,
+                dropShadowAlpha: 0.4
+            };
+            this.dobj = new Stage.GameText('', this.style, ZLevelHUD.DEBUG, StageTarget.HUD);
+            // position text
+            let buffer = 10;
+            this.dobj.anchor.set(1, 1);
+            this.dobj.position.set(viewportDims.x - buffer, viewportDims.y - buffer);
+            stage.add(this.dobj);
+        }
+        update(delta, entities) {
+            let source = this.ecs.getSystem(System.Bookkeeper);
+            this.dobj.text = source.debugElapsed();
+        }
+    }
+    System.BookkeeperRenderer = BookkeeperRenderer;
+})(System || (System = {}));
 /// <reference path="../core/util.ts" />
 /// <reference path="../engine/ecs.ts" />
 /// <reference path="../gj7/constants.ts" />
@@ -16883,7 +17235,8 @@ var System;
             return this;
         }
         /**
-         * Returns amount of time elapsed in the level, or -1 if unknown.
+         * Returns amount of time elapsed in the level after it has ended, or 0
+         * if this hasn't been tracked.
          */
         elapsed() {
             if (this.sumElapsed === 0) {
@@ -16902,6 +17255,17 @@ var System;
                 timeTaken: this.elapsed(),
             };
         }
+        /**
+         * Return ms of time passed in this level, including sum of previous
+         * parts and current (ongoing) time. For debug rendering.
+         */
+        debugElapsed() {
+            let cur = 0;
+            if (this.startTime != -1) {
+                cur = (performance || Date).now() - this.startTime;
+            }
+            return this.sumElapsed + cur;
+        }
     }
     /**
      * Just keeping things in order, you know.
@@ -16916,6 +17280,7 @@ var System;
             this.componentsRequired = new Set([
                 Component.Dummy.name,
             ]);
+            this.debugTimeCache = 0;
             this.curLevelNum = 0;
             this.levelInfos = new Map();
             this.instructionsShown = new Set();
@@ -16931,6 +17296,10 @@ var System;
          * bookkeeping. (Or, on a game re-playthrough, the same level again.)
          */
         setActive(levelNum) {
+            // for debug view: sum last time to running total
+            if (this.levelInfos.has(this.curLevelNum) && this.curLevelNum != levelNum) {
+                this.debugTimeCache += this.levelInfos.get(this.curLevelNum).elapsed();
+            }
             if (!this.levelInfos.has(levelNum)) {
                 this.levelInfos.set(levelNum, new LevelInfo());
             }
@@ -16942,6 +17311,12 @@ var System;
          * multiple times.
          */
         startLevel() {
+            // for debugging and jumping around mid-castle levels and not
+            // crashing the game.
+            if (!this.levelInfos.has(this.curLevelNum)) {
+                console.warn('Level not found. Improper use of bookkeeper. Should be for debugging only.');
+                this.setActive(this.curLevelNum);
+            }
             this.levelInfos.get(this.curLevelNum).begin();
         }
         /**
@@ -17035,6 +17410,23 @@ var System;
             }
             return [numericToReport(total, this.levelInfos.size), donutArray];
         }
+        debugElapsed() {
+            let cur = 0;
+            if (this.levelInfos.has(this.curLevelNum)) {
+                cur = this.levelInfos.get(this.curLevelNum).debugElapsed();
+            }
+            let total = this.debugTimeCache + cur;
+            return ('Level: ' + msToUserTime(cur) + '\n' +
+                'Total: ' + msToUserTime(total));
+        }
+        /**
+         * Should be called when the game starts over.
+         */
+        reset() {
+            this.debugTimeCache = 0;
+            this.instructionsShown.clear();
+            this.levelInfos.clear();
+        }
         update(delta, entities) { }
     }
     System.Bookkeeper = Bookkeeper;
@@ -17073,6 +17465,7 @@ var System;
                 [Ontology.Item.UpgradeAOECombo, this.handleUpgradeAOE],
                 [Ontology.Item.UpgradeHP5, this.handleUpgradeHP5],
                 [Ontology.Item.TransformToBlop, this.handleTransformToBlop],
+                [Ontology.Item.TransformToPlayer, this.handleTransformToPlayer],
             ]);
         }
         /**
@@ -17112,7 +17505,7 @@ var System;
             // TODO: need a sound
             return true;
         }
-        handleUpgrade(aspect, newLayer) {
+        handleUpgrade(aspect, newLayer, sound, delay = 0) {
             // remove player and replace with one from new layer
             let player = aspect.get(Component.CollisionShape).collisionsFresh.keys().next().value;
             let playerPos = this.ecs.getComponents(player).get(Component.Position);
@@ -17124,37 +17517,48 @@ var System;
                 y: playerPos.p.y,
                 rotation: Constants.RAD2DEG * playerPos.angle,
             });
-            // TODO: need a sound. maybe also some kind of effect?
+            // play sound, if any
+            if (sound) {
+                this.ecs.getSystem(System.DelaySpeaker).enqueue({
+                    delay: delay,
+                    options: [sound],
+                });
+            }
+            // flash
+            this.ecs.getSystem(System.GUIManager).runSequence('upgrade');
             return true;
         }
         // TODO: just do partial argument binding and have one function. don't
         // want to look this up right now.
         handleUpgradeSword(aspect) {
-            return this.handleUpgrade(aspect, 'player-Sword');
+            return this.handleUpgrade(aspect, 'player-Sword', 'title-sheen');
         }
         handleUpgradeShield(aspect) {
-            return this.handleUpgrade(aspect, 'player-Shield');
+            return this.handleUpgrade(aspect, 'player-Shield', 'title-sheen');
         }
         handleUpgradeHP4(aspect) {
-            return this.handleUpgrade(aspect, 'player-Health4');
+            return this.handleUpgrade(aspect, 'player-Health4', 'title-sheen');
         }
         handleUpgradeStabCombo(aspect) {
-            return this.handleUpgrade(aspect, 'player-StabCombo-Slow');
+            return this.handleUpgrade(aspect, 'player-StabCombo-Slow', 'title-sheen');
         }
         handleUpgradeSpeed(aspect) {
-            return this.handleUpgrade(aspect, 'player-StabCombo-Fast');
+            return this.handleUpgrade(aspect, 'player-StabCombo-Fast', 'title-sheen');
         }
         handleUpgradeBow(aspect) {
-            return this.handleUpgrade(aspect, 'player-Bow');
+            return this.handleUpgrade(aspect, 'player-Bow', 'title-sheen');
         }
         handleUpgradeAOE(aspect) {
-            return this.handleUpgrade(aspect, 'player-AOECombo');
+            return this.handleUpgrade(aspect, 'player-AOECombo', 'title-sheen');
         }
         handleUpgradeHP5(aspect) {
-            return this.handleUpgrade(aspect, 'player-Health5');
+            return this.handleUpgrade(aspect, 'player-Health5', 'title-sheen');
         }
         handleTransformToBlop(aspect) {
-            return this.handleUpgrade(aspect, 'blopPlayer');
+            return this.handleUpgrade(aspect, 'blopPlayer', 'to-blop', 0);
+        }
+        handleTransformToPlayer(aspect) {
+            return this.handleUpgrade(aspect, 'player-Health5', 'to-human', 0);
         }
         update(delta, entities) {
             for (let aspect of entities.values()) {
@@ -18631,17 +19035,18 @@ var System;
      * Illuminates the game.
      */
     class Lighting extends Engine.System {
-        constructor(stage, translator, lightingLayer) {
+        constructor(stage, translator, lightingLayer, gamescale) {
             super();
             this.stage = stage;
             this.translator = translator;
             this.lightingLayer = lightingLayer;
+            this.gamescale = gamescale;
             // config: texture and scale to render each lightbulb size. note: could
             // also add anchoring config here if we end up using the cone.
             this.sizeTextures = new Map([
-                [Graphics.LightbulbSize.Small, ['fx/light128.png', 1]],
-                [Graphics.LightbulbSize.Medium, ['fx/light256.png', 1]],
-                [Graphics.LightbulbSize.Large, ['fx/light256.png', 2]],
+                [Graphics.LightbulbSize.Small, ['fx/light128.png', 0.5]],
+                [Graphics.LightbulbSize.Medium, ['fx/light256.png', 0.5]],
+                [Graphics.LightbulbSize.Large, ['fx/light256.png', 1]],
             ]);
             this.componentsRequired = new Set([
                 Component.Lightbulb.name,
@@ -18656,7 +19061,8 @@ var System;
             let lightbulb = aspect.get(Component.Lightbulb);
             // create resources and save to necessary layers.
             for (let config of lightbulb.configs) {
-                let [tex, scale] = this.sizeTextures.get(config.size);
+                let [tex, rawScale] = this.sizeTextures.get(config.size);
+                let scale = rawScale * this.gamescale;
                 let sprite = new Stage.Sprite(PIXI.Texture.fromFrame(tex), ZLevelHUD.Lighting, StageTarget.HUD);
                 sprite.scale.set(scale, scale);
                 sprite.tint = config.baseTint;

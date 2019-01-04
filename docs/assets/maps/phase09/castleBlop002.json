@@ -528,25 +528,6 @@
          "objects":[
                 {
                  "height":1344,
-                 "id":52,
-                 "name":"",
-                 "properties":
-                    {
-                     "gateID":"EXIT"
-                    },
-                 "propertytypes":
-                    {
-                     "gateID":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":1648,
-                 "x":2816,
-                 "y":576
-                }, 
-                {
-                 "height":1344,
                  "id":197,
                  "name":"",
                  "properties":
@@ -634,6 +615,25 @@
                  "width":768,
                  "x":3264,
                  "y":2768
+                }, 
+                {
+                 "height":1216,
+                 "id":52,
+                 "name":"",
+                 "properties":
+                    {
+                     "gateID":"EXIT"
+                    },
+                 "propertytypes":
+                    {
+                     "gateID":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1536,
+                 "x":2880,
+                 "y":640
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -938,8 +938,8 @@
                  "type":"",
                  "visible":true,
                  "width":18,
-                 "x":3639.00179964007,
-                 "y":3177.50449910018
+                 "x":3639,
+                 "y":3177.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -968,8 +968,8 @@
                  "type":"",
                  "visible":true,
                  "width":18,
-                 "x":1526.85671417854,
-                 "y":7464.55663915979
+                 "x":1526.86,
+                 "y":7464.56
                 }],
          "opacity":1,
          "type":"objectgroup",

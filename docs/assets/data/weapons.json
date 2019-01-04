@@ -593,9 +593,15 @@
 				"nFrames": 4,
 				"msPerFrame": 75,
 				"playType": "PlayAndHold",
-				"anchor": [0,1],
+				"anchor": [
+					0,
+					1
+				],
 				"alignType": "TextureOrigin",
-				"extraOffset": [0,0]
+				"extraOffset": [
+					0,
+					0
+				]
 			},
 			{
 				"action": "Swinging",
@@ -603,9 +609,15 @@
 				"nFrames": 1,
 				"msPerFrame": 100,
 				"playType": "PlayAndHold",
-				"anchor": [0,1],
+				"anchor": [
+					0,
+					1
+				],
 				"alignType": "TextureOrigin",
-				"extraOffset": [0,0]
+				"extraOffset": [
+					0,
+					0
+				]
 			},
 			{
 				"action": "QuickAttacking",
@@ -613,9 +625,15 @@
 				"nFrames": 5,
 				"msPerFrame": 50,
 				"playType": "PlayAndHold",
-				"anchor": [0,1],
+				"anchor": [
+					0,
+					1
+				],
 				"alignType": "TextureOrigin",
-				"extraOffset": [0,0]
+				"extraOffset": [
+					0,
+					0
+				]
 			},
 			{
 				"action": "Sheathing",
@@ -623,9 +641,15 @@
 				"nFrames": 2,
 				"msPerFrame": 75,
 				"playType": "PlayAndHold",
-				"anchor": [0,1],
+				"anchor": [
+					0,
+					1
+				],
 				"alignType": "TextureOrigin",
-				"extraOffset": [0,0]
+				"extraOffset": [
+					0,
+					0
+				]
 			},
 			{
 				"action": "BlockRaising",
@@ -633,9 +657,15 @@
 				"nFrames": 2,
 				"msPerFrame": 100,
 				"playType": "PlayAndHold",
-				"anchor": [0,1],
+				"anchor": [
+					0,
+					1
+				],
 				"alignType": "TextureOrigin",
-				"extraOffset": [-8,12]
+				"extraOffset": [
+					-8,
+					12
+				]
 			},
 			{
 				"action": "BlockHolding",
@@ -643,9 +673,15 @@
 				"nFrames": 1,
 				"msPerFrame": 100,
 				"playType": "PlayAndHold",
-				"anchor": [0,1],
+				"anchor": [
+					0,
+					1
+				],
 				"alignType": "TextureOrigin",
-				"extraOffset": [-8,12]
+				"extraOffset": [
+					-8,
+					12
+				]
 			},
 			{
 				"action": "BlockLowering",
@@ -653,9 +689,15 @@
 				"nFrames": 1,
 				"msPerFrame": 100,
 				"playType": "PlayAndHold",
-				"anchor": [0,1],
+				"anchor": [
+					0,
+					1
+				],
 				"alignType": "TextureOrigin",
-				"extraOffset": [-8,12]
+				"extraOffset": [
+					-8,
+					12
+				]
 			},
 			{
 				"action": "Moving",
@@ -663,9 +705,15 @@
 				"nFrames": 8,
 				"msPerFrame": 60,
 				"playType": "Loop",
-				"anchor": [0,1],
+				"anchor": [
+					0,
+					1
+				],
 				"alignType": "TextureOrigin",
-				"extraOffset": [-8,12]
+				"extraOffset": [
+					-8,
+					12
+				]
 			},
 			{
 				"action": "Idle",
@@ -673,9 +721,15 @@
 				"nFrames": 1,
 				"msPerFrame": 100,
 				"playType": "PlayAndHold",
-				"anchor": [0,1],
+				"anchor": [
+					0,
+					1
+				],
 				"alignType": "TextureOrigin",
-				"extraOffset": [-8,16]
+				"extraOffset": [
+					-8,
+					16
+				]
 			}
 		]
 	},
@@ -914,7 +968,15 @@
 						"playType": "PlayAndHold"
 					}
 				}
-			]
+			],
+			"sounds": {
+				"swing": [
+					"bowShoot"
+				],
+				"hit": [
+					"bowHit"
+				]
+			}
 		},
 		"mainAnimationBase": {
 			"part": "Weapon",
@@ -927,9 +989,15 @@
 				"nFrames": 4,
 				"msPerFrame": 50,
 				"playType": "PlayAndHold",
-				"anchor": [0,1],
+				"anchor": [
+					0,
+					1
+				],
 				"alignType": "TextureOrigin",
-				"extraOffset": [0,0]
+				"extraOffset": [
+					0,
+					0
+				]
 			},
 			{
 				"action": "Swinging",
@@ -937,9 +1005,15 @@
 				"nFrames": 1,
 				"msPerFrame": 50,
 				"playType": "PlayAndHold",
-				"anchor": [0,1],
+				"anchor": [
+					0,
+					1
+				],
 				"alignType": "TextureOrigin",
-				"extraOffset": [0,0]
+				"extraOffset": [
+					0,
+					0
+				]
 			},
 			{
 				"action": "Sheathing",
@@ -947,9 +1021,15 @@
 				"nFrames": 2,
 				"msPerFrame": 20,
 				"playType": "PlayAndHold",
-				"anchor": [0,1],
+				"anchor": [
+					0,
+					1
+				],
 				"alignType": "TextureOrigin",
-				"extraOffset": [0,0]
+				"extraOffset": [
+					0,
+					0
+				]
 			},
 			{
 				"action": "Moving",
@@ -957,9 +1037,15 @@
 				"nFrames": 8,
 				"msPerFrame": 100,
 				"playType": "Loop",
-				"anchor": [0,1],
+				"anchor": [
+					0,
+					1
+				],
 				"alignType": "TextureOrigin",
-				"extraOffset": [-8,12]
+				"extraOffset": [
+					-8,
+					12
+				]
 			},
 			{
 				"action": "Idle",
@@ -967,9 +1053,15 @@
 				"nFrames": 1,
 				"msPerFrame": 100,
 				"playType": "PlayAndHold",
-				"anchor": [0,1],
+				"anchor": [
+					0,
+					1
+				],
 				"alignType": "TextureOrigin",
-				"extraOffset": [-8,16]
+				"extraOffset": [
+					-8,
+					16
+				]
 			}
 		]
 	},
@@ -1113,7 +1205,8 @@
 			"lungeForce": 0,
 			"sounds": {
 				"swing": [
-					"spiderAttack"
+					"spiderBossAttack1",
+					"spiderBossAttack2"
 				]
 			},
 			"velocity": 100,
@@ -1211,7 +1304,7 @@
 	"blopBigBody": {
 		"timing": {
 			"idleCooldown": 0,
-			"minChargeDuration": 600,
+			"minChargeDuration": 1000,
 			"swingDuration": 300,
 			"swingAttackDelay": 50,
 			"sheatheDuration": 600,
@@ -1227,7 +1320,7 @@
 				120
 			],
 			"cboxOffset": [
-				96,
+				160,
 				0
 			],
 			"movement": "Track",
@@ -1575,7 +1668,15 @@
 			"duration": 100,
 			"knockbackForce": 300,
 			"staggerForce": 300,
-			"lungeForce": 1
+			"lungeForce": 1,
+			"sounds": {
+				"swing": [
+					"senAttack"
+				],
+				"hit": [
+					"senHit"
+				]
+			}
 		},
 		"mainAnimationBase": {
 			"part": "Weapon",
@@ -1614,7 +1715,12 @@
 			"duration": 500,
 			"knockbackForce": 1000,
 			"staggerForce": 1000,
-			"lungeForce": 4000
+			"lungeForce": 4000,
+			"sounds": {
+				"swing": [
+					"snakeAttack"
+				]
+			}
 		},
 		"mainAnimationBase": {
 			"part": "Weapon",
@@ -1716,8 +1822,14 @@
 			"comboAttackDelay": -1
 		},
 		"swingAttack": {
-			"cboxDims": [92,32],
-			"cboxOffset": [100,0],
+			"cboxDims": [
+				92,
+				32
+			],
+			"cboxOffset": [
+				100,
+				0
+			],
 			"movement": "Launch",
 			"damage": 1,
 			"cTypes": [
@@ -1769,8 +1881,14 @@
 	"spearLauncherLethal": {
 		"parent": "spearLauncher",
 		"swingAttack": {
-			"cboxDims": [92,32],
-			"cboxOffset": [100,0],
+			"cboxDims": [
+				92,
+				32
+			],
+			"cboxOffset": [
+				100,
+				0
+			],
 			"movement": "Launch",
 			"damage": 5,
 			"cTypes": [
@@ -1847,7 +1965,7 @@
 			"duration": 200,
 			"knockbackForce": 750,
 			"staggerForce": 750,
-			"lungeForce": 1000,
+			"lungeForce": 1500,
 			"sounds": {
 				"swing": [
 					"spiderAttack"

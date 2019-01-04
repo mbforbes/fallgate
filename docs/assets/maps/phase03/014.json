@@ -1014,7 +1014,31 @@
         {
          "draworder":"topdown",
          "name":"crateB",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":637,
+                 "height":64,
+                 "id":82,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":3585.01337657073,
+                 "y":1502.40129712201
+                }, 
+                {
+                 "gid":637,
+                 "height":64,
+                 "id":83,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":3588.05350628293,
+                 "y":1567.57194973652
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -1399,7 +1423,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":82,
+ "nextobjectid":84,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.5",

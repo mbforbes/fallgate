@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="50" tilewidth="64" tileheight="64" nextobjectid="292">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="64" height="50" tilewidth="64" tileheight="64" infinite="0" nextobjectid="292">
  <tileset firstgid="1" name="forestSummer" tilewidth="64" tileheight="64" tilecount="180" columns="15">
   <image source="../../tilesets/forestFinalTiles.png" trans="ff42f9" width="960" height="768"/>
   <terraintypes>
@@ -1287,14 +1287,14 @@
  <objectgroup name="sawtooth-Glass"/>
  <objectgroup name="sawtooth"/>
  <objectgroup name="ruins1"/>
- <objectgroup color="#21ff80" name="roomsNoCamera">
-  <object id="52" x="1168" y="512" width="1648" height="1392">
+ <objectgroup color="#21ff80" name="roomsNoCamera"/>
+ <objectgroup color="#80ff07" name="rooms">
+  <object id="52" x="1216" y="576" width="1536" height="1280">
    <properties>
     <property name="gateID" value="EXIT"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup color="#80ff07" name="rooms"/>
  <objectgroup name="pumpkinPatchSmall"/>
  <objectgroup name="pumpkinPatch"/>
  <objectgroup color="#fc0107" name="projectileSpider"/>
@@ -1361,10 +1361,7 @@
   <object id="197" gid="1387" x="2560" y="1344" width="64" height="64"/>
   <object id="198" gid="1387" x="2496" y="1248" width="64" height="64"/>
   <object id="199" gid="1387" x="2496" y="1184" width="64" height="64"/>
-  <object id="200" gid="1387" x="2432" y="1280" width="64" height="64"/>
   <object id="201" gid="1387" x="2496" y="1312" width="64" height="64"/>
-  <object id="202" gid="1387" x="2432" y="1216" width="64" height="64"/>
-  <object id="203" gid="1387" x="2368" y="1248" width="64" height="64"/>
   <object id="204" gid="1387" x="1664" y="1792" width="64" height="64"/>
   <object id="205" gid="1387" x="1408" y="1792" width="64" height="64"/>
   <object id="206" gid="1387" x="1472" y="1792" width="64" height="64"/>
@@ -1372,11 +1369,9 @@
   <object id="208" gid="1387" x="1600" y="1792" width="64" height="64"/>
   <object id="209" gid="1387" x="1536" y="1792" width="64" height="64"/>
   <object id="210" gid="1387" x="1568" y="1728" width="64" height="64"/>
-  <object id="211" gid="1387" x="1536" y="1664" width="64" height="64"/>
   <object id="212" gid="1387" x="2304" y="1792" width="64" height="64"/>
   <object id="213" gid="1387" x="2496" y="1792" width="64" height="64"/>
   <object id="214" gid="1387" x="2400" y="1728" width="64" height="64"/>
-  <object id="215" gid="1387" x="2368" y="1664" width="64" height="64"/>
   <object id="216" gid="1387" x="2432" y="1792" width="64" height="64"/>
   <object id="217" gid="1387" x="2240" y="1792" width="64" height="64"/>
   <object id="218" gid="1387" x="2336" y="1728" width="64" height="64"/>
@@ -1385,12 +1380,10 @@
   <object id="240" gid="1387" x="1536" y="640" width="64" height="64" rotation="180"/>
   <object id="241" gid="1387" x="1600" y="640" width="64" height="64" rotation="180"/>
   <object id="242" gid="1387" x="1728" y="640" width="64" height="64" rotation="180"/>
-  <object id="243" gid="1387" x="1600" y="768" width="64" height="64" rotation="180"/>
   <object id="244" gid="1387" x="2400" y="704" width="64" height="64" rotation="180"/>
   <object id="245" gid="1387" x="2304" y="640" width="64" height="64" rotation="180"/>
   <object id="246" gid="1387" x="1664" y="640" width="64" height="64" rotation="180"/>
   <object id="247" gid="1387" x="1568" y="704" width="64" height="64" rotation="180"/>
-  <object id="248" gid="1387" x="2432" y="768" width="64" height="64" rotation="180"/>
   <object id="249" gid="1387" x="2560" y="640" width="64" height="64" rotation="180"/>
   <object id="250" gid="1387" x="2368" y="640" width="64" height="64" rotation="180"/>
   <object id="251" gid="1387" x="2464" y="704" width="64" height="64" rotation="180"/>

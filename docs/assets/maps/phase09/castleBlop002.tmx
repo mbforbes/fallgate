@@ -1984,11 +1984,6 @@
  <objectgroup name="sawtooth"/>
  <objectgroup name="ruins1"/>
  <objectgroup color="#21ff80" name="roomsNoCamera">
-  <object id="52" x="2816" y="576" width="1648" height="1344">
-   <properties>
-    <property name="gateID" value="EXIT"/>
-   </properties>
-  </object>
   <object id="197" x="1424" y="5312" width="1648" height="1344">
    <properties>
     <property name="gateID" value="2"/>
@@ -2008,6 +2003,11 @@
    </properties>
   </object>
   <object id="196" x="3264" y="2768" width="768" height="752"/>
+  <object id="52" x="2880" y="640" width="1536" height="1216">
+   <properties>
+    <property name="gateID" value="EXIT"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="pumpkinPatchSmall"/>
  <objectgroup name="pumpkinPatch"/>

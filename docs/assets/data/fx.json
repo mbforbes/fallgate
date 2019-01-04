@@ -61,7 +61,7 @@
 	},
 	"oil": {
 		"factory": "fxOil",
-		"pool": 100,
+		"pool": 200,
 		"duration": -1
 	},
 	"eggSplosion": {
@@ -86,17 +86,17 @@
 	},
 	"playerBlood": {
 		"factory": "fxPlayerBlood",
-		"pool": 100,
+		"pool": 150,
 		"duration": -1
 	},
 	"spiderBlood": {
 		"factory": "fxSpiderBlood",
-		"pool": 100,
+		"pool": 600,
 		"duration": -1
 	},
 	"redBlopBlood": {
 		"factory": "fxRedBlopBlood",
-		"pool": 100,
+		"pool": 500,
 		"duration": -1
 	},
 	"blueBlopBlood": {

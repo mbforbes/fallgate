@@ -57,6 +57,12 @@
 				"comboWash"
 			]
 		},
+		"upgrade": {
+			"text": [],
+			"sprites": [
+				"upgradeWash"
+			]
+		},
 		"vanquished": {
 			"text": [],
 			"sprites": [
@@ -173,6 +179,86 @@
 		}
 	},
 	"text": {
+		"recapDoughnutPercent": {
+			"textSpec": {
+				"text": "doughnut%\nachieved",
+				"style": {
+					"align": "center",
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 17,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#ffbf00",
+					"dropShadow": true,
+					"dropShadowColor": "#888888",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"alpha": 0,
+				"anchor": [
+					0.5,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Button"
+			},
+			"startPos": {
+				"position": [
+					500,
+					185
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 1,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 4000,
+								"method": "easeInCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 4500,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 0,
+								"method": "easeInCubic"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
 		"seasonAct": {
 			"textSpec": {
 				"text": "Act I",
@@ -318,7 +404,8 @@
 					"fill": "#e7e7e7"
 				},
 				"anchor": [
-					0.5, 0
+					0.5,
+					0
 				]
 			},
 			"displaySpec": {
@@ -346,8 +433,7 @@
 							}
 						}
 					],
-					"sounds": [
-					]
+					"sounds": []
 				}
 			}
 		},
@@ -419,8 +505,7 @@
 							}
 						}
 					],
-					"sounds": [
-					]
+					"sounds": []
 				}
 			}
 		},
@@ -492,8 +577,7 @@
 							}
 						}
 					],
-					"sounds": [
-					]
+					"sounds": []
 				}
 			}
 		},
@@ -728,10 +812,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["click"],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [
+								"click"
+							],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -986,10 +1074,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["whoosh-double"],
-						"delay": 700
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-double"
+							],
+							"delay": 700
+						}
+					]
 				},
 				"exit": {
 					"visuals": [
@@ -1641,7 +1733,7 @@
 			},
 			"startPos": {
 				"position": [
-					-80,
+					-120,
 					75
 				],
 				"rotation": 0
@@ -1667,7 +1759,7 @@
 						{
 							"prop": "x",
 							"spec": {
-								"val": -80,
+								"val": -120,
 								"valType": "abs",
 								"duration": 500,
 								"delay": 50,
@@ -2534,7 +2626,10 @@
 			"textSpec": {
 				"text": "EXIT",
 				"style": {
-					"fontFamily": ["Cinzel", "serif"],
+					"fontFamily": [
+						"Cinzel",
+						"serif"
+					],
 					"fontSize": 200,
 					"fontWeight": "bold",
 					"fill": "#db4240",
@@ -2543,14 +2638,20 @@
 					"dropShadowDistance": 0,
 					"dropShadowBlur": 3
 				},
-				"anchor": [0.5, 1]
+				"anchor": [
+					0.5,
+					1
+				]
 			},
 			"displaySpec": {
 				"stageTarget": "World",
 				"z": "Carpet"
 			},
 			"startPos": {
-				"position": [1000, 180],
+				"position": [
+					1000,
+					180
+				],
 				"rotation": 0
 			},
 			"tweens": {
@@ -2599,10 +2700,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["exitReady"],
-						"delay": 1500
-					}]
+					"sounds": [
+						{
+							"options": [
+								"exitReady"
+							],
+							"delay": 1500
+						}
+					]
 				}
 			}
 		},
@@ -2610,7 +2715,10 @@
 			"textSpec": {
 				"text": "READY",
 				"style": {
-					"fontFamily": ["Cinzel", "serif"],
+					"fontFamily": [
+						"Cinzel",
+						"serif"
+					],
 					"fontSize": 200,
 					"fontWeight": "bold",
 					"fill": "#db4240",
@@ -2619,14 +2727,20 @@
 					"dropShadowDistance": 0,
 					"dropShadowBlur": 3
 				},
-				"anchor": [0.5, 0]
+				"anchor": [
+					0.5,
+					0
+				]
 			},
 			"displaySpec": {
 				"stageTarget": "World",
 				"z": "Carpet"
 			},
 			"startPos": {
-				"position": [-600, 140],
+				"position": [
+					-600,
+					140
+				],
 				"rotation": 0
 			},
 			"tweens": {
@@ -2727,10 +2841,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options":["whoosh-high"],
-						"delay": 400
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-high"
+							],
+							"delay": 400
+						}
+					]
 				},
 				"exit": {
 					"visuals": [
@@ -3114,10 +3232,12 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": [],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -3173,10 +3293,12 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": [],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -3232,10 +3354,12 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": [],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -3291,10 +3415,12 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": [],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -3350,10 +3476,12 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": [],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -3409,10 +3537,12 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": [],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -3468,10 +3598,12 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": [],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -3527,10 +3659,12 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": [],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -3586,10 +3720,12 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": [],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -3630,10 +3766,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["title-slam"],
-						"delay": 5000
-					}]
+					"sounds": [
+						{
+							"options": [
+								"title-slam"
+							],
+							"delay": 5000
+						}
+					]
 				},
 				"exit": {
 					"visuals": [
@@ -3648,10 +3788,12 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": [],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -3839,7 +3981,10 @@
 				"frames": 0,
 				"speed": 0,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 1.0,
 				"alpha": 0.6
 			},
@@ -3848,7 +3993,10 @@
 				"z": "Front"
 			},
 			"startPos": {
-				"position": [0, 0],
+				"position": [
+					0,
+					0
+				],
 				"rotation": 0
 			},
 			"tweens": {
@@ -3875,7 +4023,10 @@
 				"frames": 0,
 				"speed": 0,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 1.0,
 				"alpha": 0.8
 			},
@@ -3884,7 +4035,10 @@
 				"z": "Front"
 			},
 			"startPos": {
-				"position": [0, 0],
+				"position": [
+					0,
+					0
+				],
 				"rotation": 0
 			},
 			"tweens": {
@@ -3911,7 +4065,10 @@
 				"frames": 23,
 				"speed": 50,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 0.5
 			},
 			"displaySpec": {
@@ -3919,7 +4076,10 @@
 				"z": "PlayerHUDTop"
 			},
 			"startPos": {
-				"position": [0, 0],
+				"position": [
+					0,
+					0
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -3930,7 +4090,10 @@
 				"frames": 15,
 				"speed": 50,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 0.5
 			},
 			"displaySpec": {
@@ -3938,7 +4101,10 @@
 				"z": "PlayerHUDTop"
 			},
 			"startPos": {
-				"position": [0, 0],
+				"position": [
+					0,
+					0
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -3949,7 +4115,10 @@
 				"frames": 0,
 				"speed": 0,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 0.5
 			},
 			"displaySpec": {
@@ -3957,7 +4126,10 @@
 				"z": "PlayerHUDMid"
 			},
 			"startPos": {
-				"position": [58, 10],
+				"position": [
+					58,
+					10
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -3968,7 +4140,10 @@
 				"frames": 0,
 				"speed": 0,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 0.5
 			},
 			"displaySpec": {
@@ -3976,7 +4151,10 @@
 				"z": "PlayerHUDMid"
 			},
 			"startPos": {
-				"position": [13, 11],
+				"position": [
+					13,
+					11
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -3987,7 +4165,10 @@
 				"frames": 0,
 				"speed": 0,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 0.5
 			},
 			"displaySpec": {
@@ -3995,7 +4176,10 @@
 				"z": "PlayerHUDTop"
 			},
 			"startPos": {
-				"position": [5, 5],
+				"position": [
+					5,
+					5
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -4006,7 +4190,10 @@
 				"frames": 0,
 				"speed": 0,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 0.5
 			},
 			"displaySpec": {
@@ -4014,7 +4201,10 @@
 				"z": "PlayerHUDTop"
 			},
 			"startPos": {
-				"position": [0, 0],
+				"position": [
+					0,
+					0
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -4025,7 +4215,10 @@
 				"frames": 0,
 				"speed": 0,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 0.5
 			},
 			"displaySpec": {
@@ -4033,7 +4226,10 @@
 				"z": "PlayerHUDBottom"
 			},
 			"startPos": {
-				"position": [5.5, 48.5],
+				"position": [
+					5.5,
+					48.5
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -4044,7 +4240,10 @@
 				"frames": 0,
 				"speed": 0,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 0.5
 			},
 			"displaySpec": {
@@ -4052,7 +4251,10 @@
 				"z": "PlayerHUDBottom"
 			},
 			"startPos": {
-				"position": [5.5, 48.5],
+				"position": [
+					5.5,
+					48.5
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -4063,7 +4265,10 @@
 				"frames": 0,
 				"speed": 0,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 0.5
 			},
 			"displaySpec": {
@@ -4071,7 +4276,10 @@
 				"z": "PlayerHUDMid"
 			},
 			"startPos": {
-				"position": [18, 62],
+				"position": [
+					18,
+					62
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -4082,7 +4290,10 @@
 				"frames": 0,
 				"speed": 0,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 0.5
 			},
 			"displaySpec": {
@@ -4090,7 +4301,10 @@
 				"z": "PlayerHUDMid"
 			},
 			"startPos": {
-				"position": [28, 104],
+				"position": [
+					28,
+					104
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -4101,7 +4315,10 @@
 				"frames": 0,
 				"speed": 0,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 0.5
 			},
 			"displaySpec": {
@@ -4109,7 +4326,10 @@
 				"z": "PlayerHUDMid"
 			},
 			"startPos": {
-				"position": [0, 0],
+				"position": [
+					0,
+					0
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -4120,7 +4340,10 @@
 				"frames": 0,
 				"speed": 0,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 0.5
 			},
 			"displaySpec": {
@@ -4128,7 +4351,10 @@
 				"z": "PlayerHUDBottom"
 			},
 			"startPos": {
-				"position": [13.5, 10],
+				"position": [
+					13.5,
+					10
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -4139,7 +4365,10 @@
 				"frames": 0,
 				"speed": 0,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 0.5
 			},
 			"displaySpec": {
@@ -4147,7 +4376,10 @@
 				"z": "PlayerHUDBottom"
 			},
 			"startPos": {
-				"position": [590, 10],
+				"position": [
+					590,
+					10
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -4158,7 +4390,10 @@
 				"frames": 7,
 				"speed": 50,
 				"playType": "PlayAndHold",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 0.5
 			},
 			"displaySpec": {
@@ -4166,7 +4401,10 @@
 				"z": "PlayerHUDMid"
 			},
 			"startPos": {
-				"position": [598.5, 18.5],
+				"position": [
+					598.5,
+					18.5
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -4177,7 +4415,10 @@
 				"frames": 8,
 				"speed": 50,
 				"playType": "Loop",
-				"anchor": [0, 0],
+				"anchor": [
+					0,
+					0
+				],
 				"scale": 0.5
 			},
 			"displaySpec": {
@@ -4185,7 +4426,10 @@
 				"z": "PlayerHUDBottom"
 			},
 			"startPos": {
-				"position": [590, 10],
+				"position": [
+					590,
+					10
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -4206,7 +4450,10 @@
 				"z": "Mid"
 			},
 			"startPos": {
-				"position": [0, 0],
+				"position": [
+					0,
+					0
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -4228,7 +4475,10 @@
 				"z": "Mid"
 			},
 			"startPos": {
-				"position": [0, 0],
+				"position": [
+					0,
+					0
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -4250,7 +4500,10 @@
 				"z": "Mid"
 			},
 			"startPos": {
-				"position": [0, 0],
+				"position": [
+					0,
+					0
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -4271,7 +4524,10 @@
 				"z": "Back"
 			},
 			"startPos": {
-				"position": [1, 0],
+				"position": [
+					1,
+					0
+				],
 				"rotation": 0
 			},
 			"tweens": {}
@@ -4488,6 +4744,49 @@
 				}
 			}
 		},
+		"upgradeWash": {
+			"baseSpec": {
+				"alpha": 1.0,
+				"scale": 40,
+				"tint": "#FFFFFF",
+				"base": "HUD/screenWash",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "ComboWash"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0.0,
+								"valType": "abs",
+								"duration": 700,
+								"delay": 0,
+								"method": "linear"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
 		"vanquishedWash": {
 			"baseSpec": {
 				"alpha": 0,
@@ -4566,8 +4865,7 @@
 				"stageTarget": "HUD",
 				"z": "Back"
 			},
-			"tweens": {
-			}
+			"tweens": {}
 		},
 		"recapWash": {
 			"baseSpec": {
@@ -4626,8 +4924,7 @@
 				"stageTarget": "HUD",
 				"z": "Curtain"
 			},
-			"tweens": {
-			}
+			"tweens": {}
 		},
 		"creditsLetterBoxTop": {
 			"baseSpec": {
@@ -4651,8 +4948,7 @@
 				"stageTarget": "HUD",
 				"z": "Letterbox"
 			},
-			"tweens": {
-			}
+			"tweens": {}
 		},
 		"creditsLetterBoxBot": {
 			"baseSpec": {
@@ -4676,8 +4972,7 @@
 				"stageTarget": "HUD",
 				"z": "Letterbox"
 			},
-			"tweens": {
-			}
+			"tweens": {}
 		},
 		"titleWash": {
 			"baseSpec": {
@@ -4733,8 +5028,7 @@
 							}
 						}
 					],
-					"sounds": [
-					]
+					"sounds": []
 				}
 			}
 		},
@@ -4774,10 +5068,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["sword-flesh"],
-						"delay": 2000
-					}]
+					"sounds": [
+						{
+							"options": [
+								"sword-flesh"
+							],
+							"delay": 2000
+						}
+					]
 				},
 				"exit": {
 					"visuals": [
@@ -4878,10 +5176,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["click"],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [
+								"click"
+							],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -4967,10 +5269,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["click"],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [
+								"click"
+							],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -5010,10 +5316,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["whoosh-high"],
-						"delay": 1250
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-high"
+							],
+							"delay": 1250
+						}
+					]
 				},
 				"exit": {
 					"visuals": [
@@ -5028,10 +5338,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["whoosh-low"],
-						"delay": 250
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-low"
+							],
+							"delay": 250
+						}
+					]
 				}
 			}
 		},
@@ -5071,10 +5385,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["whoosh-high"],
-						"delay": 1250
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-high"
+							],
+							"delay": 1250
+						}
+					]
 				},
 				"exit": {
 					"visuals": [
@@ -5089,10 +5407,88 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["whoosh-low"],
-						"delay": 250
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-low"
+							],
+							"delay": 250
+						}
+					]
+				}
+			}
+		},
+		"recapSparkle": {
+			"baseSpec": {
+				"alpha": 0,
+				"base": "fx/sparkle",
+				"frames": 12,
+				"speed": 50,
+				"playType": "Loop",
+				"anchor": [
+					0.5,
+					0.5
+				]
+			},
+			"startPos": {
+				"position": [
+					500,
+					185
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 1,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 4000,
+								"method": "easeInCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 4500,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": [
+						{
+							"options": [
+								"title-sheen"
+							],
+							"delay": 4000
+						}
+					]
+				},
+				"exit": {
+					"visuals": [
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 0,
+								"method": "easeInCubic"
+							}
+						}
+					],
+					"sounds": []
 				}
 			}
 		},
@@ -5132,10 +5528,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["whoosh-high"],
-						"delay": 1350
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-high"
+							],
+							"delay": 1350
+						}
+					]
 				},
 				"exit": {
 					"visuals": [
@@ -5150,10 +5550,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["whoosh-low"],
-						"delay": 350
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-low"
+							],
+							"delay": 350
+						}
+					]
 				}
 			}
 		},
@@ -5193,10 +5597,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["whoosh-high"],
-						"delay": 1350
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-high"
+							],
+							"delay": 1350
+						}
+					]
 				},
 				"exit": {
 					"visuals": [
@@ -5211,10 +5619,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["whoosh-low"],
-						"delay": 350
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-low"
+							],
+							"delay": 350
+						}
+					]
 				}
 			}
 		},
@@ -5254,10 +5666,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["whoosh-high"],
-						"delay": 1450
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-high"
+							],
+							"delay": 1450
+						}
+					]
 				},
 				"exit": {
 					"visuals": [
@@ -5272,10 +5688,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["whoosh-low"],
-						"delay": 450
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-low"
+							],
+							"delay": 450
+						}
+					]
 				}
 			}
 		},
@@ -5315,10 +5735,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["whoosh-high"],
-						"delay": 1450
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-high"
+							],
+							"delay": 1450
+						}
+					]
 				},
 				"exit": {
 					"visuals": [
@@ -5333,10 +5757,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["whoosh-low"],
-						"delay": 450
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-low"
+							],
+							"delay": 450
+						}
+					]
 				}
 			}
 		},
@@ -5376,10 +5804,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["whoosh-high"],
-						"delay": 1450
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-high"
+							],
+							"delay": 1450
+						}
+					]
 				},
 				"exit": {
 					"visuals": [
@@ -5394,10 +5826,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["whoosh-low"],
-						"delay": 550
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-low"
+							],
+							"delay": 550
+						}
+					]
 				}
 			}
 		},
@@ -5423,8 +5859,7 @@
 				"stageTarget": "HUD",
 				"z": "Front"
 			},
-			"tweens": {
-			}
+			"tweens": {}
 		},
 		"recapDoughnutOff": {
 			"baseSpec": {
@@ -5449,8 +5884,7 @@
 				"stageTarget": "HUD",
 				"z": "Front"
 			},
-			"tweens": {
-			}
+			"tweens": {}
 		},
 		"exitletterBoxTop": {
 			"baseSpec": {
@@ -5776,10 +6210,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["swordComboSwing"],
-						"delay": 1050
-					}]
+					"sounds": [
+						{
+							"options": [
+								"swordComboSwing"
+							],
+							"delay": 1050
+						}
+					]
 				}
 			}
 		},
@@ -5978,10 +6416,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["click"],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [
+								"click"
+							],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -6169,8 +6611,7 @@
 							}
 						}
 					],
-					"sounds": [
-					]
+					"sounds": []
 				}
 			}
 		},
@@ -6221,10 +6662,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["title-slam"],
-						"delay": 6050
-					}]
+					"sounds": [
+						{
+							"options": [
+								"title-slam"
+							],
+							"delay": 6050
+						}
+					]
 				},
 				"exit": {
 					"visuals": [
@@ -6239,8 +6684,7 @@
 							}
 						}
 					],
-					"sounds": [
-					]
+					"sounds": []
 				}
 			}
 		},
@@ -6291,10 +6735,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["title-sheen"],
-						"delay": 8150
-					}]
+					"sounds": [
+						{
+							"options": [
+								"title-sheen"
+							],
+							"delay": 8150
+						}
+					]
 				},
 				"exit": {
 					"visuals": [
@@ -6309,8 +6757,7 @@
 							}
 						}
 					],
-					"sounds": [
-					]
+					"sounds": []
 				}
 			}
 		},
@@ -6366,10 +6813,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["click"],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [
+								"click"
+							],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -6455,10 +6906,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options": ["click"],
-						"delay": 0
-					}]
+					"sounds": [
+						{
+							"options": [
+								"click"
+							],
+							"delay": 0
+						}
+					]
 				}
 			}
 		},
@@ -6498,10 +6953,14 @@
 							}
 						}
 					],
-					"sounds": [{
-						"options":["whoosh-double"],
-						"delay": 750
-					}]
+					"sounds": [
+						{
+							"options": [
+								"whoosh-double"
+							],
+							"delay": 750
+						}
+					]
 				},
 				"exit": {
 					"visuals": [
