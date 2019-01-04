@@ -9719,9 +9719,12 @@ var Game;
         // set the scale
         userConfig.resScale = resNum;
         // update the buttons
-        for (let i = 1; i <= 5; i++) {
+        for (let i = 1; i <= 6; i++) {
             let className = resNum == i ? 'resButton active' : 'resButton';
-            document.getElementById('res' + i).className = className;
+            let el = document.getElementById('res' + i);
+            if (el != null) {
+                el.className = className;
+            }
         }
     }
     Game.setRes = setRes;
