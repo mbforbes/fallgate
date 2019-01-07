@@ -5,7 +5,8 @@
 				"titleCredits1",
 				"titleCredits2",
 				"titleButtonText",
-				"titlePressToBegin"
+				"titlePressToBegin",
+				"titleVersion"
 			],
 			"sprites": [
 				"titleWash",
@@ -654,6 +655,49 @@
 							}
 						}
 					],
+					"sounds": []
+				}
+			}
+		},
+		"titleVersion": {
+			"textSpec": {
+				"text": "v1.1.0",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 8,
+					"fill": "#333333",
+					"dropShadow": true,
+					"dropShadowColor": "#666666",
+					"dropShadowDistance": 1,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					1
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "DEBUG"
+			},
+			"startPos": {
+				"position": [
+					5,
+					355
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [],
 					"sounds": []
 				}
 			}

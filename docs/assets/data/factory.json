@@ -2001,7 +2001,12 @@
 		],
 		"enemy": {
 			"names": [
-				"Chuck"
+				"Chuck",
+				"Sylvester",
+				"Crunchy",
+				"Arms",
+				"Rex",
+				"Brody"
 			],
 			"kind": "Mimic Crate"
 		},
@@ -3269,7 +3274,7 @@
 			"maxMoveSpeed": 0,
 			"maxSwingSpeed": 0,
 			"decel": 1.0,
-			"invMass": 1.0,
+			"invMass": 0.7,
 			"resistSlow": true
 		},
 		"health": 1

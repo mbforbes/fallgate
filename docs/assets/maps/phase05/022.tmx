@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="120" height="80" tilewidth="64" tileheight="64" nextobjectid="941">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="120" height="80" tilewidth="64" tileheight="64" infinite="0" nextobjectid="946">
  <tileset firstgid="1" name="forestSummer" tilewidth="64" tileheight="64" tilecount="180" columns="15">
   <image source="../../tilesets/forestFinalTiles.png" trans="ff42f9" width="960" height="768"/>
   <terraintypes>
@@ -1488,13 +1488,9 @@
  <objectgroup name="mushGiantBlack"/>
  <objectgroup name="monastery"/>
  <objectgroup name="mimic">
-  <object id="209" gid="550" x="3456" y="1280" width="192" height="192" rotation="90"/>
-  <object id="210" gid="550" x="3776" y="832" width="192" height="192" rotation="90"/>
   <object id="211" gid="550" x="4160" y="1088" width="192" height="192" rotation="90"/>
-  <object id="212" gid="550" x="3008" y="896" width="192" height="192" rotation="90"/>
   <object id="213" gid="550" x="4352" y="1856" width="192" height="192" rotation="90"/>
   <object id="214" gid="550" x="3008" y="1344" width="192" height="192" rotation="90"/>
-  <object id="899" gid="550" x="3584" y="3072" width="192" height="192" rotation="90"/>
   <object id="900" gid="550" x="3776" y="2688" width="192" height="192" rotation="90"/>
  </objectgroup>
  <objectgroup color="#0000ff" name="manualWallColl">
@@ -1975,6 +1971,10 @@
   <object id="929" gid="638" x="1984" y="2880" width="64" height="64"/>
   <object id="930" gid="638" x="1984" y="3136" width="64" height="64"/>
   <object id="931" gid="638" x="2304" y="2880" width="64" height="64"/>
+  <object id="941" gid="638" x="3648" y="3200" width="64" height="64"/>
+  <object id="943" gid="638" x="3520" y="1408" width="64" height="64"/>
+  <object id="944" gid="638" x="3840" y="960" width="64" height="64"/>
+  <object id="945" gid="638" x="3072" y="1024" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="cow"/>
  <objectgroup name="controlsMovement"/>

@@ -1965,7 +1965,7 @@
 			"duration": 200,
 			"knockbackForce": 750,
 			"staggerForce": 750,
-			"lungeForce": 1500,
+			"lungeForce": 800,
 			"sounds": {
 				"swing": [
 					"spiderAttack"

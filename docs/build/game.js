@@ -185,6 +185,9 @@ class Point {
     equalsCoords(x, y) {
         return this.x === x && this.y === y;
     }
+    isZero() {
+        return this.equalsCoords(0, 0);
+    }
     /**
      * Mutates and returns this.
      * @param other
@@ -307,7 +310,7 @@ class Keyboard {
         this.register(new GameKey(GameKey.Digit3)); // 1/4x
         this.register(new GameKey(GameKey.Digit4)); // 1/8x
         // debug scene manip
-        this.register(new GameKey(GameKey.O)); // restart current scene
+        this.register(new GameKey(GameKey.J)); // restart current scene
         this.register(new GameKey(GameKey.N)); // go to next scene
         this.register(new GameKey(GameKey.B)); // go to prev scene
         // debug camera only
@@ -382,7 +385,7 @@ GameKey.D = 'KeyD';
 GameKey.E = 'KeyE';
 GameKey.N = 'KeyN';
 GameKey.B = 'KeyB';
-GameKey.O = 'KeyO';
+GameKey.J = 'KeyJ';
 GameKey.P = 'KeyP';
 GameKey.Digit1 = 'Digit1';
 GameKey.Digit2 = 'Digit2';
@@ -1226,9 +1229,15 @@ var Engine;
             for (let entity of mapKeyArr(this.entities)) {
                 this.destroyEntity(entity);
             }
+            // clear the destroy queue. when destroying entities (above), they
+            // will be removed from systems. some systems will then try to queue
+            // up destruction of their own tracked entities (e.g., gui
+            // entities). the queue would then carry onto the next frame, where
+            // new legit entities would be deleted.
+            arrayClear(this.entitiesToDestroy);
             // start fresh (done before onClear() because some systems will
-            // start creating new entities right away (ahem, fx refilling
-            // pools, ahem))
+            // start creating new entities right away (ahem, fx refilling pools,
+            // ahem))
             this.nextEntityID = 0;
             // tell all systems
             for (let system of this.systems.keys()) {
@@ -5382,6 +5391,10 @@ var Events;
          * For the end sequence.
          */
         EventTypes[EventTypes["SwapBodies"] = 22] = "SwapBodies";
+        /**
+         * For giving/revoking player control.
+         */
+        EventTypes[EventTypes["PlayerControl"] = 23] = "PlayerControl";
     })(EventTypes = Events.EventTypes || (Events.EventTypes = {}));
     var Phase;
     (function (Phase) {
@@ -6418,6 +6431,118 @@ var System;
     // .........................................................................
     // Subsystems
     // .........................................................................
+    function clampReal(raw) {
+        let lim = 0.12;
+        if ((raw > 0 && raw < lim) || (raw < 0 && raw > -lim)) {
+            return 0;
+        }
+        return raw;
+    }
+    // function debugReportGamepad(gp: Gamepad): void {
+    // 	console.log("Gamepad connected at index " + gp.index + ": " +
+    // 		gp.id + ". It has " + gp.buttons.length + " buttons and " +
+    // 		gp.axes.length + " axes.");
+    // }
+    class InputGamepad extends Engine.System {
+        constructor() {
+            super(...arguments);
+            this.componentsRequired = new Set([
+                Component.Dummy.name,
+            ]);
+            this.prevMenu = false;
+            this.prevDebug = false;
+            this.prevQuickAttack = false;
+            this.prevSwitchWeapon = false;
+            this.intentMove = new Point();
+            this.intentFace = new Point();
+            this.quickAttack = false;
+            this.block = false;
+            this.switchWeapon = false;
+            this.idleFrames = 2;
+            this.idleFor = 0;
+            /**
+             * Idle is set if the gamepad has no inputs for idleFrames frames. When
+             * this happens, the systems using the gamepad know they can ignore the
+             * gamepad until a button is pressed again and read from the mouse and
+             * keyboard. Without this, the gamepad would "zero-out" all of the
+             * inputs and not let any mouse / keyboard.
+             */
+            this.idle = true;
+            /**
+             * Last time input read from gamepad. Used so that mousedoens't
+             * overwrite facing state if mouse isn't being used.
+             */
+            this.lastActiveWallTimestamp = 0;
+        }
+        update(delta, entities) {
+            // poll + sanity check
+            let gps = navigator.getGamepads();
+            if (gps == null || gps[0] == null) {
+                this.idle = true;
+                return;
+            }
+            let gp = gps[0];
+            if (!gp.connected || gp.buttons.length < 18 || gp.axes.length < 4) {
+                this.idle = true;
+                return;
+            }
+            // input. L and R analog stick, with d-pad overwriting if used.
+            this.intentMove.set_(clampReal(gp.axes[0]), clampReal(gp.axes[1]));
+            this.intentFace.set_(clampReal(gp.axes[2]), -clampReal(gp.axes[3]));
+            if (gp.buttons[12].pressed || gp.buttons[13].pressed ||
+                gp.buttons[14].pressed || gp.buttons[15].pressed) {
+                this.intentMove.set_(-gp.buttons[14].value + gp.buttons[15].value, gp.buttons[13].value - gp.buttons[12].value);
+            }
+            // if no explicit direction from right stick, use movement input.
+            if (this.intentFace.isZero()) {
+                this.intentFace.copyFrom_(this.intentMove);
+                this.intentFace.y = -this.intentFace.y;
+            }
+            // buttons
+            let curQuickAttack = gp.buttons[0].pressed || gp.buttons[1].pressed || gp.buttons[2].pressed || gp.buttons[5].pressed;
+            this.quickAttack = !this.prevQuickAttack && curQuickAttack;
+            this.prevQuickAttack = curQuickAttack;
+            let curSwitchWeapon = gp.buttons[3].pressed;
+            this.switchWeapon = !this.prevSwitchWeapon && curSwitchWeapon;
+            this.prevSwitchWeapon = curSwitchWeapon;
+            this.block = gp.buttons[4].pressed || gp.buttons[6].pressed || gp.buttons[7].pressed;
+            // events
+            let curMenu = gp.buttons[9].pressed || gp.buttons[17].pressed;
+            if (!this.prevMenu && curMenu) {
+                this.eventsManager.dispatch({
+                    name: Events.EventTypes.MenuKeypress,
+                    args: { key: 'ENTER' },
+                });
+            }
+            this.prevMenu = curMenu;
+            let curDebug = gp.buttons[8].pressed;
+            if (!this.prevDebug && curDebug) {
+                this.eventsManager.dispatch({
+                    name: Events.EventTypes.DebugKeypress,
+                    args: { key: 'BACKTICK' },
+                });
+            }
+            this.prevDebug = curDebug;
+            // idle computation
+            if (this.intentMove.isZero() &&
+                this.intentFace.isZero() &&
+                !curQuickAttack &&
+                !curSwitchWeapon &&
+                !curMenu &&
+                !curDebug) {
+                // nothing pressed. max out at this.idleFrames so we don't just
+                // keep counting.
+                this.idleFor = Math.min(this.idleFor + 1, this.idleFrames);
+            }
+            else {
+                // active!
+                this.idleFor = 0;
+                this.lastActiveWallTimestamp = this.ecs.walltime;
+            }
+            this.idle = this.idleFor >= this.idleFrames;
+        }
+    }
+    System.InputGamepad = InputGamepad;
     /**
      * Kind of a weird system. Updated on its own so that it runs once per
      * frame. But then the results are used by one or more other systems rather
@@ -6522,6 +6647,14 @@ var System;
     }
     System.InputKeyboard = InputKeyboard;
     /**
+     * Sets mutate to the value of from.
+     * @param mutate
+     * @param from
+     */
+    function setFromPIXI(mutate, from) {
+        mutate.set_(from.x, from.y);
+    }
+    /**
      * Another 'subsystem' that updates independently.
      */
     class InputMouse extends Engine.System {
@@ -6535,12 +6668,14 @@ var System;
             ]);
             // Properties exposed to other systems.
             this.worldPosition = new Point();
-            // public attackButton = new AttackButton()
-            this.attacking = false;
             this.quickAttacking = false;
             this.blocking = false;
-            // for metering
-            this.prev_quickAttacking = false;
+            // for metering and setting timestamp
+            this.prevQuickAttacking = false;
+            this.prevBlocking = false;
+            this.curHUDPosition = new Point();
+            this.prevHUDPosition = new Point();
+            this.lastActiveWallTimestamp = 0;
             /**
              * Used internally to let PIXI do the translation.
              */
@@ -6550,19 +6685,21 @@ var System;
             // transform and set position
             this.world.toLocal(this.mouse.hudPosition, this.hud, this.cacheWorldPosition, true);
             this.worldPosition.set_(this.cacheWorldPosition.x, this.cacheWorldPosition.y);
-            // prev: buttons
-            // this.attackButton.update(this.mouse.leftDown, delta);
-            // this.attacking = this.attackButton.attacking;
-            // this.stabbing = this.attackButton.stabbing;
-            // now: just quick attack for now (add power/ retaliation attack later)
-            let quickAttacking = this.mouse.leftDown;
-            this.quickAttacking = quickAttacking && (!this.prev_quickAttacking);
-            this.prev_quickAttacking = this.quickAttacking;
-            this.attacking = false;
-            // blocking
+            // button inputs
+            let curQuickAttacking = this.mouse.leftDown;
+            this.quickAttacking = curQuickAttacking && (!this.prevQuickAttacking);
             this.blocking = this.mouse.rightDown;
-            // update state
-            this.prev_quickAttacking = quickAttacking;
+            // active computation
+            setFromPIXI(this.curHUDPosition, this.mouse.hudPosition);
+            if (curQuickAttacking != this.prevQuickAttacking ||
+                this.blocking != this.prevBlocking ||
+                !this.curHUDPosition.equals(this.prevHUDPosition)) {
+                this.lastActiveWallTimestamp = this.ecs.walltime;
+            }
+            // update cached state
+            this.prevHUDPosition.copyFrom_(this.curHUDPosition);
+            this.prevQuickAttacking = curQuickAttacking;
+            this.prevBlocking = this.blocking;
         }
     }
     System.InputMouse = InputMouse;
@@ -6633,20 +6770,55 @@ var System;
     }
     DebugEntitySelector.MAX_ENTITY_DIST = 200;
     System.DebugEntitySelector = DebugEntitySelector;
+    class PlayerInputGamepad extends Engine.System {
+        constructor(inputGamepad) {
+            super();
+            this.inputGamepad = inputGamepad;
+            this.componentsRequired = new Set([
+                Component.Input.name,
+                Component.Position.name,
+                Component.PlayerInput.name,
+            ]);
+        }
+        update(delta, entities) {
+            // if gamepad is idle, don't overwrite keyboard/mouse input state.
+            if (this.inputGamepad.idle) {
+                return;
+            }
+            for (let aspect of entities.values()) {
+                let input = aspect.get(Component.Input);
+                // movement
+                input.intent.copyFrom_(this.inputGamepad.intentMove);
+                // facing. only mutate target angle if there's some intent
+                // pressed.
+                if (!this.inputGamepad.intentMove.isZero() || !this.inputGamepad.intentFace.isZero()) {
+                    input.targetAngle = Math.atan2(this.inputGamepad.intentFace.y, this.inputGamepad.intentFace.x);
+                    // 0 -> 2pi for movement system
+                    if (input.targetAngle <= 0) {
+                        input.targetAngle += Constants.TWO_PI;
+                    }
+                }
+                input.quickAttack = this.inputGamepad.quickAttack;
+                input.block = this.inputGamepad.block;
+                input.switchWeapon = this.inputGamepad.switchWeapon;
+            }
+        }
+    }
+    System.PlayerInputGamepad = PlayerInputGamepad;
     /**
      * Default game movement class.
      */
     class PlayerInputMouseKeyboard extends Engine.System {
-        constructor(inputMouse, inputKeyboard, enemySelector) {
+        constructor(inputMouse, inputKeyboard, inputGamepad, enemySelector) {
             // note: consider starting disabled (!) until we fade-in the level
             super(true);
             this.inputMouse = inputMouse;
             this.inputKeyboard = inputKeyboard;
+            this.inputGamepad = inputGamepad;
             this.enemySelector = enemySelector;
             // instance
             this.componentsRequired = new Set([
                 Component.Input.name,
-                Component.Position.name,
                 Component.PlayerInput.name,
             ]);
         }
@@ -6677,8 +6849,11 @@ var System;
                 // the mouse point.
                 const thresh = PlayerInputMouseKeyboard.MIN_ANG_DIST;
                 if (position.p.manhattanTo(mouseWorld) > thresh) {
-                    // compute mouse angle.
-                    input.targetAngle = position.p.pixiAngleTo(mouseWorld);
+                    // compute mouse angle. use only if mouse more active than
+                    // gamepad.
+                    if (this.inputMouse.lastActiveWallTimestamp > this.inputGamepad.lastActiveWallTimestamp) {
+                        input.targetAngle = position.p.pixiAngleTo(mouseWorld);
+                    }
                     // Usual movement. Y intent used; X intent ignored in Movement
                     // system.
                     this.inputKeyboard.intent.copyTo(input.intent);
@@ -6688,7 +6863,6 @@ var System;
                     // though currently unused anywhere).
                     input.intent.set_(0, 0);
                 }
-                input.attack = this.inputKeyboard.attacking || this.inputMouse.attacking;
                 input.quickAttack = this.inputKeyboard.quickAttacking || this.inputMouse.quickAttacking;
                 input.block = this.inputKeyboard.blocking || this.inputMouse.blocking;
                 input.switchWeapon = this.inputKeyboard.switching;
@@ -8168,7 +8342,9 @@ var System;
                         // facing angle.
                         case Physics.MovementType.Strafe:
                         case Physics.MovementType.InstantTurn: {
-                            // allow AIs not to turn
+                            // allow AIs not to turn. note: in hind sight, this
+                            // is stupid because it ignores input target angles
+                            // of 0 from the player too.
                             position.angle = input.targetAngle || position.angle;
                             break;
                         }
@@ -10016,6 +10192,7 @@ var Game;
             // subsystems
             let inputKeyboard = new System.InputKeyboard(keyboard);
             let inputMouse = new System.InputMouse(mouse, hud, world);
+            let inputGamepad = new System.InputGamepad();
             let playerSelector = new System.PlayerSelector();
             let enemySelector = new System.EnemySelector();
             let zoneSelector = new System.ZoneSelector();
@@ -10027,6 +10204,7 @@ var Game;
             let staticRenderableSelector = new System.StaticRenderableSelector();
             this.ecs.addSystem(5, inputKeyboard);
             this.ecs.addSystem(5, inputMouse);
+            this.ecs.addSystem(5, inputGamepad);
             this.ecs.addSystem(5, playerSelector);
             this.ecs.addSystem(5, enemySelector);
             this.ecs.addSystem(5, zoneSelector);
@@ -10038,7 +10216,7 @@ var Game;
             this.ecs.addSystem(5, staticRenderableSelector);
             // input/ai -- affect entity state (idle vs moving)
             // this.ecs.addSystem(10, new System.PlayerInputWSAD(inputKeyboard));
-            this.ecs.addSystem(10, new System.PlayerInputMouseKeyboard(inputMouse, inputKeyboard, enemySelector));
+            this.ecs.addSystem(10, new System.PlayerInputMouseKeyboard(inputMouse, inputKeyboard, inputGamepad, enemySelector));
             this.ecs.addSystem(10, new System.Pause(keyboard));
             // this.ecs.addSystem(10, new System.ControlsScreen(this.stage, viewportSize));
             // this.ecs.addSystem(10, new System.AICow());
@@ -10049,8 +10227,13 @@ var Game;
                 this.ecs.addSystem(10, new System.Debug(keyboard));
                 this.ecs.addSystem(10, new System.DebugGameSpeed(keyboard));
                 this.ecs.addSystem(10, new System.DebugEntitySelector(inputMouse));
-                this.ecs.addSystem(10, new System.DebugSceneRestart(keyboard, this.sceneManager));
             }
+            // always allowing level restarts due to potential softlocks and no
+            // saving
+            this.ecs.addSystem(10, new System.DebugSceneRestart(keyboard, this.sceneManager));
+            // gamepad runs after mouse/keyboard because it will either
+            // overwrite or leave alone the state set by them.
+            this.ecs.addSystem(12, new System.PlayerInputGamepad(inputGamepad));
             // clean up unique-intended things
             if (this.mode == Game.Mode.DEBUG) {
                 this.ecs.addSystem(15, new System.DebugInspectionUniquifier());
@@ -10163,6 +10346,7 @@ var Game;
             this.eventsManager.add(new Handler.Bookkeeping());
             this.eventsManager.add(new Handler.Instructions(this.subConfigs.instructions));
             this.eventsManager.add(new Handler.Controls(this.subConfigs.controls));
+            this.eventsManager.add(new Handler.Control());
             this.eventsManager.add(new Handler.EndSequence(this.gm));
             if (this.mode == Game.Mode.DEBUG) {
                 this.eventsManager.add(new Handler.ExitHandlerDev());
@@ -12127,7 +12311,7 @@ var GameMap;
         }
         apply(entity, ecs, props) {
             if (!props.get(Checkpoint.name).val()) {
-                console.warn('Warning: Useless k/v "' + this.name + '" found but disabled.');
+                // console.warn('Warning: Useless k/v "' + this.name + '" found but disabled.');
                 return;
             }
             let gateID = null;
@@ -12148,7 +12332,7 @@ var GameMap;
         apply(entity, ecs, props) {
             // First, see whether this is turned on at all.
             if (!props.get(CollisionGenerate.name).val()) {
-                console.warn('Warning: Useless k/v "' + this.name + '" found but disabled.');
+                // console.warn('Warning: Useless k/v "' + this.name + '" found but disabled.');
                 return;
             }
             // Get the size and collision info for the object.
@@ -12218,7 +12402,7 @@ var GameMap;
         }
         apply(entity, ecs, props) {
             if (!props.get(Destructible.name).val()) {
-                console.warn('Warning: Useless k/v "' + this.name + '" found but disabled.');
+                // console.warn('Warning: Useless k/v "' + this.name + '" found but disabled.');
                 return;
             }
             ecs.addComponent(entity, new Component.Destructible());
@@ -12390,7 +12574,7 @@ var GameMap;
         }
         apply(entity, ecs, props) {
             if (!props.get(Knockbackable.name).val()) {
-                console.warn('Warning: Useless k/v "' + this.name + '" found but disabled.');
+                // console.warn('Warning: Useless k/v "' + this.name + '" found but disabled.');
                 return;
             }
             ecs.addComponent(entity, new Component.Knockbackable());
@@ -12460,7 +12644,7 @@ var GameMap;
         }
         apply(entity, ecs, props) {
             if (!props.get(Player.name).val()) {
-                console.warn('Warning: Useless k/v "' + this.name + '" found but disabled.');
+                // console.warn('Warning: Useless k/v "' + this.name + '" found but disabled.');
                 return;
             }
             ecs.addComponent(entity, new Component.PlayerInput());
@@ -12536,7 +12720,7 @@ var GameMap;
         }
         apply(entity, ecs, props) {
             if (!props.get(Staggerable.name).val()) {
-                console.warn('Warning: Useless k/v "' + this.name + '" found but disabled.');
+                // console.warn('Warning: Useless k/v "' + this.name + '" found but disabled.');
                 return;
             }
             ecs.addComponent(entity, new Component.Staggerable());
@@ -13226,7 +13410,7 @@ var Scene;
             // figure out the size of the bottom image as our map size.
             let bImg = this.activeScene.map.bottom;
             this.mapDims.set_(PIXI.utils.TextureCache[bImg].width, PIXI.utils.TextureCache[bImg].height);
-            console.log('Map dims: ' + this.mapDims.toString());
+            // console.log('Map dims: ' + this.mapDims.toString());
             // put in bottom image
             let bEntity = this.ecs.addEntity();
             this.ecs.addComponent(bEntity, new Component.Position(new Point(0, this.mapDims.y)));
@@ -13822,6 +14006,46 @@ var Handler;
     Checkpoint.SPAWN_OFFSET = new Point(16, -64);
     Handler.Checkpoint = Checkpoint;
 })(Handler || (Handler = {}));
+var Handler;
+(function (Handler) {
+    /**
+     * For giving / revoking player control.
+     */
+    class Control extends Events.Handler {
+        constructor() {
+            super(...arguments);
+            this.dispatcher = new Map([
+                [Events.EventTypes.PlayerControl, this.handlePlayerControl],
+            ]);
+        }
+        stopPlayer() {
+            for (let player of this.ecs.getSystem(System.PlayerSelector).latest()) {
+                let pComps = this.ecs.getComponents(player);
+                if (pComps.has(Component.Input)) {
+                    let input = pComps.get(Component.Input);
+                    input.intent.set_(0, 0);
+                    input.quickAttack = false;
+                    input.attack = false;
+                    // not stopping block for tutorial case where they may be
+                    // blocking something oncoming. may want to if this causes
+                    // weird edge cases.
+                }
+            }
+        }
+        handlePlayerControl(et, args) {
+            if (args.allow) {
+                this.ecs.enableSystem(System.PlayerInputMouseKeyboard);
+                this.ecs.enableSystem(System.PlayerInputGamepad);
+            }
+            else {
+                this.ecs.disableSystem(System.PlayerInputMouseKeyboard);
+                this.ecs.disableSystem(System.PlayerInputGamepad);
+                this.stopPlayer();
+            }
+        }
+    }
+    Handler.Control = Control;
+})(Handler || (Handler = {}));
 /// <reference path="../script/test.ts" />
 var Handler;
 (function (Handler) {
@@ -14127,11 +14351,11 @@ var Handler;
         showLevelReport() {
             // disable player HUD and input, and mark in cutscene for AIs
             this.ecs.disableSystem(System.PlayerHUDRenderer);
-            this.ecs.disableSystem(System.PlayerInputMouseKeyboard);
+            this.firer.dispatch({
+                name: Events.EventTypes.PlayerControl,
+                args: { allow: false },
+            });
             this.ecs.getSystem(System.AISystem).inCutscene = true;
-            // stop player from walking
-            let playerComps = this.ecs.getComponents(this.ecs.getSystem(System.PlayerSelector).latest().next().value);
-            playerComps.get(Component.Input).intent.set_(0, 0);
             // zoom in
             this.ecs.getSystem(System.Zoom).request(2, 2000, Tween.easeOutCubic);
             // Map from text tween IDs (in the gui.json) to text to replace
@@ -14564,7 +14788,7 @@ var Handler;
             // find if any hit effects were requested
             let comps = this.ecs.getComponents(args.victim);
             if (!comps.has(Component.Attributes)) {
-                console.log('no attribute components. creature: ' + args.victimType);
+                // console.log('no attribute components. creature: ' + args.victimType);
                 return;
             }
             let attributes = comps.get(Component.Attributes);
@@ -14584,7 +14808,7 @@ var Handler;
             // find if any death effects were requested
             let comps = this.ecs.getComponents(args.thing);
             if (!comps.has(Component.Attributes)) {
-                console.log('no attribute components. thing type: ' + args.thingType);
+                // console.log('no attribute components. thing type: ' + args.thingType);
                 return;
             }
             let attributes = comps.get(Component.Attributes);
@@ -15009,19 +15233,6 @@ var Handler;
             }
             this.ecs.getSystem(System.Bookkeeper).maybeShowInstruction(iid);
         }
-        stopPlayer() {
-            // NOTE: could do some kinda AI here if we wanted instaed. this
-            // seemed like way less code. Hopefully not an anti-pattern.
-            for (let player of this.ecs.getSystem(System.PlayerSelector).latest()) {
-                let pComps = this.ecs.getComponents(player);
-                if (pComps.has(Component.Input)) {
-                    let input = pComps.get(Component.Input);
-                    input.intent.set_(0, 0);
-                    input.quickAttack = false;
-                    input.attack = false;
-                }
-            }
-        }
         showInstructions(et, args) {
             let instr = this.instructions[args.instructionsID];
             if (instr == null) {
@@ -15038,11 +15249,11 @@ var Handler;
             this.guiEnts.push(...this.ecs.getSystem(System.GUIManager)
                 .runSequence('instructions', textReplacements, imgReplacements));
             // remove player input, disable non-cutscene AIs
-            this.ecs.disableSystem(System.PlayerInputMouseKeyboard);
+            this.firer.dispatch({
+                name: Events.EventTypes.PlayerControl,
+                args: { allow: false },
+            });
             this.ecs.getSystem(System.AISystem).inCutscene = true;
-            // it's just too easy for the player to get screwed if we don't
-            // also stop them.
-            this.stopPlayer();
         }
         maybeHideInstructions(et, args) {
             if (this.guiEnts.length > 0) {
@@ -15052,7 +15263,10 @@ var Handler;
                     guiM.tween(this.guiEnts.pop(), 'exit');
                 }
                 // restore player and AI control
-                this.ecs.enableSystem(System.PlayerInputMouseKeyboard);
+                this.firer.dispatch({
+                    name: Events.EventTypes.PlayerControl,
+                    args: { allow: true },
+                });
                 this.ecs.getSystem(System.AISystem).inCutscene = false;
             }
         }
@@ -15267,13 +15481,11 @@ var Script;
             this.ecs.getSystem(System.Bookkeeper).endLevel();
             // zoom in close
             this.ecs.getSystem(System.Zoom).request(2.6, 750, Tween.easeInCubic);
-            // stop player from walking and attacking
-            let input = this.ecs.getComponents(this.ecs.getSystem(System.PlayerSelector)
-                .latest().next().value).get(Component.Input);
-            input.intent.set_(0, 0);
-            input.quickAttack = false;
             // cut player controls
-            this.ecs.disableSystem(System.PlayerInputMouseKeyboard);
+            this.eventsManager.dispatch({
+                name: Events.EventTypes.PlayerControl,
+                args: { allow: false },
+            });
             // kill any other remaining enemies so they don't get you while
             // you're paused.
             for (let enemy of this.ecs.getSystem(System.EnemySelector).latest()) {
@@ -15335,7 +15547,10 @@ var Script;
     function startLevelInit(allowAllAIs) {
         // disable player input (start w/ this b/c sometimes we start a level
         // w/o having exited a previous one, like at the start of the game)
-        this.ecs.disableSystem(System.PlayerInputMouseKeyboard);
+        this.eventsManager.dispatch({
+            name: Events.EventTypes.PlayerControl,
+            args: { allow: false },
+        });
         // maybe disable non-cutscene AIs
         if (!allowAllAIs) {
             this.ecs.getSystem(System.AISystem).inCutscene = true;
@@ -15415,7 +15630,10 @@ var Script;
             this.ecs.removeComponentIfExists(playerEntity, Component.AIComponent);
         }
         // give back player input system
-        this.ecs.enableSystem(System.PlayerInputMouseKeyboard);
+        this.eventsManager.dispatch({
+            name: Events.EventTypes.PlayerControl,
+            args: { allow: true },
+        });
         let eArgs = {};
         this.eventsManager.dispatch({
             name: Events.EventTypes.GameplayStart,
@@ -18269,7 +18487,7 @@ var System;
             ]);
         }
         update(delta, entities) {
-            let wantReset = this.keyboard.keys.get(GameKey.O).isDown;
+            let wantReset = this.keyboard.keys.get(GameKey.J).isDown;
             if (wantReset && !this.prevKey) {
                 this.sceneManager.resetScene();
             }
