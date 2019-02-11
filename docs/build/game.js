@@ -287,30 +287,31 @@ var Game;
 class Keyboard {
     constructor(eventsManager) {
         this.eventsManager = eventsManager;
-        this.keys = new Map();
+        this.gamekeys = new Map();
+        this.keyToCode = new Map();
         window.addEventListener('keydown', this.downHandler.bind(this), false);
         window.addEventListener('keyup', this.upHandler.bind(this), false);
         this.setup();
     }
     setup() {
         // menu commands
-        this.register(new GameKey(GameKey.Enter, true));
+        this.register(new GameKey(GameKey.Enter, 'Enter', true));
         // player controls
-        this.register(new GameKey(GameKey.Space)); // attack
-        this.register(new GameKey(GameKey.ShiftLeft)); // block
-        this.register(new GameKey(GameKey.W)); // move
-        this.register(new GameKey(GameKey.S)); // move
-        this.register(new GameKey(GameKey.A)); // move
-        this.register(new GameKey(GameKey.D)); // move
-        this.register(new GameKey(GameKey.E)); // future: swap weapon
+        this.register(new GameKey(GameKey.Space, ' ')); // attack
+        this.register(new GameKey(GameKey.ShiftLeft, 'Shift')); // block
+        this.register(new GameKey(GameKey.W, 'w')); // move
+        this.register(new GameKey(GameKey.S, 's')); // move
+        this.register(new GameKey(GameKey.A, 'a')); // move
+        this.register(new GameKey(GameKey.D, 'd')); // move
+        this.register(new GameKey(GameKey.E, 'e')); // future: swap weapon
         // debug gamespeed
-        this.register(new GameKey(GameKey.P)); // pause
+        this.register(new GameKey(GameKey.P, 'p')); // pause
         this.register(new GameKey(GameKey.Digit1)); // 1/1x
         this.register(new GameKey(GameKey.Digit2)); // 1/2x
         this.register(new GameKey(GameKey.Digit3)); // 1/4x
         this.register(new GameKey(GameKey.Digit4)); // 1/8x
         // debug scene manip
-        this.register(new GameKey(GameKey.J)); // restart current scene
+        this.register(new GameKey(GameKey.J, 'j')); // restart current scene
         this.register(new GameKey(GameKey.N)); // go to next scene
         this.register(new GameKey(GameKey.B)); // go to prev scene
         // debug camera only
@@ -322,13 +323,24 @@ class Keyboard {
         this.register(new GameKey(GameKey.Up));
         this.register(new GameKey(GameKey.Down));
     }
+    getCode(event) {
+        // get code if possible (chrome), fallback to key and use key -> code
+        // mapping. if we don't have the mapping, it will return undefined,
+        // which is ok.
+        return event.code || this.keyToCode.get(event.key);
+    }
     register(k) {
-        this.keys.set(k.code, k);
+        this.gamekeys.set(k.code, k);
+        if (k.key != null) {
+            this.keyToCode.set(k.key, k.code);
+            this.keyToCode.set(k.key.toUpperCase(), k.code);
+        }
     }
     downHandler(event) {
         // console.log(event);
-        if (this.keys.has(event.code)) {
-            let key = this.keys.get(event.code);
+        let code = this.getCode(event);
+        if (this.gamekeys.has(code)) {
+            let key = this.gamekeys.get(code);
             // new: fire event if menu key and key was up and is now pressed
             if (key.menu && !key.isDown) {
                 this.eventsManager.dispatch({
@@ -348,8 +360,9 @@ class Keyboard {
         }
     }
     upHandler(event) {
-        if (this.keys.has(event.code)) {
-            let key = this.keys.get(event.code);
+        let code = this.getCode(event);
+        if (this.gamekeys.has(code)) {
+            let key = this.gamekeys.get(code);
             key.isDown = false;
             event.preventDefault();
         }
@@ -362,8 +375,9 @@ class Keyboard {
  * index it in a map.
  */
 class GameKey {
-    constructor(code, menu = false) {
+    constructor(code, key = null, menu = false) {
         this.code = code;
+        this.key = key;
         this.menu = menu;
         // state
         this.isDown = false;
@@ -669,8 +683,8 @@ function enumSortedNames(e) {
 }
 /**
  * Miliseconds to display-friendly string for users. Examples:
- * - 18752.000000000000037859 -> '18.000s'
- * - 65752.000000000000037859 -> '1m 5.000s'
+ * - 18752.100000000000037859 -> '18.752s'
+ * - 65752.100000000000037859 -> '1m 5.752s'
  * @param ms
  */
 function msToUserTime(ms) {
@@ -679,6 +693,30 @@ function msToUserTime(ms) {
     let s = (full_s % 60).toFixed(3);
     let mStr = m > 0 ? m + 'm ' : '';
     return mStr + s + 's';
+}
+/**
+ * NEW! ms to display-friendly string for users, with two parts and better fmt.
+ * Returns 2 parts:
+ *    [h:][m:]ss
+ *    .ddd
+ * - 9752.100000000000037859 ->   '0:09', '.752'
+ * - 18752.100000000000037859 ->  '0:18', '.752'
+ * - 65752.100000000000037859 ->  '1:05', '.752'
+ * - 165752.100000000000037859 -> '2:45', '.752'
+ * - 3600500.00 ->             '1:00:00', '.500'
+ * - 3720500.00 ->             '1:02:00', '.500'
+ * @param ms
+ */
+function msToUserTimeTwoPart(ms) {
+    let full_s = ms / 1000;
+    let h = Math.floor(full_s / 3600);
+    let m = Math.floor((full_s % 3600) / 60);
+    let s = Math.floor(full_s % 60);
+    let dStr = (full_s % 1).toFixed(3).slice(1);
+    let hStr = h > 0 ? h + ':' : '';
+    let mStr = h > 0 && m < 10 ? '0' + m + ':' : m + ':';
+    let sStr = s < 10 ? '0' + s : '' + s;
+    return [hStr + mStr + sStr, dStr];
 }
 /**
  * Like Python's collections.Counter
@@ -776,11 +814,19 @@ var Events;
         /**
          * Game calls this on scene transitions (onClear()). Tells handlers to
          * clear any saved scene-specific state. (Should be rare for event
-         * handlers.) Also clears any queued events.
+         * handlers.) Removes any handlers marked as transient. Also clears any
+         * queued events.
          */
         clear() {
+            let toRemove = [];
             for (let handler of this.handlers) {
                 handler.clear();
+                if (handler.transient) {
+                    toRemove.push(handler);
+                }
+            }
+            for (let handler of toRemove) {
+                this.remove(handler);
             }
             arrayClear(this.queue);
         }
@@ -877,6 +923,12 @@ var Events;
              * de-registered).
              */
             this.finished = false;
+            /**
+             * Handlers can set this to mark that they can be cleaned up upon scene
+             * reset. (Otherwise Handlers, like Systems, persist throughout the
+             * lifetime of the game.)
+             */
+            this.transient = false;
         }
         /**
          * Handlers can override to do logic that requires a working ecs.
@@ -1731,12 +1783,16 @@ var System;
             // settings
             this.effectVolume = 1.0;
             this.musicVolume = 0.7;
+            this.effectsOn = true;
+            this.musicOn = true;
             // internal data structure of load(ing/ed) sounds and music
             this.sounds = new Map();
             this.music = new Map();
             // queue for frame buffering
             this.queue = [];
             this.playedThisFrame = new Set();
+            // cache for what music shouuld be playing
+            this.playingMusic = [];
         }
         /**
          * @returns this (for convenience).
@@ -1779,18 +1835,30 @@ var System;
          */
         playMusic(only) {
             let s = new Set(only);
+            // always update cache of what should be playing
+            arrayClear(this.playingMusic);
+            for (let track of s) {
+                this.playingMusic.push(track);
+            }
+            // if music is disabled, we do nothing
+            if (!this.musicOn) {
+                return;
+            }
+            // otherwise, we ensure the requested tracks are playing, and all
+            // others are not (by fading them out)
             for (let [trackID, hpkg] of this.music.entries()) {
                 let h = hpkg.howl;
                 if (s.has(trackID)) {
-                    // ensure its playing
+                    // always turn up its volume (in case it was disabled)
+                    h.volume(hpkg.volume);
+                    // ensure it's playing
                     if (!h.playing()) {
                         h.seek(0);
-                        h.volume(hpkg.volume);
                         h.play('main');
                     }
                 }
                 else {
-                    // ensure its not
+                    // ensure it's not playing
                     if (h.playing()) {
                         h.fade(h.volume(), 0.0, 1500);
                         h.once('fade', function () {
@@ -1799,6 +1867,32 @@ var System;
                     }
                 }
             }
+        }
+        disableMusic() {
+            for (let [trackID, hpkg] of this.music.entries()) {
+                hpkg.howl.volume(0);
+            }
+        }
+        /**
+         * API for toggling music.
+         */
+        toggleMusic() {
+            this.musicOn = !this.musicOn;
+            if (this.musicOn) {
+                this.playMusic(this.playingMusic);
+            }
+            else {
+                this.disableMusic();
+            }
+        }
+        /**
+         * API for toggling sound effects.
+         */
+        toggleEffects() {
+            this.effectsOn = !this.effectsOn;
+            // Nothing else needs to happen here because sound effects are
+            // short. We simply decide whether to play future effects based on
+            // this setting.
         }
         play(options, location = null) {
             // sanity checking
@@ -1851,6 +1945,10 @@ var System;
                 let trackID = this.queue.pop();
                 // ensure not already played
                 if (this.playedThisFrame.has(trackID)) {
+                    continue;
+                }
+                // ensure not muted
+                if (!this.effectsOn) {
                     continue;
                 }
                 // play it
@@ -6608,14 +6706,14 @@ var System;
         }
         update(delta, entities) {
             // raw input reads
-            let switching = this.keyboard.keys.get(GameKey.E).isDown;
-            let controls = this.keyboard.keys.get(GameKey.Enter).isDown;
-            let left = this.keyboard.keys.get(GameKey.A).isDown;
-            let right = this.keyboard.keys.get(GameKey.D).isDown;
-            let up = this.keyboard.keys.get(GameKey.W).isDown;
-            let down = this.keyboard.keys.get(GameKey.S).isDown;
-            let quickAttacking = this.keyboard.keys.get(GameKey.Space).isDown;
-            this.blocking = this.keyboard.keys.get(GameKey.ShiftLeft).isDown;
+            let switching = this.keyboard.gamekeys.get(GameKey.E).isDown;
+            let controls = this.keyboard.gamekeys.get(GameKey.Enter).isDown;
+            let left = this.keyboard.gamekeys.get(GameKey.A).isDown;
+            let right = this.keyboard.gamekeys.get(GameKey.D).isDown;
+            let up = this.keyboard.gamekeys.get(GameKey.W).isDown;
+            let down = this.keyboard.gamekeys.get(GameKey.S).isDown;
+            let quickAttacking = this.keyboard.gamekeys.get(GameKey.Space).isDown;
+            this.blocking = this.keyboard.gamekeys.get(GameKey.ShiftLeft).isDown;
             // resolve input pairs
             this.intent.x = InputKeyboard.resolve_pair(this.prev_left, left, this.prev_right, right, this.prev_intent.x);
             this.intent.y = InputKeyboard.resolve_pair(this.prev_up, up, this.prev_down, down, this.prev_intent.y);
@@ -6981,7 +7079,7 @@ var System;
             }
         }
         update(delta, entities) {
-            let curToggle = this.keyboard.keys.get(GameKey.Tilde).isDown;
+            let curToggle = this.keyboard.gamekeys.get(GameKey.Tilde).isDown;
             if (!this.prevToggle && curToggle) {
                 this.toggle();
             }
@@ -7176,12 +7274,12 @@ var System;
         }
         update(delta, entities) {
             // first figure out the player's intent
-            let left = this.keyboard.keys.get(GameKey.Left).isDown;
-            let right = this.keyboard.keys.get(GameKey.Right).isDown;
-            let up = this.keyboard.keys.get(GameKey.Up).isDown;
-            let down = this.keyboard.keys.get(GameKey.Down).isDown;
-            let zoomin = this.keyboard.keys.get(GameKey.Equal).isDown;
-            let zoomout = this.keyboard.keys.get(GameKey.Minus).isDown;
+            let left = this.keyboard.gamekeys.get(GameKey.Left).isDown;
+            let right = this.keyboard.gamekeys.get(GameKey.Right).isDown;
+            let up = this.keyboard.gamekeys.get(GameKey.Up).isDown;
+            let down = this.keyboard.gamekeys.get(GameKey.Down).isDown;
+            let zoomin = this.keyboard.gamekeys.get(GameKey.Equal).isDown;
+            let zoomout = this.keyboard.gamekeys.get(GameKey.Minus).isDown;
             this.intent.x = System.InputKeyboard.resolve_pair(this.prev_left, left, this.prev_right, right, this.prev_intent.x);
             this.intent.y = System.InputKeyboard.resolve_pair(this.prev_up, up, this.prev_down, down, this.prev_intent.y);
             let zoom = System.InputKeyboard.resolve_pair(this.prev_out, zoomout, this.prev_in, zoomin, this.prev_zoom);
@@ -10091,6 +10189,30 @@ var Game;
             this.pixi_renderer.view.id = 'game';
             let gameParent = document.getElementById('gameParent');
             gameParent.appendChild(this.pixi_renderer.view);
+            // sound effects toggle
+            let musicButton = document.createElement('button');
+            musicButton.className = 'fsButton';
+            musicButton.innerText = 'Toggle music';
+            musicButton.onclick = (ev) => {
+                this.ecs.getSystem(System.Audio).toggleMusic();
+            };
+            gameParent.appendChild(musicButton);
+            // sound effects toggle
+            let effectsButton = document.createElement('button');
+            effectsButton.className = 'fsButton';
+            effectsButton.innerText = 'Toggle sound effects';
+            effectsButton.onclick = (ev) => {
+                this.ecs.getSystem(System.Audio).toggleEffects();
+            };
+            gameParent.appendChild(effectsButton);
+            // speedrun timer (!)
+            let srButton = document.createElement('button');
+            srButton.className = 'fsButton';
+            srButton.innerText = 'Toggle speedrun timer';
+            srButton.onclick = (ev) => {
+                this.ecs.toggleSystem(System.BookkeeperRenderer);
+            };
+            gameParent.appendChild(srButton);
             // full screen
             let fsButton = document.createElement('button');
             fsButton.className = 'fsButton';
@@ -10322,9 +10444,9 @@ var Game;
                 this.ecs.addSystem(100, new System.DebugHTMLComponents(debugCol));
                 this.ecs.addSystem(100, new System.DebugInspectionRenderer(this.stage));
                 this.ecs.addSystem(100, new System.DebugTimingRenderer(this.stage, this.clockCentral, resConfig.viewport.copy()));
-                // speedrun timer:
-                // this.ecs.addSystem(100, new System.BookkeeperRenderer(this.stage, resConfig.viewport.copy()));
             }
+            // speedrun timer!
+            this.ecs.addSystem(100, new System.BookkeeperRenderer(this.stage, resConfig.viewport.copy()));
             // libraries
             this.ecs.addSystem(110, new System.Bookkeeper());
             this.ecs.addSystem(110, new System.Fade(this.stage, resConfig.viewport.copy()));
@@ -13360,8 +13482,11 @@ var Scene;
         nextLevel() {
             this.switchToRelative(1);
         }
+        /**
+         * Player can trigger this explicitly.
+         */
         resetScene() {
-            this.switchToRelative(0);
+            this.switchToRelative(0, true);
         }
         /**
          * Built for debugging.
@@ -13376,15 +13501,15 @@ var Scene;
             }
             console.warn('Scene "' + n + '" not found. Ignoring request.');
         }
-        switchToRelative(increment) {
+        switchToRelative(increment, softReset = false) {
             // mod doesn't work for negative numbers
             let idx = (this.activeIdx + increment) % this.progression.length;
             if (idx < 0) {
                 idx = this.progression.length + idx;
             }
-            this.switchTo(idx);
+            this.switchTo(idx, softReset);
         }
-        switchTo(idx) {
+        switchTo(idx, softReset = false) {
             // set new one as active
             this._activeIdx = idx;
             let active = this.progression[this.activeIdx];
@@ -13484,8 +13609,11 @@ var Scene;
                 }
             }
             // fresh start for new level
-            if (setIdx) {
+            if (setIdx && !softReset) {
                 this.ecs.getSystem(System.Bookkeeper).setActive(idx);
+            }
+            if (softReset) {
+                this.ecs.getSystem(System.Bookkeeper).softReset();
             }
         }
     }
@@ -14489,6 +14617,7 @@ var Handler;
                 [Events.EventTypes.SwitchScene, this.onSceneSwitch],
                 [Events.EventTypes.MenuKeypress, this.startGame],
             ]);
+            this.transient = true;
         }
         clear() {
             arrayClear(this.gui);
@@ -14565,6 +14694,7 @@ var Handler;
                 [Events.EventTypes.SwitchScene, this.onSceneSwitch],
                 [Events.EventTypes.MenuKeypress, this.finishCredits],
             ]);
+            this.transient = true;
         }
         addGUI(et, args) {
             if (args.phase !== Events.Phase.CreditsShow) {
@@ -14614,6 +14744,7 @@ var Handler;
                 [Events.EventTypes.SwitchScene, this.onSceneSwitch],
                 [Events.EventTypes.MenuKeypress, this.finishRecap],
             ]);
+            this.transient = true;
             this.guiBookkeep = [];
         }
         addGUI(et, args) {
@@ -17342,16 +17473,26 @@ var System;
 var System;
 (function (System) {
     class BookkeeperRenderer extends Engine.System {
-        constructor(stage, viewportDims) {
-            super();
+        constructor(stage, viewportDims, startDisabled = true) {
+            super(startDisabled);
             this.componentsRequired = new Set([
                 Component.Dummy.name,
             ]);
-            this.style = {
+            // dobjs: { [key: string]: Stage.GameText } = {
+            this.dobjs = {
+                curLabel: null,
+                curHms: null,
+                curDecimal: null,
+                totLabel: null,
+                totHms: null,
+                totDecimal: null,
+            };
+            let baseStyle = {
+                align: 'right',
                 fontFamily: [
                     "Consolas", "Mono", "Courier New", "Monospace",
                 ],
-                fontSize: 25,
+                fontSize: 1,
                 fontWeight: "bold",
                 fill: "#e7e7e7",
                 dropShadow: true,
@@ -17361,18 +17502,63 @@ var System;
                 dropShadowAngle: 2.35,
                 dropShadowAlpha: 0.4
             };
-            this.dobj = new Stage.GameText('', this.style, ZLevelHUD.DEBUG, StageTarget.HUD);
-            // position text
-            let buffer = 10;
-            this.dobj.anchor.set(1, 1);
-            this.dobj.position.set(viewportDims.x - buffer, viewportDims.y - buffer);
-            stage.add(this.dobj);
+            let labelStyle = clone(baseStyle);
+            labelStyle.fontSize = 18;
+            let hmsStyle = clone(baseStyle);
+            hmsStyle.fontSize = 25;
+            let decimalStyle = clone(baseStyle);
+            decimalStyle.fontSize = 18;
+            let buffer = 8; // space to pad bottom and side of screen
+            let spacingH = 54; // in between LEVEL and TOTAL sections
+            let decimalW = 42; // width of decimal section
+            let textH = 18; // height of label text to put stuff above
+            let squeezeY = 2; // amount to pull larger font text down to align
+            this.dobjs.curLabel = new Stage.GameText('LEVEL', labelStyle, ZLevelHUD.DEBUG, StageTarget.HUD);
+            this.dobjs.curLabel.position.set(viewportDims.x - buffer, viewportDims.y - buffer - spacingH);
+            this.dobjs.curHms = new Stage.GameText('', hmsStyle, ZLevelHUD.DEBUG, StageTarget.HUD);
+            this.dobjs.curHms.position.set(viewportDims.x - buffer - decimalW, viewportDims.y - buffer - textH - spacingH + squeezeY);
+            this.dobjs.curDecimal = new Stage.GameText('', decimalStyle, ZLevelHUD.DEBUG, StageTarget.HUD);
+            this.dobjs.curDecimal.position.set(viewportDims.x - buffer, viewportDims.y - buffer - textH - spacingH);
+            this.dobjs.totLabel = new Stage.GameText('TOTAL', labelStyle, ZLevelHUD.DEBUG, StageTarget.HUD);
+            this.dobjs.totLabel.position.set(viewportDims.x - buffer, viewportDims.y - buffer);
+            this.dobjs.totHms = new Stage.GameText('', hmsStyle, ZLevelHUD.DEBUG, StageTarget.HUD);
+            this.dobjs.totHms.position.set(viewportDims.x - buffer - decimalW, viewportDims.y - buffer - textH + squeezeY);
+            this.dobjs.totDecimal = new Stage.GameText('', decimalStyle, ZLevelHUD.DEBUG, StageTarget.HUD);
+            this.dobjs.totDecimal.position.set(viewportDims.x - buffer, viewportDims.y - buffer - textH);
+            for (let dobjName in this.dobjs) {
+                let dobj = this.dobjs[dobjName];
+                dobj.anchor.set(1, 1);
+                dobj.visible = !startDisabled;
+                stage.add(dobj);
+            }
+        }
+        onDisabled(entities) {
+            for (let dobjName in this.dobjs) {
+                this.dobjs[dobjName].visible = false;
+            }
+        }
+        onEnabled(entities) {
+            for (let dobjName in this.dobjs) {
+                this.dobjs[dobjName].visible = true;
+            }
         }
         update(delta, entities) {
             let source = this.ecs.getSystem(System.Bookkeeper);
-            this.dobj.text = source.debugElapsed();
+            let [level, total] = source.debugElapsed();
+            let [levelHms, levelDecimal] = level;
+            this.dobjs.curHms.text = levelHms;
+            this.dobjs.curDecimal.text = levelDecimal;
+            let [totalHms, totalDecimal] = total;
+            this.dobjs.totHms.text = totalHms;
+            this.dobjs.totDecimal.text = totalDecimal;
         }
     }
+    __decorate([
+        override
+    ], BookkeeperRenderer.prototype, "onDisabled", null);
+    __decorate([
+        override
+    ], BookkeeperRenderer.prototype, "onEnabled", null);
     System.BookkeeperRenderer = BookkeeperRenderer;
 })(System || (System = {}));
 /// <reference path="../core/util.ts" />
@@ -17428,10 +17614,13 @@ var System;
             this.sumElapsed = 0;
         }
         /**
-         * Call whenever ending gameplay for a level (or a segment).
+         * Call whenever beginning gameplay for a level (or a segment). Will
+         * only start timer if it hasn't been started yet.
          */
         begin() {
-            this.startTime = (performance || Date).now();
+            if (this.startTime === -1) {
+                this.startTime = (performance || Date).now();
+            }
             return this;
         }
         /**
@@ -17454,6 +17643,12 @@ var System;
             this.secretsFound = 0;
             this.sumElapsed = 0;
             return this;
+        }
+        /**
+         * Resets doughnuts only.
+         */
+        softReset() {
+            this.secretsFound = 0;
         }
         /**
          * Returns amount of time elapsed in the level after it has ended, or 0
@@ -17526,6 +17721,14 @@ var System;
             }
             this.curLevelNum = levelNum;
             return this.levelInfos.get(levelNum).reset();
+        }
+        /**
+         * Resets doughnuts only.
+         */
+        softReset() {
+            if (this.levelInfos.has(this.curLevelNum)) {
+                this.levelInfos.get(this.curLevelNum).softReset();
+            }
         }
         /**
          * Called when gameplay starts. This can be called on the same level
@@ -17637,8 +17840,7 @@ var System;
                 cur = this.levelInfos.get(this.curLevelNum).debugElapsed();
             }
             let total = this.debugTimeCache + cur;
-            return ('Level: ' + msToUserTime(cur) + '\n' +
-                'Total: ' + msToUserTime(total));
+            return [msToUserTimeTwoPart(cur), msToUserTimeTwoPart(total)];
         }
         /**
          * Should be called when the game starts over.
@@ -18147,7 +18349,7 @@ var System;
             // same with digits. damn, really should have "button press" as an
             // input abstraction... maybe...
             for (let i = 0; i < this.digitKeys.length; i++) {
-                let wantDigit = this.keyboard.keys.get(this.digitKeys[i]).isDown;
+                let wantDigit = this.keyboard.gamekeys.get(this.digitKeys[i]).isDown;
                 if (wantDigit && !(this.prevDigits[i])) {
                     this.ecs.slowMotion.debugFactor = this.slowScales[i];
                 }
@@ -18487,7 +18689,7 @@ var System;
             ]);
         }
         update(delta, entities) {
-            let wantReset = this.keyboard.keys.get(GameKey.J).isDown;
+            let wantReset = this.keyboard.gamekeys.get(GameKey.J).isDown;
             if (wantReset && !this.prevKey) {
                 this.sceneManager.resetScene();
             }
@@ -19451,7 +19653,7 @@ var System;
         }
         update(delta, entities) {
             // detect new pause button presses to toggle
-            let wantPause = this.keyboard.keys.get(GameKey.P).isDown;
+            let wantPause = this.keyboard.gamekeys.get(GameKey.P).isDown;
             if (wantPause && !this.prevPause) {
                 // toggle
                 this.ecs.slowMotion.debugPaused = !this.ecs.slowMotion.debugPaused;
