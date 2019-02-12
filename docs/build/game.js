@@ -9936,6 +9936,7 @@ var System;
 })(System || (System = {}));
 /// <reference path="../../lib/pixi.js.d.ts" />
 /// <reference path="../../lib/pixi-layers.d.ts" />
+/// <reference path="../../lib/pixi-packer-parser.d.ts" />
 /// <reference path="game.ts" />
 /// <reference path="../core/keyboard.ts" />
 /// <reference path="../core/mouse.ts" />
@@ -10047,6 +10048,14 @@ var Game;
                 let fn = this.config.subConfigs[key];
                 PIXI.loader.add(fn, fn);
             }
+            // old: load single sheet (loading json triggers loading texture)
+            // let fn = 'assets/sheets/sheet.json'
+            // PIXI.loader.add(fn, fn);
+            // new: add spritesheet parsing middleware and load up mega sheet,
+            // which triggers loading all textures
+            PIXI.loader.use(pixiPackerParser(PIXI));
+            let fn = 'assets/new-sheets/main_en_full.json';
+            PIXI.loader.add(fn, fn);
             // kick off loading
             PIXI.loader.once('complete', this.parse, this);
             PIXI.loader.onProgress.detachAll();

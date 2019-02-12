@@ -14,7 +14,6 @@
 		"seasons": "assets/data/seasons.json",
 		"shields": "assets/data/shields.json",
 		"sounds": "assets/data/sounds.json",
-		"spritesheetJson": "assets/sheets/sheet.json",
 		"weapons": "assets/data/weapons.json"
 	}
 }

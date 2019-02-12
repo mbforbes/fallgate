@@ -661,7 +661,7 @@
 		},
 		"titleVersion": {
 			"textSpec": {
-				"text": "v1.1.1",
+				"text": "v1.1.2-alpha",
 				"style": {
 					"fontFamily": [
 						"Josefin Sans"
