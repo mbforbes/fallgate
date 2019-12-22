@@ -5193,7 +5193,7 @@
 		"img": "decorations/forestObj/mushBlack.png"
 	},
 	"mushPurple": {
-		"collisionGenerate": true,
+		"collisionManual": "0,0,64,64",
 		"collisionTypes": [
 			"Solid"
 		],

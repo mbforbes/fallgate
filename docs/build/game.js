@@ -269,7 +269,7 @@ class Point {
 /// <reference path="../../lib/pixi.js.d.ts" />
 var Game;
 (function (Game) {
-    var Mode;
+    let Mode;
     (function (Mode) {
         Mode[Mode["DEBUG"] = 0] = "DEBUG";
         Mode[Mode["RELEASE"] = 1] = "RELEASE";
@@ -2473,7 +2473,7 @@ var Component;
 /// <reference path="sound.ts" />
 var Shield;
 (function (Shield) {
-    var BlockState;
+    let BlockState;
     (function (BlockState) {
         BlockState[BlockState["Idle"] = 0] = "Idle";
         BlockState[BlockState["Raise"] = 1] = "Raise";
@@ -2506,7 +2506,7 @@ var Shield;
 /// <reference path="sound.ts" />
 var Weapon;
 (function (Weapon) {
-    var SwingState;
+    let SwingState;
     (function (SwingState) {
         SwingState[SwingState["Idle"] = 0] = "Idle";
         SwingState[SwingState["ChargeCharging"] = 1] = "ChargeCharging";
@@ -2517,12 +2517,12 @@ var Weapon;
         SwingState[SwingState["QuickAttack2"] = 6] = "QuickAttack2";
         SwingState[SwingState["Combo"] = 7] = "Combo";
     })(SwingState = Weapon.SwingState || (Weapon.SwingState = {}));
-    var AttackMovement;
+    let AttackMovement;
     (function (AttackMovement) {
         AttackMovement[AttackMovement["Track"] = 0] = "Track";
         AttackMovement[AttackMovement["Launch"] = 1] = "Launch";
     })(AttackMovement = Weapon.AttackMovement || (Weapon.AttackMovement = {}));
-    var AttackType;
+    let AttackType;
     (function (AttackType) {
         AttackType[AttackType["Quick"] = 0] = "Quick";
         AttackType[AttackType["Swing"] = 1] = "Swing";
@@ -2902,7 +2902,7 @@ var AI;
     /**
      * Select the AI here.
      */
-    var Behavior;
+    let Behavior;
     (function (Behavior) {
         Behavior[Behavior["Cow"] = 0] = "Cow";
         Behavior[Behavior["Archer"] = 1] = "Archer";
@@ -3299,7 +3299,7 @@ var System;
     //
     // Cow FSM
     //
-    var CowState;
+    let CowState;
     (function (CowState) {
         CowState[CowState["Graze"] = 0] = "Graze";
         CowState[CowState["WalkLeft"] = 1] = "WalkLeft";
@@ -3385,7 +3385,7 @@ var System;
     //
     // Brawler FSM
     //
-    var BrawlerState;
+    let BrawlerState;
     (function (BrawlerState) {
         BrawlerState[BrawlerState["AtHome"] = 0] = "AtHome";
         BrawlerState[BrawlerState["GoHome"] = 1] = "GoHome";
@@ -3683,11 +3683,11 @@ var Component;
 (function (Component) {
     class Armed extends Engine.Component {
         constructor(active, 
-            /**
-             * The state is set by the Swing system to match its internal
-             * state and should only be observed by other systems.
-             */
-            state = Weapon.SwingState.Idle) {
+        /**
+         * The state is set by the Swing system to match its internal
+         * state and should only be observed by other systems.
+         */
+        state = Weapon.SwingState.Idle) {
             super();
             this.state = state;
             this.inventory = new Array();
@@ -3712,11 +3712,11 @@ var Component;
 (function (Component) {
     class Shielded extends Engine.Component {
         constructor(active, 
-            /**
-             * The state is set by the Defend system to match its internal
-             * state and should only be observed by other systems.
-             */
-            state = Shield.BlockState.Idle) {
+        /**
+         * The state is set by the Defend system to match its internal
+         * state and should only be observed by other systems.
+         */
+        state = Shield.BlockState.Idle) {
             super();
             this.state = state;
             this.inventory = new Array();
@@ -3853,23 +3853,23 @@ var Component;
 (function (Component) {
     class Timebomb extends Engine.Component {
         constructor(
-            /**
-             * Total time in ms this will last (doesn't change).
-             */
-            duration, 
-            /**
-             * What to do upon destruction.
-             */
-            destruct, 
-            /**
-             * A fuse, to allow others to request that the destruction is
-             * activated.
-             */
-            fuse = false, 
-            /**
-             * An optional function that will be called upon destruction.
-             */
-            lastWish) {
+        /**
+         * Total time in ms this will last (doesn't change).
+         */
+        duration, 
+        /**
+         * What to do upon destruction.
+         */
+        destruct, 
+        /**
+         * A fuse, to allow others to request that the destruction is
+         * activated.
+         */
+        fuse = false, 
+        /**
+         * An optional function that will be called upon destruction.
+         */
+        lastWish) {
             super();
             this.duration = duration;
             this.destruct = destruct;
@@ -4109,13 +4109,13 @@ var System;
 })(System || (System = {}));
 var Anim;
 (function (Anim) {
-    var PlayType;
+    let PlayType;
     (function (PlayType) {
         PlayType[PlayType["Loop"] = 0] = "Loop";
         PlayType[PlayType["PingPong"] = 1] = "PingPong";
         PlayType[PlayType["PlayAndHold"] = 2] = "PlayAndHold";
     })(PlayType = Anim.PlayType || (Anim.PlayType = {}));
-    var AlignType;
+    let AlignType;
     (function (AlignType) {
         /**
          * Center is where the 'core' parts' textures are anchored. This is the
@@ -4505,7 +4505,7 @@ var Attributes;
     /**
      * Feature (flash, invincible, immobile) groupings.
      */
-    var HitBehavior;
+    let HitBehavior;
     (function (HitBehavior) {
         HitBehavior[HitBehavior["Player"] = 0] = "Player";
         HitBehavior[HitBehavior["StandardEnemy"] = 1] = "StandardEnemy";
@@ -4899,7 +4899,7 @@ var Ontology;
     /**
      * Coarse level `Thing` categories multiplex behavior.
      */
-    var Thing;
+    let Thing;
     (function (Thing) {
         Thing[Thing["UNSPECIFIED"] = 0] = "UNSPECIFIED";
         Thing[Thing["Player"] = 1] = "Player";
@@ -4907,7 +4907,7 @@ var Ontology;
         Thing[Thing["Destructible"] = 3] = "Destructible";
         Thing[Thing["Item"] = 4] = "Item";
     })(Thing = Ontology.Thing || (Ontology.Thing = {}));
-    var Item;
+    let Item;
     (function (Item) {
         Item[Item["Health"] = 0] = "Health";
         Item[Item["Doughnut"] = 1] = "Doughnut";
@@ -5407,7 +5407,7 @@ var Events;
     /**
      * List of all game event types.
      */
-    var EventTypes;
+    let EventTypes;
     (function (EventTypes) {
         EventTypes[EventTypes["Damage"] = 0] = "Damage";
         EventTypes[EventTypes["Charge"] = 1] = "Charge";
@@ -5494,7 +5494,7 @@ var Events;
          */
         EventTypes[EventTypes["PlayerControl"] = 23] = "PlayerControl";
     })(EventTypes = Events.EventTypes || (Events.EventTypes = {}));
-    var Phase;
+    let Phase;
     (function (Phase) {
         Phase[Phase["TitleScreenShow"] = 0] = "TitleScreenShow";
         Phase[Phase["CreditsShow"] = 1] = "CreditsShow";
@@ -5537,7 +5537,7 @@ var Physics;
     Physics.RIGHT = -1;
     Physics.UP = -1;
     Physics.DOWN = 1;
-    var MovementType;
+    let MovementType;
     (function (MovementType) {
         /**
          * RotateMove means the rotational velocity is used to rotate the
@@ -5558,7 +5558,7 @@ var Physics;
          */
         MovementType[MovementType["Strafe"] = 2] = "Strafe";
     })(MovementType = Physics.MovementType || (Physics.MovementType = {}));
-    var RegionType;
+    let RegionType;
     (function (RegionType) {
         RegionType[RegionType["Slow"] = 0] = "Slow";
     })(RegionType = Physics.RegionType || (Physics.RegionType = {}));
@@ -6429,7 +6429,7 @@ var System;
     /**
      * Options for a button that can be either pressed or held and released.
      */
-    var GameButtonAction;
+    let GameButtonAction;
     (function (GameButtonAction) {
         GameButtonAction[GameButtonAction["Nothing"] = 0] = "Nothing";
         GameButtonAction[GameButtonAction["Press"] = 1] = "Press";
@@ -6442,11 +6442,11 @@ var System;
      */
     class GameButton {
         constructor(
-            /**
-             * Cutoff for pressing (< this) and holding (> this) a button, in ms of
-             * the duration held.
-             */
-            HOLD_THRESHOLD = 150) {
+        /**
+         * Cutoff for pressing (< this) and holding (> this) a button, in ms of
+         * the duration held.
+         */
+        HOLD_THRESHOLD = 150) {
             this.HOLD_THRESHOLD = HOLD_THRESHOLD;
             this.action = GameButtonAction.Nothing;
             this.isDown = false;
@@ -7231,6 +7231,13 @@ var System;
                     }
                     break;
                 }
+                // // In lower state, just wait to transition back to idle.
+                // case Shield.BlockState.Lower: {
+                //	if (aspect.elapsed >= shield.timing.lowerDuration) {
+                //		aspect.state = Shield.BlockState.Idle;
+                //	}
+                //	break;
+                // }
             }
             // Always update armed state to match (for other observing systems).
             shielded.state = aspect.state;
@@ -7307,7 +7314,7 @@ var System;
 // Generic functions for working with polygons.
 var Physics;
 (function (Physics) {
-    var Shape;
+    let Shape;
     (function (Shape) {
         Shape[Shape["Rectangle"] = 0] = "Rectangle";
         Shape[Shape["Polygon"] = 1] = "Polygon";
@@ -9160,7 +9167,7 @@ var System;
 /// <reference path="stage.ts" />
 var Stage;
 (function (Stage) {
-    var PlayDirection;
+    let PlayDirection;
     (function (PlayDirection) {
         PlayDirection[PlayDirection["Forward"] = 0] = "Forward";
         PlayDirection[PlayDirection["Backward"] = 1] = "Backward";
@@ -9553,7 +9560,7 @@ var Component;
 /// <reference path="../component/position.ts" />
 var GUI;
 (function (GUI) {
-    var AssetType;
+    let AssetType;
     (function (AssetType) {
         AssetType[AssetType["Text"] = 0] = "Text";
         AssetType[AssetType["Sprite"] = 1] = "Sprite";
@@ -10013,13 +10020,13 @@ var Game;
         if (el.requestFullscreen) {
             el.requestFullscreen();
         }
-        else if (el.mozRequestFullScreen) {
+        else if (el.mozRequestFullScreen) { /* Firefox */
             el.mozRequestFullScreen();
         }
-        else if (el.webkitRequestFullscreen) {
+        else if (el.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
             el.webkitRequestFullscreen();
         }
-        else if (el.msRequestFullscreen) {
+        else if (el.msRequestFullscreen) { /* IE/Edge */
             el.msRequestFullscreen();
         }
     }
@@ -10048,11 +10055,12 @@ var Game;
                 let fn = this.config.subConfigs[key];
                 PIXI.loader.add(fn, fn);
             }
-            // old: load single sheet (loading json triggers loading texture)
+            // single sheet with texture packer: load single sheet (loading json
+            // triggers loading texture)
             // let fn = 'assets/sheets/sheet.json'
             // PIXI.loader.add(fn, fn);
-            // new: add spritesheet parsing middleware and load up mega sheet,
-            // which triggers loading all textures
+            // multi sheet with pixi packer and parser. This add spritesheet parsing
+            // middleware and loads up json, which triggers loading all textures.
             PIXI.loader.use(pixiPackerParser(PIXI));
             let fn = 'assets/new-sheets/main_en_full.json';
             PIXI.loader.add(fn, fn);
@@ -10115,6 +10123,16 @@ var Game;
                     scene.map.top,
                     scene.blueprint,
                 ];
+                if (scene.map.bottom_tiles != null) {
+                    for (let tile of scene.map.bottom_tiles) {
+                        assets.push(tile.img);
+                    }
+                }
+                if (scene.map.top_tiles != null) {
+                    for (let tile of scene.map.top_tiles) {
+                        assets.push(tile.img);
+                    }
+                }
                 for (let asset of assets) {
                     if (asset == null || asset.length === 0 || requested.has(asset)) {
                         continue;
@@ -10433,7 +10451,6 @@ var Game;
             this.ecs.addSystem(90, new System.SoundsFootsteps());
             this.ecs.addSystem(90, this.audio);
             this.ecs.addSystem(90, new System.LowHealth());
-            // tmp --- figure out final placement
             this.ecs.addSystem(90, new System.ParticleRenderer(world.getChildAt(world.mapping.get(ZLevelWorld.Particles)), this.subConfigs.particles, this.particleJSONS));
             // ticking animations (still part of rendering, but comes after
             // AnimationRenderer)
@@ -10897,7 +10914,7 @@ var Component;
 })(Component || (Component = {}));
 var Graphics;
 (function (Graphics) {
-    var LightbulbSize;
+    let LightbulbSize;
     (function (LightbulbSize) {
         LightbulbSize[LightbulbSize["Small"] = 0] = "Small";
         LightbulbSize[LightbulbSize["Medium"] = 1] = "Medium";
@@ -13048,7 +13065,7 @@ var GameMap;
         ['forestWalls,forestWalls,none,forestWalls', { coll: { shape: V_Full, cTypes: C_Wall }, angle: 0 }],
         ['forestWalls,forestWalls,forestWalls,none', { coll: { shape: V_Full, cTypes: C_Wall }, angle: 0 }],
         // OOB
-        ['forestWalls,forestWalls,forestWalls,forestWalls', { coll: { shape: V_Full, cTypes: C_Bramble }, angle: 0, objLayerOverride: 'OOBTile' }],
+        // ['forestWalls,forestWalls,forestWalls,forestWalls', { coll: { shape: V_Full, cTypes: C_Bramble }, angle: 0, objLayerOverride: 'OOBTile' }],
         // castle walls
         ['none,castleWalls,none,castleWalls', { coll: { shape: V_Full, cTypes: C_Wall }, angle: 0 }],
         ['castleWalls,none,castleWalls,none', { coll: { shape: V_Full, cTypes: C_Wall }, angle: 0 }],
@@ -13062,8 +13079,6 @@ var GameMap;
         ['castleWalls,none,castleWalls,castleWalls', { coll: { shape: V_Full, cTypes: C_Wall }, angle: 0 }],
         ['castleWalls,castleWalls,none,castleWalls', { coll: { shape: V_Full, cTypes: C_Wall }, angle: 0 }],
         ['castleWalls,castleWalls,castleWalls,none', { coll: { shape: V_Full, cTypes: C_Wall }, angle: 0 }],
-        // OOB
-        ['castleWalls,castleWalls,castleWalls,castleWalls', { coll: { shape: V_Full, cTypes: C_Bramble }, angle: 0, objLayerOverride: 'OOBTile' }],
     ]);
     /**
      * Parses roundabout map info on GIDs, tilesets, and terrains stored in
@@ -13363,7 +13378,7 @@ var GameMap;
 // Game logic relevant things. If you think of a better name I'm all ears.
 var Logic;
 (function (Logic) {
-    var ZoneType;
+    let ZoneType;
     (function (ZoneType) {
         ZoneType[ZoneType["Camera"] = 0] = "Camera";
         ZoneType[ZoneType["NearExit"] = 1] = "NearExit";
@@ -13449,6 +13464,32 @@ var Scene;
         }
     }
     Scene.InfoProvider = InfoProvider;
+    function sanityCheckMap(map) {
+        // because our map spec got more complicated
+        if (map.bottom == null && map.bottom_tiles == null) {
+            throw new Error('Map requires either .bottom or .bottom_tiles to be defined.');
+        }
+        if (map.bottom != null && map.bottom_tiles != null) {
+            console.warn('Map should not have both .bottom and .bottom_tiles defined.');
+        }
+        if (map.top != null && map.top_tiles != null) {
+            console.warn('Map should not have both .top and .top_tiles defined.');
+        }
+    }
+    function getMapDims(map) {
+        // use single image map if it's there.
+        let bImg = map.bottom;
+        if (bImg != null) {
+            return new Point(PIXI.utils.TextureCache[bImg].width, PIXI.utils.TextureCache[bImg].height);
+        }
+        // else we have bg image tiles. figure out total width and height.
+        let maxW = 0, maxH = 0;
+        for (let tile of map.bottom_tiles) {
+            maxW = Math.max(maxW, tile.pos[0] + PIXI.utils.TextureCache[tile.img].width);
+            maxH = Math.max(maxH, tile.pos[1] + PIXI.utils.TextureCache[tile.img].height);
+        }
+        return new Point(maxW, maxH);
+    }
     /**
      * Manages scenes. Part of the engine, ish, but also just kind of a plugin,
      * that acts on it, really.
@@ -13518,6 +13559,29 @@ var Scene;
             }
             this.switchTo(idx, softReset);
         }
+        /**
+         * Adds BG or FG (set by `z`) image(s) to the game. At most one of
+         * `single` or `tiles` (neither OK, but not both) should be provided.
+         */
+        addImgs(single, tiles, z) {
+            let queue = [];
+            if (single != null) {
+                // single image case
+                queue.push([new Point(0, 0), single]);
+            }
+            if (tiles != null) {
+                // tiled image case
+                for (let tile of tiles) {
+                    queue.push([new Point(tile.pos[0], tile.pos[1]), tile.img]);
+                }
+            }
+            // add 'em to the game!
+            for (let [pos, img] of queue) {
+                let e = this.ecs.addEntity();
+                this.ecs.addComponent(e, new Component.Position(pos));
+                this.ecs.addComponent(e, new Component.StaticRenderable(img, z, StageTarget.World, new Point(0, 0)));
+            }
+        }
         switchTo(idx, softReset = false) {
             // set new one as active
             this._activeIdx = idx;
@@ -13541,21 +13605,13 @@ var Scene;
                 this.gm.parseBareMap(this.mapJsons.get(active));
             }
             this.activeScene = this.scenes.get(active);
+            let map = this.activeScene.map;
             // figure out the size of the bottom image as our map size.
-            let bImg = this.activeScene.map.bottom;
-            this.mapDims.set_(PIXI.utils.TextureCache[bImg].width, PIXI.utils.TextureCache[bImg].height);
-            // console.log('Map dims: ' + this.mapDims.toString());
-            // put in bottom image
-            let bEntity = this.ecs.addEntity();
-            this.ecs.addComponent(bEntity, new Component.Position(new Point(0, this.mapDims.y)));
-            this.ecs.addComponent(bEntity, new Component.StaticRenderable(bImg, ZLevelWorld.BG, StageTarget.World, new Point(0, 1)));
-            // put in top image if provided
-            let tImg = this.activeScene.map.top;
-            if (tImg != null && tImg.length > 0) {
-                let tEntity = this.ecs.addEntity();
-                this.ecs.addComponent(tEntity, new Component.Position(new Point(0, this.mapDims.y)));
-                this.ecs.addComponent(tEntity, new Component.StaticRenderable(tImg, ZLevelWorld.Top, StageTarget.World, new Point(0, 1)));
-            }
+            sanityCheckMap(map);
+            this.mapDims = getMapDims(map);
+            // put in bottom and top image(s)
+            this.addImgs(map.bottom, map.bottom_tiles, ZLevelWorld.BG);
+            this.addImgs(map.top, map.top_tiles, ZLevelWorld.Top);
             // do any particle modifications if specified
             let particleIDs = this.activeScene.level.particleIDs;
             if (particleIDs != null) {
@@ -13870,7 +13926,7 @@ var System;
      * TODO: consider pulling somewhere else so this isn't globally called
      * `System.ShakeType`
      */
-    var ShakeType;
+    let ShakeType;
     (function (ShakeType) {
         ShakeType[ShakeType["JumpEaseBack"] = 0] = "JumpEaseBack";
         ShakeType[ShakeType["Wobble"] = 1] = "Wobble";
@@ -16008,7 +16064,10 @@ var Script;
     class TestTween extends Script.Script {
         constructor() {
             super(...arguments);
-            this.code = new Map([]);
+            this.code = new Map([
+            // [1000, {func: this.v1, args: null}],
+            // [1000, {func: this.v2, args: null}],
+            ]);
         }
         v2() {
             console.log('starting make tween script (v2)');
@@ -16186,7 +16245,7 @@ var System;
 })(System || (System = {}));
 var System;
 (function (System) {
-    var CowardState;
+    let CowardState;
     (function (CowardState) {
         CowardState[CowardState["Wait"] = 0] = "Wait";
         CowardState[CowardState["Flee"] = 1] = "Flee";
@@ -16304,7 +16363,7 @@ var System;
     //
     // FollowSawtooth FSM
     //
-    var FollowSawtoothState;
+    let FollowSawtoothState;
     (function (FollowSawtoothState) {
         FollowSawtoothState[FollowSawtoothState["Idle"] = 0] = "Idle";
         FollowSawtoothState[FollowSawtoothState["Pursue"] = 1] = "Pursue";
@@ -16418,7 +16477,7 @@ var System;
 })(System || (System = {}));
 var System;
 (function (System) {
-    var ForwardState;
+    let ForwardState;
     (function (ForwardState) {
         ForwardState[ForwardState["WaitBefore"] = 0] = "WaitBefore";
         ForwardState[ForwardState["Forward"] = 1] = "Forward";
@@ -16505,7 +16564,7 @@ var System;
 })(System || (System = {}));
 var System;
 (function (System) {
-    var SwingTimerState;
+    let SwingTimerState;
     (function (SwingTimerState) {
         SwingTimerState[SwingTimerState["InitialWait"] = 0] = "InitialWait";
         SwingTimerState[SwingTimerState["Wait"] = 1] = "Wait";
@@ -16586,7 +16645,7 @@ var System;
     //
     // Mimic FSM
     //
-    var MimicState;
+    let MimicState;
     (function (MimicState) {
         MimicState[MimicState["Hide"] = 0] = "Hide";
         MimicState[MimicState["Smash"] = 1] = "Smash";
@@ -16760,7 +16819,7 @@ var System;
     //
     // Sawtooth FSM
     //
-    var SawtoothState;
+    let SawtoothState;
     (function (SawtoothState) {
         SawtoothState[SawtoothState["Idle"] = 0] = "Idle";
         SawtoothState[SawtoothState["Kite"] = 1] = "Kite";
@@ -17013,7 +17072,7 @@ var System;
     //
     // Sentinel FSM
     //
-    var SentinelState;
+    let SentinelState;
     (function (SentinelState) {
         SentinelState[SentinelState["AtHome"] = 0] = "AtHome";
         SentinelState[SentinelState["GoHome"] = 1] = "GoHome";
@@ -17188,7 +17247,7 @@ var System;
     //
     // Spider FSM
     //
-    var SpiderState;
+    let SpiderState;
     (function (SpiderState) {
         SpiderState[SpiderState["Wait"] = 0] = "Wait";
         SpiderState[SpiderState["Move"] = 1] = "Move";
@@ -19050,7 +19109,7 @@ var System;
 /// <reference path="../component/dummy.ts" />
 var System;
 (function (System) {
-    var FadeTarget;
+    let FadeTarget;
     (function (FadeTarget) {
         /**
          * Shows game.

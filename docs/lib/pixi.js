@@ -1,6 +1,6 @@
 /*!
- * pixi.js - v4.8.5
- * Compiled Mon, 07 Jan 2019 15:50:28 UTC
+ * pixi.js - v4.8.8
+ * Compiled Sun, 02 Jun 2019 22:42:46 UTC
  *
  * pixi.js is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
@@ -8422,7 +8422,7 @@ exports.__esModule = true;
  * @name VERSION
  * @type {string}
  */
-var VERSION = exports.VERSION = '4.8.5';
+var VERSION = exports.VERSION = '4.8.8';
 
 /**
  * Two Pi.
@@ -11190,10 +11190,10 @@ var Graphics = function (_Container) {
 
 
     Graphics.prototype._quadraticCurveLength = function _quadraticCurveLength(fromX, fromY, cpX, cpY, toX, toY) {
-        var ax = fromX - (2.0 * cpX + toX);
-        var ay = fromY - (2.0 * cpY + toY);
-        var bx = 2.0 * ((cpX - 2.0) * fromX);
-        var by = 2.0 * ((cpY - 2.0) * fromY);
+        var ax = fromX - 2.0 * cpX + toX;
+        var ay = fromY - 2.0 * cpY + toY;
+        var bx = 2.0 * cpX - 2.0 * fromX;
+        var by = 2.0 * cpY - 2.0 * fromY;
         var a = 4.0 * (ax * ax + ay * ay);
         var b = 4.0 * (ax * bx + ay * by);
         var c = bx * bx + by * by;
@@ -12495,6 +12495,8 @@ var CanvasGraphicsRenderer = function () {
                 var holes = data.holes;
                 var outerArea = void 0;
                 var innerArea = void 0;
+                var px = void 0;
+                var py = void 0;
 
                 context.moveTo(points[0], points[1]);
 
@@ -12509,31 +12511,41 @@ var CanvasGraphicsRenderer = function () {
 
                 if (holes.length > 0) {
                     outerArea = 0;
-                    for (var _j = 0; _j < points.length; _j += 2) {
-                        outerArea += points[_j] * points[_j + 3] - points[_j + 1] * points[_j + 2];
+                    px = points[0];
+                    py = points[1];
+                    for (var _j = 2; _j + 2 < points.length; _j += 2) {
+                        outerArea += (points[_j] - px) * (points[_j + 3] - py) - (points[_j + 2] - px) * (points[_j + 1] - py);
                     }
 
                     for (var k = 0; k < holes.length; k++) {
                         points = holes[k].points;
 
-                        innerArea = 0;
-                        for (var _j2 = 0; _j2 < points.length; _j2 += 2) {
-                            innerArea += points[_j2] * points[_j2 + 3] - points[_j2 + 1] * points[_j2 + 2];
+                        if (!points) {
+                            continue;
                         }
 
-                        context.moveTo(points[0], points[1]);
+                        innerArea = 0;
+                        px = points[0];
+                        py = points[1];
+                        for (var _j2 = 2; _j2 + 2 < points.length; _j2 += 2) {
+                            innerArea += (points[_j2] - px) * (points[_j2 + 3] - py) - (points[_j2 + 2] - px) * (points[_j2 + 1] - py);
+                        }
 
                         if (innerArea * outerArea < 0) {
+                            context.moveTo(points[0], points[1]);
+
                             for (var _j3 = 2; _j3 < points.length; _j3 += 2) {
                                 context.lineTo(points[_j3], points[_j3 + 1]);
                             }
                         } else {
-                            for (var _j4 = points.length - 2; _j4 >= 2; _j4 -= 2) {
+                            context.moveTo(points[points.length - 2], points[points.length - 1]);
+
+                            for (var _j4 = points.length - 4; _j4 >= 0; _j4 -= 2) {
                                 context.lineTo(points[_j4], points[_j4 + 1]);
                             }
                         }
 
-                        if (holes[k].closed) {
+                        if (holes[k].close) {
                             context.closePath();
                         }
                     }
@@ -14872,11 +14884,6 @@ var Matrix = function () {
 
         if (delta < 0.00001 || Math.abs(_const.PI_2 - delta) < 0.00001) {
             transform.rotation = skewY;
-
-            if (a < 0 && d >= 0) {
-                transform.rotation += transform.rotation <= 0 ? Math.PI : -Math.PI;
-            }
-
             transform.skew.x = transform.skew.y = 0;
         } else {
             transform.rotation = 0;
@@ -15726,268 +15733,247 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * @memberof PIXI
  */
 var Rectangle = function () {
+  /**
+   * @param {number} [x=0] - The X coordinate of the upper-left corner of the rectangle
+   * @param {number} [y=0] - The Y coordinate of the upper-left corner of the rectangle
+   * @param {number} [width=0] - The overall width of this rectangle
+   * @param {number} [height=0] - The overall height of this rectangle
+   */
+  function Rectangle() {
+    var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var width = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    var height = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+
+    _classCallCheck(this, Rectangle);
+
     /**
-     * @param {number} [x=0] - The X coordinate of the upper-left corner of the rectangle
-     * @param {number} [y=0] - The Y coordinate of the upper-left corner of the rectangle
-     * @param {number} [width=0] - The overall width of this rectangle
-     * @param {number} [height=0] - The overall height of this rectangle
+     * @member {number}
+     * @default 0
      */
-    function Rectangle() {
-        var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-        var y = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-        var width = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-        var height = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+    this.x = Number(x);
 
-        _classCallCheck(this, Rectangle);
+    /**
+     * @member {number}
+     * @default 0
+     */
+    this.y = Number(y);
 
-        /**
-         * @member {number}
-         * @default 0
-         */
-        this.x = Number(x);
+    /**
+     * @member {number}
+     * @default 0
+     */
+    this.width = Number(width);
 
-        /**
-         * @member {number}
-         * @default 0
-         */
-        this.y = Number(y);
+    /**
+     * @member {number}
+     * @default 0
+     */
+    this.height = Number(height);
 
-        /**
-         * @member {number}
-         * @default 0
-         */
-        this.width = Number(width);
+    /**
+     * The type of the object, mainly used to avoid `instanceof` checks
+     *
+     * @member {number}
+     * @readOnly
+     * @default PIXI.SHAPES.RECT
+     * @see PIXI.SHAPES
+     */
+    this.type = _const.SHAPES.RECT;
+  }
 
-        /**
-         * @member {number}
-         * @default 0
-         */
-        this.height = Number(height);
+  /**
+   * returns the left edge of the rectangle
+   *
+   * @member {number}
+   */
 
-        /**
-         * The type of the object, mainly used to avoid `instanceof` checks
-         *
-         * @member {number}
-         * @readOnly
-         * @default PIXI.SHAPES.RECT
-         * @see PIXI.SHAPES
-         */
-        this.type = _const.SHAPES.RECT;
+
+  /**
+   * Creates a clone of this Rectangle
+   *
+   * @return {PIXI.Rectangle} a copy of the rectangle
+   */
+  Rectangle.prototype.clone = function clone() {
+    return new Rectangle(this.x, this.y, this.width, this.height);
+  };
+
+  /**
+   * Copies another rectangle to this one.
+   *
+   * @param {PIXI.Rectangle} rectangle - The rectangle to copy.
+   * @return {PIXI.Rectangle} Returns itself.
+   */
+
+
+  Rectangle.prototype.copy = function copy(rectangle) {
+    this.x = rectangle.x;
+    this.y = rectangle.y;
+    this.width = rectangle.width;
+    this.height = rectangle.height;
+
+    return this;
+  };
+
+  /**
+   * Checks whether the x and y coordinates given are contained within this Rectangle
+   *
+   * @param {number} x - The X coordinate of the point to test
+   * @param {number} y - The Y coordinate of the point to test
+   * @return {boolean} Whether the x/y coordinates are within this Rectangle
+   */
+
+
+  Rectangle.prototype.contains = function contains(x, y) {
+    if (this.width <= 0 || this.height <= 0) {
+      return false;
+    }
+
+    if (x >= this.x && x < this.x + this.width) {
+      if (y >= this.y && y < this.y + this.height) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
+  /**
+   * Pads the rectangle making it grow in all directions.
+   *
+   * @param {number} paddingX - The horizontal padding amount.
+   * @param {number} [paddingY] - The vertical padding amount.
+   */
+
+
+  Rectangle.prototype.pad = function pad(paddingX, paddingY) {
+    paddingX = paddingX || 0;
+    paddingY = paddingY || (paddingY !== 0 ? paddingX : 0);
+
+    this.x -= paddingX;
+    this.y -= paddingY;
+
+    this.width += paddingX * 2;
+    this.height += paddingY * 2;
+  };
+
+  /**
+   * Fits this rectangle around the passed one.
+   *
+   * @param {PIXI.Rectangle} rectangle - The rectangle to fit.
+   */
+
+
+  Rectangle.prototype.fit = function fit(rectangle) {
+    var x1 = Math.max(this.x, rectangle.x);
+    var x2 = Math.min(this.x + this.width, rectangle.x + rectangle.width);
+    var y1 = Math.max(this.y, rectangle.y);
+    var y2 = Math.min(this.y + this.height, rectangle.y + rectangle.height);
+
+    this.x = x1;
+    this.width = Math.max(x2 - x1, 0);
+    this.y = y1;
+    this.height = Math.max(y2 - y1, 0);
+  };
+
+  /**
+   * Enlarges this rectangle to include the passed rectangle.
+   *
+   * @param {PIXI.Rectangle} rectangle - The rectangle to include.
+   */
+
+
+  Rectangle.prototype.enlarge = function enlarge(rectangle) {
+    var x1 = Math.min(this.x, rectangle.x);
+    var x2 = Math.max(this.x + this.width, rectangle.x + rectangle.width);
+    var y1 = Math.min(this.y, rectangle.y);
+    var y2 = Math.max(this.y + this.height, rectangle.y + rectangle.height);
+
+    this.x = x1;
+    this.width = x2 - x1;
+    this.y = y1;
+    this.height = y2 - y1;
+  };
+
+  /**
+   * Enlarges rectangle that way its corners lie on grid
+   *
+   * @param {number} [resolution=1] resolution
+   * @param {number} [eps=0.001] precision
+   */
+
+
+  Rectangle.prototype.ceil = function ceil() {
+    var resolution = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+    var eps = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.001;
+
+    var x2 = Math.ceil((this.x + this.width - eps) * resolution) / resolution;
+    var y2 = Math.ceil((this.y + this.height - eps) * resolution) / resolution;
+
+    this.x = Math.floor((this.x + eps) * resolution) / resolution;
+    this.y = Math.floor((this.y + eps) * resolution) / resolution;
+
+    this.width = x2 - this.x;
+    this.height = y2 - this.y;
+  };
+
+  _createClass(Rectangle, [{
+    key: 'left',
+    get: function get() {
+      return this.x;
     }
 
     /**
-     * returns the left edge of the rectangle
+     * returns the right edge of the rectangle
      *
      * @member {number}
      */
 
+  }, {
+    key: 'right',
+    get: function get() {
+      return this.x + this.width;
+    }
 
     /**
-     * Creates a clone of this Rectangle
+     * returns the top edge of the rectangle
      *
-     * @return {PIXI.Rectangle} a copy of the rectangle
+     * @member {number}
      */
-    Rectangle.prototype.clone = function clone() {
-        return new Rectangle(this.x, this.y, this.width, this.height);
-    };
+
+  }, {
+    key: 'top',
+    get: function get() {
+      return this.y;
+    }
 
     /**
-     * Copies another rectangle to this one.
+     * returns the bottom edge of the rectangle
      *
-     * @param {PIXI.Rectangle} rectangle - The rectangle to copy.
-     * @return {PIXI.Rectangle} Returns itself.
+     * @member {number}
      */
 
-
-    Rectangle.prototype.copy = function copy(rectangle) {
-        this.x = rectangle.x;
-        this.y = rectangle.y;
-        this.width = rectangle.width;
-        this.height = rectangle.height;
-
-        return this;
-    };
+  }, {
+    key: 'bottom',
+    get: function get() {
+      return this.y + this.height;
+    }
 
     /**
-     * Checks whether the x and y coordinates given are contained within this Rectangle
+     * A constant empty rectangle.
      *
-     * @param {number} x - The X coordinate of the point to test
-     * @param {number} y - The Y coordinate of the point to test
-     * @return {boolean} Whether the x/y coordinates are within this Rectangle
+     * @static
+     * @constant
      */
 
+  }], [{
+    key: 'EMPTY',
+    get: function get() {
+      return new Rectangle(0, 0, 0, 0);
+    }
+  }]);
 
-    Rectangle.prototype.contains = function contains(x, y) {
-        if (this.width <= 0 || this.height <= 0) {
-            return false;
-        }
-
-        if (x >= this.x && x < this.x + this.width) {
-            if (y >= this.y && y < this.y + this.height) {
-                return true;
-            }
-        }
-
-        return false;
-    };
-
-    /**
-     * Pads the rectangle making it grow in all directions.
-     *
-     * @param {number} paddingX - The horizontal padding amount.
-     * @param {number} [paddingY] - The vertical padding amount.
-     */
-
-
-    Rectangle.prototype.pad = function pad(paddingX, paddingY) {
-        paddingX = paddingX || 0;
-        paddingY = paddingY || (paddingY !== 0 ? paddingX : 0);
-
-        this.x -= paddingX;
-        this.y -= paddingY;
-
-        this.width += paddingX * 2;
-        this.height += paddingY * 2;
-    };
-
-    /**
-     * Fits this rectangle around the passed one.
-     *
-     * @param {PIXI.Rectangle} rectangle - The rectangle to fit.
-     */
-
-
-    Rectangle.prototype.fit = function fit(rectangle) {
-        if (this.x < rectangle.x) {
-            this.width += this.x;
-            if (this.width < 0) {
-                this.width = 0;
-            }
-
-            this.x = rectangle.x;
-        }
-
-        if (this.y < rectangle.y) {
-            this.height += this.y;
-            if (this.height < 0) {
-                this.height = 0;
-            }
-            this.y = rectangle.y;
-        }
-
-        if (this.x + this.width > rectangle.x + rectangle.width) {
-            this.width = rectangle.width - this.x;
-            if (this.width < 0) {
-                this.width = 0;
-            }
-        }
-
-        if (this.y + this.height > rectangle.y + rectangle.height) {
-            this.height = rectangle.height - this.y;
-            if (this.height < 0) {
-                this.height = 0;
-            }
-        }
-    };
-
-    /**
-     * Enlarges this rectangle to include the passed rectangle.
-     *
-     * @param {PIXI.Rectangle} rectangle - The rectangle to include.
-     */
-
-
-    Rectangle.prototype.enlarge = function enlarge(rectangle) {
-        var x1 = Math.min(this.x, rectangle.x);
-        var x2 = Math.max(this.x + this.width, rectangle.x + rectangle.width);
-        var y1 = Math.min(this.y, rectangle.y);
-        var y2 = Math.max(this.y + this.height, rectangle.y + rectangle.height);
-
-        this.x = x1;
-        this.width = x2 - x1;
-        this.y = y1;
-        this.height = y2 - y1;
-    };
-
-    /**
-     * Enlarges rectangle that way its corners lie on grid
-     *
-     * @param {number} [resolution=1] resolution
-     * @param {number} [eps=0.001] precision
-     */
-
-
-    Rectangle.prototype.ceil = function ceil() {
-        var resolution = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-        var eps = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.001;
-
-        var x2 = Math.ceil((this.x + this.width - eps) * resolution) / resolution;
-        var y2 = Math.ceil((this.y + this.height - eps) * resolution) / resolution;
-
-        this.x = Math.floor((this.x + eps) * resolution) / resolution;
-        this.y = Math.floor((this.y + eps) * resolution) / resolution;
-
-        this.width = x2 - this.x;
-        this.height = y2 - this.y;
-    };
-
-    _createClass(Rectangle, [{
-        key: 'left',
-        get: function get() {
-            return this.x;
-        }
-
-        /**
-         * returns the right edge of the rectangle
-         *
-         * @member {number}
-         */
-
-    }, {
-        key: 'right',
-        get: function get() {
-            return this.x + this.width;
-        }
-
-        /**
-         * returns the top edge of the rectangle
-         *
-         * @member {number}
-         */
-
-    }, {
-        key: 'top',
-        get: function get() {
-            return this.y;
-        }
-
-        /**
-         * returns the bottom edge of the rectangle
-         *
-         * @member {number}
-         */
-
-    }, {
-        key: 'bottom',
-        get: function get() {
-            return this.y + this.height;
-        }
-
-        /**
-         * A constant empty rectangle.
-         *
-         * @static
-         * @constant
-         */
-
-    }], [{
-        key: 'EMPTY',
-        get: function get() {
-            return new Rectangle(0, 0, 0, 0);
-        }
-    }]);
-
-    return Rectangle;
+  return Rectangle;
 }();
 
 exports.default = Rectangle;
@@ -17996,6 +17982,13 @@ var WebGLRenderer = function (_SystemRenderer) {
         this.boundTextures = new Array(maxTextures);
         this.emptyTextures = new Array(maxTextures);
 
+        /**
+         * Did someone temper with textures state? We'll overwrite them when we need to unbind something.
+         * @member {boolean}
+         * @private
+         */
+        this._unknownBoundTextures = false;
+
         // create a texture manager...
         this.textureManager = new _TextureManager2.default(this);
         this.filterManager = new _FilterManager2.default(this);
@@ -18342,12 +18335,25 @@ var WebGLRenderer = function (_SystemRenderer) {
 
         texture = texture.baseTexture || texture;
 
-        for (var i = 0; i < this.boundTextures.length; i++) {
-            if (this.boundTextures[i] === texture) {
-                this.boundTextures[i] = this.emptyTextures[i];
+        if (this._unknownBoundTextures) {
+            this._unknownBoundTextures = false;
+            // someone changed webGL state,
+            // we have to be sure that our texture does not appear in multitexture renderer samplers
 
-                gl.activeTexture(gl.TEXTURE0 + i);
-                gl.bindTexture(gl.TEXTURE_2D, this.emptyTextures[i]._glTextures[this.CONTEXT_UID].texture);
+            for (var i = 0; i < this.boundTextures.length; i++) {
+                if (this.boundTextures[i] === this.emptyTextures[i]) {
+                    gl.activeTexture(gl.TEXTURE0 + i);
+                    gl.bindTexture(gl.TEXTURE_2D, this.emptyTextures[i]._glTextures[this.CONTEXT_UID].texture);
+                }
+            }
+        }
+
+        for (var _i = 0; _i < this.boundTextures.length; _i++) {
+            if (this.boundTextures[_i] === texture) {
+                this.boundTextures[_i] = this.emptyTextures[_i];
+
+                gl.activeTexture(gl.TEXTURE0 + _i);
+                gl.bindTexture(gl.TEXTURE_2D, this.emptyTextures[_i]._glTextures[this.CONTEXT_UID].texture);
             }
         }
 
@@ -18403,6 +18409,8 @@ var WebGLRenderer = function (_SystemRenderer) {
         this.bindVao(null);
         this._activeShader = null;
         this._activeRenderTarget = this.rootRenderTarget;
+
+        this._unknownBoundTextures = true;
 
         for (var i = 0; i < this.boundTextures.length; i++) {
             this.boundTextures[i] = this.emptyTextures[i];
@@ -19171,10 +19179,11 @@ var SpriteMaskFilter = function (_Filter) {
      * @param {PIXI.FilterManager} filterManager - The renderer to retrieve the filter from
      * @param {PIXI.RenderTarget} input - The input render target.
      * @param {PIXI.RenderTarget} output - The target to output to.
+     * @param {boolean} clear - Should the output be cleared before rendering to it
      */
 
 
-    SpriteMaskFilter.prototype.apply = function apply(filterManager, input, output) {
+    SpriteMaskFilter.prototype.apply = function apply(filterManager, input, output, clear) {
         var maskSprite = this.maskSprite;
         var tex = this.maskSprite.texture;
 
@@ -19193,7 +19202,7 @@ var SpriteMaskFilter = function (_Filter) {
         this.uniforms.alpha = maskSprite.worldAlpha;
         this.uniforms.maskClamp = tex.transform.uClampFrame;
 
-        filterManager.applyFilter(this, input, output);
+        filterManager.applyFilter(this, input, output, clear);
     };
 
     return SpriteMaskFilter;
@@ -19973,10 +19982,11 @@ var MaskManager = function (_WebGLManager) {
         alphaMaskFilter[0].resolution = this.renderer.resolution;
         alphaMaskFilter[0].maskSprite = maskData;
 
-        // TODO - may cause issues!
-        target.filterArea = maskData.getBounds(true);
+        var stashFilterArea = target.filterArea;
 
+        target.filterArea = maskData.getBounds(true);
         this.renderer.filterManager.pushFilter(target, alphaMaskFilter);
+        target.filterArea = stashFilterArea;
 
         this.alphaMaskIndex++;
     };
@@ -20967,9 +20977,9 @@ function mapWebGLBlendModesToPixi(gl) {
     // TODO - premultiply alpha would be different.
     // add a boolean for that!
     array[_const.BLEND_MODES.NORMAL] = [gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
-    array[_const.BLEND_MODES.ADD] = [gl.ONE, gl.DST_ALPHA];
-    array[_const.BLEND_MODES.MULTIPLY] = [gl.DST_COLOR, gl.ONE_MINUS_SRC_ALPHA];
-    array[_const.BLEND_MODES.SCREEN] = [gl.ONE, gl.ONE_MINUS_SRC_COLOR];
+    array[_const.BLEND_MODES.ADD] = [gl.ONE, gl.ONE];
+    array[_const.BLEND_MODES.MULTIPLY] = [gl.DST_COLOR, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
+    array[_const.BLEND_MODES.SCREEN] = [gl.ONE, gl.ONE_MINUS_SRC_COLOR, gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
     array[_const.BLEND_MODES.OVERLAY] = [gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
     array[_const.BLEND_MODES.DARKEN] = [gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
     array[_const.BLEND_MODES.LIGHTEN] = [gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
@@ -20986,8 +20996,8 @@ function mapWebGLBlendModesToPixi(gl) {
 
     // not-premultiplied blend modes
     array[_const.BLEND_MODES.NORMAL_NPM] = [gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
-    array[_const.BLEND_MODES.ADD_NPM] = [gl.SRC_ALPHA, gl.DST_ALPHA, gl.ONE, gl.DST_ALPHA];
-    array[_const.BLEND_MODES.SCREEN_NPM] = [gl.SRC_ALPHA, gl.ONE_MINUS_SRC_COLOR, gl.ONE, gl.ONE_MINUS_SRC_COLOR];
+    array[_const.BLEND_MODES.ADD_NPM] = [gl.SRC_ALPHA, gl.ONE, gl.ONE, gl.ONE];
+    array[_const.BLEND_MODES.SCREEN_NPM] = [gl.SRC_ALPHA, gl.ONE_MINUS_SRC_COLOR, gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
 
     return array;
 }
@@ -22950,7 +22960,7 @@ var _path = require('path');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var fragTemplate = ['varying vec2 vTextureCoord;', 'varying vec4 vColor;', 'varying float vTextureId;', 'uniform sampler2D uSamplers[%count%];', 'void main(void){', 'vec4 color;', 'float textureId = floor(vTextureId+0.5);', '%forloop%', 'gl_FragColor = color * vColor;', '}'].join('\n');
+var fragTemplate = ['varying vec2 vTextureCoord;', 'varying vec4 vColor;', 'varying float vTextureId;', 'uniform sampler2D uSamplers[%count%];', 'void main(void){', 'vec4 color;', '%forloop%', 'gl_FragColor = color * vColor;', '}'].join('\n');
 
 function generateMultiTextureShader(gl, maxTextures) {
     var vertexSrc = 'precision highp float;\nattribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\nattribute vec4 aColor;\nattribute float aTextureId;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\nvarying vec4 vColor;\nvarying float vTextureId;\n\nvoid main(void){\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n\n    vTextureCoord = aTextureCoord;\n    vTextureId = aTextureId;\n    vColor = aColor;\n}\n';
@@ -22985,7 +22995,7 @@ function generateSampleSrc(maxTextures) {
         }
 
         if (i < maxTextures - 1) {
-            src += 'if(textureId == ' + i + '.0)';
+            src += 'if(vTextureId < ' + i + '.5)';
         }
 
         src += '\n{';
@@ -30846,7 +30856,7 @@ var CanvasExtract = function () {
             frame = renderTexture.frame;
         } else {
             context = renderer.rootContext;
-
+            resolution = renderer.resolution;
             frame = TEMP_RECT;
             frame.width = this.renderer.width;
             frame.height = this.renderer.height;
@@ -31292,6 +31302,20 @@ var AnimatedSprite = function (_core$Sprite) {
         _this.loop = true;
 
         /**
+         * Update anchor to [Texture's defaultAnchor]{@link PIXI.Texture#defaultAnchor} when frame changes.
+         *
+         * Useful with [sprite sheet animations]{@link PIXI.Spritesheet#animations} created with tools.
+         * Changing anchor for each frame allows to pin sprite origin to certain moving feature
+         * of the frame (e.g. left foot).
+         *
+         * Note: Enabling this will override any previously set `anchor` on each frame change.
+         *
+         * @member {boolean}
+         * @default false
+         */
+        _this.updateAnchor = false;
+
+        /**
          * Function to call when a AnimatedSprite finishes playing
          *
          * @member {Function}
@@ -31474,6 +31498,10 @@ var AnimatedSprite = function (_core$Sprite) {
         this._texture = this._textures[this.currentFrame];
         this._textureID = -1;
         this.cachedTint = 0xFFFFFF;
+
+        if (this.updateAnchor) {
+            this._anchor.copy(this._texture.defaultAnchor);
+        }
 
         if (this.onFrameChange) {
             this.onFrameChange(this.currentFrame);
@@ -32810,7 +32838,7 @@ Object.defineProperties(DisplayObject.prototype, {
                 data.originalRenderCanvas = this.renderCanvas;
 
                 data.originalUpdateTransform = this.updateTransform;
-                data.originalCalculateBounds = this._calculateBounds;
+                data.originalCalculateBounds = this.calculateBounds;
                 data.originalGetLocalBounds = this.getLocalBounds;
 
                 data.originalDestroy = this.destroy;
@@ -32833,7 +32861,7 @@ Object.defineProperties(DisplayObject.prototype, {
 
                 this.renderWebGL = data.originalRenderWebGL;
                 this.renderCanvas = data.originalRenderCanvas;
-                this._calculateBounds = data.originalCalculateBounds;
+                this.calculateBounds = data.originalCalculateBounds;
                 this.getLocalBounds = data.originalGetLocalBounds;
 
                 this.destroy = data.originalDestroy;
@@ -32940,7 +32968,10 @@ DisplayObject.prototype._initCachedDisplayObject = function _initCachedDisplayOb
     renderer.filterManager.filterStack = stack;
 
     this.renderWebGL = this._renderCachedWebGL;
+    // the rest is the same as for Canvas
     this.updateTransform = this.displayObjectUpdateTransform;
+    this.calculateBounds = this._calculateCachedBounds;
+    this.getLocalBounds = this._getCachedLocalBounds;
 
     this._mask = null;
     this.filterArea = null;
@@ -32953,10 +32984,6 @@ DisplayObject.prototype._initCachedDisplayObject = function _initCachedDisplayOb
     cachedSprite.anchor.y = -(bounds.y / bounds.height);
     cachedSprite.alpha = cacheAlpha;
     cachedSprite._bounds = this._bounds;
-
-    // easy bounds..
-    this._calculateBounds = this._calculateCachedBounds;
-    this.getLocalBounds = this._getCachedLocalBounds;
 
     this._cacheData.sprite = cachedSprite;
 
@@ -33045,7 +33072,10 @@ DisplayObject.prototype._initCachedDisplayObjectCanvas = function _initCachedDis
     renderer.context = cachedRenderTarget;
 
     this.renderCanvas = this._renderCachedCanvas;
+    // the rest is the same as for WebGL
+    this.updateTransform = this.displayObjectUpdateTransform;
     this.calculateBounds = this._calculateCachedBounds;
+    this.getLocalBounds = this._getCachedLocalBounds;
 
     this._mask = null;
     this.filterArea = null;
@@ -33056,9 +33086,13 @@ DisplayObject.prototype._initCachedDisplayObjectCanvas = function _initCachedDis
     cachedSprite.transform.worldTransform = this.transform.worldTransform;
     cachedSprite.anchor.x = -(bounds.x / bounds.width);
     cachedSprite.anchor.y = -(bounds.y / bounds.height);
-    cachedSprite._bounds = this._bounds;
     cachedSprite.alpha = cacheAlpha;
+    cachedSprite._bounds = this._bounds;
 
+    this._cacheData.sprite = cachedSprite;
+
+    this.transform._parentID = -1;
+    // restore the transform of the cached sprite to avoid the nasty flicker..
     if (!this.parent) {
         this.parent = renderer._tempDisplayObjectParent;
         this.updateTransform();
@@ -33067,10 +33101,7 @@ DisplayObject.prototype._initCachedDisplayObjectCanvas = function _initCachedDis
         this.updateTransform();
     }
 
-    this.updateTransform = this.displayObjectUpdateTransform;
-
-    this._cacheData.sprite = cachedSprite;
-
+    // map the hit test..
     this.containsPoint = cachedSprite.containsPoint.bind(cachedSprite);
 };
 
@@ -38373,6 +38404,10 @@ var _Plane2 = require('./Plane');
 
 var _Plane3 = _interopRequireDefault(_Plane2);
 
+var _CanvasTinter = require('../core/sprites/canvas/CanvasTinter');
+
+var _CanvasTinter2 = _interopRequireDefault(_CanvasTinter);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38487,6 +38522,30 @@ var NineSlicePlane = function (_Plane) {
          */
         _this._bottomHeight = typeof bottomHeight !== 'undefined' ? bottomHeight : DEFAULT_BORDER_SIZE;
 
+        /**
+         * Cached tint value so we can tell when the tint is changed.
+         *
+         * @member {number}
+         * @protected
+         */
+        _this._cachedTint = 0xFFFFFF;
+
+        /**
+         * Cached tinted texture.
+         *
+         * @member {HTMLCanvasElement}
+         * @protected
+         */
+        _this._tintedTexture = null;
+
+        /**
+         * Temporary storage for canvas source coords
+         *
+         * @member {number[]}
+         * @private
+         */
+        _this._canvasUvs = null;
+
         _this.refresh(true);
         return _this;
     }
@@ -38535,12 +38594,50 @@ var NineSlicePlane = function (_Plane) {
 
     NineSlicePlane.prototype._renderCanvas = function _renderCanvas(renderer) {
         var context = renderer.context;
+        var transform = this.worldTransform;
+        var res = renderer.resolution;
+        var isTinted = this.tint !== 0xFFFFFF;
+        var texture = this._texture;
+
+        // Work out tinting
+        if (isTinted) {
+            if (this._cachedTint !== this.tint) {
+                // Tint has changed, need to update the tinted texture and use that instead
+
+                this._cachedTint = this.tint;
+
+                this._tintedTexture = _CanvasTinter2.default.getTintedTexture(this, this.tint);
+            }
+        }
+
+        var textureSource = !isTinted ? texture.baseTexture.source : this._tintedTexture;
+
+        if (!this._canvasUvs) {
+            this._canvasUvs = [0, 0, 0, 0, 0, 0, 0, 0];
+        }
+
+        var vertices = this.vertices;
+        var uvs = this._canvasUvs;
+        var u0 = isTinted ? 0 : texture.frame.x;
+        var v0 = isTinted ? 0 : texture.frame.y;
+        var u1 = u0 + texture.frame.width;
+        var v1 = v0 + texture.frame.height;
+
+        uvs[0] = u0;
+        uvs[1] = u0 + this._leftWidth;
+        uvs[2] = u1 - this._rightWidth;
+        uvs[3] = u1;
+        uvs[4] = v0;
+        uvs[5] = v0 + this._topHeight;
+        uvs[6] = v1 - this._bottomHeight;
+        uvs[7] = v1;
+
+        for (var i = 0; i < 8; i++) {
+            uvs[i] *= texture.baseTexture.resolution;
+        }
 
         context.globalAlpha = this.worldAlpha;
         renderer.setBlendMode(this.blendMode);
-
-        var transform = this.worldTransform;
-        var res = renderer.resolution;
 
         if (renderer.roundPixels) {
             context.setTransform(transform.a * res, transform.b * res, transform.c * res, transform.d * res, transform.tx * res | 0, transform.ty * res | 0);
@@ -38548,69 +38645,17 @@ var NineSlicePlane = function (_Plane) {
             context.setTransform(transform.a * res, transform.b * res, transform.c * res, transform.d * res, transform.tx * res, transform.ty * res);
         }
 
-        var base = this._texture.baseTexture;
-        var textureSource = base.source;
-        var w = base.width * base.resolution;
-        var h = base.height * base.resolution;
+        for (var row = 0; row < 3; row++) {
+            for (var col = 0; col < 3; col++) {
+                var ind = col * 2 + row * 8;
+                var sw = Math.max(1, uvs[col + 1] - uvs[col]);
+                var sh = Math.max(1, uvs[row + 5] - uvs[row + 4]);
+                var dw = Math.max(1, vertices[ind + 10] - vertices[ind]);
+                var dh = Math.max(1, vertices[ind + 11] - vertices[ind + 1]);
 
-        this.drawSegment(context, textureSource, w, h, 0, 1, 10, 11);
-        this.drawSegment(context, textureSource, w, h, 2, 3, 12, 13);
-        this.drawSegment(context, textureSource, w, h, 4, 5, 14, 15);
-        this.drawSegment(context, textureSource, w, h, 8, 9, 18, 19);
-        this.drawSegment(context, textureSource, w, h, 10, 11, 20, 21);
-        this.drawSegment(context, textureSource, w, h, 12, 13, 22, 23);
-        this.drawSegment(context, textureSource, w, h, 16, 17, 26, 27);
-        this.drawSegment(context, textureSource, w, h, 18, 19, 28, 29);
-        this.drawSegment(context, textureSource, w, h, 20, 21, 30, 31);
-    };
-
-    /**
-     * Renders one segment of the plane.
-     * to mimic the exact drawing behavior of stretching the image like WebGL does, we need to make sure
-     * that the source area is at least 1 pixel in size, otherwise nothing gets drawn when a slice size of 0 is used.
-     *
-     * @private
-     * @param {CanvasRenderingContext2D} context - The context to draw with.
-     * @param {CanvasImageSource} textureSource - The source to draw.
-     * @param {number} w - width of the texture
-     * @param {number} h - height of the texture
-     * @param {number} x1 - x index 1
-     * @param {number} y1 - y index 1
-     * @param {number} x2 - x index 2
-     * @param {number} y2 - y index 2
-     */
-
-
-    NineSlicePlane.prototype.drawSegment = function drawSegment(context, textureSource, w, h, x1, y1, x2, y2) {
-        // otherwise you get weird results when using slices of that are 0 wide or high.
-        var uvs = this.uvs;
-        var vertices = this.vertices;
-
-        var sw = (uvs[x2] - uvs[x1]) * w;
-        var sh = (uvs[y2] - uvs[y1]) * h;
-        var dw = vertices[x2] - vertices[x1];
-        var dh = vertices[y2] - vertices[y1];
-
-        // make sure the source is at least 1 pixel wide and high, otherwise nothing will be drawn.
-        if (sw < 1) {
-            sw = 1;
+                context.drawImage(textureSource, uvs[col], uvs[row + 4], sw, sh, vertices[ind], vertices[ind + 1], dw, dh);
+            }
         }
-
-        if (sh < 1) {
-            sh = 1;
-        }
-
-        // make sure destination is at least 1 pixel wide and high, otherwise you get
-        // lines when rendering close to original size.
-        if (dw < 1) {
-            dw = 1;
-        }
-
-        if (dh < 1) {
-            dh = 1;
-        }
-
-        context.drawImage(textureSource, uvs[x1] * w, uvs[y1] * h, sw, sh, vertices[x1], vertices[y1], dw, dh);
     };
 
     /**
@@ -38755,7 +38800,7 @@ var NineSlicePlane = function (_Plane) {
 
 exports.default = NineSlicePlane;
 
-},{"./Plane":168}],168:[function(require,module,exports){
+},{"../core/sprites/canvas/CanvasTinter":104,"./Plane":168}],168:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="128" height="80" tilewidth="64" tileheight="64" nextobjectid="210">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="128" height="80" tilewidth="64" tileheight="64" infinite="0" nextobjectid="210">
  <tileset firstgid="1" name="forestSummer" tilewidth="64" tileheight="64" tilecount="180" columns="15">
   <image source="../../tilesets/forestFinalTiles.png" trans="ff42f9" width="960" height="768"/>
   <terraintypes>
@@ -1432,37 +1432,19 @@
  <objectgroup name="startGate">
   <object id="7" gid="576" x="461.575" y="3115.37" width="320" height="304" rotation="-90"/>
  </objectgroup>
- <objectgroup name="spiderEgg">
-  <object id="21" gid="644" x="512" y="-512" width="64" height="64"/>
- </objectgroup>
+ <objectgroup name="spiderEgg"/>
  <objectgroup name="spider"/>
- <objectgroup name="spearProjectile3">
-  <object id="46" gid="649" x="560" y="-720" width="88" height="64"/>
- </objectgroup>
- <objectgroup name="spearProjectile2">
-  <object id="45" gid="649" x="560" y="-800" width="88" height="64"/>
- </objectgroup>
- <objectgroup name="spearProjectile">
-  <object id="44" gid="649" x="560" y="-880" width="88" height="64"/>
- </objectgroup>
- <objectgroup name="spear3">
-  <object id="28" gid="647" x="326.63" y="-750.4" width="192" height="64"/>
- </objectgroup>
- <objectgroup name="spear2">
-  <object id="27" gid="647" x="328.84" y="-805.56" width="192" height="64"/>
- </objectgroup>
- <objectgroup name="spear">
-  <object id="26" gid="647" x="328.84" y="-858.51" width="192" height="64"/>
- </objectgroup>
+ <objectgroup name="spearProjectile3"/>
+ <objectgroup name="spearProjectile2"/>
+ <objectgroup name="spearProjectile"/>
+ <objectgroup name="spear3"/>
+ <objectgroup name="spear2"/>
+ <objectgroup name="spear"/>
  <objectgroup name="snake"/>
  <objectgroup name="slowRegions"/>
  <objectgroup name="sentinel"/>
- <objectgroup name="sawtooth-Glass">
-  <object id="39" gid="559" x="192" y="-1600" width="128" height="128"/>
- </objectgroup>
- <objectgroup name="sawtooth">
-  <object id="38" gid="546" x="64" y="-1600" width="128" height="128"/>
- </objectgroup>
+ <objectgroup name="sawtooth-Glass"/>
+ <objectgroup name="sawtooth"/>
  <objectgroup name="ruins1"/>
  <objectgroup color="#21ff80" name="roomsNoCamera">
   <object id="52" x="2093.74" y="2132.54" width="576" height="1536">
@@ -1476,18 +1458,10 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup color="#80ff07" name="rooms">
-  <object id="51" x="1536" y="-576" width="640" height="320">
-   <properties>
-    <property name="gateID" value="0"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup color="#80ff07" name="rooms"/>
  <objectgroup name="pumpkinPatchSmall"/>
  <objectgroup name="pumpkinPatch"/>
- <objectgroup color="#fc0107" name="projectileSpider">
-  <object id="54" gid="545" x="384" y="-1792" width="104" height="104"/>
- </objectgroup>
+ <objectgroup color="#fc0107" name="projectileSpider"/>
  <objectgroup name="player-AOECombo">
   <object id="5" gid="542" x="269.575" y="2987.37" width="52" height="64" rotation="-360"/>
  </objectgroup>
@@ -1505,7 +1479,6 @@
  </objectgroup>
  <objectgroup name="monastery"/>
  <objectgroup name="mimic">
-  <object id="30" gid="638" x="98.18" y="-961.21" width="64" height="64"/>
   <object id="173" gid="638" x="2688" y="2624" width="64" height="64"/>
  </objectgroup>
  <objectgroup color="#0000ff" name="manualWallColl">
@@ -1528,7 +1501,6 @@
  <objectgroup name="itemUpgradeBow"/>
  <objectgroup name="itemUpgradeAOECombo"/>
  <objectgroup name="itemHealth">
-  <object id="12" gid="561" x="148.86" y="-397.27" width="36" height="32"/>
   <object id="170" gid="561" x="4322.07" y="2618.37" width="36" height="32"/>
   <object id="171" gid="561" x="4387.76" y="2618.09" width="36" height="32"/>
   <object id="172" gid="561" x="4321.42" y="2678.24" width="36" height="32"/>
@@ -1548,9 +1520,7 @@
   <object id="164" gid="648" x="5443.02" y="1152" width="128" height="128"/>
   <object id="165" gid="648" x="5440" y="1536" width="128" height="128"/>
  </objectgroup>
- <objectgroup name="floorSaw">
-  <object id="25" gid="646" x="222.86" y="-772.42" width="64" height="64"/>
- </objectgroup>
+ <objectgroup name="floorSaw"/>
  <objectgroup name="floorColl"/>
  <objectgroup name="flagRight"/>
  <objectgroup name="flagLeft"/>
@@ -1559,7 +1529,6 @@
   <object id="6" gid="576" x="4928" y="640" width="320" height="304"/>
  </objectgroup>
  <objectgroup name="crateLarge">
-  <object id="17" gid="637" x="64" y="-512" width="128" height="128"/>
   <object id="174" gid="637" x="1728" y="2688" width="128" height="128"/>
   <object id="175" gid="637" x="2752" y="3008" width="128" height="128"/>
   <object id="176" gid="637" x="1152" y="3456" width="128" height="128"/>
@@ -1569,15 +1538,11 @@
   <object id="180" gid="637" x="2880" y="2368" width="128" height="128"/>
   <object id="181" gid="637" x="3584" y="3584" width="128" height="128"/>
  </objectgroup>
- <objectgroup name="crateExplosive">
-  <object id="18" gid="642" x="320" y="-512" width="64" height="64"/>
- </objectgroup>
+ <objectgroup name="crateExplosive"/>
  <objectgroup name="crateB">
-  <object id="16" gid="639" x="256" y="-512" width="64" height="64"/>
   <object id="168" gid="639" x="4372.53" y="2632.8" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="crate">
-  <object id="13" gid="638" x="192" y="-512" width="64" height="64"/>
   <object id="167" gid="638" x="4308.53" y="2632.8" width="64" height="64"/>
   <object id="169" gid="638" x="4308.53" y="2696.8" width="64" height="64"/>
  </objectgroup>
@@ -1595,33 +1560,17 @@
  <objectgroup name="cauldronBlue"/>
  <objectgroup name="bushSmall"/>
  <objectgroup name="bushBig"/>
- <objectgroup name="bushbell-Static-5">
-  <object id="41" gid="556" x="256" y="-1344" width="256" height="256"/>
- </objectgroup>
+ <objectgroup name="bushbell-Static-5"/>
  <objectgroup name="bushbell-Static-3">
   <object id="40" gid="556" x="5012.68" y="1424.99" width="256" height="256"/>
  </objectgroup>
- <objectgroup name="blopDemon">
-  <object id="36" gid="557" x="768" y="-1088" width="192" height="192"/>
- </objectgroup>
- <objectgroup name="blopCoward">
-  <object id="35" gid="551" x="576" y="-1088" width="192" height="192"/>
- </objectgroup>
- <objectgroup name="blopBig">
-  <object id="34" gid="553" x="-64" y="-1024" width="384" height="384"/>
- </objectgroup>
- <objectgroup name="blop-7">
-  <object id="33" gid="558" x="384" y="-1088" width="192" height="192"/>
- </objectgroup>
- <objectgroup name="blop-1">
-  <object id="32" gid="552" x="192" y="-1088" width="192" height="192"/>
- </objectgroup>
- <objectgroup name="barrellFruit">
-  <object id="20" gid="641" x="448" y="-512" width="64" height="64"/>
- </objectgroup>
- <objectgroup name="barrell">
-  <object id="19" gid="640" x="384" y="-512" width="64" height="64"/>
- </objectgroup>
+ <objectgroup name="blopDemon"/>
+ <objectgroup name="blopCoward"/>
+ <objectgroup name="blopBig"/>
+ <objectgroup name="blop-7"/>
+ <objectgroup name="blop-1"/>
+ <objectgroup name="barrellFruit"/>
+ <objectgroup name="barrell"/>
  <objectgroup name="babySpider-Hoard">
   <object id="62" gid="544" x="2432" y="2788.08" width="52" height="52"/>
   <object id="64" gid="544" x="2432" y="2916.08" width="52" height="52"/>
@@ -1675,8 +1624,6 @@
   <object id="199" gid="544" x="2473.14" y="2556.35" width="52" height="52"/>
   <object id="200" gid="544" x="2473.14" y="2684.35" width="52" height="52"/>
  </objectgroup>
- <objectgroup color="#000000" name="babySpider">
-  <object id="53" gid="544" x="256" y="-1792" width="52" height="52"/>
- </objectgroup>
+ <objectgroup color="#000000" name="babySpider"/>
  <objectgroup name="appleTree"/>
 </map>

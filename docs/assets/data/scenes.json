@@ -204,8 +204,64 @@
 		"010": {
 			"map": {
 				"json": "assets/maps/phase02/010.json",
-				"bottom": "assets/maps/phase02/010bot.png",
-				"top": "assets/maps/phase02/010top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase02/010bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase02/010bot_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase02/010bot_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase02/010bot_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase02/010top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase02/010top_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase02/010top_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase02/010top_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "Check it",
@@ -284,8 +340,50 @@
 		"017": {
 			"map": {
 				"json": "assets/maps/phase04/017.json",
-				"bottom": "assets/maps/phase04/017.png",
-				"top": "assets/maps/phase04/017-top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase04/017bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase04/017bot_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase04/017bot_tile_02.png",
+						"pos": [
+							8192,
+							0
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase04/017top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase04/017top_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase04/017top_tile_02.png",
+						"pos": [
+							8192,
+							0
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "I hate spiders...",
@@ -314,8 +412,64 @@
 		"019": {
 			"map": {
 				"json": "assets/maps/phase02/019.json",
-				"bottom": "assets/maps/phase02/019.png",
-				"top": "assets/maps/phase02/019-top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase02/019bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase02/019bot_tile_01.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase02/019bot_tile_02.png",
+						"pos": [
+							0,
+							8192
+						]
+					},
+					{
+						"img": "assets/maps/phase02/019bot_tile_03.png",
+						"pos": [
+							0,
+							12288
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase02/019top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase02/019top_tile_01.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase02/019top_tile_02.png",
+						"pos": [
+							0,
+							8192
+						]
+					},
+					{
+						"img": "assets/maps/phase02/019top_tile_03.png",
+						"pos": [
+							0,
+							12288
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "Deja Vu, All Over Again",
@@ -351,8 +505,64 @@
 		"022": {
 			"map": {
 				"json": "assets/maps/phase05/022.json",
-				"bottom": "assets/maps/phase05/022.png",
-				"top": "assets/maps/phase05/022top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase05/022bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase05/022bot_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase05/022bot_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase05/022bot_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase05/022top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase05/022top_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase05/022top_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase05/022top_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "Big things, small packages",
@@ -383,8 +593,120 @@
 		"025": {
 			"map": {
 				"json": "assets/maps/phase06/025.json",
-				"bottom": "assets/maps/phase06/025.png",
-				"top": "assets/maps/phase06/025-top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase06/025bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase06/025bot_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase06/025bot_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase06/025bot_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase06/025bot_tile_04.png",
+						"pos": [
+							0,
+							8192
+						]
+					},
+					{
+						"img": "assets/maps/phase06/025bot_tile_05.png",
+						"pos": [
+							4096,
+							8192
+						]
+					},
+					{
+						"img": "assets/maps/phase06/025bot_tile_06.png",
+						"pos": [
+							0,
+							12288
+						]
+					},
+					{
+						"img": "assets/maps/phase06/025bot_tile_07.png",
+						"pos": [
+							4096,
+							12288
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase06/025top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase06/025top_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase06/025top_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase06/025top_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase06/025top_tile_04.png",
+						"pos": [
+							0,
+							8192
+						]
+					},
+					{
+						"img": "assets/maps/phase06/025top_tile_05.png",
+						"pos": [
+							4096,
+							8192
+						]
+					},
+					{
+						"img": "assets/maps/phase06/025top_tile_06.png",
+						"pos": [
+							0,
+							12288
+						]
+					},
+					{
+						"img": "assets/maps/phase06/025top_tile_07.png",
+						"pos": [
+							4096,
+							12288
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "Blinding Speed",
@@ -408,8 +730,64 @@
 		"027": {
 			"map": {
 				"json": "assets/maps/phase07/027.json",
-				"bottom": "assets/maps/phase07/027.png",
-				"top": "assets/maps/phase07/027-top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase07/027bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase07/027bot_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase07/027bot_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase07/027bot_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase07/027top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase07/027top_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase07/027top_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase07/027top_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "Winter Bloperland",
@@ -426,8 +804,64 @@
 		"028": {
 			"map": {
 				"json": "assets/maps/phase07/028.json",
-				"bottom": "assets/maps/phase07/028.png",
-				"top": "assets/maps/phase07/028top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase07/028bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase07/028bot_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase07/028bot_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase07/028bot_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase07/028top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase07/028top_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase07/028top_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase07/028top_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "For Whom The Bells Toll",
@@ -437,8 +871,64 @@
 		"029": {
 			"map": {
 				"json": "assets/maps/phase07/029.json",
-				"bottom": "assets/maps/phase07/029.png",
-				"top": "assets/maps/phase07/029-top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase07/029bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase07/029bot_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase07/029bot_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase07/029bot_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase07/029top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase07/029top_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase07/029top_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase07/029top_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "Glass Sawtooths",
@@ -459,8 +949,92 @@
 		"031": {
 			"map": {
 				"json": "assets/maps/phase08/031.json",
-				"bottom": "assets/maps/phase08/031.png",
-				"top": "assets/maps/phase08/031-top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase08/031bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/031bot_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/031bot_tile_02.png",
+						"pos": [
+							8192,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/031bot_tile_03.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase08/031bot_tile_04.png",
+						"pos": [
+							4096,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase08/031bot_tile_05.png",
+						"pos": [
+							8192,
+							4096
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase08/031top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/031top_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/031top_tile_02.png",
+						"pos": [
+							8192,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/031top_tile_03.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase08/031top_tile_04.png",
+						"pos": [
+							4096,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase08/031top_tile_05.png",
+						"pos": [
+							8192,
+							4096
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "The Ring of Fire",
@@ -481,8 +1055,64 @@
 		"033": {
 			"map": {
 				"json": "assets/maps/phase08/033.json",
-				"bottom": "assets/maps/phase08/033.png",
-				"top": "assets/maps/phase08/033-top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase08/033bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/033bot_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/033bot_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase08/033bot_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase08/033top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/033top_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/033top_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase08/033top_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "Spider Nightmare",
@@ -492,8 +1122,64 @@
 		"034": {
 			"map": {
 				"json": "assets/maps/phase08/034.json",
-				"bottom": "assets/maps/phase08/034.png",
-				"top": "assets/maps/phase08/034top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase08/034bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/034bot_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/034bot_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase08/034bot_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase08/034top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/034top_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/034top_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase08/034top_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "Fire and Ice",
@@ -503,8 +1189,120 @@
 		"035": {
 			"map": {
 				"json": "assets/maps/phase08/035.json",
-				"bottom": "assets/maps/phase08/035.png",
-				"top": "assets/maps/phase08/035-top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase08/035bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/035bot_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/035bot_tile_02.png",
+						"pos": [
+							8192,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/035bot_tile_03.png",
+						"pos": [
+							12288,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/035bot_tile_04.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase08/035bot_tile_05.png",
+						"pos": [
+							4096,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase08/035bot_tile_06.png",
+						"pos": [
+							8192,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase08/035bot_tile_07.png",
+						"pos": [
+							12288,
+							4096
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase08/035top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/035top_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/035top_tile_02.png",
+						"pos": [
+							8192,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/035top_tile_03.png",
+						"pos": [
+							12288,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase08/035top_tile_04.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase08/035top_tile_05.png",
+						"pos": [
+							4096,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase08/035top_tile_06.png",
+						"pos": [
+							8192,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase08/035top_tile_07.png",
+						"pos": [
+							12288,
+							4096
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "Gossamer's Den",
@@ -517,8 +1315,50 @@
 		"castleHUB001": {
 			"map": {
 				"json": "assets/maps/phase09/castleHUB001.json",
-				"bottom": "assets/maps/phase09/castleHUB001.png",
-				"top": "assets/maps/phase09/castleHUB001top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase09/castleHUB001bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleHUB001bot_tile_01.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleHUB001bot_tile_02.png",
+						"pos": [
+							0,
+							8192
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase09/castleHUB001top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleHUB001top_tile_01.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleHUB001top_tile_02.png",
+						"pos": [
+							0,
+							8192
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "King's Fortress",
@@ -576,8 +1416,64 @@
 		"castleBlop002": {
 			"map": {
 				"json": "assets/maps/phase09/castleBlop002.json",
-				"bottom": "assets/maps/phase09/castleBlop002.png",
-				"top": "assets/maps/phase09/castleBlop002top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase09/castleBlop002bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleBlop002bot_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleBlop002bot_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleBlop002bot_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase09/castleBlop002top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleBlop002top_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleBlop002top_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleBlop002top_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "King's Fortress",
@@ -604,8 +1500,64 @@
 		"castleX002": {
 			"map": {
 				"json": "assets/maps/phase09/castleX002.json",
-				"bottom": "assets/maps/phase09/castleX002.png",
-				"top": "assets/maps/phase09/castleX002top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase09/castleX002bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleX002bot_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleX002bot_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleX002bot_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase09/castleX002top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleX002top_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleX002top_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleX002top_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "King's Fortress",
@@ -646,8 +1598,64 @@
 		"castleSpider002": {
 			"map": {
 				"json": "assets/maps/phase09/castleSpider002.json",
-				"bottom": "assets/maps/phase09/castleSpider002.png",
-				"top": "assets/maps/phase09/castleSpider002top.png"
+				"bottom_tiles": [{
+						"img": "assets/maps/phase09/castleSpider002bot_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleSpider002bot_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleSpider002bot_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleSpider002bot_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				],
+				"top_tiles": [{
+						"img": "assets/maps/phase09/castleSpider002top_tile_00.png",
+						"pos": [
+							0,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleSpider002top_tile_01.png",
+						"pos": [
+							4096,
+							0
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleSpider002top_tile_02.png",
+						"pos": [
+							0,
+							4096
+						]
+					},
+					{
+						"img": "assets/maps/phase09/castleSpider002top_tile_03.png",
+						"pos": [
+							4096,
+							4096
+						]
+					}
+				]
 			},
 			"level": {
 				"name": "King's Fortress",
