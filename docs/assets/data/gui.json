@@ -79,6 +79,14 @@
 				"pausedWash"
 			]
 		},
+		"notification": {
+			"text": [
+				"notification"
+			],
+			"sprites": [
+				"notification"
+			]
+		},
 		"exitReady": {
 			"text": [
 				"exitReadyExit",
@@ -118,7 +126,8 @@
 				"exitLevelNumber",
 				"exitButtonText",
 				"exitPressToContinue",
-				"exitTimeText",
+				"exitTimeTextBig",
+				"exitTimeTextSmall",
 				"exitKillsText",
 				"exitDeathsText",
 				"exitSecretsText"
@@ -139,7 +148,8 @@
 			"text": [
 				"recapTitle",
 				"recapTimeLabel",
-				"recapTimeValue",
+				"recapTimeValueBig",
+				"recapTimeValueSmall",
 				"recapKillsLabel",
 				"recapKillsValue",
 				"recapDeathsLabel",
@@ -639,19 +649,14 @@
 		},
 		"titleVersion": {
 			"textSpec": {
-				"text": "v1.1.3",
+				"text": "v1.2.0",
 				"style": {
 					"fontFamily": [
 						"Josefin Sans"
 					],
 					"fontSize": 8,
 					"fill": "#333333",
-					"dropShadow": true,
-					"dropShadowColor": "#666666",
-					"dropShadowDistance": 1,
-					"dropShadowBlur": 5,
-					"dropShadowAngle": 2.35,
-					"dropShadowAlpha": 0.4
+					"dropShadow": false
 				},
 				"anchor": [
 					0,
@@ -762,6 +767,68 @@
 								"duration": 500,
 								"delay": 250,
 								"method": "easeInCubic"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"notification": {
+			"textSpec": {
+				"text": "<notification>",
+				"style": {
+					"align": "left",
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 12,
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 3,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Notification"
+			},
+			"startPos": {
+				"position": [
+					25,
+					380
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"destruct": 3000,
+					"visuals": [
+						{
+							"prop": "y",
+							"spec": {
+								"val": 340,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 0,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 2000,
+								"method": "easeOutCubic"
 							}
 						}
 					],
@@ -1618,6 +1685,134 @@
 				}
 			}
 		},
+		"exitTimeTextBig": {
+			"textSpec": {
+				"text": "<time>",
+				"style": {
+					"align": "right",
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					1,
+					1
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-100,
+					78
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 63,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 1100,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 50,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"exitTimeTextSmall": {
+			"textSpec": {
+				"text": "<time>",
+				"style": {
+					"align": "left",
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 11,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					1
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-100,
+					77
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 63,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 1100,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 50,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
 		"recapTimeLabel": {
 			"textSpec": {
 				"text": "play time",
@@ -1721,6 +1916,134 @@
 						"prop": "x",
 						"spec": {
 							"val": 126,
+							"valType": "abs",
+							"duration": 800,
+							"delay": 1100,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -120,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 50,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"recapTimeValueBig": {
+			"textSpec": {
+				"text": "<time>",
+				"style": {
+					"align": "right",
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 25,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					1,
+					1
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-120,
+					108
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 191,
+							"valType": "abs",
+							"duration": 800,
+							"delay": 1100,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -120,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 50,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"recapTimeValueSmall": {
+			"textSpec": {
+				"text": "<time>",
+				"style": {
+					"align": "left",
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 16,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					1
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-120,
+					107
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 191,
 							"valType": "abs",
 							"duration": 800,
 							"delay": 1100,
@@ -6001,6 +6324,58 @@
 								"duration": 750,
 								"delay": 5000,
 								"method": "linear"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"notification": {
+			"baseSpec": {
+				"base": "HUD/controllerIconSmall",
+				"frames": 0,
+				"scale": 0.5,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0.5
+				]
+			},
+			"startPos": {
+				"position": [
+					5,
+					380
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Notification"
+			},
+			"tweens": {
+				"enter": {
+					"destruct": 3000,
+					"visuals": [
+						{
+							"prop": "y",
+							"spec": {
+								"val": 340,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 0,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 2000,
+								"method": "easeOutCubic"
 							}
 						}
 					],

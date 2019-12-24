@@ -3725,6 +3725,18 @@
 			"instructionID": "gatekeeping"
 		}
 	},
+	"instructionsPause": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"instructionID": "pause"
+		}
+	},
+	"instructionsRestart": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"instructionID": "restart"
+		}
+	},
 	"controlsGatekeeping": {
 		"parentLayer": "zoneBase",
 		"zone": {

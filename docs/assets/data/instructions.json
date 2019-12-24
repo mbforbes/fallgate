@@ -9,6 +9,16 @@
         "txt": "Doughnuts are optional collectables.\n\nOne doughnut is hidden in every level.\nYou must make it to the exit without\ndying to keep the doughnut!",
         "img": "HUD/instructIconDonut"
     },
+    "pause": {
+        "title": "Taking a Break",
+        "txt": "Need a break?\n\nPress \"P\" to pause the game.\n\nIf you need a longer break, just\nclose the game and come back later.\nYour progress will be saved.",
+        "img": "HUD/instructIconTest"
+    },
+    "restart": {
+        "title": "Sticky Situation?",
+        "txt": "Did you screw up?\n\nDid WE screw up?\n\nYou can press \"J\" at any time to\nto \"Jump\" back (reset) the current\nlevel.",
+        "img": "HUD/instructIconTest"
+    },
     "hpHUD": {
         "title": "Stayin' Alive",
         "txt": "Taking damage causes you to lose\nhit points (HP).\n\nYour HP is represented by the hearts\nlocated at the top-left of the screen.\n\nIf you lose all of your HP you are\nVANQUISHED and must restart\nfrom the beginning of the level.",

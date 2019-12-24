@@ -8555,8 +8555,8 @@
             ]
         },
         {
-            "image": "c7d46a705fc7947bc9ffb914f94117d067c31dc7.png",
-            "filesize": 855462,
+            "image": "3825db6e19847f93eef23211bac72bf180db3635.png",
+            "filesize": 869203,
             "sprites": [
                 {
                     "name": "HUD/bushFall.png",
@@ -9396,6 +9396,40 @@
                     }
                 },
                 {
+                    "name": "HUD/controllerIcon.png",
+                    "position": {
+                        "x": 1422,
+                        "y": 3501
+                    },
+                    "dimension": {
+                        "w": 128,
+                        "h": 64
+                    },
+                    "trim": {
+                        "x": 4,
+                        "y": 0,
+                        "w": 120,
+                        "h": 64
+                    }
+                },
+                {
+                    "name": "HUD/controllerIcon2.png",
+                    "position": {
+                        "x": 1543,
+                        "y": 3501
+                    },
+                    "dimension": {
+                        "w": 128,
+                        "h": 64
+                    },
+                    "trim": {
+                        "x": 4,
+                        "y": 0,
+                        "w": 120,
+                        "h": 64
+                    }
+                },
+                {
                     "name": "HUD/fallgateShine7.png",
                     "position": {
                         "x": 2936,
@@ -9580,8 +9614,8 @@
                 {
                     "name": "HUD/PlayerHUDv3Frame.png",
                     "position": {
-                        "x": 1422,
-                        "y": 3501
+                        "x": 1086,
+                        "y": 3397
                     },
                     "dimension": {
                         "w": 113,
@@ -9602,8 +9636,8 @@
                 {
                     "name": "HUD/hudSelector.png",
                     "position": {
-                        "x": 1536,
-                        "y": 3501
+                        "x": 1200,
+                        "y": 3397
                     },
                     "dimension": {
                         "w": 108,
@@ -9708,8 +9742,8 @@
                 {
                     "name": "HUD/donutGradient1.png",
                     "position": {
-                        "x": 1645,
-                        "y": 3501
+                        "x": 1309,
+                        "y": 3397
                     },
                     "dimension": {
                         "w": 80,
@@ -9719,8 +9753,8 @@
                 {
                     "name": "HUD/donutGradient2.png",
                     "position": {
-                        "x": 1726,
-                        "y": 3501
+                        "x": 1390,
+                        "y": 3397
                     },
                     "dimension": {
                         "w": 80,
@@ -9730,8 +9764,8 @@
                 {
                     "name": "HUD/donutGradient3.png",
                     "position": {
-                        "x": 1807,
-                        "y": 3501
+                        "x": 1471,
+                        "y": 3397
                     },
                     "dimension": {
                         "w": 80,
@@ -9741,8 +9775,8 @@
                 {
                     "name": "HUD/donutGradient4.png",
                     "position": {
-                        "x": 1888,
-                        "y": 3501
+                        "x": 1552,
+                        "y": 3397
                     },
                     "dimension": {
                         "w": 80,
@@ -9752,8 +9786,8 @@
                 {
                     "name": "HUD/donutGradient5.png",
                     "position": {
-                        "x": 1969,
-                        "y": 3501
+                        "x": 1633,
+                        "y": 3397
                     },
                     "dimension": {
                         "w": 80,
@@ -9763,8 +9797,8 @@
                 {
                     "name": "HUD/donutGradient6.png",
                     "position": {
-                        "x": 2050,
-                        "y": 3501
+                        "x": 1714,
+                        "y": 3397
                     },
                     "dimension": {
                         "w": 80,
@@ -9774,8 +9808,8 @@
                 {
                     "name": "HUD/donutGradient7.png",
                     "position": {
-                        "x": 2131,
-                        "y": 3501
+                        "x": 1795,
+                        "y": 3397
                     },
                     "dimension": {
                         "w": 80,
@@ -9785,8 +9819,8 @@
                 {
                     "name": "HUD/donutGradient8.png",
                     "position": {
-                        "x": 2212,
-                        "y": 3501
+                        "x": 1876,
+                        "y": 3397
                     },
                     "dimension": {
                         "w": 80,
@@ -9796,8 +9830,8 @@
                 {
                     "name": "HUD/donutInactive.png",
                     "position": {
-                        "x": 2293,
-                        "y": 3501
+                        "x": 1957,
+                        "y": 3397
                     },
                     "dimension": {
                         "w": 80,
@@ -9807,8 +9841,8 @@
                 {
                     "name": "HUD/playerHUDFrameBgr.png",
                     "position": {
-                        "x": 2374,
-                        "y": 3501
+                        "x": 2038,
+                        "y": 3397
                     },
                     "dimension": {
                         "w": 80,
@@ -9818,8 +9852,8 @@
                 {
                     "name": "HUD/portraitPlayer.png",
                     "position": {
-                        "x": 2455,
-                        "y": 3501
+                        "x": 2119,
+                        "y": 3397
                     },
                     "dimension": {
                         "w": 80,
@@ -9874,8 +9908,8 @@
                 {
                     "name": "HUD/hudAOE.png",
                     "position": {
-                        "x": 2536,
-                        "y": 3501
+                        "x": 2200,
+                        "y": 3397
                     },
                     "dimension": {
                         "w": 64,
@@ -9885,8 +9919,8 @@
                 {
                     "name": "HUD/hudStab.png",
                     "position": {
-                        "x": 2601,
-                        "y": 3501
+                        "x": 2265,
+                        "y": 3397
                     },
                     "dimension": {
                         "w": 64,
@@ -10097,194 +10131,35 @@
                     }
                 },
                 {
-                    "name": "HUD/bigHeart.png",
+                    "name": "HUD/controllerIconSmall.png",
                     "position": {
                         "x": 1882,
                         "y": 4033
                     },
                     "dimension": {
-                        "w": 56,
-                        "h": 50
+                        "w": 32,
+                        "h": 16
                     },
                     "trim": {
-                        "x": 14,
-                        "y": 12,
-                        "w": 28,
-                        "h": 25
+                        "x": 1,
+                        "y": 0,
+                        "w": 30,
+                        "h": 16
                     }
                 },
                 {
-                    "name": "HUD/healthDown1.png",
-                    "position": {
-                        "x": 1911,
-                        "y": 4033
-                    },
-                    "dimension": {
-                        "w": 56,
-                        "h": 50
-                    },
-                    "trim": {
-                        "x": 14,
-                        "y": 12,
-                        "w": 28,
-                        "h": 25
-                    }
-                },
-                {
-                    "name": "HUD/healthDown2.png",
-                    "position": {
-                        "x": 1940,
-                        "y": 4033
-                    },
-                    "dimension": {
-                        "w": 56,
-                        "h": 50
-                    },
-                    "trim": {
-                        "x": 14,
-                        "y": 12,
-                        "w": 28,
-                        "h": 25
-                    }
-                },
-                {
-                    "name": "HUD/healthDown3.png",
-                    "position": {
-                        "x": 1969,
-                        "y": 4033
-                    },
-                    "dimension": {
-                        "w": 56,
-                        "h": 50
-                    },
-                    "trim": {
-                        "x": 14,
-                        "y": 12,
-                        "w": 28,
-                        "h": 25
-                    }
-                },
-                {
-                    "name": "HUD/healthDown4.png",
-                    "position": {
-                        "x": 1998,
-                        "y": 4033
-                    },
-                    "dimension": {
-                        "w": 56,
-                        "h": 50
-                    },
-                    "trim": {
-                        "x": 14,
-                        "y": 12,
-                        "w": 28,
-                        "h": 25
-                    }
-                },
-                {
-                    "name": "HUD/healthDown5.png",
-                    "position": {
-                        "x": 2027,
-                        "y": 4033
-                    },
-                    "dimension": {
-                        "w": 56,
-                        "h": 50
-                    },
-                    "trim": {
-                        "x": 14,
-                        "y": 12,
-                        "w": 28,
-                        "h": 25
-                    }
-                },
-                {
-                    "name": "HUD/healthDown6.png",
-                    "position": {
-                        "x": 2056,
-                        "y": 4033
-                    },
-                    "dimension": {
-                        "w": 56,
-                        "h": 50
-                    },
-                    "trim": {
-                        "x": 14,
-                        "y": 12,
-                        "w": 28,
-                        "h": 25
-                    }
-                },
-                {
-                    "name": "HUD/healthDown7.png",
-                    "position": {
-                        "x": 2085,
-                        "y": 4033
-                    },
-                    "dimension": {
-                        "w": 56,
-                        "h": 50
-                    },
-                    "trim": {
-                        "x": 14,
-                        "y": 12,
-                        "w": 28,
-                        "h": 25
-                    }
-                },
-                {
-                    "name": "HUD/healthDown8.png",
-                    "position": {
-                        "x": 2114,
-                        "y": 4033
-                    },
-                    "dimension": {
-                        "w": 56,
-                        "h": 50
-                    },
-                    "trim": {
-                        "x": 14,
-                        "y": 15,
-                        "w": 28,
-                        "h": 22
-                    }
-                },
-                {
-                    "name": "HUD/healthDown9.png",
-                    "position": {
-                        "x": 2143,
-                        "y": 4033
-                    },
-                    "dimension": {
-                        "w": 56,
-                        "h": 50
-                    },
-                    "trim": {
-                        "x": 14,
-                        "y": 17,
-                        "w": 28,
-                        "h": 20
-                    }
-                },
-                {
-                    "name": "HUD/healthUp10.png",
+                    "name": "HUD/musicOn.png",
                     "position": {
                         "x": 1597,
                         "y": 3919
                     },
                     "dimension": {
-                        "w": 56,
-                        "h": 50
-                    },
-                    "trim": {
-                        "x": 14,
-                        "y": 12,
                         "w": 28,
-                        "h": 25
+                        "h": 29
                     }
                 },
                 {
-                    "name": "HUD/healthUp11.png",
+                    "name": "HUD/bigHeart.png",
                     "position": {
                         "x": 1626,
                         "y": 3919
@@ -10301,7 +10176,7 @@
                     }
                 },
                 {
-                    "name": "HUD/healthUp12.png",
+                    "name": "HUD/healthDown1.png",
                     "position": {
                         "x": 1655,
                         "y": 3919
@@ -10318,7 +10193,7 @@
                     }
                 },
                 {
-                    "name": "HUD/healthUp13.png",
+                    "name": "HUD/healthDown2.png",
                     "position": {
                         "x": 1684,
                         "y": 3919
@@ -10335,7 +10210,7 @@
                     }
                 },
                 {
-                    "name": "HUD/healthUp14.png",
+                    "name": "HUD/healthDown3.png",
                     "position": {
                         "x": 1713,
                         "y": 3919
@@ -10352,7 +10227,7 @@
                     }
                 },
                 {
-                    "name": "HUD/healthUp15.png",
+                    "name": "HUD/healthDown4.png",
                     "position": {
                         "x": 1742,
                         "y": 3919
@@ -10369,7 +10244,7 @@
                     }
                 },
                 {
-                    "name": "HUD/healthUp16.png",
+                    "name": "HUD/healthDown5.png",
                     "position": {
                         "x": 1771,
                         "y": 3919
@@ -10386,7 +10261,7 @@
                     }
                 },
                 {
-                    "name": "HUD/healthUp17.png",
+                    "name": "HUD/healthDown6.png",
                     "position": {
                         "x": 1800,
                         "y": 3919
@@ -10403,7 +10278,7 @@
                     }
                 },
                 {
-                    "name": "HUD/healthUp18.png",
+                    "name": "HUD/healthDown7.png",
                     "position": {
                         "x": 1829,
                         "y": 3919
@@ -10420,10 +10295,197 @@
                     }
                 },
                 {
-                    "name": "HUD/healthUp19.png",
+                    "name": "HUD/healthDown8.png",
                     "position": {
                         "x": 1858,
                         "y": 3919
+                    },
+                    "dimension": {
+                        "w": 56,
+                        "h": 50
+                    },
+                    "trim": {
+                        "x": 14,
+                        "y": 15,
+                        "w": 28,
+                        "h": 22
+                    }
+                },
+                {
+                    "name": "HUD/healthDown9.png",
+                    "position": {
+                        "x": 1887,
+                        "y": 3919
+                    },
+                    "dimension": {
+                        "w": 56,
+                        "h": 50
+                    },
+                    "trim": {
+                        "x": 14,
+                        "y": 17,
+                        "w": 28,
+                        "h": 20
+                    }
+                },
+                {
+                    "name": "HUD/healthUp10.png",
+                    "position": {
+                        "x": 3667,
+                        "y": 3850
+                    },
+                    "dimension": {
+                        "w": 56,
+                        "h": 50
+                    },
+                    "trim": {
+                        "x": 14,
+                        "y": 12,
+                        "w": 28,
+                        "h": 25
+                    }
+                },
+                {
+                    "name": "HUD/healthUp11.png",
+                    "position": {
+                        "x": 3696,
+                        "y": 3850
+                    },
+                    "dimension": {
+                        "w": 56,
+                        "h": 50
+                    },
+                    "trim": {
+                        "x": 14,
+                        "y": 12,
+                        "w": 28,
+                        "h": 25
+                    }
+                },
+                {
+                    "name": "HUD/healthUp12.png",
+                    "position": {
+                        "x": 3725,
+                        "y": 3850
+                    },
+                    "dimension": {
+                        "w": 56,
+                        "h": 50
+                    },
+                    "trim": {
+                        "x": 14,
+                        "y": 12,
+                        "w": 28,
+                        "h": 25
+                    }
+                },
+                {
+                    "name": "HUD/healthUp13.png",
+                    "position": {
+                        "x": 3754,
+                        "y": 3850
+                    },
+                    "dimension": {
+                        "w": 56,
+                        "h": 50
+                    },
+                    "trim": {
+                        "x": 14,
+                        "y": 12,
+                        "w": 28,
+                        "h": 25
+                    }
+                },
+                {
+                    "name": "HUD/healthUp14.png",
+                    "position": {
+                        "x": 3783,
+                        "y": 3850
+                    },
+                    "dimension": {
+                        "w": 56,
+                        "h": 50
+                    },
+                    "trim": {
+                        "x": 14,
+                        "y": 12,
+                        "w": 28,
+                        "h": 25
+                    }
+                },
+                {
+                    "name": "HUD/healthUp15.png",
+                    "position": {
+                        "x": 3812,
+                        "y": 3850
+                    },
+                    "dimension": {
+                        "w": 56,
+                        "h": 50
+                    },
+                    "trim": {
+                        "x": 14,
+                        "y": 12,
+                        "w": 28,
+                        "h": 25
+                    }
+                },
+                {
+                    "name": "HUD/healthUp16.png",
+                    "position": {
+                        "x": 3841,
+                        "y": 3850
+                    },
+                    "dimension": {
+                        "w": 56,
+                        "h": 50
+                    },
+                    "trim": {
+                        "x": 14,
+                        "y": 12,
+                        "w": 28,
+                        "h": 25
+                    }
+                },
+                {
+                    "name": "HUD/healthUp17.png",
+                    "position": {
+                        "x": 3870,
+                        "y": 3850
+                    },
+                    "dimension": {
+                        "w": 56,
+                        "h": 50
+                    },
+                    "trim": {
+                        "x": 14,
+                        "y": 12,
+                        "w": 28,
+                        "h": 25
+                    }
+                },
+                {
+                    "name": "HUD/healthUp18.png",
+                    "position": {
+                        "x": 3899,
+                        "y": 3850
+                    },
+                    "dimension": {
+                        "w": 56,
+                        "h": 50
+                    },
+                    "trim": {
+                        "x": 14,
+                        "y": 12,
+                        "w": 28,
+                        "h": 25
+                    }
+                },
+                {
+                    "name": "HUD/healthUp19.png",
+                    "position": {
+                        "x": 3928,
+                        "y": 3850
                     },
                     "dimension": {
                         "w": 56,
@@ -10439,8 +10501,8 @@
                 {
                     "name": "HUD/healthUp20.png",
                     "position": {
-                        "x": 1887,
-                        "y": 3919
+                        "x": 3957,
+                        "y": 3850
                     },
                     "dimension": {
                         "w": 56,
@@ -10456,8 +10518,8 @@
                 {
                     "name": "HUD/healthUp21.png",
                     "position": {
-                        "x": 1916,
-                        "y": 3919
+                        "x": 3986,
+                        "y": 3850
                     },
                     "dimension": {
                         "w": 56,
@@ -10473,8 +10535,8 @@
                 {
                     "name": "HUD/healthUp22.png",
                     "position": {
-                        "x": 1945,
-                        "y": 3919
+                        "x": 4015,
+                        "y": 3850
                     },
                     "dimension": {
                         "w": 56,
@@ -10490,8 +10552,8 @@
                 {
                     "name": "HUD/healthUp23.png",
                     "position": {
-                        "x": 1974,
-                        "y": 3919
+                        "x": 4044,
+                        "y": 3850
                     },
                     "dimension": {
                         "w": 56,
@@ -10507,8 +10569,8 @@
                 {
                     "name": "HUD/healthUp6.png",
                     "position": {
-                        "x": 2172,
-                        "y": 4033
+                        "x": 3701,
+                        "y": 4015
                     },
                     "dimension": {
                         "w": 56,
@@ -10524,8 +10586,8 @@
                 {
                     "name": "HUD/healthUp7.png",
                     "position": {
-                        "x": 1597,
-                        "y": 3945
+                        "x": 1916,
+                        "y": 3919
                     },
                     "dimension": {
                         "w": 56,
@@ -10541,8 +10603,8 @@
                 {
                     "name": "HUD/healthUp8.png",
                     "position": {
-                        "x": 2003,
-                        "y": 3919
+                        "x": 2795,
+                        "y": 3786
                     },
                     "dimension": {
                         "w": 56,
@@ -10558,8 +10620,8 @@
                 {
                     "name": "HUD/healthUp9.png",
                     "position": {
-                        "x": 3667,
-                        "y": 3850
+                        "x": 2795,
+                        "y": 3808
                     },
                     "dimension": {
                         "w": 56,
@@ -10573,10 +10635,43 @@
                     }
                 },
                 {
+                    "name": "HUD/musicOff.png",
+                    "position": {
+                        "x": 2721,
+                        "y": 3722
+                    },
+                    "dimension": {
+                        "w": 28,
+                        "h": 28
+                    }
+                },
+                {
+                    "name": "HUD/soundOff.png",
+                    "position": {
+                        "x": 2721,
+                        "y": 3751
+                    },
+                    "dimension": {
+                        "w": 28,
+                        "h": 28
+                    }
+                },
+                {
+                    "name": "HUD/soundOn.png",
+                    "position": {
+                        "x": 2750,
+                        "y": 3751
+                    },
+                    "dimension": {
+                        "w": 28,
+                        "h": 28
+                    }
+                },
+                {
                     "name": "HUD/endKills.png",
                     "position": {
-                        "x": 2795,
-                        "y": 3786
+                        "x": 2779,
+                        "y": 3751
                     },
                     "dimension": {
                         "w": 16,
@@ -10592,8 +10687,8 @@
                 {
                     "name": "HUD/healthUp5.png",
                     "position": {
-                        "x": 2201,
-                        "y": 4033
+                        "x": 1882,
+                        "y": 4050
                     },
                     "dimension": {
                         "w": 56,
@@ -10609,8 +10704,8 @@
                 {
                     "name": "HUD/endDeaths.png",
                     "position": {
-                        "x": 2032,
-                        "y": 3919
+                        "x": 4073,
+                        "y": 3850
                     },
                     "dimension": {
                         "w": 22,
@@ -10620,8 +10715,8 @@
                 {
                     "name": "HUD/healthUp4.png",
                     "position": {
-                        "x": 2228,
-                        "y": 4033
+                        "x": 1909,
+                        "y": 4050
                     },
                     "dimension": {
                         "w": 56,
@@ -10637,8 +10732,8 @@
                 {
                     "name": "HUD/healthDown10.png",
                     "position": {
-                        "x": 2055,
-                        "y": 3919
+                        "x": 3667,
+                        "y": 3876
                     },
                     "dimension": {
                         "w": 56,
@@ -10654,8 +10749,8 @@
                 {
                     "name": "HUD/healthDown11.png",
                     "position": {
-                        "x": 2073,
-                        "y": 3919
+                        "x": 3685,
+                        "y": 3876
                     },
                     "dimension": {
                         "w": 56,
@@ -10671,8 +10766,8 @@
                 {
                     "name": "HUD/healthDown12.png",
                     "position": {
-                        "x": 2087,
-                        "y": 3919
+                        "x": 3699,
+                        "y": 3876
                     },
                     "dimension": {
                         "w": 56,
@@ -10688,8 +10783,8 @@
                 {
                     "name": "HUD/healthDown13.png",
                     "position": {
-                        "x": 2101,
-                        "y": 3919
+                        "x": 3713,
+                        "y": 3876
                     },
                     "dimension": {
                         "w": 56,
@@ -10705,8 +10800,8 @@
                 {
                     "name": "HUD/endTime.png",
                     "position": {
-                        "x": 1626,
-                        "y": 3945
+                        "x": 1945,
+                        "y": 3919
                     },
                     "dimension": {
                         "w": 17,
@@ -10716,8 +10811,8 @@
                 {
                     "name": "HUD/endSecrets.png",
                     "position": {
-                        "x": 3701,
-                        "y": 4015
+                        "x": 1913,
+                        "y": 4033
                     },
                     "dimension": {
                         "w": 19,
@@ -10733,8 +10828,8 @@
                 {
                     "name": "HUD/healthUp3.png",
                     "position": {
-                        "x": 2251,
-                        "y": 4033
+                        "x": 1932,
+                        "y": 4050
                     },
                     "dimension": {
                         "w": 56,
@@ -10750,8 +10845,8 @@
                 {
                     "name": "HUD/screenWash.png",
                     "position": {
-                        "x": 3716,
-                        "y": 4015
+                        "x": 1928,
+                        "y": 4033
                     },
                     "dimension": {
                         "w": 16,
@@ -10761,8 +10856,8 @@
                 {
                     "name": "HUD/healthDown14.png",
                     "position": {
-                        "x": 1644,
-                        "y": 3945
+                        "x": 3730,
+                        "y": 4015
                     },
                     "dimension": {
                         "w": 56,
@@ -10795,8 +10890,8 @@
                 {
                     "name": "HUD/playerHealth.png",
                     "position": {
-                        "x": 3733,
-                        "y": 4015
+                        "x": 1945,
+                        "y": 4033
                     },
                     "dimension": {
                         "w": 1,
@@ -10806,8 +10901,8 @@
                 {
                     "name": "HUD/playerXP.png",
                     "position": {
-                        "x": 3735,
-                        "y": 4015
+                        "x": 1947,
+                        "y": 4033
                     },
                     "dimension": {
                         "w": 1,
@@ -10817,8 +10912,8 @@
                 {
                     "name": "HUD/enemyHUDendCap.png",
                     "position": {
-                        "x": 1882,
-                        "y": 4059
+                        "x": 1949,
+                        "y": 4050
                     },
                     "dimension": {
                         "w": 2,
@@ -10918,7 +11013,7 @@
             ]
         },
         {
-            "image": "38e71a4c6dfc0f602f2d30419abafdcd8ba89a39.png",
+            "image": "e15a4b884f679bba874b8cbeac04cc3db3d934a8.png",
             "filesize": 225883,
             "sprites": [
                 {

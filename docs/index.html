@@ -202,6 +202,15 @@
 		a {
 			color: white;
 		}
+
+		details {
+			max-width: 600px;
+			margin: auto;
+		}
+
+		summary {
+			cursor: pointer;
+		}
 	</style>
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -245,7 +254,19 @@
 			<div id="timerRow"></div>
 
 			<hr style="max-width: 250px; margin-top: 100px;" />
-			<p id="aboutMini" onclick="expandAbout();">About Fallgate</p>
+			<details>
+				<summary>About Fallgate</summary>
+				<img src="assets/img/max-and-cooper.jpg" style="max-width: 150px; float: left; margin-right: 20px;" />
+				<p style="text-align: left; line-height: 1.4;">
+					Fallgate was made by
+					<a href="http://maxwellforbes.com" target="_blank">Maxwell Forbes</a>
+					and
+					<a href="http://schmidlak.com" target="_blank">Cooper Smith</a>
+					as a hobby project. It is their first game.
+				</p>
+			</details>
+
+			<!-- <p id="aboutMini" onclick="expandAbout();">About Fallgate</p>
 			<div id="aboutExpanded" hidden="true">
 				<p id="collapse" onclick="collapseAbout();">About Fallgate</p>
 				<img src="assets/img/max-and-cooper.jpg" style="max-width: 350px" />
@@ -256,9 +277,7 @@
 						Forbes</a> and <a href="http://schmidlak.com">Cooper Smith</a> as a hobby project. It is their
 					first game.
 				</p>
-
-
-			</div>
+			</div> -->
 
 		</div>
 	</div>

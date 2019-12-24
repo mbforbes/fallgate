@@ -1761,6 +1761,38 @@ var Engine;
     }
     Engine.System = System;
 })(Engine || (Engine = {}));
+var Saving;
+(function (Saving) {
+    function save(sceneName, trackNames, bookkeeper) {
+        localStorage.setItem('/fallgate/save/scene', sceneName);
+        console.info('[Saving] Saved scene: ' + sceneName);
+        let serializedTracks = trackNames.join(';');
+        localStorage.setItem('/fallgate/save/tracks', serializedTracks);
+        console.info('[Saving] Saved tracks: ' + serializedTracks);
+        localStorage.setItem('/fallgate/save/bookkeeper', bookkeeper);
+        console.info('[Saving] Saved bookkeeper: ' + bookkeeper);
+    }
+    Saving.save = save;
+    function clear() {
+        localStorage.clear();
+        console.info('[Saving] Cleared all save data');
+    }
+    Saving.clear = clear;
+    function load() {
+        let sceneName = localStorage.getItem('/fallgate/save/scene');
+        console.info('[Saving] Loaded scene: ' + sceneName);
+        let trackIDs = null;
+        let tracks = localStorage.getItem('/fallgate/save/tracks');
+        if (tracks != null) {
+            trackIDs = tracks.split(';');
+        }
+        console.info('[Saving] Loaded tracks: ' + trackIDs);
+        let bookkeeper = localStorage.getItem('/fallgate/save/bookkeeper');
+        console.info('[Saving] Loaded bookkeeper: ' + bookkeeper);
+        return [sceneName, trackIDs, bookkeeper];
+    }
+    Saving.load = load;
+})(Saving || (Saving = {}));
 /// <reference path="../../lib/howler.d.ts" />
 /// <reference path="../gj7/sound.ts" />
 var System;
@@ -1878,21 +1910,40 @@ var System;
          */
         toggleMusic() {
             this.musicOn = !this.musicOn;
+            let w = '', f = '';
             if (this.musicOn) {
                 this.playMusic(this.playingMusic);
+                w = 'on';
+                f = 'On';
             }
             else {
                 this.disableMusic();
+                w = 'off';
+                f = 'Off';
             }
+            this.ecs.getSystem(System.GUIManager).runSequence('notification', new Map([['notification', 'music ' + w]]), new Map([['notification', 'HUD/music' + f]]));
         }
         /**
          * API for toggling sound effects.
          */
         toggleEffects() {
             this.effectsOn = !this.effectsOn;
+            let w = this.effectsOn ? 'on' : 'off';
+            let f = this.effectsOn ? 'On' : 'Off';
+            this.ecs.getSystem(System.GUIManager).runSequence('notification', new Map([['notification', 'sound effects ' + w]]), new Map([['notification', 'HUD/sound' + f]]));
             // Nothing else needs to happen here because sound effects are
             // short. We simply decide whether to play future effects based on
             // this setting.
+        }
+        /**
+         * API to get all music that should currently be playing (regardless of whether
+         * music volume is off).
+         *
+         * This is necessary for saving, because we don't specify the music in every
+         * stage.
+         */
+        getPlaying() {
+            return Array.from(this.playingMusic);
         }
         play(options, location = null) {
             // sanity checking
@@ -2047,6 +2098,7 @@ var ZLevelHUD;
     ZLevelHUD[ZLevelHUD["PausedText"] = 801] = "PausedText";
     ZLevelHUD[ZLevelHUD["Letterbox"] = 900] = "Letterbox";
     ZLevelHUD[ZLevelHUD["Curtain"] = 1000] = "Curtain";
+    ZLevelHUD[ZLevelHUD["Notification"] = 2000] = "Notification";
     ZLevelHUD[ZLevelHUD["DEBUG"] = 9000] = "DEBUG";
 })(ZLevelHUD || (ZLevelHUD = {}));
 // Keep StageTarget and ZLevelEnums in sync, please!
@@ -6558,6 +6610,7 @@ var System;
             this.switchWeapon = false;
             this.idleFrames = 2;
             this.idleFor = 0;
+            this.gamepadDetectionShown = false;
             /**
              * Idle is set if the gamepad has no inputs for idleFrames frames. When
              * this happens, the systems using the gamepad know they can ignore the
@@ -6583,6 +6636,11 @@ var System;
             if (!gp.connected || gp.buttons.length < 18 || gp.axes.length < 4) {
                 this.idle = true;
                 return;
+            }
+            // show notification first time gamepad used
+            if (!this.gamepadDetectionShown) {
+                this.ecs.getSystem(System.GUIManager).runSequence('notification', new Map([['notification', 'gamepad detected']]));
+                this.gamepadDetectionShown = true;
             }
             // input. L and R analog stick, with d-pad overwriting if used.
             this.intentMove.set_(clampReal(gp.axes[0]), clampReal(gp.axes[1]));
@@ -9949,6 +10007,7 @@ var System;
 /// <reference path="../core/mouse.ts" />
 /// <reference path="../engine/ecs.ts" />
 /// <reference path="../engine/events.ts" />
+/// <reference path="../engine/saving.ts" />
 /// <reference path="../system/audio.ts" />
 /// <reference path="../graphics/stage.ts" />
 /// <reference path="../gj7/sound.ts" />
@@ -10240,6 +10299,19 @@ var Game;
                 this.ecs.toggleSystem(System.BookkeeperRenderer);
             };
             gameParent.appendChild(srButton);
+            // clear save data
+            let saveClearButton = document.createElement('button');
+            saveClearButton.className = 'fsButton';
+            saveClearButton.innerText = 'Clear save data';
+            saveClearButton.onclick = (ev) => {
+                if (confirm("Are you sure you want to clear your Fallgate save data?\n\n" +
+                    "This will will remove all of your progress through the game.\n\n" +
+                    "If you choose OK, you can then reload the game to start over.")) {
+                    this.ecs.getSystem(System.GUIManager).runSequence('notification', new Map([['notification', 'save data cleared']]));
+                    Saving.clear();
+                }
+            };
+            gameParent.appendChild(saveClearButton);
             // full screen
             let fsButton = document.createElement('button');
             fsButton.className = 'fsButton';
@@ -10502,8 +10574,24 @@ var Game;
             // modify core game stuff w/ systems that need crosstalk
             this.audio.boundsGetter = world;
             this.audio.viewportSize = resConfig.viewport.copy();
-            // Tell scene manager to load first level.
-            this.sceneManager.nextLevel();
+            // Tell scene manager to load any level progress that was saved, or just the
+            // first level in the progression (which is the title sceen) if no save data
+            // was found.
+            let [sceneName, trackIDs, bookkeeperStr] = Saving.load();
+            if (sceneName != null) {
+                // we have to play the music first because otherwise the sceneManager
+                // may load the lack of tracks, then immediately save them.
+                if (trackIDs != null) {
+                    this.ecs.getSystem(System.Audio).playMusic(trackIDs);
+                }
+                // load all stats
+                this.ecs.getSystem(System.Bookkeeper).load(bookkeeperStr);
+                this.sceneManager.switchToName(sceneName);
+            }
+            else {
+                // First level.
+                this.sceneManager.nextLevel();
+            }
             // Start update loop.
             this.r.done();
             g = this;
@@ -13065,7 +13153,7 @@ var GameMap;
         ['forestWalls,forestWalls,none,forestWalls', { coll: { shape: V_Full, cTypes: C_Wall }, angle: 0 }],
         ['forestWalls,forestWalls,forestWalls,none', { coll: { shape: V_Full, cTypes: C_Wall }, angle: 0 }],
         // OOB
-        // ['forestWalls,forestWalls,forestWalls,forestWalls', { coll: { shape: V_Full, cTypes: C_Bramble }, angle: 0, objLayerOverride: 'OOBTile' }],
+        ['forestWalls,forestWalls,forestWalls,forestWalls', { coll: { shape: V_Full, cTypes: C_Bramble }, angle: 0, objLayerOverride: 'OOBTile' }],
         // castle walls
         ['none,castleWalls,none,castleWalls', { coll: { shape: V_Full, cTypes: C_Wall }, angle: 0 }],
         ['castleWalls,none,castleWalls,none', { coll: { shape: V_Full, cTypes: C_Wall }, angle: 0 }],
@@ -13079,6 +13167,8 @@ var GameMap;
         ['castleWalls,none,castleWalls,castleWalls', { coll: { shape: V_Full, cTypes: C_Wall }, angle: 0 }],
         ['castleWalls,castleWalls,none,castleWalls', { coll: { shape: V_Full, cTypes: C_Wall }, angle: 0 }],
         ['castleWalls,castleWalls,castleWalls,none', { coll: { shape: V_Full, cTypes: C_Wall }, angle: 0 }],
+        // OOB
+        ['castleWalls,castleWalls,castleWalls,castleWalls', { coll: { shape: V_Full, cTypes: C_Bramble }, angle: 0, objLayerOverride: 'OOBTile' }],
     ]);
     /**
      * Parses roundabout map info on GIDs, tilesets, and terrains stored in
@@ -13419,6 +13509,7 @@ var Logic;
 /// <reference path="../../lib/pixi.js.d.ts" />
 /// <reference path="../gj7/gamemap.ts" />
 /// <reference path="../engine/ecs.ts" />
+/// <reference path="../engine/saving.ts" />
 var Scene;
 (function (Scene) {
     /**
@@ -13618,10 +13709,14 @@ var Scene;
                 this.ecs.getSystem(System.ParticleRenderer).enableOnly(particleIDs);
             }
             // do any music modifications if specified
+            let audioSystem = this.ecs.getSystem(System.Audio);
             let trackIDs = this.activeScene.level.trackIDs;
             if (trackIDs != null) {
-                this.ecs.getSystem(System.Audio).playMusic(trackIDs);
+                audioSystem.playMusic(trackIDs);
             }
+            let bookkeeper = this.ecs.getSystem(System.Bookkeeper);
+            // save progress
+            Saving.save(active, audioSystem.getPlaying(), bookkeeper.serialize());
             // run startup script. also decide whether to tell bookkeeper about
             // this level (only for "normal" levels)
             let ssName = getStartScriptName(this.activeScene.scripts, this.gameMode);
@@ -13675,10 +13770,10 @@ var Scene;
             }
             // fresh start for new level
             if (setIdx && !softReset) {
-                this.ecs.getSystem(System.Bookkeeper).setActive(idx);
+                bookkeeper.setActive(idx);
             }
             if (softReset) {
-                this.ecs.getSystem(System.Bookkeeper).softReset();
+                bookkeeper.softReset();
             }
         }
     }
@@ -14562,7 +14657,8 @@ var Handler;
                 ['exitKillsText', report.enemiesKilled],
                 ['exitDeathsText', report.playerDeaths],
                 ['exitSecretsText', report.secretsFound],
-                ['exitTimeText', report.timeTaken],
+                ['exitTimeTextBig', report.timeTakenBig],
+                ['exitTimeTextSmall', report.timeTakenSmall],
             ])));
             // NOTE: may want a delay here
             this.levelSwitchEnabled = true;
@@ -14822,6 +14918,8 @@ var Handler;
             let guiM = this.ecs.getSystem(System.GUIManager);
             this.guiBookkeep.push(...guiM.runSequence('recap', new Map([
                 ['recapTimeValue', recap.timeTaken],
+                ['recapTimeValueBig', recap.timeTakenBig],
+                ['recapTimeValueSmall', recap.timeTakenSmall],
                 ['recapKillsValue', recap.enemiesKilled],
                 ['recapDeathsValue', recap.playerDeaths],
                 ['recapDoughnutsValue', recap.secretsFound],
@@ -17635,11 +17733,14 @@ var System;
 var System;
 (function (System) {
     function numericToDisplay(r) {
+        let [timeBig, timeSmall] = msToUserTimeTwoPart(r.timeTaken);
         return {
             playerDeaths: '' + r.playerDeaths,
             enemiesKilled: '' + r.enemiesKilled,
             secretsFound: '' + (r.secretsFound > 0 ? Constants.CHECKMARK : 'no'),
             timeTaken: msToUserTime(r.timeTaken),
+            timeTakenBig: timeBig,
+            timeTakenSmall: timeSmall,
         };
     }
     function numericToReport(r, nLevels) {
@@ -17713,6 +17814,25 @@ var System;
             return this;
         }
         /**
+         * Can be recovered with (new LevelInfo).from(s).
+         */
+        serialize() {
+            return JSON.stringify(this);
+        }
+        /**
+         * Create LevelInfo from serialized version.
+         */
+        from(sLevelInfo) {
+            let raw = JSON.parse(sLevelInfo);
+            this.playerDeaths = raw.playerDeaths;
+            this.enemiesKilled = raw.enemiesKilled;
+            this.destructiblesSmashed = raw.destructibleSmashed;
+            this.secretsFound = raw.secretsFound;
+            this.startTime = raw.startTime;
+            this.sumElapsed = raw.sumElapsed;
+            return this;
+        }
+        /**
          * Resets doughnuts only.
          */
         softReset() {
@@ -17773,6 +17893,8 @@ var System;
                 playerDeaths: '<whoops>',
                 secretsFound: '<whoops>',
                 timeTaken: '<whoops>',
+                timeTakenBig: '<whoops>',
+                timeTakenSmall: '<whoops>',
             };
         }
         /**
@@ -17909,6 +18031,63 @@ var System;
             }
             let total = this.debugTimeCache + cur;
             return [msToUserTimeTwoPart(cur), msToUserTimeTwoPart(total)];
+        }
+        /**
+         * Returns serialized strings for instructions shown, level infos.
+         *
+         * Can be loaded with load().
+         */
+        serialize() {
+            // cur level
+            let sCurLevel = this.curLevelNum + '';
+            // instrs shown
+            let sInstructions = 'none';
+            if (this.instructionsShown.size > 0) {
+                sInstructions = Array.from(this.instructionsShown).join(';');
+            }
+            // level infos
+            let sLevelInfos = 'none';
+            if (this.levelInfos.size > 0) {
+                let arrLevelInfos = [];
+                for (let [n, lvlInfo] of this.levelInfos.entries()) {
+                    arrLevelInfos.push(n + ':' + lvlInfo.serialize());
+                }
+                sLevelInfos = arrLevelInfos.join(';');
+            }
+            return [sCurLevel, sInstructions, sLevelInfos].join('|');
+        }
+        load(s) {
+            this.reset();
+            // cur level num. this will be the previous level, as the save operation
+            // happens before the bookkeeper updates. This also doesn't matter most of
+            // the time, because the game will usually immediately call setActive and
+            // set the level number anew after loading this. This is all true EXCEPT for
+            // multi-part levels (castle), where the level num stays the same for
+            // multiple scenes. In that case, we need to load this here so we know that
+            // the current levelInfo is active, and not to add it to our total time
+            // cache (below).
+            let [sCurLevel, sInstructions, sLevelInfos] = s.split('|');
+            this.curLevelNum = parseInt(sCurLevel);
+            // instrs shown
+            if (sInstructions != 'none') {
+                this.instructionsShown = new Set(sInstructions.split(';'));
+            }
+            // level infos
+            if (sLevelInfos != 'none') {
+                for (let sLevelInfo of sLevelInfos.split(';')) {
+                    let sep = sLevelInfo.indexOf(':');
+                    let n = parseInt(sLevelInfo.substring(0, sep));
+                    let levelInfo = (new LevelInfo()).from(sLevelInfo.substring(sep + 1));
+                    this.levelInfos.set(n, levelInfo);
+                    // we add to the total elapsed time, EXCEPT for the current level
+                    // (the time cache should only hold the sum of previous levels).
+                    // This should only happen for multi-part levels, where the level
+                    // num stays the same for multiple scenes.
+                    if (n != this.curLevelNum) {
+                        this.debugTimeCache += levelInfo.elapsed();
+                    }
+                }
+            }
         }
         /**
          * Should be called when the game starts over.
