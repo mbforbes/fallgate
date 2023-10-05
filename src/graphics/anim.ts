@@ -1,3 +1,4 @@
+/// <reference path="../component/body.ts" />
 namespace Anim {
 
 	export enum PlayType {

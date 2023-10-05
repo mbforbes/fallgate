@@ -222,6 +222,7 @@ namespace Stage {
 	class MainStageCore extends PIXI.display.Stage {
 		children: MultiZStage[]
 
+		/*
 		@override
 		getChildAt(index: number): MultiZStage {
 			if (index < 0 || index >= this.children.length) {
@@ -229,6 +230,7 @@ namespace Stage {
 			}
 			return this.children[index];
 		}
+		*/
 	}
 
 	/**
@@ -275,7 +277,7 @@ namespace Stage {
 				this.addChildAt(zStage, i);
 			}
 		}
-
+/*
 		@override
 		getChildAt(index: number): ZStage {
 			if (index < 0 || index >= this.children.length) {
@@ -283,6 +285,7 @@ namespace Stage {
 			}
 			return this.children[index];
 		}
+*/
 
 		add(obj: DisplayObject) {
 			var idx = this.mapping.get(obj.z);

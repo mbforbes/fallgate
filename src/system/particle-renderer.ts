@@ -48,6 +48,7 @@ namespace System {
 					emitter = new PIXI.particles.Emitter(
 						stage,
 						{
+						    //@ts-ignore
 							framerate: config.anim.framerate,
 							loop: true,
 							textures: textures,

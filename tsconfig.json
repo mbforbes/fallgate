@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "module": "system",
+    "lib": ["es2019", "es5", "es6", "dom"],
+    "declaration": false,
+    "removeComments": true,
+    "emitDeclarationOnly": false,
+    "emitDecoratorMetadata": false,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "target": "es6",
+    "sourceMap": false,
+    "incremental": true,  
+    "rootDir": "src",
+    "outFile": "./game/build/game.js"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

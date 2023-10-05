@@ -1,7 +1,0 @@
-{
-	"compilerOptions": {
-		"target": "es6",
-		"experimentalDecorators": true,
-		"outFile": "../build/game.js"
-	}
-}

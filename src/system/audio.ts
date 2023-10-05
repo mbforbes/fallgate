@@ -101,7 +101,7 @@ namespace System {
 			// otherwise, we ensure the requested tracks are playing, and all
 			// others are not (by fading them out)
 			for (let [trackID, hpkg] of this.music.entries()) {
-				let h = hpkg.howl;
+				let h = hpkg.howl;				
 				if (s.has(trackID)) {
 					// always turn up its volume (in case it was disabled)
 					h.volume(hpkg.volume);
