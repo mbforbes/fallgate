@@ -1,0 +1,19 @@
+{
+  "name": "fallgate",
+  "version": "1.0.0",
+  "description": "A pixel-art action-adventure game about questing through a forest, vanquishing blops and eating doughnuts.",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && npm run serve",
+    "build": "tsc",
+    "serve": "npx http-server ./game"
+  },
+  "keywords": [],
+  "author": "Maxwell Forbes and Cooper Smith",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.8.2",
+    "ts-node": "^10.9.1",
+    "ts-loader": "^9.4.4"
+  }
+}
