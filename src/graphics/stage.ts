@@ -222,15 +222,14 @@ namespace Stage {
 	class MainStageCore extends PIXI.display.Stage {
 		children: MultiZStage[]
 
-		/*
 		@override
+		//@ts-ignore
 		getChildAt(index: number): MultiZStage {
 			if (index < 0 || index >= this.children.length) {
 				throw new Error('getChildAt: Supplied index ' + index + ' does not exist in the child list, or the supplied DisplayObject is not a child of the caller');
 			}
 			return this.children[index];
 		}
-		*/
 	}
 
 	/**
@@ -277,15 +276,15 @@ namespace Stage {
 				this.addChildAt(zStage, i);
 			}
 		}
-/*
+
 		@override
+		//@ts-ignore
 		getChildAt(index: number): ZStage {
 			if (index < 0 || index >= this.children.length) {
 				throw new Error('getChildAt: Supplied index ' + index + ' does not exist in the child list, or the supplied DisplayObject is not a child of the caller');
 			}
 			return this.children[index];
 		}
-*/
 
 		add(obj: DisplayObject) {
 			var idx = this.mapping.get(obj.z);

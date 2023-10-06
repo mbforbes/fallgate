@@ -1,0 +1,5301 @@
+{
+	"player-Base": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/player/playerIdle",
+					"frames": 1,
+					"speed": 0,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/player/playerDeath",
+					"frames": 5,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "BlockRaising",
+				"baseSpec": {
+					"base": "sprites/player/playerBlockRaise",
+					"frames": 2,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "BlockHolding",
+				"baseSpec": {
+					"base": "sprites/player/playerBlockHold",
+					"frames": 1,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "BlockLowering",
+				"baseSpec": {
+					"base": "sprites/player/playerBlockLower",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Recoiling",
+				"baseSpec": {
+					"base": "sprites/player/playerBlockRecoil",
+					"frames": 3,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/player/playerKnockback",
+					"frames": 5,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/player/playerKnockback",
+					"frames": 5,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/player/playerStagger",
+					"frames": 3,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/player/playerAxeCharge",
+					"frames": 3,
+					"speed": 150,
+					"playType": "PlayAndHold"
+				},
+				"partID": "Axe"
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/player/playerAxeSwing",
+					"frames": 4,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				},
+				"partID": "Axe"
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/player/playerAxeSheathe",
+					"frames": 1,
+					"speed": 150,
+					"playType": "PlayAndHold"
+				},
+				"partID": "Axe"
+			},
+			{
+				"action": "QuickAttacking",
+				"baseSpec": {
+					"base": "sprites/player/playerBowQuick",
+					"frames": 5,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				},
+				"partID": "Bow"
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/player/playerBowCharge",
+					"frames": 4,
+					"speed": 75,
+					"playType": "PlayAndHold"
+				},
+				"partID": "Bow"
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/player/playerBowSwing",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				},
+				"partID": "Bow"
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/player/playerBowSheathe",
+					"frames": 2,
+					"speed": 75,
+					"playType": "PlayAndHold"
+				},
+				"partID": "Bow"
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/player/playerSwordCharge",
+					"frames": 3,
+					"speed": 75,
+					"playType": "PlayAndHold"
+				},
+				"partID": "Sword"
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/player/playerSwordSwing",
+					"frames": 4,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				},
+				"partID": "Sword"
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/player/playerSwordSheathe",
+					"frames": 1,
+					"speed": 75,
+					"playType": "PlayAndHold"
+				},
+				"partID": "Sword"
+			},
+			{
+				"action": "QuickAttacking",
+				"baseSpec": {
+					"base": "sprites/player/playerSlashA",
+					"frames": 8,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				},
+				"partID": "Sword"
+			},
+			{
+				"action": "QuickAttacking2",
+				"baseSpec": {
+					"base": "sprites/player/playerSlashB",
+					"frames": 8,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				},
+				"partID": "Sword"
+			}
+		],
+		"attributes": "player",
+		"audible": {
+			"damaged": [
+				"playerDamaged"
+			],
+			"move": {
+				"default": {
+					"emitOnFrames": [
+						2,
+						6
+					],
+					"sounds": [
+						"footstepGrass1",
+						"footstepGrass2",
+						"footstepGrass3"
+					]
+				}
+			}
+		},
+		"collisionManual": "0,0,28,56",
+		"collisionTypes": [
+			"Solid",
+			"Mobile",
+			"Vulnerable",
+			"Player"
+		],
+		"health": 3,
+		"knockbackable": true,
+		"player": true,
+		"respawn": true
+	},
+	"player-Slow": {
+		"parentLayer": "player-Base",
+		"animations": [
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/player/playerWalk",
+					"frames": 8,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			}
+		],
+		"move": {
+			"movementType": 2,
+			"accel": 20,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 35,
+			"decel": 1.0,
+			"invMass": 1.0
+		}
+	},
+	"player-Sword": {
+		"parentLayer": "player-Slow",
+		"weapons": "playerSword-Slow"
+	},
+	"player-Shield": {
+		"parentLayer": "player-Sword",
+		"shields": "playerShield-Slow"
+	},
+	"player-Health4": {
+		"parentLayer": "player-Shield",
+		"health": 4
+	},
+	"player-StabCombo-Slow": {
+		"parentLayer": "player-Slow",
+		"animations": [
+			{
+				"action": "ComboAttacking",
+				"baseSpec": {
+					"base": "sprites/player/playerPowerStab",
+					"frames": 17,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				},
+				"partID": "Sword"
+			}
+		],
+		"comboable": {
+			"hits": 3,
+			"consecutiveWindow": 500,
+			"activeWindow": 500
+		},
+		"health": 4,
+		"shields": "playerShield-StabCombo-Slow",
+		"weapons": "playerSword-StabCombo-Slow"
+	},
+	"player-Fast-Base": {
+		"parentLayer": "player-Base",
+		"animations": [
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/player/playerWalk",
+					"frames": 8,
+					"speed": 60,
+					"playType": "Loop"
+				}
+			}
+		],
+		"move": {
+			"movementType": 2,
+			"accel": 20,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 60,
+			"decel": 1.0,
+			"invMass": 1.0
+		},
+		"health": 4
+	},
+	"player-StabCombo-Fast": {
+		"parentLayer": "player-Fast-Base",
+		"animations": [
+			{
+				"action": "ComboAttacking",
+				"baseSpec": {
+					"base": "sprites/player/playerPowerStab",
+					"frames": 17,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				},
+				"partID": "Sword"
+			}
+		],
+		"comboable": {
+			"hits": 3,
+			"consecutiveWindow": 500,
+			"activeWindow": 500
+		},
+		"shields": "playerShield-StabCombo-Fast",
+		"weapons": "playerSword-StabCombo-Fast"
+	},
+	"player-Bow": {
+		"parentLayer": "player-StabCombo-Fast",
+		"weapons": "playerSword-StabCombo-Fast,playerBow"
+	},
+	"player-AOECombo": {
+		"parentLayer": "player-Fast-Base",
+		"animations": [
+			{
+				"action": "ComboAttacking",
+				"baseSpec": {
+					"base": "sprites/player/playerComboAOE",
+					"frames": 18,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				},
+				"partID": "Sword"
+			}
+		],
+		"comboable": {
+			"hits": 3,
+			"consecutiveWindow": 500,
+			"activeWindow": 500
+		},
+		"shields": "playerShield-AOECombo",
+		"weapons": "playerSword-AOECombo,playerBow"
+	},
+	"player-Health5": {
+		"parentLayer": "player-AOECombo",
+		"health": 5
+	},
+	"player": {
+		"parentLayer": "player-Slow"
+	},
+	"archerEnemy": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/archerIdle",
+					"frames": 1,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/archerWalk",
+					"frames": 8,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/archerDeath",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/archerBowCharge",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/archerBowCharge",
+					"frames": 4,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/archerBowSwing",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/archerBowSheathe",
+					"frames": 2,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/npc/archerDeath",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/archerDeath",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/archerStaggerReturn",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"audible": {
+			"damaged": [
+				"humanDamaged1",
+				"humanDamaged2",
+				"humanDamaged3"
+			],
+			"killed": [
+				"humanDeath1",
+				"humanDeath2"
+			],
+			"move": {
+				"default": {
+					"emitOnFrames": [
+						2,
+						6
+					],
+					"sounds": [
+						"footstepGrass1",
+						"footstepGrass2",
+						"footstepGrass3"
+					]
+				}
+			}
+		},
+		"attributes": "knightEnemy",
+		"collisionManual": "0,0,28,56",
+		"enemy": {
+			"names": [
+				"Sir Francis",
+				"Sir Butterscotch"
+			],
+			"kind": "King's Longbow"
+		},
+		"aiSpec": {
+			"behavior": "Brawler",
+			"params": {
+				"attackRange": 600,
+				"pursuitDistance": 1000,
+				"forget": true
+			}
+		},
+		"collisionTypes": [
+			"Solid",
+			"Mobile",
+			"Vulnerable"
+		],
+		"health": 5,
+		"move": {
+			"movementType": 1,
+			"accel": 20,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 20,
+			"decel": 1.0,
+			"invMass": 1.0
+		},
+		"knockbackable": true,
+		"respawn": true,
+		"staggerable": true,
+		"weapons": "archerBow"
+	},
+	"knightEnemy": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/knightIdleB",
+					"frames": 1,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/knightWalk",
+					"frames": 8,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/knightDeath",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/knightSwordCharge",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/knightSwordCharge",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/knightSwordSwing",
+					"frames": 4,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/knightSwordSheathe",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/npc/knightDeath",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/knightDeath",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/knightStaggerReturn",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"audible": {
+			"damaged": [
+				"humanDamaged1",
+				"humanDamaged2",
+				"humanDamaged3"
+			],
+			"killed": [
+				"humanDeath1",
+				"humanDeath2"
+			],
+			"move": {
+				"default": {
+					"emitOnFrames": [
+						2,
+						6
+					],
+					"sounds": [
+						"footstepGrass1",
+						"footstepGrass2",
+						"footstepGrass3"
+					]
+				}
+			}
+		},
+		"attributes": "knightEnemy",
+		"collisionManual": "0,0,28,56",
+		"enemy": {
+			"names": [
+				"Sir Reginald",
+				"Sir Bostwick"
+			],
+			"kind": "King's Knight"
+		},
+		"aiSpec": {
+			"behavior": "Brawler",
+			"params": {
+				"attackRange": 75,
+				"pursuitDistance": 800,
+				"forget": true
+			}
+		},
+		"collisionTypes": [
+			"Solid",
+			"Mobile",
+			"Vulnerable"
+		],
+		"health": 10,
+		"move": {
+			"movementType": 1,
+			"accel": 15,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 12,
+			"maxSwingSpeed": 20,
+			"decel": 1.0,
+			"invMass": 1.0
+		},
+		"knockbackable": true,
+		"respawn": true,
+		"staggerable": true,
+		"weapons": "knightSword"
+	},
+	"babySpiderOld": {
+		"aiSpec": {
+			"behavior": "Spider",
+			"params": {
+				"waitMin": 500,
+				"waitMax": 2500,
+				"moveMin": 100,
+				"moveMax": 400,
+				"attackRange": 400
+			}
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/babySpiderIdle",
+					"frames": 14,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/babySpiderIdle",
+					"frames": 14,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/babySpiderIdle",
+					"frames": 14,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/babySpiderStagger",
+					"frames": 2,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/babySpiderStaggerReturn",
+					"frames": 1,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/babySpiderStagger",
+					"frames": 2,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/babySpiderDeath",
+					"frames": 12,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/babySpiderWalk",
+					"frames": 6,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/babySpiderWalk",
+					"frames": 6,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"audible": {
+			"damaged": [
+				"spiderDamaged"
+			],
+			"killed": [
+				"spiderDead"
+			]
+		},
+		"collisionManual": "6,18,40,16",
+		"collisionTypes": [
+			"Solid",
+			"Mobile",
+			"Vulnerable"
+		],
+		"enemy": {
+			"names": [
+				"Howard"
+			],
+			"kind": "Baby Forest Spider"
+		},
+		"health": 1,
+		"move": {
+			"movementType": 1,
+			"accel": 20,
+			"minMoveSpeed": 20,
+			"maxMoveSpeed": 500,
+			"decel": 0.7,
+			"invMass": 1.0
+		},
+		"respawn": true,
+		"weapons": "babySpiderBody"
+	},
+	"blopPlayer": {
+		"parentLayer": "blop-core-base",
+		"collisionTypes": [
+			"Solid",
+			"Mobile",
+			"Vulnerable",
+			"Player"
+		],
+		"health": 6,
+		"move": {
+			"movementType": 2,
+			"accel": 15,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 15,
+			"maxSwingSpeed": 500,
+			"decel": 1.0,
+			"invMass": 1.0
+		},
+		"player": true
+	},
+	"blop-core-base": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/blopIdle",
+					"frames": 8,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/blopWalk",
+					"frames": 6,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/blopDeath",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/blopStagger",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/blopCharge",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/blopSwing",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "QuickAttacking",
+				"baseSpec": {
+					"base": "sprites/npc/blopSwing",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/blopSheathe",
+					"frames": 6,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/npc/blopKnockback",
+					"frames": 5,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/blopStagger",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/blopStaggerReturn",
+					"frames": 2,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"audible": {
+			"damaged": [
+				"blopDamaged1",
+				"blopDamaged2"
+			],
+			"killed": [
+				"blopDead"
+			],
+			"move": {
+				"default": {
+					"emitOnFrames": [
+						4
+					],
+					"sounds": [
+						"blopWalk1",
+						"blopWalk2"
+					]
+				}
+			}
+		},
+		"attributes": "blop",
+		"collisionManual": "0,0,60,64",
+		"knockbackable": true,
+		"respawn": true,
+		"staggerable": true,
+		"weapons": "blopBody"
+	},
+	"blop-base": {
+		"parentLayer": "blop-core-base",
+		"enemy": {
+			"names": [
+				"Gertrude",
+				"Jeeves",
+				"Patrick",
+				"Steve",
+				"Nero",
+				"Claudia",
+				"Alastor",
+				"Brone",
+				"Campbell",
+				"Doyle"
+			],
+			"kind": "Mean Blop"
+		}
+	},
+	"blop": {
+		"parentLayer": "blop-base",
+		"aiSpec": {
+			"behavior": "Brawler",
+			"params": {
+				"attackRange": 75,
+				"pursuitDistance": 800,
+				"forget": true
+			}
+		},
+		"collisionTypes": [
+			"Solid",
+			"Mobile",
+			"Vulnerable"
+		],
+		"health": 5,
+		"move": {
+			"movementType": 1,
+			"accel": 15,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 12,
+			"maxSwingSpeed": 20,
+			"decel": 1.0,
+			"invMass": 1.0
+		}
+	},
+	"blop-1": {
+		"parentLayer": "blop",
+		"health": 1
+	},
+	"blop-1-hoard": {
+		"parentLayer": "blop-1",
+		"aiSpec": {
+			"behavior": "Brawler",
+			"params": {
+				"attackRange": 75,
+				"pursuitDistance": 1000,
+				"forget": false
+			}
+		},
+		"enemy": {
+			"names": [
+				"<you shouldn't see me"
+			],
+			"kind": "<or me>",
+			"hudDisabled": true
+		},
+		"move": {
+			"movementType": 1,
+			"accel": 15,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 18,
+			"maxSwingSpeed": 20,
+			"decel": 1.0,
+			"invMass": 1.0
+		}
+	},
+	"blop-1-dumb": {
+		"parentLayer": "blop-1",
+		"aiSpec": {
+			"behavior": "Brawler",
+			"params": {
+				"attackRange": 75,
+				"pursuitDistance": 10,
+				"forget": false
+			}
+		}
+	},
+	"blop-7": {
+		"parentLayer": "blop",
+		"aiSpec": {
+			"behavior": "Brawler",
+			"params": {
+				"attackRange": 75,
+				"pursuitDistance": 1000,
+				"forget": true
+			}
+		},
+		"health": 7,
+		"attributes": "blopYellow",
+		"enemy": {
+			"names": [
+				"Bubbles",
+				"Spikey",
+				"Bernard",
+				"Gummie",
+				"Franz"
+			],
+			"kind": "Toxic Blop"
+		},
+		"move": {
+			"movementType": 1,
+			"accel": 25,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 25,
+			"maxSwingSpeed": 20,
+			"decel": 1.0,
+			"invMass": 1.0
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/blopYellowIdle",
+					"frames": 8,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/blopYellowWalk",
+					"frames": 6,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/blopYellowDeath",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/blopYellowStagger",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/blopYellowCharge",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/blopYellowSwing",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/blopYellowSheathe",
+					"frames": 6,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/npc/blopYellowKnockback",
+					"frames": 5,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/blopYellowStagger",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/blopYellowStaggerReturn",
+					"frames": 2,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		]
+	},
+	"blopBig": {
+		"aiSpec": {
+			"behavior": "Brawler",
+			"params": {
+				"attackRange": 175,
+				"pursuitDistance": 800,
+				"forget": true
+			}
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/blopBigIdle",
+					"frames": 8,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/blopBigWalk",
+					"frames": 6,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/blopBigDeath",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/blopBigStagger",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/blopBigCharge",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/blopBigSwing",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/blopBigSheathe",
+					"frames": 6,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/npc/blopBigKnockback",
+					"frames": 5,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/blopBigStagger",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/blopBigStaggerReturn",
+					"frames": 2,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"audible": {
+			"damaged": [
+				"blopDamaged1",
+				"blopDamaged2"
+			],
+			"killed": [
+				"blopDead"
+			],
+			"move": {
+				"default": {
+					"emitOnFrames": [
+						4
+					],
+					"sounds": [
+						"blopWalk1",
+						"blopWalk2"
+					]
+				}
+			}
+		},
+		"attributes": "blopBig",
+		"collisionManual": "0,0,120,128",
+		"collisionTypes": [
+			"Solid",
+			"Mobile",
+			"Vulnerable"
+		],
+		"enemy": {
+			"names": [
+				"Gourmand",
+				"Ulga",
+				"Sir Squelch"
+			],
+			"kind": "Giant Blop"
+		},
+		"health": 15,
+		"knockbackable": true,
+		"move": {
+			"movementType": 1,
+			"accel": 10,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 12,
+			"maxSwingSpeed": 20,
+			"decel": 1.0,
+			"invMass": 0.5
+		},
+		"respawn": true,
+		"staggerable": true,
+		"weapons": "blopBigBody"
+	},
+	"blopBigBoss": {
+		"parentLayer": "blopBig",
+		"animationCustomize": {
+			"scale": 2
+		},
+		"collisionManual": "0,0,240,256",
+		"health": 15,
+		"knockbackable": false,
+		"move": {
+			"movementType": 1,
+			"accel": 10,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 12,
+			"maxSwingSpeed": 20,
+			"decel": 1.0,
+			"invMass": 0.5
+		}
+	},
+	"blopCoward": {
+		"aiSpec": {
+			"behavior": "Coward",
+			"params": {
+				"reactRadius": 400,
+				"playerLookDegrees": 45,
+				"attackRadius": 75
+			}
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/blopCowardIdle",
+					"frames": 8,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/blopCowardWalk",
+					"frames": 6,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/blopCowardDeath",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/blopCowardStagger",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/blopCowardCharge",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/blopCowardSwing",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/blopCowardSheathe",
+					"frames": 6,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/npc/blopCowardKnockback",
+					"frames": 5,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/blopCowardStagger",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/blopCowardStaggerReturn",
+					"frames": 2,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"audible": {
+			"damaged": [
+				"blopCowardDamaged1",
+				"blopCowardDamaged2"
+			],
+			"killed": [
+				"blopDead"
+			],
+			"move": {
+				"default": {
+					"emitOnFrames": [
+						4
+					],
+					"sounds": [
+						"blopWalk1",
+						"blopWalk2"
+					]
+				}
+			}
+		},
+		"attributes": "blopCoward",
+		"collisionManual": "0,0,60,64",
+		"collisionTypes": [
+			"Solid",
+			"Mobile",
+			"Vulnerable"
+		],
+		"enemy": {
+			"names": [
+				"Barry",
+				"Bert",
+				"Morty",
+				"Buns",
+				"Mooney"
+			],
+			"kind": "Cowardly Blop"
+		},
+		"health": 5,
+		"knockbackable": true,
+		"move": {
+			"movementType": 1,
+			"accel": 15,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 15,
+			"maxSwingSpeed": 500,
+			"decel": 1.0,
+			"invMass": 1.0
+		},
+		"respawn": true,
+		"staggerable": true,
+		"weapons": "blopCowardBody"
+	},
+	"blopDemon": {
+		"parentLayer": "blop",
+		"aiSpec": {
+			"behavior": "Brawler",
+			"params": {
+				"attackRange": 75,
+				"pursuitDistance": 800,
+				"forget": false
+			}
+		},
+		"health": 10,
+		"attributes": "blopDemon",
+		"move": {
+			"movementType": 1,
+			"accel": 40,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 40,
+			"maxSwingSpeed": 20,
+			"decel": 1.5,
+			"invMass": 1.5
+		},
+		"enemy": {
+			"names": [
+				"Archibald",
+				"Ebenezer",
+				"Rufus"
+			],
+			"kind": "Demon Blop"
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/blopDemonIdle",
+					"frames": 8,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/blopDemonWalk",
+					"frames": 6,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/blopDemonDeath",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/blopDemonStagger",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/blopDemonCharge",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/blopDemonSwing",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/blopDemonSheathe",
+					"frames": 6,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/npc/blopDemonKnockback",
+					"frames": 5,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/blopDemonStagger",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/blopDemonStaggerReturn",
+					"frames": 2,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		]
+	},
+	"bushbell-Base": {
+		"aiSpec": {
+			"behavior": "Brawler",
+			"params": {
+				"attackRange": 1000,
+				"pursuitDistance": 1500,
+				"forget": true
+			}
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/bushbellIdle",
+					"frames": 13,
+					"speed": 100,
+					"playType": "PingPong"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/bushbellWalk",
+					"frames": 6,
+					"speed": 50,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/bushbellDeath",
+					"frames": 8,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/bushbellStagger",
+					"frames": 4,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/bushbellCharge",
+					"frames": 8,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/bushbellSwing",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/bushbellSheathe",
+					"frames": 5,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/npc/bushbellStagger",
+					"frames": 4,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/bushbellStagger",
+					"frames": 4,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/bushbellStaggerReturn",
+					"frames": 2,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"audible": {
+			"damaged": [
+				"bushbellDamaged1",
+				"bushbellDamaged2"
+			],
+			"killed": [
+				"bushbellDead"
+			],
+			"move": {
+				"default": {
+					"emitOnFrames": [
+						4
+					],
+					"sounds": [
+						"bushbellWalk1",
+						"bushbellWalk2"
+					]
+				}
+			}
+		},
+		"attributes": "bushbell",
+		"collisionManual": "-2,2,76,76",
+		"collisionTypes": [
+			"Solid",
+			"Mobile",
+			"Vulnerable"
+		],
+		"enemy": {
+			"names": [
+				"Bellmont"
+			],
+			"kind": "Bushbell"
+		},
+		"knockbackable": true,
+		"respawn": true,
+		"staggerable": true,
+		"weapons": "bushbellProjectile"
+	},
+	"bushbell-Static": {
+		"parentLayer": "bushbell-Base",
+		"move": {
+			"movementType": 1,
+			"accel": 0,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 0,
+			"maxSwingSpeed": 20,
+			"decel": 1.0,
+			"invMass": 0.0,
+			"static": true
+		}
+	},
+	"bushbell-Static-3": {
+		"parentLayer": "bushbell-Static",
+		"health": 3
+	},
+	"bushbell-Static-3-Shortrange": {
+		"parentLayer": "bushbell-Static-3",
+		"aiSpec": {
+			"behavior": "Brawler",
+			"params": {
+				"attackRange": 600,
+				"pursuitDistance": 600,
+				"forget": true
+			}
+		}
+	},
+	"bushbell-Static-5": {
+		"parentLayer": "bushbell-Static",
+		"health": 5
+	},
+	"bushbell-Mobile": {
+		"parentLayer": "bushbell-Base",
+		"health": 5,
+		"move": {
+			"movementType": 1,
+			"accel": 15,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 12,
+			"maxSwingSpeed": 12,
+			"decel": 1.0,
+			"invMass": 0.5
+		}
+	},
+	"bushbell": {
+		"parentLayer": "bushbell-Static-3"
+	},
+	"cow": {
+		"aiSpec": {
+			"behavior": "Cow",
+			"params": {
+				"moveChance": 0.2
+			}
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/cowIdle",
+					"frames": 1,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/cowWalk",
+					"frames": 6,
+					"speed": 200,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/cowDeath",
+					"frames": 8,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"audible": {},
+		"collisionManual": "0,0,60,64",
+		"collisionTypes": [
+			"Solid",
+			"Mobile",
+			"Vulnerable"
+		],
+		"enemy": {
+			"names": [
+				"Bessie"
+			],
+			"kind": "Auroch"
+		},
+		"health": 5,
+		"knockbackable": false,
+		"move": {
+			"movementType": 0,
+			"rotateSpeed": 0.005,
+			"accel": 5,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 4,
+			"maxSwingSpeed": 20,
+			"decel": 1.0,
+			"invMass": 1.0
+		},
+		"respawn": true,
+		"staggerable": false
+	},
+	"trumpetKnight": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/knightIdle",
+					"frames": 8,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			}
+		],
+		"collisionManual": "0,0,28,56",
+		"collisionTypes": [
+			"Solid",
+			"Mobile"
+		]
+	},
+	"mimic": {
+		"aiSpec": {
+			"behavior": "Mimic",
+			"params": {
+				"noticeDistance": 300,
+				"pursuitDistance": 1000,
+				"attackRange": 180
+			}
+		},
+		"animations": [
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/mimicCrateBlocked",
+					"frames": 5,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/mimicCrateDeath",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/mimicCrateIdle",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/npc/mimicCrateKnockback",
+					"frames": 2,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/mimicCrateWalk",
+					"frames": 6,
+					"speed": 50,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/mimicCrateCharge",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "QuickAttacking",
+				"baseSpec": {
+					"base": "sprites/npc/mimicCrateSwing",
+					"frames": 8,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/mimicCrateSwing",
+					"frames": 8,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/mimicCrateSheathe",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/mimicCrateStagger",
+					"frames": 2,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/mimicCrateStaggerReturn",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"attributes": "mimic",
+		"audible": {
+			"damaged": [
+				"crateHit"
+			],
+			"killed": [
+				"crateSmash"
+			]
+		},
+		"collisionManual": "0,0,48,52",
+		"collisionTypes": [
+			"Solid",
+			"Mobile",
+			"Vulnerable"
+		],
+		"enemy": {
+			"names": [
+				"Chuck",
+				"Sylvester",
+				"Crunchy",
+				"Arms",
+				"Rex",
+				"Brody"
+			],
+			"kind": "Mimic Crate"
+		},
+		"health": 8,
+		"knockbackable": true,
+		"move": {
+			"movementType": 1,
+			"accel": 20,
+			"minMoveSpeed": 30,
+			"maxMoveSpeed": 30,
+			"maxSwingSpeed": 500,
+			"decel": 1.0,
+			"invMass": 1.0
+		},
+		"respawn": true,
+		"staggerable": true,
+		"weapons": "mimicBody"
+	},
+	"sawtooth": {
+		"aiSpec": {
+			"behavior": "Sawtooth",
+			"params": {
+				"kiteSpeedScale": 0.25,
+				"kiteRadius": 200,
+				"aggressiveRadius": 180,
+				"dodges": 1,
+				"dodgeRotate": true,
+				"dodgeDodgeTime": 1000,
+				"dodgeWaitTime": 700,
+				"attackSpeedScale": 1,
+				"escapeTime": 500,
+				"escapeSpeedScale": 0.8,
+				"cooldownTime": 500,
+				"countdownTime": 2000
+			}
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothIdle",
+					"frames": 3,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothWalk",
+					"frames": 6,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothDeath",
+					"frames": 6,
+					"speed": 50,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "QuickAttacking",
+				"baseSpec": {
+					"base": "fx/explosionSaw",
+					"frames": 13,
+					"speed": 40,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothKnockback",
+					"frames": 4,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothCharge",
+					"frames": 10,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothSwing",
+					"frames": 6,
+					"speed": 50,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothSheathe",
+					"frames": 4,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothKnockback",
+					"frames": 8,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothStagger",
+					"frames": 4,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothStaggerReturn",
+					"frames": 4,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"audible": {
+			"damaged": [
+				"sawtoothDamaged1",
+				"sawtoothDamaged2"
+			],
+			"killed": [
+				"sawtoothDead"
+			]
+		},
+		"attributes": "sawtooth",
+		"collisionManual": "0,0,56,56",
+		"collisionTypes": [
+			"Solid",
+			"Mobile",
+			"Vulnerable"
+		],
+		"enemy": {
+			"names": [
+				"Surge"
+			],
+			"kind": "Sawtooth"
+		},
+		"health": 5,
+		"knockbackable": true,
+		"staggerable": true,
+		"move": {
+			"attackMobility": true,
+			"movementType": 1,
+			"accel": 30,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 100,
+			"decel": 0.7,
+			"invMass": 1.0
+		},
+		"respawn": true,
+		"weapons": "sawBody"
+	},
+	"sawtooth-Range": {
+		"parentLayer": "sawtooth",
+		"aiSpec": {
+			"behavior": "Sawtooth",
+			"params": {
+				"kiteSpeedScale": 0.25,
+				"kiteRadius": 200,
+				"aggressiveRadius": 800,
+				"dodges": 1,
+				"dodgeRotate": true,
+				"dodgeDodgeTime": 1000,
+				"dodgeWaitTime": 700,
+				"attackSpeedScale": 1,
+				"escapeTime": 500,
+				"escapeSpeedScale": 0.8,
+				"cooldownTime": 500,
+				"countdownTime": 2000
+			}
+		}
+	},
+	"sawtooth-Boss": {
+		"parentLayer": "sawtooth",
+		"health": 10,
+		"knockbackable": false,
+		"staggerable": true,
+		"move": {
+			"attackMobility": true,
+			"movementType": 1,
+			"accel": 30,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 120,
+			"decel": 0.7,
+			"invMass": 1.0
+		},
+		"enemy": {
+			"names": [
+				"General Jigsaw"
+			],
+			"kind": "Sawtooth",
+			"boss": true
+		}
+	},
+	"sawtooth-Glass": {
+		"parentLayer": "sawtooth",
+		"health": 1,
+		"aiSpec": {
+			"behavior": "Sawtooth",
+			"params": {
+				"kiteSpeedScale": 0.5,
+				"kiteRadius": 300,
+				"aggressiveRadius": 200,
+				"dodges": 1,
+				"dodgeRotate": true,
+				"dodgeDodgeTime": 1000,
+				"dodgeWaitTime": 700,
+				"attackSpeedScale": 0.6,
+				"escapeTime": 1000,
+				"escapeSpeedScale": 0.9,
+				"cooldownTime": 1500,
+				"countdownTime": 10
+			}
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothGlassIdle",
+					"frames": 3,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothGlassWalk",
+					"frames": 6,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothGlassDeath",
+					"frames": 6,
+					"speed": 50,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "QuickAttacking",
+				"baseSpec": {
+					"base": "fx/explosionSaw",
+					"frames": 13,
+					"speed": 40,
+					"playType": "PlayAndHold",
+					"scale": 1
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothGlassKnockback",
+					"frames": 4,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothGlassCharge",
+					"frames": 10,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothGlassSwing",
+					"frames": 6,
+					"speed": 50,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothGlassSheathe",
+					"frames": 4,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothGlassKnockback",
+					"frames": 8,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothGlassStagger",
+					"frames": 4,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/sawtoothGlassStaggerReturn",
+					"frames": 4,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"enemy": {
+			"names": [
+				"Chambers"
+			],
+			"kind": "Glass Sawtooth"
+		}
+	},
+	"sawtooth-Glass-dumb": {
+		"parentLayer": "sawtooth-Glass",
+		"aiSpec": {
+			"behavior": "Sawtooth",
+			"params": {
+				"kiteSpeedScale": 0.5,
+				"kiteRadius": 10,
+				"aggressiveRadius": 10,
+				"dodges": 1,
+				"dodgeRotate": true,
+				"dodgeDodgeTime": 1000,
+				"dodgeWaitTime": 700,
+				"attackSpeedScale": 0.6,
+				"escapeTime": 1000,
+				"escapeSpeedScale": 0.9,
+				"cooldownTime": 1500,
+				"countdownTime": 10
+			}
+		}
+	},
+	"sawtooth-Glass-Range": {
+		"parentLayer": "sawtooth-Glass",
+		"aiSpec": {
+			"behavior": "Sawtooth",
+			"params": {
+				"kiteSpeedScale": 0.5,
+				"kiteRadius": 10,
+				"aggressiveRadius": 800,
+				"dodges": 1,
+				"dodgeRotate": true,
+				"dodgeDodgeTime": 1000,
+				"dodgeWaitTime": 700,
+				"attackSpeedScale": 0.5,
+				"escapeTime": 1000,
+				"escapeSpeedScale": 0.9,
+				"cooldownTime": 1500,
+				"countdownTime": 10
+			}
+		}
+	},
+	"sawtooth-Glass-Follow": {
+		"parentLayer": "sawtooth-Glass",
+		"aiSpec": {
+			"behavior": "FollowSawtooth",
+			"params": {
+				"pursueRadius": 800,
+				"countdownTime": 10
+			}
+		}
+	},
+	"sentinel": {
+		"aiSpec": {
+			"behavior": "Sentinel",
+			"params": {
+				"attackRange": 160,
+				"pursuitDistance": 800,
+				"forget": false
+			}
+		},
+		"respawn": true,
+		"attributes": "sentinel",
+		"move": {
+			"movementType": 0,
+			"accel": 5,
+			"minMoveSpeed": 1,
+			"maxMoveSpeed": 5,
+			"maxSwingSpeed": 0,
+			"decel": 2.0,
+			"invMass": 0.5,
+			"rotateSpeed": 0.05
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/senIdle",
+					"frames": 6,
+					"speed": 200,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "BlockHolding",
+				"baseSpec": {
+					"base": "sprites/npc/senBlockHold",
+					"frames": 1,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "BlockLowering",
+				"baseSpec": {
+					"base": "sprites/npc/senBlockLower",
+					"frames": 2,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "BlockRaising",
+				"baseSpec": {
+					"base": "sprites/npc/senBlockRaise",
+					"frames": 2,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/senStagger",
+					"frames": 3,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/senCharge",
+					"frames": 16,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/senDeath",
+					"frames": 22,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/senWalk",
+					"frames": 8,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Recoiling",
+				"baseSpec": {
+					"base": "sprites/npc/senBlockRecoil",
+					"frames": 3,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/senStagger",
+					"frames": 3,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/senSheathe",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/npc/senStagger",
+					"frames": 3,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/senStagger",
+					"frames": 3,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/senStaggerReturn",
+					"frames": 3,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/senSwing",
+					"frames": 12,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"collisionManual": "0,0,48,124",
+		"collisionTypes": [
+			"Solid",
+			"Mobile",
+			"Vulnerable"
+		],
+		"enemy": {
+			"names": [
+				"Lord Brambledook"
+			],
+			"kind": "King of the Forest",
+			"boss": true,
+			"finalBoss": true
+		},
+		"audible": {
+			"damaged": [
+				"senDamaged1",
+				"senDamaged2"
+			],
+			"killed": [
+				"senDeath"
+			],
+			"move": {
+				"default": {
+					"emitOnFrames": [
+						2,
+						6
+					],
+					"sounds": [
+						"senStep1",
+						"senStep2"
+					]
+				}
+			}
+		},
+		"health": 30,
+		"knockbackable": false,
+		"staggerable": true,
+		"weapons": "senBody",
+		"shields": "sentinelShield"
+	},
+	"snake": {
+		"aiSpec": {
+			"behavior": "Brawler",
+			"params": {
+				"waitMin": 500,
+				"waitMax": 2500,
+				"moveMin": 100,
+				"moveMax": 400,
+				"attackRange": 500,
+				"pursuitDistance": 600
+			}
+		},
+		"attributes": "snake",
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/snakeIdle",
+					"frames": 12,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/snakeWalk",
+					"frames": 8,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/snakeStagger",
+					"frames": 3,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/snakeCharge",
+					"frames": 5,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/snakeDeath",
+					"frames": 37,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/snakeSheathe",
+					"frames": 2,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/npc/snakeStagger",
+					"frames": 3,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/snakeStagger",
+					"frames": 3,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/snakeStaggerReturn",
+					"frames": 2,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/snakeSwing",
+					"frames": 5,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"collisionManual": "16,0,256,64",
+		"collisionTypes": [
+			"Solid",
+			"Mobile",
+			"Vulnerable"
+		],
+		"enemy": {
+			"names": [
+				"Plissken"
+			],
+			"kind": "Giant Snake",
+			"boss": true
+		},
+		"health": 20,
+		"move": {
+			"movementType": 1,
+			"accel": 30,
+			"minMoveSpeed": 60,
+			"maxMoveSpeed": 60,
+			"maxSwingSpeed": 250,
+			"decel": 1.0,
+			"invMass": 0.5,
+			"rotateSpeed": 0.04
+		},
+		"audible": {
+			"damaged": [
+				"snakeDamaged"
+			],
+			"killed": [
+				"snakeDeath"
+			],
+			"move": {
+				"default": {
+					"emitOnFrames": [
+						0,
+						5
+					],
+					"sounds": [
+						"snakeMove1",
+						"snakeMove2"
+					]
+				}
+			}
+		},
+		"knockbackable": true,
+		"staggerable": true,
+		"respawn": true,
+		"weapons": "snakeBody"
+	},
+	"spear-Base": {
+		"move": {
+			"movementType": 1,
+			"accel": 0,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 0,
+			"decel": 1.0,
+			"invMass": 0
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/traps/spearWallIdle",
+					"frames": 16,
+					"speed": 50,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/traps/spearWallCharge",
+					"frames": 8,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/traps/spearWallSwing",
+					"frames": 10,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/traps/spearWallSheathe",
+					"frames": 12,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"weapons": "spearBody"
+	},
+	"spearLethal-Base": {
+		"parentLayer": "spear-Base",
+		"animationCustomize": {
+			"tint": "#ffd700"
+		},
+		"weapons": "spearBodyLethal"
+	},
+	"spearLethal": {
+		"parentLayer": "spearLethal-Base",
+		"aiSpec": {
+			"behavior": "SwingTimer",
+			"params": {
+				"initialWait": 0,
+				"wait": 2000,
+				"attack": 500
+			}
+		}
+	},
+	"spearLethal2": {
+		"parentLayer": "spearLethal-Base",
+		"aiSpec": {
+			"behavior": "SwingTimer",
+			"params": {
+				"initialWait": 500,
+				"wait": 2000,
+				"attack": 500
+			}
+		}
+	},
+	"spearLethal3": {
+		"parentLayer": "spearLethal-Base",
+		"aiSpec": {
+			"behavior": "SwingTimer",
+			"params": {
+				"initialWait": 1000,
+				"wait": 2000,
+				"attack": 500
+			}
+		}
+	},
+	"spear": {
+		"parentLayer": "spear-Base",
+		"aiSpec": {
+			"behavior": "SwingTimer",
+			"params": {
+				"initialWait": 0,
+				"wait": 2000,
+				"attack": 500
+			}
+		}
+	},
+	"spear2": {
+		"parentLayer": "spear-Base",
+		"aiSpec": {
+			"behavior": "SwingTimer",
+			"params": {
+				"initialWait": 500,
+				"wait": 2000,
+				"attack": 500
+			}
+		}
+	},
+	"spear3": {
+		"parentLayer": "spear-Base",
+		"aiSpec": {
+			"behavior": "SwingTimer",
+			"params": {
+				"initialWait": 1000,
+				"wait": 2000,
+				"attack": 500
+			}
+		}
+	},
+	"spearProjectile-Base": {
+		"move": {
+			"movementType": 1,
+			"accel": 0,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 0,
+			"decel": 1.0,
+			"invMass": 0
+		},
+		"collisionManual": "0,0,80,64",
+		"collisionTypes": [
+			"Solid"
+		],
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/traps/spearProjA",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/traps/spearProjB",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/traps/spearProjA",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/traps/spearProjA",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"weapons": "spearLauncher"
+	},
+	"spearProjectile": {
+		"parentLayer": "spearProjectile-Base",
+		"aiSpec": {
+			"behavior": "SwingTimer",
+			"params": {
+				"initialWait": 250,
+				"wait": 2000,
+				"attack": 500
+			}
+		}
+	},
+	"spearProjectile2": {
+		"parentLayer": "spearProjectile-Base",
+		"aiSpec": {
+			"behavior": "SwingTimer",
+			"params": {
+				"initialWait": 750,
+				"wait": 2000,
+				"attack": 500
+			}
+		}
+	},
+	"spearProjectile3": {
+		"parentLayer": "spearProjectile-Base",
+		"aiSpec": {
+			"behavior": "SwingTimer",
+			"params": {
+				"initialWait": 1250,
+				"wait": 2000,
+				"attack": 500
+			}
+		}
+	},
+	"spearProjectileLethal": {
+		"parentLayer": "spearProjectile",
+		"weapons": "spearLauncherLethal"
+	},
+	"spearProjectileDelayed": {
+		"parentLayer": "spearProjectile3"
+	},
+	"spider": {
+		"aiSpec": {
+			"behavior": "Spider",
+			"params": {
+				"waitMin": 500,
+				"waitMax": 2500,
+				"moveMin": 100,
+				"moveMax": 400,
+				"attackRange": 400
+			}
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/moonSpiderIdle",
+					"frames": 14,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/moonSpiderWalk",
+					"frames": 6,
+					"speed": 50,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/moonSpiderDeath",
+					"frames": 8,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/moonSpiderStagger",
+					"frames": 2,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/moonSpiderCharge",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/moonSpiderLunge",
+					"frames": 3,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/moonSpiderCool",
+					"frames": 1,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/npc/moonSpiderStagger",
+					"frames": 2,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/moonSpiderStagger",
+					"frames": 8,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/moonSpiderStaggerReturn",
+					"frames": 8,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"audible": {
+			"damaged": [
+				"spiderDamaged"
+			],
+			"killed": [
+				"spiderDead"
+			],
+			"move": {
+				"default": {
+					"emitOnFrames": [
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"sounds": [
+						"spiderWalkGrass1",
+						"spiderWalkGrass2"
+					]
+				}
+			}
+		},
+		"attributes": "spider",
+		"collisionManual": "0,0,80,32",
+		"collisionTypes": [
+			"Solid",
+			"Mobile",
+			"Vulnerable"
+		],
+		"enemy": {
+			"names": [
+				"Percy",
+				"Scooter",
+				"Chad",
+				"Tickler",
+				"Peter",
+				"Webster",
+				"Bosco",
+				"Tabitha"
+			],
+			"kind": "Forest Spider"
+		},
+		"health": 5,
+		"knockbackable": true,
+		"move": {
+			"movementType": 1,
+			"accel": 30,
+			"minMoveSpeed": 30,
+			"maxMoveSpeed": 30,
+			"maxSwingSpeed": 100,
+			"decel": 1.0,
+			"invMass": 1.0,
+			"resistSlow": true
+		},
+		"respawn": true,
+		"staggerable": true,
+		"weapons": "spiderBody"
+	},
+	"babySpider": {
+		"parentLayer": "spider",
+		"aiSpec": {
+			"behavior": "Brawler",
+			"params": {
+				"attackRange": 75,
+				"pursuitDistance": 1000,
+				"forget": false
+			}
+		},
+		"animationCustomize": {
+			"tint": "#3c3a40",
+			"scale": 0.75
+		},
+		"collisionManual": "0,0,60,24",
+		"health": 5,
+		"enemy": {
+			"names": [
+				"Charlie",
+				"Cosmo",
+				"Frank",
+				"Hugo",
+				"Charloette",
+				"Ivy",
+				"Raven"
+			],
+			"kind": "Baby Black Spider"
+		},
+		"move": {
+			"movementType": 1,
+			"accel": 15,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 18,
+			"maxSwingSpeed": 20,
+			"decel": 1.0,
+			"invMass": 1.0
+		},
+		"weapons": "spiderBody"
+	},
+	"babySpider-Hoard": {
+		"parentLayer": "babySpider",
+		"aiSpec": {
+			"behavior": "Brawler",
+			"params": {
+				"attackRange": 75,
+				"pursuitDistance": 10000,
+				"forget": false
+			}
+		},
+		"enemy": {
+			"names": [
+				"<you shouldn't see me>"
+			],
+			"kind": "<or this either>",
+			"hudDisabled": true
+		}
+	},
+	"cocaineSpider": {
+		"parentLayer": "spider",
+		"aiSpec": {
+			"behavior": "Spider",
+			"params": {
+				"waitMin": 100,
+				"waitMax": 300,
+				"moveMin": 100,
+				"moveMax": 400,
+				"attackRange": 450
+			}
+		},
+		"animationCustomize": {
+			"tint": "#3f3f7a"
+		},
+		"enemy": {
+			"names": [
+				"Ray",
+				"Rick",
+				"John",
+				"Roy"
+			],
+			"kind": "Hyper Spider"
+		},
+		"move": {
+			"movementType": 1,
+			"accel": 400,
+			"minMoveSpeed": 30,
+			"maxMoveSpeed": 30,
+			"maxSwingSpeed": 200,
+			"decel": 1.0,
+			"invMass": 1.0,
+			"resistSlow": true
+		},
+		"weapons": "spiderBody"
+	},
+	"projectileSpider": {
+		"parentLayer": "spider",
+		"aiSpec": {
+			"behavior": "Spider",
+			"params": {
+				"waitMin": 500,
+				"waitMax": 2500,
+				"moveMin": 50,
+				"moveMax": 150,
+				"attackRange": 1000
+			}
+		},
+		"animationCustomize": {
+			"tint": "#7db441"
+		},
+		"enemy": {
+			"names": [
+				"Webster",
+				"Itsy",
+				"Fluffy",
+				"Legs",
+				"Ursula",
+				"Clarice",
+				"Desmona"
+			],
+			"kind": "Web Slinging Spider"
+		},
+		"move": {
+			"movementType": 1,
+			"accel": 30,
+			"minMoveSpeed": 30,
+			"maxMoveSpeed": 30,
+			"maxSwingSpeed": 0,
+			"decel": 1.0,
+			"invMass": 1.0,
+			"resistSlow": true
+		},
+		"weapons": "spiderProjectile"
+	},
+	"projectileSpiderSpearAI": {
+		"parentLayer": "projectileSpider",
+		"move": {
+			"movementType": 1,
+			"accel": 0,
+			"minMoveSpeed": 0,
+			"maxMoveSpeed": 0,
+			"maxSwingSpeed": 0,
+			"decel": 1.0,
+			"invMass": 0.7,
+			"resistSlow": true
+		},
+		"health": 1
+	},
+	"spider-10": {
+		"parentLayer": "spider",
+		"animationCustomize": {
+			"tint": "#ffd700"
+		},
+		"enemy": {
+			"names": [
+				"Clyde",
+				"Spinderella",
+				"Dracula"
+			],
+			"kind": "Tough Spider"
+		},
+		"health": 10
+	},
+	"bossSpider": {
+		"parentLayer": "spider",
+		"attributes": "spiderBoss",
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/spiderQueenIdle",
+					"frames": 12,
+					"speed": 80,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/spiderQueenWalk",
+					"frames": 7,
+					"speed": 50,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/spiderQueenDeath",
+					"frames": 15,
+					"speed": 80,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Blocked",
+				"baseSpec": {
+					"base": "sprites/npc/spiderQueenStagger",
+					"frames": 2,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Charging",
+				"baseSpec": {
+					"base": "sprites/npc/spiderQueenCharge",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Swinging",
+				"baseSpec": {
+					"base": "sprites/npc/spiderQueenSwing",
+					"frames": 2,
+					"speed": 50,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Sheathing",
+				"baseSpec": {
+					"base": "sprites/npc/spiderQueenSheathe",
+					"frames": 2,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Knockback",
+				"baseSpec": {
+					"base": "sprites/npc/spiderQueenKnockback",
+					"frames": 4,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Staggering",
+				"baseSpec": {
+					"base": "sprites/npc/spiderQueenStagger",
+					"frames": 2,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "StaggerReturning",
+				"baseSpec": {
+					"base": "sprites/npc/spiderQueenStaggerReturn",
+					"frames": 2,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"collisionManual": "0,0,160,96",
+		"health": 20,
+		"enemy": {
+			"names": [
+				"Gossamer"
+			],
+			"kind": "Spider Queen",
+			"boss": true
+		},
+		"aiSpec": {
+			"behavior": "Brawler",
+			"params": {
+				"attackRange": 800,
+				"pursuitDistance": 1000,
+				"forget": false
+			}
+		},
+		"move": {
+			"movementType": 1,
+			"accel": 30,
+			"minMoveSpeed": 20,
+			"maxMoveSpeed": 20,
+			"maxSwingSpeed": 0,
+			"decel": 2.0,
+			"invMass": 0.5,
+			"attackMobility": false,
+			"resistSlow": true
+		},
+		"knockbackable": false,
+		"weapons": "spiderBossProjectile",
+		"audible": {
+			"damaged": [
+				"spiderDamaged"
+			],
+			"killed": [
+				"spiderBossDeath"
+			],
+			"move": {
+				"default": {
+					"emitOnFrames": [
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"sounds": [
+						"spiderWalkGrass1",
+						"spiderWalkGrass2"
+					]
+				}
+			}
+		}
+	},
+	"npc": {
+		"collisionGenerate": true,
+		"collisionTypes": [
+			"Solid",
+			"Mobile"
+		]
+	},
+	"archer": {
+		"parentLayer": "npc",
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/npc/archerIdle",
+					"frames": 1,
+					"speed": 0,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Moving",
+				"baseSpec": {
+					"base": "sprites/npc/archerWalk",
+					"frames": 8,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			},
+			{
+				"action": "Dead",
+				"baseSpec": {
+					"base": "sprites/npc/archerDeath",
+					"frames": 7,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			}
+		]
+	},
+	"archerBody": {
+		"img": "sprites/npc/archerDeath7.png"
+	},
+	"blop1Body": {
+		"img": "sprites/npc/blopDeath7.png"
+	},
+	"kingBody": {
+		"img": "sprites/npc/kingDeath7.png"
+	},
+	"senBody": {
+		"img": "sprites/npc/senDeath22.png"
+	},
+	"staticDmgRegionOld": {
+		"bjorn": true,
+		"collisionGenerate": true,
+		"collisionTypes": [
+			"Solid",
+			"Attack",
+			"Environment"
+		],
+		"persistentDamage": {
+			"movement": "Track",
+			"damage": 1,
+			"cTypes": [
+				"Invalid"
+			],
+			"unblockable": true,
+			"knockbackForce": 1000,
+			"staggerForce": 1000,
+			"lungeForce": 0
+		}
+	},
+	"staticDmgRegion": {},
+	"floorSaw": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/traps/floorSawIdle",
+					"frames": 4,
+					"speed": 80,
+					"playType": "Loop"
+				}
+			}
+		],
+		"collisionManual": "0.5,0.5,60,60",
+		"collisionTypes": [
+			"Solid",
+			"Attack",
+			"Environment"
+		],
+		"persistentDamage": {
+			"movement": "Track",
+			"damage": 1,
+			"cTypes": [
+				"Invalid"
+			],
+			"unblockable": true,
+			"knockbackForce": 1000,
+			"staggerForce": 1000,
+			"lungeForce": 0
+		}
+	},
+	"floorSawBig": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "sprites/traps/floorSawBigIdle",
+					"frames": 4,
+					"speed": 80,
+					"playType": "Loop"
+				}
+			}
+		],
+		"collisionManual": "0.5,0.5,110,110",
+		"collisionTypes": [
+			"Solid",
+			"Attack",
+			"Environment"
+		],
+		"persistentDamage": {
+			"movement": "Track",
+			"damage": 1,
+			"cTypes": [
+				"Invalid"
+			],
+			"unblockable": true,
+			"knockbackForce": 1000,
+			"staggerForce": 1000,
+			"lungeForce": 0
+		}
+	},
+	"brambleTile": {
+		"bjorn": true,
+		"persistentDamage": {
+			"movement": "Track",
+			"damage": 1,
+			"cTypes": [
+				"Invalid"
+			],
+			"unblockable": true,
+			"knockbackForce": 1000,
+			"staggerForce": 1000,
+			"lungeForce": 0
+		}
+	},
+	"OOBTile": {
+		"bjorn": true,
+		"persistentDamage": {
+			"movement": "Track",
+			"damage": 100,
+			"cTypes": [
+				"Invalid"
+			],
+			"unblockable": true,
+			"knockbackForce": 0,
+			"staggerForce": 0,
+			"lungeForce": 0
+		}
+	},
+	"checkpoints": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "decorations/cauldronEmpty",
+					"frames": 0,
+					"speed": 0,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"animationCustomize": {
+			"hideOnDeath": true
+		},
+		"checkpoint": true,
+		"collisionManual": "0,0,48,48",
+		"collisionTypes": [
+			"Solid",
+			"Vulnerable"
+		],
+		"health": 1
+	},
+	"checkpointsActiveTemplate": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "decorations/cauldronBlue",
+					"frames": 4,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			}
+		],
+		"checkpoint": true,
+		"collisionManual": "0,0,48,48",
+		"collisionTypes": [
+			"Solid"
+		],
+		"lightbulbs": [
+			{
+				"baseTint": "#0000FF",
+				"flicker": true
+			}
+		]
+	},
+	"zoneBase": {
+		"bjorn": true,
+		"collisionGenerate": true,
+		"collisionTypes": [
+			"Logic"
+		],
+		"zone": {}
+	},
+	"controlsMovement": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"controlID": "movement"
+		}
+	},
+	"controlsSword": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"controlID": "sword"
+		}
+	},
+	"controlsCheckpoint": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"controlID": "checkpoint"
+		}
+	},
+	"controlsShield": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"controlID": "shield"
+		}
+	},
+	"controlsStab": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"controlID": "stab"
+		}
+	},
+	"controlsWeaponSwitch": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"controlID": "weaponSwitch"
+		}
+	},
+	"controlsAOE": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"controlID": "aoe"
+		}
+	},
+	"instructionsBramble": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"instructionID": "bramble"
+		}
+	},
+	"instructionsCheckpoint": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"instructionID": "checkpoints"
+		}
+	},
+	"instructionsHPHUD": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"instructionID": "hpHUD"
+		}
+	},
+	"instructionsGatekeeping": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"instructionID": "gatekeeping"
+		}
+	},
+	"instructionsPause": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"instructionID": "pause"
+		}
+	},
+	"instructionsRestart": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"instructionID": "restart"
+		}
+	},
+	"controlsGatekeeping": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"controlID": "gatekeeping"
+		}
+	},
+	"floorColl": {
+		"bjorn": true,
+		"collisionGenerate": true,
+		"collisionTypes": [
+			"Solid"
+		]
+	},
+	"manualWallColl": {
+		"bjorn": true,
+		"collisionGenerate": true,
+		"collisionTypes": [
+			"Solid",
+			"Wall"
+		]
+	},
+	"nextToExit": {
+		"parentLayer": "zoneBase"
+	},
+	"nextToExitv2": {
+		"collisionManual": "0.5,0.5,200,80",
+		"collisionTypes": [
+			"Logic"
+		],
+		"zone": {
+			"zoneTypes": [
+				"NextToExit"
+			],
+			"active": false
+		}
+	},
+	"nextToExitDebugging": {
+		"bjorn": true,
+		"collisionGenerate": true,
+		"collisionTypes": [
+			"Logic"
+		],
+		"zone": {
+			"zoneTypes": [
+				"NextToExit"
+			],
+			"active": false
+		}
+	},
+	"rooms": {
+		"parentLayer": "zoneBase",
+		"zone": {
+			"zoneTypes": [
+				"Camera"
+			]
+		}
+	},
+	"roomsNoCamera": {
+		"parentLayer": "zoneBase"
+	},
+	"slowRegions": {
+		"bjorn": true,
+		"collisionGenerate": true,
+		"collisionTypes": [
+			"Physics"
+		],
+		"physicsRegion": {
+			"regionType": 0,
+			"scale": 1.0
+		}
+	},
+	"wallTile": {
+		"bjorn": true
+	},
+	"wallColl": {},
+	"itemDoughnut": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/donut",
+					"frames": 1,
+					"speed": 0,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"animationCustomize": {
+			"hideOnDeath": true
+		},
+		"collisionManual": "0,0,50,50",
+		"collisionTypes": [
+			"Item"
+		],
+		"drawLayer": "Item",
+		"item": {
+			"classification": "Doughnut",
+			"instructionID": "doughnut"
+		},
+		"respawn": true
+	},
+	"itemHealth": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/heart",
+					"frames": 0,
+					"speed": 0,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"animationCustomize": {
+			"hideOnDeath": true
+		},
+		"collisionManual": "0,0,18,16",
+		"collisionTypes": [
+			"Item"
+		],
+		"drawLayer": "Item",
+		"health": 1,
+		"item": {
+			"classification": "Health",
+			"instructionID": "hpRestore"
+		},
+		"respawn": true
+	},
+	"itemUpgrade-Base": {
+		"animationCustomize": {
+			"hideOnDeath": true
+		},
+		"collisionGenerate": true,
+		"collisionTypes": [
+			"Item"
+		],
+		"drawLayer": "Item",
+		"lightbulbs": [
+			{
+				"size": "Small"
+			}
+		]
+	},
+	"itemUpgradeSword": {
+		"parentLayer": "itemUpgrade-Base",
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/itemSword",
+					"frames": 0,
+					"speed": 0,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"item": {
+			"classification": "UpgradeSword",
+			"instructionID": "sword"
+		}
+	},
+	"itemUpgradeShield": {
+		"parentLayer": "itemUpgrade-Base",
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/itemShield",
+					"frames": 0,
+					"speed": 0,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"item": {
+			"classification": "UpgradeShield",
+			"instructionID": "shield"
+		}
+	},
+	"itemUpgradeHP4": {
+		"parentLayer": "itemUpgrade-Base",
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/itemArmor",
+					"frames": 0,
+					"speed": 0,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"item": {
+			"classification": "UpgradeHP4",
+			"instructionID": "hp4"
+		}
+	},
+	"itemUpgradeStabCombo": {
+		"parentLayer": "itemUpgrade-Base",
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/itemSwordStab",
+					"frames": 0,
+					"speed": 0,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"item": {
+			"classification": "UpgradeStabCombo",
+			"instructionID": "stabCombo"
+		}
+	},
+	"itemUpgradeSpeed": {
+		"parentLayer": "itemUpgrade-Base",
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/speedBoots",
+					"frames": 0,
+					"speed": 0,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"item": {
+			"classification": "UpgradeSpeed",
+			"instructionID": "speed"
+		}
+	},
+	"itemUpgradeBow": {
+		"parentLayer": "itemUpgrade-Base",
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/itemBow",
+					"frames": 0,
+					"speed": 0,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"item": {
+			"classification": "UpgradeBow",
+			"instructionID": "bow"
+		}
+	},
+	"itemUpgradeAOECombo": {
+		"parentLayer": "itemUpgrade-Base",
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/itemSwordAOE",
+					"frames": 0,
+					"speed": 0,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"item": {
+			"classification": "UpgradeAOECombo",
+			"instructionID": "AOECombo"
+		}
+	},
+	"itemUpgradeHP5": {
+		"parentLayer": "itemUpgrade-Base",
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/itemArmorGold",
+					"frames": 0,
+					"speed": 0,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"item": {
+			"classification": "UpgradeHP5",
+			"instructionID": "hp5"
+		}
+	},
+	"itemTransformToBlop": {
+		"parentLayer": "itemUpgrade-Base",
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/itemRatMeat",
+					"frames": 0,
+					"speed": 0,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"item": {
+			"classification": "TransformToBlop"
+		}
+	},
+	"itemTransformToPlayer": {
+		"parentLayer": "itemUpgrade-Base",
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/itemMeat",
+					"frames": 0,
+					"speed": 0,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"item": {
+			"classification": "TransformToPlayer"
+		}
+	},
+	"crateBasicSmall": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/destructables/crateASmallIdle",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"animationCustomize": {
+			"hideOnDeath": true
+		},
+		"audible": {
+			"damaged": [
+				"crateHit"
+			],
+			"killed": [
+				"crateSmash"
+			]
+		},
+		"collisionManual": "0,0,48,52",
+		"collisionTypes": [
+			"Solid",
+			"Vulnerable",
+			"Destructible"
+		],
+		"destructible": true,
+		"respawn": true,
+		"health": 1,
+		"attributes": "crateSmall"
+	},
+	"crateBasicLarge": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/destructables/crateALargeIdle",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"animationCustomize": {
+			"hideOnDeath": true
+		},
+		"audible": {
+			"damaged": [
+				"crateHit"
+			],
+			"killed": [
+				"crateSmash"
+			]
+		},
+		"collisionManual": "0,0,88,96",
+		"collisionTypes": [
+			"Solid",
+			"Vulnerable",
+			"Destructible"
+		],
+		"destructible": true,
+		"respawn": true,
+		"health": 1,
+		"attributes": "crateLarge"
+	},
+	"crate": {
+		"parentLayer": "crateBasicSmall"
+	},
+	"crateLarge": {
+		"parentLayer": "crateBasicLarge"
+	},
+	"crateBSmall": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/destructables/crateBSmallIdle",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"animationCustomize": {
+			"hideOnDeath": true
+		},
+		"audible": {
+			"damaged": [
+				"crateHit"
+			],
+			"killed": [
+				"crateSmash"
+			]
+		},
+		"collisionManual": "0,0,48,52",
+		"collisionTypes": [
+			"Solid",
+			"Vulnerable",
+			"Destructible"
+		],
+		"destructible": true,
+		"respawn": true,
+		"health": 1,
+		"attributes": "crateSmallB"
+	},
+	"crateB": {
+		"parentLayer": "crateBSmall"
+	},
+	"barrell": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/destructables/crateCSmallIdle",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"animationCustomize": {
+			"hideOnDeath": true
+		},
+		"audible": {
+			"damaged": [
+				"crateHit"
+			],
+			"killed": [
+				"crateSmash"
+			]
+		},
+		"collisionManual": "0,0,48,60",
+		"collisionTypes": [
+			"Solid",
+			"Vulnerable",
+			"Destructible"
+		],
+		"destructible": true,
+		"respawn": true,
+		"health": 1,
+		"attributes": "barrell"
+	},
+	"barrellFruit": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/destructables/crateDSmallIdle",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"animationCustomize": {
+			"hideOnDeath": true
+		},
+		"audible": {
+			"damaged": [
+				"crateHit"
+			],
+			"killed": [
+				"crateSmash"
+			]
+		},
+		"collisionManual": "0,0,48,60",
+		"collisionTypes": [
+			"Solid",
+			"Vulnerable",
+			"Destructible"
+		],
+		"destructible": true,
+		"respawn": true,
+		"health": 1,
+		"attributes": "barrellFruit"
+	},
+	"crateExplosive": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/destructables/crateExplosiveIdle",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"animationCustomize": {
+			"hideOnDeath": true
+		},
+		"audible": {
+			"damaged": [
+				"crateHit"
+			],
+			"killed": [
+				"crateSmash"
+			]
+		},
+		"collisionManual": "0,0,48,52",
+		"collisionTypes": [
+			"Solid",
+			"Vulnerable",
+			"Destructible"
+		],
+		"destructible": true,
+		"respawn": true,
+		"health": 1,
+		"attributes": "crateExplosive"
+	},
+	"spiderEgg": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "items/destructables/spiderEggIdle",
+					"frames": 6,
+					"speed": 200,
+					"playType": "Loop"
+				}
+			}
+		],
+		"animationCustomize": {
+			"hideOnDeath": true
+		},
+		"audible": {
+			"damaged": [
+				"spiderDamaged"
+			]
+		},
+		"collisionManual": "4,0,56,60",
+		"collisionTypes": [
+			"Solid",
+			"Vulnerable",
+			"Destructible"
+		],
+		"destructible": true,
+		"respawn": true,
+		"health": 1,
+		"attributes": "spiderEgg"
+	},
+	"fxCratePoofLarge": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/cratePoofLarge",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Particles"
+	},
+	"fxCrateDeathLarge": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/crateALargeDeathFX",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Blood"
+	},
+	"fxCratePoofSmall": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/cratePoofSmall",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Particles"
+	},
+	"fxCrateDeathSmall": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/crateASmallDeathFX",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Blood"
+	},
+	"fxCrateParticlesLarge": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/crateParticlesLarge",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Particles"
+	},
+	"fxCrateParticlesSmall": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/crateParticlesSmall",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Particles"
+	},
+	"fxHitSplosion": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/hitSplosion",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Particles"
+	},
+	"fxHitBloodRed": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/bloodSplatter",
+					"frames": 8,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"animationCustomize": {
+			"tint": "#94282a"
+		},
+		"drawLayer": "Particles"
+	},
+	"fxCrateDeathB": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/crateBSmallDeathFX",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Blood"
+	},
+	"fxCrateDeathC": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/crateCSmallDeathFX",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Blood"
+	},
+	"fxCrateDeathD": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/crateDSmallDeathFX",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Blood"
+	},
+	"fxCrateDeathExplosive": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/crateExplosiveDeathFX",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Blood"
+	},
+	"fxEggSplosion": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/eggSplosion",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Particles"
+	},
+	"fxEggDeath": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/spiderEggDeathFX",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Blood"
+	},
+	"fxExplosion": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/explosion",
+					"frames": 8,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Particles"
+	},
+	"fxLeaves": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/leafFX",
+					"frames": 11,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Particles"
+	},
+	"fxSparkle": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/sparkle",
+					"frames": 12,
+					"speed": 50,
+					"playType": "Loop",
+					"alpha": 1.0
+				}
+			}
+		],
+		"drawLayer": "Sparkle"
+	},
+	"fxOil": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/oil",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold",
+					"alpha": 0.3
+				}
+			}
+		],
+		"drawLayer": "Blood"
+	},
+	"fxPlayerBlood": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/playerBlood",
+					"frames": 4,
+					"speed": 50,
+					"playType": "PlayAndHold",
+					"alpha": 0.7
+				}
+			}
+		],
+		"drawLayer": "Blood"
+	},
+	"fxRedBlopBlood": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/slimeTrailRed",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold",
+					"alpha": 0.7
+				}
+			}
+		],
+		"drawLayer": "Blood"
+	},
+	"fxYellowBlopBlood": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/slimeTrailYellow",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold",
+					"alpha": 0.7
+				}
+			}
+		],
+		"drawLayer": "Blood"
+	},
+	"fxDemonBlopBlood": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/slimeTrailDemon",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold",
+					"alpha": 0.7
+				}
+			}
+		],
+		"drawLayer": "Blood"
+	},
+	"fxBlueBlopBlood": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/slimeTrailBlue",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold",
+					"alpha": 0.7
+				}
+			}
+		],
+		"drawLayer": "Blood"
+	},
+	"fxRedBlopBigBlood": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/slimeTrailRedBig",
+					"frames": 3,
+					"speed": 50,
+					"playType": "PlayAndHold",
+					"alpha": 0.7
+				}
+			}
+		],
+		"drawLayer": "Blood"
+	},
+	"fxSpiderBlood": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/spiderBlood",
+					"frames": 4,
+					"speed": 50,
+					"playType": "PlayAndHold",
+					"alpha": 0.5
+				}
+			}
+		],
+		"drawLayer": "Blood"
+	},
+	"treeTop1": {
+		"drawLayer": "Building",
+		"img": "decorations/forestObj/treeTop1.png"
+	},
+	"treeTop2": {
+		"drawLayer": "Building",
+		"img": "decorations/forestObj/treeTop2.png"
+	},
+	"treeTop3": {
+		"drawLayer": "Building",
+		"img": "decorations/forestObj/treeTop3.png"
+	},
+	"treeTop4": {
+		"drawLayer": "Building",
+		"img": "decorations/forestObj/treeTop4.png"
+	},
+	"forestTower": {
+		"collisionManual": "0,-170,208,152",
+		"collisionTypes": [
+			"Solid",
+			"Wall"
+		],
+		"drawLayer": "AboveTop",
+		"img": "decorations/forestObj/forestTower.png"
+	},
+	"forestTowerRuins": {
+		"collisionManual": "0,-170,208,152",
+		"collisionTypes": [
+			"Solid",
+			"Wall"
+		],
+		"drawLayer": "AboveTop",
+		"img": "decorations/forestObj/forestTowerRuins.png"
+	},
+	"house": {
+		"collisionManual": "0,-30,248,328",
+		"collisionTypes": [
+			"Solid",
+			"Wall"
+		],
+		"drawLayer": "AboveTop",
+		"img": "buildings/house.png"
+	},
+	"monastery": {
+		"collisionManual": "0,0,320,540",
+		"collisionTypes": [
+			"Solid",
+			"Wall"
+		],
+		"drawLayer": "AboveTop",
+		"img": "buildings/monastery.png"
+	},
+	"exitGate": {
+		"activity": {
+			"startAction": "Idle",
+			"manual": true
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "buildings/gateIdle",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Opening",
+				"baseSpec": {
+					"base": "buildings/gateOpen",
+					"frames": 7,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"collisionManual": "0,0,320,290",
+		"collisionTypes": [
+			"Solid"
+		],
+		"drawLayer": "AboveTop",
+		"gate": {
+			"exit": true
+		}
+	},
+	"exitCastleGate": {
+		"activity": {
+			"startAction": "Idle",
+			"manual": true
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "buildings/gateCastleIdle",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Opening",
+				"baseSpec": {
+					"base": "buildings/gateCastleOpen",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"collisionManual": "0,0,256,88",
+		"collisionTypes": [
+			"Solid"
+		],
+		"drawLayer": "AboveTop",
+		"gate": {
+			"exit": true
+		}
+	},
+	"carpet": {
+		"activity": {
+			"startAction": "Opening",
+			"manual": true
+		},
+		"animations": [
+			{
+				"action": "Opening",
+				"baseSpec": {
+					"base": "buildings/carpetOpen",
+					"frames": 8,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "Carpet"
+	},
+	"startGate": {
+		"activity": {
+			"startAction": "Idle",
+			"manual": true
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "buildings/gateIdle",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Opening",
+				"baseSpec": {
+					"base": "buildings/gateOpen",
+					"frames": 7,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "AboveTop",
+		"gate": {
+			"start": true
+		}
+	},
+	"startCastleGate": {
+		"activity": {
+			"startAction": "Idle",
+			"manual": true
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "buildings/gateCastleIdle",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Opening",
+				"baseSpec": {
+					"base": "buildings/gateCastleOpen",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"drawLayer": "AboveTop",
+		"gate": {
+			"start": true
+		}
+	},
+	"zoneGate": {
+		"activity": {
+			"startAction": "Idle",
+			"manual": true
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "buildings/gateIdle",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Opening",
+				"baseSpec": {
+					"base": "buildings/gateOpen",
+					"frames": 7,
+					"speed": 100,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"collisionManual": "0,0,320,290",
+		"collisionTypes": [
+			"Solid"
+		],
+		"drawLayer": "AboveTop",
+		"gate": {}
+	},
+	"zoneCastleGate": {
+		"activity": {
+			"startAction": "Idle",
+			"manual": true
+		},
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "buildings/gateCastleIdle",
+					"frames": 1,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			},
+			{
+				"action": "Opening",
+				"baseSpec": {
+					"base": "buildings/gateCastleOpen",
+					"frames": 7,
+					"speed": 50,
+					"playType": "PlayAndHold"
+				}
+			}
+		],
+		"collisionManual": "0,0,256,88",
+		"collisionTypes": [
+			"Solid"
+		],
+		"drawLayer": "AboveTop",
+		"gate": {}
+	},
+	"appleTree": {
+		"collisionManual": "0,-72,104,80",
+		"collisionTypes": [
+			"Solid"
+		],
+		"drawLayer": "AboveTop",
+		"img": "decorations/fallObj/appleTree.png"
+	},
+	"bookcase": {
+		"collisionManual": "0,0,64,24",
+		"collisionTypes": [
+			"Solid"
+		],
+		"drawLayer": "AboveTop",
+		"img": "decorations/castleObj/bookcase.png"
+	},
+	"throne": {
+		"collisionManual": "0,0,40,88",
+		"collisionTypes": [
+			"Solid",
+			"Wall"
+		],
+		"drawLayer": "AboveTop",
+		"img": "decorations/castleObj/throne.png"
+	},
+	"gravestone": {
+		"collisionManual": "0,0,48,16",
+		"collisionTypes": [
+			"Solid"
+		],
+		"drawLayer": "AboveTop",
+		"img": "decorations/gravestone.png"
+	},
+	"bushBig": {
+		"collisionManual": "0,0,144,144",
+		"collisionTypes": [
+			"Solid"
+		],
+		"img": "decorations/forestObj/bushBig.png"
+	},
+	"bushSmall": {
+		"collisionManual": "0,0,76,76",
+		"collisionTypes": [
+			"Solid"
+		],
+		"img": "decorations/forestObj/bushSmall.png"
+	},
+	"cauldronBlue": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "decorations/cauldronBlue",
+					"frames": 4,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			}
+		],
+		"collisionGenerate": false,
+		"collisionTypes": [
+			"Solid"
+		],
+		"drawLayer": "Top",
+		"lightbulbs": [
+			{
+				"baseTint": "#0000FF",
+				"flicker": true
+			}
+		]
+	},
+	"cauldronRed": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "decorations/cauldronRed",
+					"frames": 4,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			}
+		],
+		"collisionGenerate": true,
+		"collisionTypes": [
+			"Solid"
+		],
+		"drawLayer": "Top",
+		"lightbulbs": [
+			{
+				"baseTint": "#FF0000",
+				"flicker": true
+			}
+		]
+	},
+	"fire": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "fx/fire",
+					"frames": 8,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			}
+		],
+		"drawLayer": "Flags",
+		"lightbulbs": [
+			{
+				"baseTint": "#FF0000",
+				"flicker": true
+			}
+		]
+	},
+	"castleTorch": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "decorations/castleObj/castleTorch",
+					"frames": 4,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			}
+		],
+		"drawLayer": "Flags",
+		"lightbulbs": [
+			{
+				"baseTint": "#FF0000",
+				"flicker": true
+			}
+		]
+	},
+	"flagLeft": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "decorations/flagLeft",
+					"frames": 6,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			}
+		],
+		"drawLayer": "Flags",
+		"lightbulbs": [
+			{}
+		]
+	},
+	"flagRight": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "decorations/flagRight",
+					"frames": 6,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			}
+		],
+		"drawLayer": "Flags",
+		"lightbulbs": [
+			{}
+		]
+	},
+	"gearHoriz": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "decorations/gearH",
+					"frames": 6,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			}
+		],
+		"collisionGenerate": false,
+		"collisionTypes": [
+			"Solid"
+		],
+		"drawLayer": "Top"
+	},
+	"gearVert": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "decorations/gearV",
+					"frames": 6,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			}
+		],
+		"collisionGenerate": false,
+		"collisionTypes": [
+			"Solid"
+		],
+		"drawLayer": "Top"
+	},
+	"igloo": {
+		"collisionManual": "0,0,184,184",
+		"collisionTypes": [
+			"Solid",
+			"Wall"
+		],
+		"img": "decorations/winterObj/igloo.png"
+	},
+	"lillypadFlower": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "decorations/forestObj/lilypads/padFlower",
+					"frames": 50,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			}
+		]
+	},
+	"lillypadPlain": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "decorations/forestObj/lilypads/padPlain",
+					"frames": 50,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			}
+		]
+	},
+	"log": {
+		"collisionManual": "0,0,356,72",
+		"collisionTypes": [
+			"Solid"
+		],
+		"drawLayer": "Building",
+		"img": "decorations/forestObj/log.png"
+	},
+	"mushGiantBlack": {
+		"collisionManual": "0,-80,64,44",
+		"collisionTypes": [
+			"Solid"
+		],
+		"drawLayer": "AboveTop",
+		"img": "decorations/forestObj/mushGiantBlack.png"
+	},
+	"mushGiantPurple": {
+		"collisionManual": "0,-80,64,44",
+		"collisionTypes": [
+			"Solid"
+		],
+		"drawLayer": "AboveTop",
+		"img": "decorations/forestObj/mushGiantPurple.png"
+	},
+	"mushGiantRed": {
+		"collisionManual": "0,-80,64,44",
+		"collisionTypes": [
+			"Solid"
+		],
+		"drawLayer": "AboveTop",
+		"img": "decorations/forestObj/mushGiantRed.png"
+	},
+	"mushBlack": {
+		"collisionGenerate": true,
+		"collisionTypes": [
+			"Solid"
+		],
+		"img": "decorations/forestObj/mushBlack.png"
+	},
+	"mushPurple": {
+		"collisionManual": "0,0,64,64",
+		"collisionTypes": [
+			"Solid"
+		],
+		"img": "decorations/forestObj/mushPurple.png"
+	},
+	"mushRed": {
+		"collisionGenerate": true,
+		"collisionTypes": [
+			"Solid"
+		],
+		"img": "decorations/forestObj/mushRed.png"
+	},
+	"orbs": {
+		"animations": [
+			{
+				"action": "Idle",
+				"baseSpec": {
+					"base": "decorations/forestObj/orb",
+					"frames": 14,
+					"speed": 100,
+					"playType": "Loop"
+				}
+			}
+		],
+		"collisionManual": "0,0,72,72",
+		"collisionTypes": [
+			"Solid",
+			"Wall"
+		],
+		"drawLayer": "Top",
+		"lightbulbs": [
+			{
+				"baseTint": "#0000FF"
+			}
+		]
+	},
+	"pumpkinPatch": {
+		"collisionManual": "0,0,160,160",
+		"collisionTypes": [
+			"Solid"
+		],
+		"img": "decorations/fallObj/pumpkinPatch.png"
+	},
+	"pumpkinPatchSmall": {
+		"collisionManual": "0,0,112,112",
+		"collisionTypes": [
+			"Solid"
+		],
+		"img": "decorations/fallObj/pumpkinPatchSmall.png"
+	},
+	"ruins1": {
+		"collisionGenerate": true,
+		"collisionTypes": [
+			"Solid",
+			"Wall"
+		],
+		"img": "decorations/forestObj/ruins1.png"
+	},
+	"stoneBig": {
+		"collisionManual": "0,3,88,84",
+		"collisionTypes": [
+			"Solid"
+		],
+		"img": "decorations/forestObj/stoneBig.png"
+	},
+	"stoneSmall": {
+		"collisionManual": "4,4,56,52",
+		"collisionTypes": [
+			"Solid"
+		],
+		"img": "decorations/forestObj/stoneSmall.png"
+	},
+	"stumpBig": {
+		"collisionGenerate": true,
+		"collisionTypes": [
+			"Solid",
+			"Wall"
+		],
+		"img": "decorations/forestObj/stumpBig.png"
+	},
+	"stumpSmall": {
+		"collisionGenerate": true,
+		"collisionTypes": [
+			"Solid",
+			"Wall"
+		],
+		"img": "decorations/forestObj/stumpSmall.png"
+	},
+	"lightTest": {
+		"img": "fx/light256.png",
+		"drawLayer": "Lighting"
+	}
+}

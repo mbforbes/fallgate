@@ -1,0 +1,122 @@
+{
+	"cratePoofSmall": {
+		"factory": "fxCratePoofSmall",
+		"pool": 10,
+		"duration": 350
+	},
+	"crateDeathSmall": {
+		"factory": "fxCrateDeathSmall",
+		"pool": 10,
+		"duration": -1
+	},
+	"crateParticlesSmall": {
+		"factory": "fxCrateParticlesSmall",
+		"pool": 10,
+		"duration": 350
+	},
+	"cratePoofLarge": {
+		"factory": "fxCratePoofLarge",
+		"pool": 10,
+		"duration": 350
+	},
+	"crateDeathLarge": {
+		"factory": "fxCrateDeathLarge",
+		"pool": 10,
+		"duration": -1
+	},
+	"crateParticlesLarge": {
+		"factory": "fxCrateParticlesLarge",
+		"pool": 10,
+		"duration": 350
+	},
+	"crateDeathB": {
+		"factory": "fxCrateDeathB",
+		"pool": 10,
+		"duration": -1
+	},
+	"crateDeathC": {
+		"factory": "fxCrateDeathC",
+		"pool": 10,
+		"duration": -1
+	},
+	"crateDeathD": {
+		"factory": "fxCrateDeathD",
+		"pool": 10,
+		"duration": -1
+	},
+	"crateDeathExplosive": {
+		"factory": "fxCrateDeathExplosive",
+		"pool": 10,
+		"duration": -1
+	},
+	"explosion": {
+		"factory": "fxExplosion",
+		"pool": 5,
+		"duration": 400
+	},
+	"leaves": {
+		"factory": "fxLeaves",
+		"pool": 5,
+		"duration": 550
+	},
+	"oil": {
+		"factory": "fxOil",
+		"pool": 200,
+		"duration": -1
+	},
+	"eggSplosion": {
+		"factory": "fxEggSplosion",
+		"pool": 5,
+		"duration": 350
+	},
+	"eggDeath": {
+		"factory": "fxEggDeath",
+		"pool": 30,
+		"duration": -1
+	},
+	"hitSplosion": {
+		"factory": "fxHitSplosion",
+		"pool": 5,
+		"duration": 350
+	},
+	"hitBloodRed": {
+		"factory": "fxHitBloodRed",
+		"pool": 5,
+		"duration": 400
+	},
+	"playerBlood": {
+		"factory": "fxPlayerBlood",
+		"pool": 150,
+		"duration": -1
+	},
+	"spiderBlood": {
+		"factory": "fxSpiderBlood",
+		"pool": 600,
+		"duration": -1
+	},
+	"redBlopBlood": {
+		"factory": "fxRedBlopBlood",
+		"pool": 500,
+		"duration": -1
+	},
+	"blueBlopBlood": {
+		"factory": "fxBlueBlopBlood",
+		"pool": 100,
+		"duration": -1
+	},
+	"yellowBlopBlood": {
+		"factory": "fxYellowBlopBlood",
+		"pool": 100,
+		"duration": -1
+	},
+	"demonBlopBlood": {
+		"factory": "fxDemonBlopBlood",
+		"pool": 100,
+		"duration": -1
+	},
+	"redBlopBigBlood": {
+		"factory": "fxRedBlopBigBlood",
+		"pool": 100,
+		"duration": -1
+	}
+}

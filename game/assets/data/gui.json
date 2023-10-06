@@ -1,0 +1,7145 @@
+{
+	"sequences": {
+		"titleScreen": {
+			"text": [
+				"titleCredits1",
+				"titleCredits2",
+				"titleButtonText",
+				"titlePressToBegin",
+				"titleVersion"
+			],
+			"sprites": [
+				"titleWash",
+				"fallgateGray",
+				"fallgateShine",
+				"fallgateTitle",
+				"titleButton",
+				"titleLetterBoxTop",
+				"titleLetterBoxBot",
+				"titleFlash"
+			]
+		},
+		"seasonTransition": {
+			"text": [
+				"seasonAct",
+				"seasonTitle"
+			],
+			"sprites": [
+				"seasonMountains",
+				"seasonClouds",
+				"seasonField",
+				"seasonForest",
+				"seasonRiver",
+				"seasonBushes",
+				"seasonBannerTop",
+				"seasonBannerBot",
+				"seasonTransitionGate",
+				"seasonTransitionFence",
+				"seasonLetterBoxTop",
+				"seasonLetterBoxBot",
+				"seasonBlackoutWash"
+			]
+		},
+		"lowHealth": {
+			"text": [],
+			"sprites": [
+				"lowHealthOverlay"
+			]
+		},
+		"hit": {
+			"text": [],
+			"sprites": [
+				"hitOverlay"
+			]
+		},
+		"combo": {
+			"text": [],
+			"sprites": [
+				"comboWash"
+			]
+		},
+		"upgrade": {
+			"text": [],
+			"sprites": [
+				"upgradeWash"
+			]
+		},
+		"vanquished": {
+			"text": [],
+			"sprites": [
+				"vanquished",
+				"vanquishedWash"
+			]
+		},
+		"paused": {
+			"text": [
+				"paused"
+			],
+			"sprites": [
+				"pausedWash"
+			]
+		},
+		"notification": {
+			"text": [
+				"notification"
+			],
+			"sprites": [
+				"notification"
+			]
+		},
+		"exitReady": {
+			"text": [
+				"exitReadyExit",
+				"exitReadyReady"
+			],
+			"sprites": []
+		},
+		"enemyHUD": {
+			"text": [
+				"enemyHUDName",
+				"enemyHUDKind"
+			],
+			"sprites": [
+				"enemyHUDUnderBar",
+				"enemyHUDCapLeft",
+				"enemyHUDCapRight"
+			]
+		},
+		"startLevel": {
+			"text": [
+				"startLevelNumber",
+				"startLevelName"
+			],
+			"sprites": [
+				"letterBoxTop",
+				"letterBoxBot",
+				"swordLeft",
+				"swordRight",
+				"startScreenWash"
+			]
+		},
+		"endLevel": {
+			"text": [
+				"completeC",
+				"completeRest",
+				"exitLevelName",
+				"exitLevelNumber",
+				"exitButtonText",
+				"exitPressToContinue",
+				"exitTimeTextBig",
+				"exitTimeTextSmall",
+				"exitKillsText",
+				"exitDeathsText",
+				"exitSecretsText"
+			],
+			"sprites": [
+				"exitSword",
+				"exitButton",
+				"exitTime",
+				"exitKills",
+				"exitDeaths",
+				"exitSecrets",
+				"exitletterBoxTop",
+				"exitletterBoxBot",
+				"exitScreenWash"
+			]
+		},
+		"recap": {
+			"text": [
+				"recapTitle",
+				"recapTimeLabel",
+				"recapTimeValueBig",
+				"recapTimeValueSmall",
+				"recapKillsLabel",
+				"recapKillsValue",
+				"recapDeathsLabel",
+				"recapDeathsValue",
+				"recapDoughnutsLabel",
+				"recapDoughnutsValue",
+				"recapButtonText",
+				"recapPressToContinue"
+			],
+			"sprites": [
+				"recapWash",
+				"recapTime",
+				"recapKills",
+				"recapDeaths",
+				"recapButton"
+			]
+		},
+		"instructions": {
+			"text": [
+				"instructTitle",
+				"instructText",
+				"instructButtonText",
+				"instructPressToContinue"
+			],
+			"sprites": [
+				"instructTextFrame",
+				"instructIconFrame",
+				"instructIcon",
+				"instructButton",
+				"exitScreenWash"
+			]
+		},
+		"controls": {
+			"text": [
+				"controlsText"
+			],
+			"sprites": []
+		}
+	},
+	"text": {
+		"recapDoughnutPercent": {
+			"textSpec": {
+				"text": "doughnut%\nachieved",
+				"style": {
+					"align": "center",
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 17,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#ffbf00",
+					"dropShadow": true,
+					"dropShadowColor": "#888888",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"alpha": 0,
+				"anchor": [
+					0.5,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Button"
+			},
+			"startPos": {
+				"position": [
+					500,
+					185
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "alpha",
+							"spec": {
+								"val": 1,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 4000,
+								"method": "easeInCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 4500,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"seasonAct": {
+			"textSpec": {
+				"text": "Act I",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 25,
+					"fontWeight": "bold",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Points"
+			},
+			"startPos": {
+				"position": [
+					-20,
+					218
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 280,
+							"valType": "abs",
+							"duration": 700,
+							"delay": 3000,
+							"method": "easeOutCubic"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 0,
+							"valType": "rel",
+							"duration": 0,
+							"delay": 0,
+							"method": "easeOutCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"seasonTitle": {
+			"textSpec": {
+				"text": "\"There Will Be Blop\"",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 20,
+					"fontWeight": "bold",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Points"
+			},
+			"startPos": {
+				"position": [
+					-20,
+					265
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 280,
+							"valType": "abs",
+							"duration": 700,
+							"delay": 3250,
+							"method": "easeOutCubic"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 0,
+							"valType": "rel",
+							"duration": 0,
+							"delay": 0,
+							"method": "easeOutCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"creditsLine": {
+			"textSpec": {
+				"alpha": 1,
+				"text": "<replaced by lines in data/credits.json>",
+				"style": {
+					"align": "center",
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 25,
+					"fill": "#e7e7e7"
+				},
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"startPos": {
+				"position": [
+					320,
+					450
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"titleCredits1": {
+			"textSpec": {
+				"alpha": 0,
+				"text": "a game by",
+				"style": {
+					"align": "center",
+					"fontFamily": [
+						"Cinzel",
+						"serif"
+					],
+					"fontSize": 20,
+					"fill": "#e7e7e7"
+				},
+				"anchor": [
+					0.5,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Letterbox"
+			},
+			"startPos": {
+				"position": [
+					320,
+					145
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "alpha",
+							"spec": {
+								"val": 1,
+								"valType": "abs",
+								"duration": 1500,
+								"delay": 1000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 1500,
+								"delay": 3000,
+								"method": "easeOutCubic"
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 0,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"titleCredits2": {
+			"textSpec": {
+				"alpha": 0,
+				"text": "Maxwell Forbes  &  Cooper Smith",
+				"style": {
+					"align": "center",
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 25,
+					"fontWeight": "bold",
+					"fill": "#e7e7e7"
+				},
+				"anchor": [
+					0.5,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Letterbox"
+			},
+			"startPos": {
+				"position": [
+					320,
+					180
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "alpha",
+							"spec": {
+								"val": 1,
+								"valType": "abs",
+								"duration": 1500,
+								"delay": 1000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 1500,
+								"delay": 3000,
+								"method": "easeOutCubic"
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 0,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"titlePressToBegin": {
+			"textSpec": {
+				"text": "press to begin",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontWeight": "bold",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Back"
+			},
+			"startPos": {
+				"position": [
+					320,
+					645
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 279,
+								"valType": "abs",
+								"duration": 2000,
+								"delay": 8000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 4,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 10000,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"titleVersion": {
+			"textSpec": {
+				"text": "v1.2.0",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 8,
+					"fill": "#333333",
+					"dropShadow": false
+				},
+				"anchor": [
+					0,
+					1
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "DEBUG"
+			},
+			"startPos": {
+				"position": [
+					5,
+					355
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [],
+					"sounds": []
+				}
+			}
+		},
+		"titleButtonText": {
+			"textSpec": {
+				"text": "ENTER",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontWeight": "bold",
+					"fill": "#453f5d"
+				},
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					320,
+					651
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 252,
+								"valType": "abs",
+								"duration": 2000,
+								"delay": 8000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 10000,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 0,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": -5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 100,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 250,
+								"method": "easeInCubic"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"notification": {
+			"textSpec": {
+				"text": "<notification>",
+				"style": {
+					"align": "left",
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 12,
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 3,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Notification"
+			},
+			"startPos": {
+				"position": [
+					25,
+					380
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"destruct": 3000,
+					"visuals": [
+						{
+							"prop": "y",
+							"spec": {
+								"val": 340,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 0,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 2000,
+								"method": "easeOutCubic"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"paused": {
+			"textSpec": {
+				"text": "paused",
+				"style": {
+					"align": "center",
+					"fontFamily": [
+						"Cinzel",
+						"serif"
+					],
+					"fontSize": 25,
+					"fontWeight": "bold",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 3,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0.5,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PausedText"
+			},
+			"startPos": {
+				"position": [
+					320,
+					180
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 200,
+								"valType": "abs",
+								"duration": 250,
+								"delay": 0,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 250,
+								"delay": 0,
+								"method": "easeOutCubic"
+							}
+						}
+					],
+					"sounds": [{
+						"options": [
+							"click"
+						],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"enemyHUDName": {
+			"textSpec": {
+				"text": "<enemy name>",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 8,
+					"fontStyle": "italic",
+					"fill": "#ffffff",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					1
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"startPos": {
+				"position": [
+					0,
+					-11
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"enemyHUDKind": {
+			"textSpec": {
+				"text": "<enemy kind>",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 9,
+					"fontWeight": "bold",
+					"fill": "#ffffff",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					1
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"startPos": {
+				"position": [
+					0,
+					-1
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"exitLevelNumber": {
+			"textSpec": {
+				"text": "Level <n>",
+				"style": {
+					"fontFamily": [
+						"Cinzel",
+						"serif"
+					],
+					"fontSize": 25,
+					"fontWeight": "bold",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 3,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					1,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-600,
+					94
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 463,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 500,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"exitLevelName": {
+			"textSpec": {
+				"text": "<Level Name>",
+				"style": {
+					"fontFamily": [
+						"Cinzel",
+						"serif"
+					],
+					"fontSize": 25,
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 3,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.2
+				},
+				"anchor": [
+					1,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-600,
+					174
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 462,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 700,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 300,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"completeC": {
+			"textSpec": {
+				"text": "C",
+				"style": {
+					"fontFamily": [
+						"Cinzel",
+						"serif"
+					],
+					"fontSize": 100,
+					"fontWeight": "bold",
+					"fill": "#b82323",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 3,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-600,
+					78
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 135,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 600,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-double"
+						],
+						"delay": 700
+					}]
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 200,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"completeRest": {
+			"textSpec": {
+				"text": "OMPLETE",
+				"style": {
+					"fontFamily": [
+						"Cinzel",
+						"serif"
+					],
+					"fontSize": 50,
+					"fontWeight": "bold",
+					"fill": "#b82323",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 3,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-522,
+					120
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 213,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 600,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 200,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"recapTitle": {
+			"textSpec": {
+				"text": "game complete",
+				"style": {
+					"fontFamily": [
+						"Cinzel",
+						"serif"
+					],
+					"fontSize": 50,
+					"fontWeight": "bold",
+					"fill": "#b82323",
+					"dropShadow": true,
+					"dropShadowColor": "#660000",
+					"dropShadowDistance": 3,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0.5,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					320,
+					-100
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": 35,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 600,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": -50,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 200,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"exitButtonText": {
+			"textSpec": {
+				"text": "ENTER",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontWeight": "bold",
+					"fill": "#453f5d"
+				},
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					320,
+					651
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 252,
+								"valType": "abs",
+								"duration": 2000,
+								"delay": 1000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 3000,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 0,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": -5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 100,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 250,
+								"method": "easeInCubic"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"exitPressToContinue": {
+			"textSpec": {
+				"text": "press to continue",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontWeight": "bold",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					320,
+					645
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 279,
+								"valType": "abs",
+								"duration": 2000,
+								"delay": 1000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 4,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 3000,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"recapButtonText": {
+			"textSpec": {
+				"text": "ENTER",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontWeight": "bold",
+					"fill": "#453f5d"
+				},
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					320,
+					651
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 302,
+								"valType": "abs",
+								"duration": 2000,
+								"delay": 2000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 4000,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 0,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": -5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 100,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 250,
+								"method": "easeInCubic"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"recapPressToContinue": {
+			"textSpec": {
+				"text": "press to continue",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontWeight": "bold",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					320,
+					645
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 329,
+								"valType": "abs",
+								"duration": 2000,
+								"delay": 2000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 4,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 4000,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"exitTimeText": {
+			"textSpec": {
+				"text": "<time>",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-100,
+					55
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 34,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 1100,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 50,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"exitTimeTextBig": {
+			"textSpec": {
+				"text": "<time>",
+				"style": {
+					"align": "right",
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					1,
+					1
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-100,
+					78
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 63,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 1100,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 50,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"exitTimeTextSmall": {
+			"textSpec": {
+				"text": "<time>",
+				"style": {
+					"align": "left",
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 11,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					1
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-100,
+					77
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 63,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 1100,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 50,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"recapTimeLabel": {
+			"textSpec": {
+				"text": "play time",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontStyle": "italic",
+					"fontWeight": "400",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-80,
+					105
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 154,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 1100,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -80,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 50,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"recapTimeValue": {
+			"textSpec": {
+				"text": "<time>",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 25,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-120,
+					75
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 126,
+							"valType": "abs",
+							"duration": 800,
+							"delay": 1100,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -120,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 50,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"recapTimeValueBig": {
+			"textSpec": {
+				"text": "<time>",
+				"style": {
+					"align": "right",
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 25,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					1,
+					1
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-120,
+					108
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 191,
+							"valType": "abs",
+							"duration": 800,
+							"delay": 1100,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -120,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 50,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"recapTimeValueSmall": {
+			"textSpec": {
+				"text": "<time>",
+				"style": {
+					"align": "left",
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 16,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					1
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-120,
+					107
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 191,
+							"valType": "abs",
+							"duration": 800,
+							"delay": 1100,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -120,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 50,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"recapDoughnutsLabel": {
+			"textSpec": {
+				"text": "Doughnuts",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 25,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					700,
+					95
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 400,
+							"valType": "abs",
+							"duration": 800,
+							"delay": 1400,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 700,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 50,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"recapDoughnutsValue": {
+			"textSpec": {
+				"text": "<x/y>",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontStyle": "italic",
+					"fontWeight": "400",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					700,
+					104
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 550,
+							"valType": "abs",
+							"duration": 800,
+							"delay": 1400,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 700,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 50,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"exitKillsText": {
+			"textSpec": {
+				"text": "<kills>",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-100,
+					85
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 34,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 1200,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 100,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"recapKillsLabel": {
+			"textSpec": {
+				"text": "kills",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-100,
+					195
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 154,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 1200,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 100,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"recapKillsValue": {
+			"textSpec": {
+				"text": "<kills>",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 25,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-100,
+					165
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 126,
+							"valType": "abs",
+							"duration": 800,
+							"delay": 1200,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 100,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"exitDeathsText": {
+			"textSpec": {
+				"text": "<deaths>",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-100,
+					115
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 34,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 1300,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 150,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"recapDeathsLabel": {
+			"textSpec": {
+				"text": "deaths",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-100,
+					285
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 154,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 1300,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 150,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"recapDeathsValue": {
+			"textSpec": {
+				"text": "<deaths>",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 25,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-100,
+					255
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 126,
+							"valType": "abs",
+							"duration": 800,
+							"delay": 1300,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 150,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"exitSecretsText": {
+			"textSpec": {
+				"text": "<secrets>",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontStyle": "italic",
+					"fontWeight": "600",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-100,
+					145
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 34,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 1400,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 200,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"startLevelNumber": {
+			"textSpec": {
+				"text": "Level <n>",
+				"style": {
+					"align": "center",
+					"fontFamily": [
+						"Cinzel",
+						"serif"
+					],
+					"fontSize": 42,
+					"fontWeight": "bold",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 4,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"alpha": 0,
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					320,
+					126
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "alpha",
+							"spec": {
+								"val": 1,
+								"valType": "abs",
+								"duration": 750,
+								"delay": 1000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 5000,
+								"method": "linear"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"startLevelName": {
+			"textSpec": {
+				"text": "<Level Name>",
+				"style": {
+					"align": "center",
+					"fontFamily": [
+						"Cinzel",
+						"serif"
+					],
+					"fontSize": 20,
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 3,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.2
+				},
+				"alpha": 0,
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					320,
+					182
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "alpha",
+							"spec": {
+								"val": 1,
+								"valType": "abs",
+								"duration": 1250,
+								"delay": 2250,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 5000,
+								"method": "linear"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"floatText": {
+			"textSpec": {
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 10,
+					"fontWeight": "bold",
+					"fill": "#db4240",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 0,
+					"dropShadowBlur": 3
+				}
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Points"
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"destruct": 2000,
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": -30,
+								"valType": "rel",
+								"duration": 1000,
+								"delay": 0,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 250,
+								"method": "linear"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"flashText": {
+			"textSpec": {
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 10,
+					"fontWeight": "bold",
+					"fill": "#db4240",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 0,
+					"dropShadowBlur": 3
+				}
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Points"
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"destruct": 2000,
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": -50,
+								"valType": "rel",
+								"duration": 1500,
+								"delay": 0,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "color",
+							"spec": {
+								"val": "#ffffff",
+								"valType": "abs",
+								"duration": 1500,
+								"delay": 0,
+								"period": 50,
+								"method": "flashBetween"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 300,
+								"method": "linear"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"exitReadyExit": {
+			"textSpec": {
+				"text": "EXIT",
+				"style": {
+					"fontFamily": [
+						"Cinzel",
+						"serif"
+					],
+					"fontSize": 200,
+					"fontWeight": "bold",
+					"fill": "#db4240",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 0,
+					"dropShadowBlur": 3
+				},
+				"anchor": [
+					0.5,
+					1
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "World",
+				"z": "Carpet"
+			},
+			"startPos": {
+				"position": [
+					1000,
+					180
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"destruct": 5000,
+					"visuals": [{
+							"prop": "x",
+							"spec": {
+								"val": 380,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 1000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "x",
+							"spec": {
+								"val": -40,
+								"valType": "rel",
+								"duration": 1500,
+								"delay": 1500,
+								"method": "linear"
+							}
+						},
+						{
+							"prop": "x",
+							"spec": {
+								"val": -1000,
+								"valType": "rel",
+								"duration": 500,
+								"delay": 3000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "color",
+							"spec": {
+								"val": "#ffffff",
+								"valType": "abs",
+								"duration": 3000,
+								"delay": 0,
+								"period": 500,
+								"method": "flashBetween"
+							}
+						}
+					],
+					"sounds": [{
+						"options": [
+							"exitReady"
+						],
+						"delay": 1500
+					}]
+				}
+			}
+		},
+		"exitReadyReady": {
+			"textSpec": {
+				"text": "READY",
+				"style": {
+					"fontFamily": [
+						"Cinzel",
+						"serif"
+					],
+					"fontSize": 200,
+					"fontWeight": "bold",
+					"fill": "#db4240",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 0,
+					"dropShadowBlur": 3
+				},
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "World",
+				"z": "Carpet"
+			},
+			"startPos": {
+				"position": [
+					-600,
+					140
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"destruct": 5000,
+					"visuals": [{
+							"prop": "x",
+							"spec": {
+								"val": 340,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 1000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "x",
+							"spec": {
+								"val": 40,
+								"valType": "rel",
+								"duration": 1500,
+								"delay": 1500,
+								"method": "linear"
+							}
+						},
+						{
+							"prop": "x",
+							"spec": {
+								"val": 1000,
+								"valType": "rel",
+								"duration": 500,
+								"delay": 3000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "color",
+							"spec": {
+								"val": "#ffffff",
+								"valType": "abs",
+								"duration": 3000,
+								"delay": 0,
+								"period": 500,
+								"method": "flashBetween"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"instructTitle": {
+			"textSpec": {
+				"text": "<Instruct Title>",
+				"style": {
+					"fontFamily": [
+						"Cinzel",
+						"serif"
+					],
+					"fontSize": 50,
+					"fontWeight": "bold",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 3,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					320,
+					-325
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": 15,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 250,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-high"
+						],
+						"delay": 400
+					}]
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 200,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"instructText": {
+			"textSpec": {
+				"text": "Testing text testing text testing\nTesting text testing text testing\nTesting text testing text testing\n \nThe quick brown fawkes jumps over the\nlazy doge.",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontWeight": "bold",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					-303,
+					180
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 97,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 600,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 200,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"instructButtonText": {
+			"textSpec": {
+				"text": "ENTER",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontWeight": "bold",
+					"fill": "#453f5d"
+				},
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					320,
+					651
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 302,
+								"valType": "abs",
+								"duration": 2000,
+								"delay": 600,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 3000,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 0,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": -5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 100,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 250,
+								"method": "easeInCubic"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"instructPressToContinue": {
+			"textSpec": {
+				"text": "press to continue",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontWeight": "bold",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"startPos": {
+				"position": [
+					320,
+					645
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 329,
+								"valType": "abs",
+								"duration": 2000,
+								"delay": 600,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 4,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 3000,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"controlsText": {
+			"textSpec": {
+				"text": "I am a temporary controls text. Replace me!",
+				"style": {
+					"fontFamily": [
+						"Josefin Sans"
+					],
+					"fontSize": 15,
+					"fontWeight": "bold",
+					"fill": "#e7e7e7",
+					"dropShadow": true,
+					"dropShadowColor": "#000000",
+					"dropShadowDistance": 2,
+					"dropShadowBlur": 5,
+					"dropShadowAngle": 2.35,
+					"dropShadowAlpha": 0.4
+				},
+				"anchor": [
+					0.5,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "BigOverlay"
+			},
+			"startPos": {
+				"position": [
+					320,
+					330
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 340,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 0,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 1000,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		}
+	},
+	"sprites": {
+		"seasonMountains": {
+			"baseSpec": {
+				"alpha": 100,
+				"base": "HUD/mountainsSummer",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					255,
+					20
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Back"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -575,
+							"valType": "rel",
+							"duration": 100000,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -575,
+							"valType": "rel",
+							"duration": 100000,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": [{
+						"options": [],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"seasonClouds": {
+			"baseSpec": {
+				"alpha": 100,
+				"base": "HUD/cloudSummer",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					255,
+					31
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Mid"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -575,
+							"valType": "rel",
+							"duration": 30000,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -575,
+							"valType": "rel",
+							"duration": 30000,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": [{
+						"options": [],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"seasonField": {
+			"baseSpec": {
+				"alpha": 100,
+				"base": "HUD/fieldSummer",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					255,
+					230
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Back"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -575,
+							"valType": "rel",
+							"duration": 20000,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -575,
+							"valType": "rel",
+							"duration": 20000,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": [{
+						"options": [],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"seasonForest": {
+			"baseSpec": {
+				"alpha": 100,
+				"base": "HUD/forestSummer",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					1
+				]
+			},
+			"startPos": {
+				"position": [
+					255,
+					243
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Mid"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -575,
+							"valType": "rel",
+							"duration": 40000,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -575,
+							"valType": "rel",
+							"duration": 60000,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": [{
+						"options": [],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"seasonRiver": {
+			"baseSpec": {
+				"alpha": 100,
+				"base": "HUD/riverSummer",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					1
+				]
+			},
+			"startPos": {
+				"position": [
+					255,
+					350
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Mid"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -575,
+							"valType": "rel",
+							"duration": 15000,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -575,
+							"valType": "rel",
+							"duration": 15000,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": [{
+						"options": [],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"seasonBushes": {
+			"baseSpec": {
+				"alpha": 100,
+				"base": "HUD/bushSummer",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					1
+				]
+			},
+			"startPos": {
+				"position": [
+					255,
+					360
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -671,
+							"valType": "rel",
+							"duration": 12000,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -671,
+							"valType": "rel",
+							"duration": 12000,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": [{
+						"options": [],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"seasonBannerTop": {
+			"baseSpec": {
+				"alpha": 100,
+				"base": "HUD/seasonBannerTop",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					-120,
+					214
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 180,
+							"valType": "abs",
+							"duration": 700,
+							"delay": 3000,
+							"method": "easeOutCubic"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 0,
+							"valType": "rel",
+							"duration": 0,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": [{
+						"options": [],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"seasonBannerBot": {
+			"baseSpec": {
+				"alpha": 100,
+				"base": "HUD/seasonBannerBot",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					-45,
+					258
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 255,
+							"valType": "abs",
+							"duration": 700,
+							"delay": 3250,
+							"method": "easeOutCubic"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 0,
+							"valType": "rel",
+							"duration": 0,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": [{
+						"options": [],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"seasonTransitionGate": {
+			"baseSpec": {
+				"alpha": 100,
+				"base": "HUD/gateBig",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Button"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 0,
+							"valType": "rel",
+							"duration": 0,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 0,
+							"valType": "rel",
+							"duration": 0,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": [{
+						"options": [],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"seasonTransitionFence": {
+			"baseSpec": {
+				"alpha": 100,
+				"base": "HUD/gateFence",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					1,
+					1
+				]
+			},
+			"startPos": {
+				"position": [
+					150,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUD"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": 360,
+							"valType": "abs",
+							"duration": 1000,
+							"delay": 5000,
+							"method": "easeOutBounce"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"title-slam"
+						],
+						"delay": 5000
+					}]
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 0,
+							"valType": "rel",
+							"duration": 0,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": [{
+						"options": [],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"seasonLetterBoxTop": {
+			"baseSpec": {
+				"base": "HUD/letterBox",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Letterbox"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": 0,
+							"valType": "rel",
+							"duration": 0,
+							"delay": 0,
+							"method": "easeOutCubic"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": 0,
+							"valType": "rel",
+							"duration": 0,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"seasonLetterBoxBot": {
+			"baseSpec": {
+				"base": "HUD/letterBox",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					311
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Letterbox"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": 0,
+							"valType": "rel",
+							"duration": 0,
+							"delay": 0,
+							"method": "easeOutCubic"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": 0,
+							"valType": "rel",
+							"duration": 0,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"seasonBlackoutWash": {
+			"baseSpec": {
+				"alpha": 1,
+				"scale": 40,
+				"tint": "#000000",
+				"base": "HUD/screenWash",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Curtain"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 1000,
+								"method": "easeInCubic"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 1,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 9000,
+								"method": "easeInCubic"
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 1,
+							"valType": "abs",
+							"duration": 0,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"lowHealthOverlay": {
+			"baseSpec": {
+				"base": "fx/lowHealthBorder",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 1.0,
+				"alpha": 0.6
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0.0,
+							"valType": "abs",
+							"duration": 1500,
+							"delay": 0,
+							"method": "easeOutCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"hitOverlay": {
+			"baseSpec": {
+				"base": "fx/lowHealthBorder",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 1.0,
+				"alpha": 0.8
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0.0,
+							"valType": "abs",
+							"duration": 2000,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"playerHUDHeartOn": {
+			"baseSpec": {
+				"base": "HUD/healthUp",
+				"frames": 23,
+				"speed": 50,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 0.5
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUDTop"
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"playerHUDHeartOff": {
+			"baseSpec": {
+				"base": "HUD/healthDown",
+				"frames": 15,
+				"speed": 50,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 0.5
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUDTop"
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"playerHUDBoard": {
+			"baseSpec": {
+				"base": "HUD/PlayerHUDv3Board",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 0.5
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUDMid"
+			},
+			"startPos": {
+				"position": [
+					58,
+					10
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"playerHUDPortrait": {
+			"baseSpec": {
+				"base": "HUD/portraitPlayer",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 0.5
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUDMid"
+			},
+			"startPos": {
+				"position": [
+					13,
+					11
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"playerHUDFrame": {
+			"baseSpec": {
+				"base": "HUD/PlayerHUDv3Frame",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 0.5
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUDTop"
+			},
+			"startPos": {
+				"position": [
+					5,
+					5
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"playerHUDSelector": {
+			"baseSpec": {
+				"base": "HUD/hudSelector",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 0.5
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUDTop"
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"playerHUDBoardSword": {
+			"baseSpec": {
+				"base": "HUD/hudBoardSword",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 0.5
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUDBottom"
+			},
+			"startPos": {
+				"position": [
+					5.5,
+					48.5
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"playerHUDBoardBow": {
+			"baseSpec": {
+				"base": "HUD/hudBoardBow",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 0.5
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUDBottom"
+			},
+			"startPos": {
+				"position": [
+					5.5,
+					48.5
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"playerHUDSwordIcon": {
+			"baseSpec": {
+				"base": "HUD/hudSword",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 0.5
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUDMid"
+			},
+			"startPos": {
+				"position": [
+					18,
+					62
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"playerHUDBowIcon": {
+			"baseSpec": {
+				"base": "HUD/hudBow",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 0.5
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUDMid"
+			},
+			"startPos": {
+				"position": [
+					28,
+					104
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"playerHUDWeaponSelector": {
+			"baseSpec": {
+				"base": "HUD/hudSelector",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 0.5
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUDMid"
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"playerHUDFrameBG": {
+			"baseSpec": {
+				"base": "HUD/playerHUDFrameBgr",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 0.5
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUDBottom"
+			},
+			"startPos": {
+				"position": [
+					13.5,
+					10
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"playerHUDDoughnutInactive": {
+			"baseSpec": {
+				"base": "HUD/donutInactive",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 0.5
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUDBottom"
+			},
+			"startPos": {
+				"position": [
+					590,
+					10
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"playerHUDDoughnutActiveDoughnut": {
+			"baseSpec": {
+				"base": "HUD/donutFlash",
+				"frames": 7,
+				"speed": 50,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 0.5
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUDMid"
+			},
+			"startPos": {
+				"position": [
+					598.5,
+					18.5
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"playerHUDDoughnutActiveBG": {
+			"baseSpec": {
+				"base": "HUD/donutGradient",
+				"frames": 8,
+				"speed": 50,
+				"playType": "Loop",
+				"anchor": [
+					0,
+					0
+				],
+				"scale": 0.5
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PlayerHUDBottom"
+			},
+			"startPos": {
+				"position": [
+					590,
+					10
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"enemyHUDGatekeeperHealth": {
+			"baseSpec": {
+				"base": "HUD/gatekeeperHealth",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Mid"
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"enemyHUDNormalHealth": {
+			"baseSpec": {
+				"base": "HUD/npcHealth",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0.5
+				],
+				"alpha": 0.9
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Mid"
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"enemyHUDBossHealth": {
+			"baseSpec": {
+				"base": "HUD/bossHealth",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0.5
+				],
+				"alpha": 0.9
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Mid"
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"enemyHUDUnderBar": {
+			"baseSpec": {
+				"base": "HUD/enemyHUDUnderBar",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Back"
+			},
+			"startPos": {
+				"position": [
+					1,
+					0
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"enemyHUDCapLeft": {
+			"baseSpec": {
+				"base": "HUD/enemyHUDendCapL",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"enemyHUDCapRight": {
+			"baseSpec": {
+				"base": "HUD/enemyHUDendCapR",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"tweens": {}
+		},
+		"vanquished": {
+			"baseSpec": {
+				"alpha": 0,
+				"scale": 0.75,
+				"base": "HUD/deathScreen",
+				"frames": 10,
+				"speed": 50,
+				"playType": "Loop",
+				"anchor": [
+					0.5,
+					0.5
+				]
+			},
+			"startPos": {
+				"position": [
+					320,
+					160
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "BigOverlay"
+			},
+			"tweens": {
+				"enter": {
+					"destruct": 10000,
+					"visuals": [{
+							"prop": "alpha",
+							"spec": {
+								"val": 1,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 1000,
+								"method": "linear"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 20,
+								"valType": "rel",
+								"duration": 3000,
+								"delay": 0,
+								"method": "linear"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 250,
+								"delay": 2750,
+								"method": "linear"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"pausedWash": {
+			"baseSpec": {
+				"alpha": 0.5,
+				"scale": 40,
+				"tint": "#000000",
+				"base": "HUD/screenWash",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "PausedWash"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0.7,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0.0,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"comboWash": {
+			"baseSpec": {
+				"alpha": 1.0,
+				"scale": 40,
+				"tint": "#FFFFFF",
+				"base": "HUD/screenWash",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "ComboWash"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0.0,
+							"valType": "abs",
+							"duration": 16,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"upgradeWash": {
+			"baseSpec": {
+				"alpha": 1.0,
+				"scale": 40,
+				"tint": "#FFFFFF",
+				"base": "HUD/screenWash",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "ComboWash"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0.0,
+							"valType": "abs",
+							"duration": 700,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"vanquishedWash": {
+			"baseSpec": {
+				"alpha": 0,
+				"scale": 40,
+				"tint": "#000000",
+				"base": "HUD/screenWash",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Wash"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "alpha",
+							"spec": {
+								"val": 0.8,
+								"valType": "abs",
+								"duration": 1500,
+								"delay": 500,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 250,
+								"delay": 2750,
+								"method": "linear"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"creditsWash": {
+			"baseSpec": {
+				"alpha": 0.5,
+				"scale": 60,
+				"tint": "#000000",
+				"base": "HUD/screenWash",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					-20,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Back"
+			},
+			"tweens": {}
+		},
+		"recapWash": {
+			"baseSpec": {
+				"alpha": 1,
+				"scale": 60,
+				"tint": "#000000",
+				"base": "HUD/screenWash",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					-20,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Back"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [],
+					"sounds": []
+				}
+			}
+		},
+		"blackoutWash": {
+			"baseSpec": {
+				"alpha": 1,
+				"scale": 60,
+				"tint": "#000000",
+				"base": "HUD/screenWash",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					-20,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Curtain"
+			},
+			"tweens": {}
+		},
+		"creditsLetterBoxTop": {
+			"baseSpec": {
+				"base": "HUD/letterBox",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Letterbox"
+			},
+			"tweens": {}
+		},
+		"creditsLetterBoxBot": {
+			"baseSpec": {
+				"base": "HUD/letterBox",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					311
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Letterbox"
+			},
+			"tweens": {}
+		},
+		"titleWash": {
+			"baseSpec": {
+				"alpha": 1,
+				"scale": 60,
+				"tint": "#000000",
+				"base": "HUD/screenWash",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					-20,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 2000,
+							"delay": 3500,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 0,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"exitSword": {
+			"baseSpec": {
+				"base": "HUD/endSword",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					469,
+					-300
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": 55,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 2000,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"sword-flesh"
+						],
+						"delay": 2000
+					}]
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": -300,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"exitButton": {
+			"baseSpec": {
+				"base": "HUD/bigButton",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					320,
+					645
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 246,
+								"valType": "abs",
+								"duration": 2000,
+								"delay": 1000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 3000,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 0,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": -5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 100,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 250,
+								"method": "easeInCubic"
+							}
+						}
+					],
+					"sounds": [{
+						"options": [
+							"click"
+						],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"recapButton": {
+			"baseSpec": {
+				"base": "HUD/bigButton",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					320,
+					645
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 296,
+								"valType": "abs",
+								"duration": 2000,
+								"delay": 2000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 4000,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 0,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": -5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 100,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 250,
+								"method": "easeInCubic"
+							}
+						}
+					],
+					"sounds": [{
+						"options": [
+							"click"
+						],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"exitTime": {
+			"baseSpec": {
+				"base": "HUD/endTime",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					-100,
+					55
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 6,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 1000,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-high"
+						],
+						"delay": 1250
+					}]
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-low"
+						],
+						"delay": 250
+					}]
+				}
+			}
+		},
+		"recapTime": {
+			"baseSpec": {
+				"base": "HUD/endTime",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					-80,
+					105
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 126,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 1000,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-high"
+						],
+						"delay": 1250
+					}]
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -80,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-low"
+						],
+						"delay": 250
+					}]
+				}
+			}
+		},
+		"recapSparkle": {
+			"baseSpec": {
+				"alpha": 0,
+				"base": "fx/sparkle",
+				"frames": 12,
+				"speed": 50,
+				"playType": "Loop",
+				"anchor": [
+					0.5,
+					0.5
+				]
+			},
+			"startPos": {
+				"position": [
+					500,
+					185
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Overlay"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "alpha",
+							"spec": {
+								"val": 1,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 4000,
+								"method": "easeInCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 4500,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": [{
+						"options": [
+							"title-sheen"
+						],
+						"delay": 4000
+					}]
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"exitKills": {
+			"baseSpec": {
+				"base": "HUD/endKills",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					-100,
+					80
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 6,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 1100,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-high"
+						],
+						"delay": 1350
+					}]
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 50,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-low"
+						],
+						"delay": 350
+					}]
+				}
+			}
+		},
+		"recapKills": {
+			"baseSpec": {
+				"base": "HUD/endKills",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					-100,
+					195
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 126,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 1100,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-high"
+						],
+						"delay": 1350
+					}]
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 50,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-low"
+						],
+						"delay": 350
+					}]
+				}
+			}
+		},
+		"exitDeaths": {
+			"baseSpec": {
+				"base": "HUD/endDeaths",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					-100,
+					115
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 6,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 1200,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-high"
+						],
+						"delay": 1450
+					}]
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 100,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-low"
+						],
+						"delay": 450
+					}]
+				}
+			}
+		},
+		"recapDeaths": {
+			"baseSpec": {
+				"base": "HUD/endDeaths",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					-100,
+					285
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 126,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 1200,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-high"
+						],
+						"delay": 1450
+					}]
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 100,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-low"
+						],
+						"delay": 450
+					}]
+				}
+			}
+		},
+		"exitSecrets": {
+			"baseSpec": {
+				"base": "HUD/endSecrets",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					-100,
+					145
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 6,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 1300,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-high"
+						],
+						"delay": 1450
+					}]
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": -100,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 150,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-low"
+						],
+						"delay": 550
+					}]
+				}
+			}
+		},
+		"recapDoughnutOn": {
+			"baseSpec": {
+				"base": "HUD/endSecrets",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {}
+		},
+		"recapDoughnutOff": {
+			"baseSpec": {
+				"base": "HUD/endSecrets",
+				"tint": "#333333",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {}
+		},
+		"exitletterBoxTop": {
+			"baseSpec": {
+				"base": "HUD/letterBox",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					-50
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Letterbox"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 1000,
+							"delay": 200,
+							"method": "easeOutCubic"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": -50,
+							"valType": "abs",
+							"duration": 1000,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"exitletterBoxBot": {
+			"baseSpec": {
+				"base": "HUD/letterBox",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					361
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Letterbox"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": 311,
+							"valType": "abs",
+							"duration": 1000,
+							"delay": 200,
+							"method": "easeOutCubic"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": 361,
+							"valType": "abs",
+							"duration": 1000,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"exitScreenWash": {
+			"baseSpec": {
+				"alpha": 0,
+				"scale": 40,
+				"tint": "#000000",
+				"base": "HUD/screenWash",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Back"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0.8,
+							"valType": "abs",
+							"duration": 1000,
+							"delay": 0,
+							"method": "easeOutCubic"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 1000,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"letterBoxTop": {
+			"baseSpec": {
+				"base": "HUD/letterBox",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					-50
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Letterbox"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 200,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": -50,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 4500,
+								"method": "easeInCubic"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"letterBoxBot": {
+			"baseSpec": {
+				"base": "HUD/letterBox",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					361
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Letterbox"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 311,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 200,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 361,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 4500,
+								"method": "easeInCubic"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"swordLeft": {
+			"baseSpec": {
+				"base": "HUD/startSwordL",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					1,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					130
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "x",
+							"spec": {
+								"val": 208,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 1000,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "x",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 5000,
+								"method": "easeInCubic"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 750,
+								"delay": 5000,
+								"method": "linear"
+							}
+						}
+					],
+					"sounds": [{
+						"options": [
+							"swordComboSwing"
+						],
+						"delay": 1050
+					}]
+				}
+			}
+		},
+		"swordRight": {
+			"baseSpec": {
+				"base": "HUD/startSwordR",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					640,
+					130
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "x",
+							"spec": {
+								"val": 432,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 1000,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "x",
+							"spec": {
+								"val": 640,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 5000,
+								"method": "easeInCubic"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 750,
+								"delay": 5000,
+								"method": "linear"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"notification": {
+			"baseSpec": {
+				"base": "HUD/controllerIconSmall",
+				"frames": 0,
+				"scale": 0.5,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0.5
+				]
+			},
+			"startPos": {
+				"position": [
+					5,
+					380
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Notification"
+			},
+			"tweens": {
+				"enter": {
+					"destruct": 3000,
+					"visuals": [
+						{
+							"prop": "y",
+							"spec": {
+								"val": 340,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 0,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 2000,
+								"method": "easeOutCubic"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"startScreenWash": {
+			"baseSpec": {
+				"alpha": 0,
+				"scale": 40,
+				"tint": "#000000",
+				"base": "HUD/screenWash",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Back"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "alpha",
+							"spec": {
+								"val": 0.8,
+								"valType": "abs",
+								"duration": 1500,
+								"delay": 1000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 5000,
+								"method": "linear"
+							}
+						}
+					],
+					"sounds": []
+				}
+			}
+		},
+		"titleButton": {
+			"baseSpec": {
+				"base": "HUD/bigButton",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					320,
+					645
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Back"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 246,
+								"valType": "abs",
+								"duration": 2000,
+								"delay": 8000,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 10000,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 0,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": -5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 100,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 250,
+								"method": "easeInCubic"
+							}
+						}
+					],
+					"sounds": [{
+						"options": [
+							"click"
+						],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"titleLetterBoxTop": {
+			"baseSpec": {
+				"base": "HUD/letterBox",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					-50
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Letterbox"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 1000,
+							"delay": 0,
+							"method": "easeOutCubic"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": -50,
+							"valType": "abs",
+							"duration": 1000,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"titleLetterBoxBot": {
+			"baseSpec": {
+				"base": "HUD/letterBox",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					361
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Letterbox"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": 311,
+							"valType": "abs",
+							"duration": 1000,
+							"delay": 0,
+							"method": "easeOutCubic"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "y",
+						"spec": {
+							"val": 361,
+							"valType": "abs",
+							"duration": 1000,
+							"delay": 0,
+							"method": "easeInCubic"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"titleFlash": {
+			"baseSpec": {
+				"alpha": 0.0,
+				"scale": 40,
+				"tint": "#FFFFFF",
+				"base": "HUD/screenWash",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					0,
+					0
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Wash"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "alpha",
+							"spec": {
+								"val": 0.0,
+								"valType": "abs",
+								"duration": 16,
+								"delay": 0,
+								"method": "linear"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 1.0,
+								"valType": "abs",
+								"duration": 16,
+								"delay": 8050,
+								"method": "linear"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0.0,
+								"valType": "abs",
+								"duration": 750,
+								"delay": 8067,
+								"method": "linear"
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 0,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"fallgateGray": {
+			"baseSpec": {
+				"alpha": 1,
+				"base": "HUD/fallgateGray",
+				"frames": 1,
+				"speed": 50,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0.5,
+					0.5
+				]
+			},
+			"startPos": {
+				"position": [
+					320,
+					-340
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Back"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 100,
+								"valType": "abs",
+								"duration": 1000,
+								"delay": 6000,
+								"method": "easeOutBounce"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 0,
+								"delay": 11000,
+								"method": "linear"
+							}
+						}
+					],
+					"sounds": [{
+						"options": [
+							"title-slam"
+						],
+						"delay": 6050
+					}]
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 0,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"fallgateShine": {
+			"baseSpec": {
+				"alpha": 0,
+				"base": "HUD/fallgateShine",
+				"frames": 11,
+				"speed": 50,
+				"playType": "Loop",
+				"anchor": [
+					0.5,
+					0.5
+				]
+			},
+			"startPos": {
+				"position": [
+					320,
+					100
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "alpha",
+							"spec": {
+								"val": 1,
+								"valType": "abs",
+								"duration": 0,
+								"delay": 7650,
+								"method": "linear"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 0,
+								"delay": 8200,
+								"method": "linear"
+							}
+						}
+					],
+					"sounds": [{
+						"options": [
+							"title-sheen"
+						],
+						"delay": 8150
+					}]
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 0,
+							"delay": 0,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"fallgateTitle": {
+			"baseSpec": {
+				"alpha": 0,
+				"base": "HUD/fallgateTitle",
+				"frames": 8,
+				"speed": 50,
+				"playType": "Loop",
+				"anchor": [
+					0.5,
+					0.5
+				]
+			},
+			"startPos": {
+				"position": [
+					320,
+					100
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 1,
+							"valType": "abs",
+							"duration": 50,
+							"delay": 8100,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 1000,
+							"delay": 200,
+							"method": "easeOutCubic"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"click"
+						],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"instructButton": {
+			"baseSpec": {
+				"base": "HUD/bigButton",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0.5,
+					0
+				]
+			},
+			"startPos": {
+				"position": [
+					320,
+					645
+				],
+				"rotation": 0
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 296,
+								"valType": "abs",
+								"duration": 2000,
+								"delay": 600,
+								"method": "easeOutCubic"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": -1,
+								"delay": 3000,
+								"method": "sine",
+								"period": 0.002
+							}
+						}
+					],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+							"prop": "y",
+							"spec": {
+								"val": 5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 0,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "y",
+							"spec": {
+								"val": -5,
+								"valType": "rel",
+								"duration": 100,
+								"delay": 100,
+								"method": "easeOutBack"
+							}
+						},
+						{
+							"prop": "alpha",
+							"spec": {
+								"val": 0,
+								"valType": "abs",
+								"duration": 500,
+								"delay": 250,
+								"method": "easeInCubic"
+							}
+						}
+					],
+					"sounds": [{
+						"options": [
+							"click"
+						],
+						"delay": 0
+					}]
+				}
+			}
+		},
+		"instructTextFrame": {
+			"baseSpec": {
+				"base": "HUD/instructTextFrame",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"startPos": {
+				"position": [
+					-333,
+					180
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 67,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 600,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": [{
+						"options": [
+							"whoosh-double"
+						],
+						"delay": 750
+					}]
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 200,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"instructIconFrame": {
+			"baseSpec": {
+				"base": "HUD/instructIconFrame",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					1,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"startPos": {
+				"position": [
+					973,
+					180
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 573,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 600,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 200,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		},
+		"instructIcon": {
+			"baseSpec": {
+				"base": "HUD/instructIconTest",
+				"frames": 0,
+				"speed": 0,
+				"playType": "PlayAndHold",
+				"anchor": [
+					0,
+					0.5
+				]
+			},
+			"displaySpec": {
+				"stageTarget": "HUD",
+				"z": "Front"
+			},
+			"startPos": {
+				"position": [
+					842,
+					180
+				],
+				"rotation": 0
+			},
+			"tweens": {
+				"enter": {
+					"visuals": [{
+						"prop": "x",
+						"spec": {
+							"val": 442,
+							"valType": "abs",
+							"duration": 500,
+							"delay": 600,
+							"method": "easeOutBack"
+						}
+					}],
+					"sounds": []
+				},
+				"exit": {
+					"visuals": [{
+						"prop": "alpha",
+						"spec": {
+							"val": 0,
+							"valType": "abs",
+							"duration": 250,
+							"delay": 200,
+							"method": "linear"
+						}
+					}],
+					"sounds": []
+				}
+			}
+		}
+	}
+}
