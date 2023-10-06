@@ -4,11 +4,12 @@
   "description": "A pixel-art action-adventure game about questing through a forest, vanquishing blops and eating doughnuts.",
   "main": "index.js",
   "scripts": {
-    "start": "npx http-server ./game",
-    "build": "tsc"
+    "start": "npm run build && npm run serve",
+    "build": "tsc",
+    "serve": "npx http-server ./game"
   },
   "keywords": [],
-  "author": "Forbes and Cooper",
+  "author": "Maxwell Forbes and Cooper Smith",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.8.2",

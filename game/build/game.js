@@ -1379,7 +1379,16 @@ var Stage;
     }
     Stage.MainStage = MainStage;
     class MainStageCore extends PIXI.display.Stage {
+        getChildAt(index) {
+            if (index < 0 || index >= this.children.length) {
+                throw new Error('getChildAt: Supplied index ' + index + ' does not exist in the child list, or the supplied DisplayObject is not a child of the caller');
+            }
+            return this.children[index];
+        }
     }
+    __decorate([
+        override
+    ], MainStageCore.prototype, "getChildAt", null);
     class MultiZStage extends PIXI.Container {
         constructor(stagetTarget, z_enum) {
             super();
@@ -1404,6 +1413,12 @@ var Stage;
                 this.addChildAt(zStage, i);
             }
         }
+        getChildAt(index) {
+            if (index < 0 || index >= this.children.length) {
+                throw new Error('getChildAt: Supplied index ' + index + ' does not exist in the child list, or the supplied DisplayObject is not a child of the caller');
+            }
+            return this.children[index];
+        }
         add(obj) {
             var idx = this.mapping.get(obj.z);
             var stage = this.getChildAt(idx);
@@ -1423,6 +1438,9 @@ var Stage;
             outMax.set_(minX + w + buffer, minY + h + buffer);
         }
     }
+    __decorate([
+        override
+    ], MultiZStage.prototype, "getChildAt", null);
     Stage.MultiZStage = MultiZStage;
     class Translator {
         constructor(hud, world, viewportSize, gameScale) {
